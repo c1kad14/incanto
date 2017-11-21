@@ -6,7 +6,6 @@ namespace Incanto.BusinessLogic.Models.Base
 {
 	public abstract class BaseModelWithName<TEntity> : BaseModel<TEntity> where TEntity : BaseEntity, new()
 	{
-		[Required(ErrorMessage = "Name is a requried field")]
 		public string Name { get; set; }
 
 		protected BaseModelWithName()

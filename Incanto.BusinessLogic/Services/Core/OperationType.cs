@@ -2,9 +2,9 @@
 {
 	public enum OperationType
 	{
+		Read = 1,
 		Add,
 		Update,
-		Read,
 		Delete
 	}
 }

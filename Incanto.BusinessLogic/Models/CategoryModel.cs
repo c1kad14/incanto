@@ -12,7 +12,6 @@ namespace Incanto.BusinessLogic.Models
 		}
 		public CategoryModel(Category category) : base(category)
 		{
-			if (category.Type != null) Type = new TypeModel(category.Type);
 		}
 
 		[Required(ErrorMessage = "Type is a required field")]
@@ -29,7 +28,7 @@ namespace Incanto.BusinessLogic.Models
 		public override Category ConvertToEntity()
 		{
 			var category = base.ConvertToEntity();
-			category.Type = Type.ConvertToEntity();
+			category.Type = Type?.ConvertToEntity();
 			return category;
 		}
 	}

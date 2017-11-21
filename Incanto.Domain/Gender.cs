@@ -4,5 +4,8 @@ namespace Incanto.Domain
 {
 	public class Gender : BaseEntity
 	{
+		public Gender()
+		{
+		}
 	}
 }

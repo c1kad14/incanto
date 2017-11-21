@@ -14,10 +14,6 @@ namespace Incanto.BusinessLogic.Models
 
 		public DiscountModel(Discount discount) : base(discount)
 		{
-			Value = discount.Value;
-			Active = discount.Active;
-			ItemId = discount.Item?.Id;
-			Updated = discount.Updated;
 		}
 
 		[Required(ErrorMessage = "Value is a required field")]
@@ -25,7 +21,7 @@ namespace Incanto.BusinessLogic.Models
 		[Required(ErrorMessage = "Value is a required field")]
 		public bool Active { get; set; }
 		public int? ItemId { get; set; }
-		public DateTime Updated { get; set; }
+		public DateTime? Updated { get; set; }
 
 		public override IBaseModel ConvertFromEntity(Discount discount)
 		{
@@ -42,8 +38,8 @@ namespace Incanto.BusinessLogic.Models
 			var discount = base.ConvertToEntity();
 			discount.Value = Value;
 			discount.Active = Active;
-			discount.Updated = Updated;
-			if(ItemId != null) discount.Item = new Item(){ Id = ItemId.Value };
+			discount.Updated = Updated ?? DateTime.Now;
+			if (ItemId != null) discount.Item = new Item() { Id = ItemId.Value };
 			return discount;
 		}
 	}

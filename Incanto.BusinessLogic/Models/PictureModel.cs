@@ -13,8 +13,6 @@ namespace Incanto.BusinessLogic.Models
 
 		public PictureModel(Picture picture) : base(picture)
 		{
-			Path = picture.Path;
-			ItemId = picture.Item?.Id;
 		}
 
 		[Required(ErrorMessage = "Path is a required field")]

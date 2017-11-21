@@ -1,15 +1,13 @@
 ﻿using Incanto.Domain;
+using Incanto.Domain.Base;
+using Incanto.Domain.Base.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Incanto.DataAccess.Context
 {
 	public class IncantoDataContext : DbContext
 	{
-		public IncantoDataContext()
-		{
-
-		}
-		public IncantoDataContext(DbContextOptions<IncantoDataContext> contextOptions) : base((DbContextOptions) contextOptions)
+		public IncantoDataContext(DbContextOptions contextOptions) : base(contextOptions)
 		{
 			
 		}
@@ -29,10 +27,16 @@ namespace Incanto.DataAccess.Context
 		public DbSet<Size> Sizes { get; set; }
 		public DbSet<Transaction> Transactions { get; set; }
 
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		//protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		//{
+		//	optionsBuilder.UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = IncantoData; Trusted_Connection = True;");
+		//}
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			optionsBuilder.UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = IncantoData; Trusted_Connection = True;");
-			base.OnConfiguring(optionsBuilder);
+			modelBuilder.Entity<Brand>().HasIndex(e => e.Name).IsUnique();
+			modelBuilder.Entity<Country>().HasIndex(e => e.Name).IsUnique();
+			modelBuilder.Entity<Gender>().HasIndex(e => e.Name).IsUnique();
 		}
 	}
 }

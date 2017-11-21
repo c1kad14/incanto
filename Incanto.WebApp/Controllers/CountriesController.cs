@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Incanto.BusinessLogic.Models;
+using Incanto.DataAccess.Interfaces;
 using Incanto.DataAccess.Repository;
 using Incanto.Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -10,5 +11,8 @@ namespace Incanto.WebApp.Controllers
 	[Route("api/[controller]")]
 	public class CountriesController : CRUDController<CountryModel, Country>
 	{
+		public CountriesController(IDataRepository<Country> dataRepository) : base(dataRepository, null)
+		{
+		}
 	}
 }

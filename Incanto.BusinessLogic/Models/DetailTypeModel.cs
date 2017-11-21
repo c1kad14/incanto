@@ -13,7 +13,6 @@ namespace Incanto.BusinessLogic.Models
 
 		public DetailTypeModel(DetailType detailType) : base(detailType)
 		{
-			if(detailType.Category != null) Category = new CategoryModel(detailType.Category);
 		}
 
 		[Required(ErrorMessage = "Category is a required field")]
@@ -30,7 +29,7 @@ namespace Incanto.BusinessLogic.Models
 		public override DetailType ConvertToEntity()
 		{
 			var detailType = base.ConvertToEntity();
-			detailType.Category = Category.ConvertToEntity();
+			detailType.Category = Category?.ConvertToEntity();
 			return detailType;
 		}
 	}

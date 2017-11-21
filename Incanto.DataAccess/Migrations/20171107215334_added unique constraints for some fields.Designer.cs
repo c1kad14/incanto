@@ -11,9 +11,10 @@ using System;
 namespace Incanto.DataAccess.Migrations
 {
     [DbContext(typeof(IncantoDataContext))]
-    partial class IncantoDataContextModelSnapshot : ModelSnapshot
+    [Migration("20171107215334_added unique constraints for some fields")]
+    partial class addeduniqueconstraintsforsomefields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -13,8 +13,6 @@ namespace Incanto.BusinessLogic.Models
 
 		public DetailModel(Detail detail) : base(detail)
 		{
-			if (detail.DetailValue != null) DetailValue = new DetailTypeValueModel(detail.DetailValue);
-			ItemId = detail.Item?.Id;
 		}
 
 		[Required(ErrorMessage = "DetailValue is a required field")]
@@ -32,7 +30,7 @@ namespace Incanto.BusinessLogic.Models
 		public override Detail ConvertToEntity()
 		{
 			var detail = base.ConvertToEntity();
-			detail.DetailValue = DetailValue.ConvertToEntity();
+			detail.DetailValue = DetailValue?.ConvertToEntity();
 			if (ItemId != null) detail.Item = new Item() { Id = ItemId.Value };
 			return detail;
 		}

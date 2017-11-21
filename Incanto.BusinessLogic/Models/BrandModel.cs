@@ -13,7 +13,6 @@ namespace Incanto.BusinessLogic.Models
 
 		public BrandModel(Brand brand) : base(brand)
 		{
-			if(brand.Country != null) Country = new CountryModel(brand.Country);
 		}
 
 		[Required(ErrorMessage = "Country is a required field")]
@@ -30,7 +29,7 @@ namespace Incanto.BusinessLogic.Models
 		public override Brand ConvertToEntity()
 		{
 			var brand = base.ConvertToEntity();
-			brand.Country = Country.ConvertToEntity();
+			brand.Country = Country?.ConvertToEntity();
 			return brand;
 		}
 	}
