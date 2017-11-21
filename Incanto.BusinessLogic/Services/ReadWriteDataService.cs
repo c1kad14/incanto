@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using Incanto.BusinessLogic.Models.Base.Interfaces;
@@ -26,7 +27,7 @@ namespace Incanto.BusinessLogic.Services
 		{
 			try
 			{
-				var validationResult = ModelValidator.Validate(model);
+				var validationResult = operationType != OperationType.Delete ? ModelValidator.Validate(model) : new List<ValidationResult>();
 
 				if (validationResult.Any())
 				{
@@ -44,12 +45,13 @@ namespace Incanto.BusinessLogic.Services
 					case OperationType.Read:
 						break;
 					case OperationType.Delete:
-						DataRepository.Detele(entity);
+						DataRepository.Delete(entity);
 						break;
 					default:
 						throw new IndexOutOfRangeException();
 				}
-				return new OperationResult<TModel, TEntity>(model, operationType, true, OperationResultConsants.ACTION_SUCCESS[operationType]);
+				return new OperationResult<TModel, TEntity>(
+					(TModel)new TModel().ConvertFromEntity(entity), operationType, true, OperationResultConsants.ACTION_SUCCESS[operationType]);
 			}
 			catch (Exception e)
 			{

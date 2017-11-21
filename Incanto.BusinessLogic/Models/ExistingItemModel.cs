@@ -13,9 +13,6 @@ namespace Incanto.BusinessLogic.Models
 
 		public ExistingItemModel(ExistingItem existingItem) : base(existingItem)
 		{
-			Item = new ItemModel(existingItem.Item);
-			Size = new SizeModel(existingItem.Size);
-			Amount = existingItem.Amount;
 		}
 
 		[Required(ErrorMessage = "Item is a required field")]

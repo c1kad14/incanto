@@ -15,14 +15,6 @@ namespace Incanto.BusinessLogic.Models
 
 		public ItemModel(Item item) : base(item)
 		{
-			Brand = new BrandModel(item.Brand);
-			Category = new CategoryModel(item.Category);
-			Discount = new DiscountModel(item.Discount);
-			item.Price.ForEach(p => Prices.Add(new PriceModel(p)));
-			item.Pictures.ForEach(p => Pictures.Add(new PictureModel(p)));
-			item.Details.ForEach(d => Details.Add(new DetailModel(d)));
-			Description = item.Description;
-			Updated = item.Updated;
 		}
 
 		[Required(ErrorMessage = "Brand is a required field")]
@@ -41,10 +33,11 @@ namespace Incanto.BusinessLogic.Models
 			base.ConvertFromEntity(item);
 			Brand = new BrandModel(item.Brand);
 			Category = new CategoryModel(item.Category);
-			Discount = new DiscountModel(item.Discount);
-			item.Price.ForEach(p => Prices.Add(new PriceModel(p)));
-			item.Pictures.ForEach(p => Pictures.Add(new PictureModel(p)));
-			item.Details.ForEach(d => Details.Add(new DetailModel(d)));
+			if(item.Discount != null) Discount = new DiscountModel(item.Discount);
+			item.Price?.ForEach(p => Prices.Add(new PriceModel(p)));
+			item.Pictures?.ForEach(p => Pictures.Add(new PictureModel(p)));
+			Details = new List<DetailModel>();
+			item.Details?.ForEach(d => Details.Add(new DetailModel(d)));
 			Description = item.Description;
 			Updated = item.Updated;
 			return this;
@@ -53,14 +46,15 @@ namespace Incanto.BusinessLogic.Models
 		public override Item ConvertToEntity()
 		{
 			var item = base.ConvertToEntity();
-			item.Brand = Brand.ConvertToEntity();
+			item.Brand = Brand?.ConvertToEntity();
 			item.Category = Category.ConvertToEntity();
-			item.Discount = Discount.ConvertToEntity();
+			item.Discount = Discount?.ConvertToEntity();
 			item.Description = Description;
 			item.Updated = Updated;
-			Prices.ForEach(p => item.Price.Add(p.ConvertToEntity()));
-			Pictures.ForEach(p => item.Pictures.Add(p.ConvertToEntity()));
-			Details.ForEach(d => item.Details.Add(d.ConvertToEntity()));
+			Prices?.ForEach(p => item.Price.Add(p.ConvertToEntity()));
+			Pictures?.ForEach(p => item.Pictures.Add(p.ConvertToEntity()));
+			item.Details = new List<Detail>();
+			Details?.ForEach(d => item.Details.Add(d.ConvertToEntity()));
 			return item;
 		}
 	}

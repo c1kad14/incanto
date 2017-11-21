@@ -14,9 +14,6 @@ namespace Incanto.BusinessLogic.Models
 
 		public PriceModel(Price price) : base(price)
 		{
-			ItemId = price.Item?.Id;
-			Value = price.Value;
-			Updated = price.Updated;
 		}
 
 		[Required(ErrorMessage = "Value is a required field")]

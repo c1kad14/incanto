@@ -5,7 +5,7 @@ using Incanto.BusinessLogic.Models.Base.Interfaces;
 
 namespace Incanto.BusinessLogic.Models
 {
-	public class TypeModel : BaseModel<Domain.Type>
+	public class TypeModel : BaseModelWithName<Domain.Type>
 	{
 		public TypeModel()
 		{
@@ -13,7 +13,6 @@ namespace Incanto.BusinessLogic.Models
 
 		public TypeModel(Domain.Type type) : base(type)
 		{
-			if(type.Gender != null) Gender = new GenderModel(type.Gender);
 		}
 
 		[Required(ErrorMessage = "Gender is a required field")]
@@ -30,7 +29,7 @@ namespace Incanto.BusinessLogic.Models
 		public override Type ConvertToEntity()
 		{
 			var type = base.ConvertToEntity();
-			type.Gender = Gender.ConvertToEntity();
+			type.Gender = Gender?.ConvertToEntity();
 			return type;
 		}
 	}

@@ -12,10 +12,22 @@ namespace Incanto.DataAccess.Repository
 	public class DataRepository<TEntity> : IDataRepository<TEntity>
 		where TEntity : class, IBaseEntity, new()
 	{
+		public Func<IQueryable<TEntity>, IQueryable<TEntity>> IncludeFunc { get; set; }
+		private readonly DbContextOptions _dbContextOptions;
+
+		public DataRepository()
+		{
+		}
+
+		public DataRepository(DbContextOptions dbContextOptions)
+		{
+			_dbContextOptions = dbContextOptions;
+		}
 		public void Add(TEntity entity)
 		{
-			using (var context = new IncantoDataContext(new DbContextOptions<IncantoDataContext>()))
+			using (var context = new IncantoDataContext(_dbContextOptions))
 			{
+				context.Set<TEntity>().Attach(entity);
 				context.Set<TEntity>().Add(entity);
 				context.SaveChanges();
 			}
@@ -23,7 +35,7 @@ namespace Incanto.DataAccess.Repository
 
 		public void Update(TEntity entity)
 		{
-			using (var context = new IncantoDataContext(new DbContextOptions<IncantoDataContext>()))
+			using (var context = new IncantoDataContext(_dbContextOptions))
 			{
 				context.Set<TEntity>().Attach(entity);
 				context.Update(entity);
@@ -31,9 +43,9 @@ namespace Incanto.DataAccess.Repository
 			}
 		}
 
-		public void Detele(TEntity entity)
+		public void Delete(TEntity entity)
 		{
-			using (var context = new IncantoDataContext(new DbContextOptions<IncantoDataContext>()))
+			using (var context = new IncantoDataContext(_dbContextOptions))
 			{
 				context.Set<TEntity>().Attach(entity);
 				context.Remove(entity);
@@ -41,9 +53,9 @@ namespace Incanto.DataAccess.Repository
 			}
 		}
 
-		public void Detele(int id)
+		public void Delete(int id)
 		{
-			using (var context = new IncantoDataContext(new DbContextOptions<IncantoDataContext>()))
+			using (var context = new IncantoDataContext(_dbContextOptions))
 			{
 				var entity = context.Set<TEntity>().Find(id);
 				context.Set<TEntity>().Attach(entity);
@@ -54,11 +66,13 @@ namespace Incanto.DataAccess.Repository
 
 		public List<TEntity> GetList(Expression<Func<TEntity, bool>> predicate = null)
 		{
-			using (var context = new IncantoDataContext(new DbContextOptions<IncantoDataContext>()))
+			using (var context = new IncantoDataContext(_dbContextOptions))
 			{
 				IQueryable<TEntity> query = context.Set<TEntity>();
 				if (predicate != null)
 					query = query.Where(predicate);
+				if (IncludeFunc != null)
+					query = IncludeFunc(query);
 				return query.ToList();
 			}
 		}
