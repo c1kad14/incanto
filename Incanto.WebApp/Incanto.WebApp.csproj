@@ -5,7 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <Content Remove="wwwroot\js\app\Core\Services\DataServicet.js~RF3284fcb.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Controllers\BrandsController.cs" />
+    <Content Include="Controllers\CategoriesController.cs" />
+    <Content Include="Controllers\CountriesController.cs" />
+    <Content Include="Controllers\CRUDController.cs" />
+    <Content Include="Controllers\DetailsController.cs" />
+    <Content Include="Controllers\DetailTypesController.cs" />
+    <Content Include="Controllers\DetailTypeValuesController.cs" />
+    <Content Include="Controllers\DiscountsController.cs" />
+    <Content Include="Controllers\ItemsController.cs" />
+    <Content Include="Controllers\TypesController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
 
   <ItemGroup>
