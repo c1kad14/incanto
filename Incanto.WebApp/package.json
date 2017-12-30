@@ -1,0 +1,33 @@
+{
+  "name": "incanto.webapp",
+  "version": "1.0.0",
+  "description": "Incanto shop",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "build_prod": "webpack -p --config webpack.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "material-ui": "^0.19.4",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-tap-event-plugin": "^3.0.2"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^3.8.1"
+  },
+  "-vs-binding": {
+    "AfterBuild": [
+      "build"
+    ]
+  }
+}
