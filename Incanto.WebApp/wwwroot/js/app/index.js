@@ -2,19 +2,34 @@
 "use strict";
 import React from "react";
 import ReactDOM from "react-dom";
-import Text from "./Core/Controls/Text";
-import Button from "./Core/Controls/Button";
+import DarkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import GetMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import IncantoAppBar from "./Core/Controls/IncantoAppBar";
 
 class Application extends React.Component {
-    render() {
-        return<div>
-                <Text fieldData={this.props.name} />
-                <Button label="Load" />
-            </div>;
-    }
+	render() {
+		let test = {
+			checkErrors: false,
+			name: "name",
+			dataSourceLink: "http://localhost:49801/api/countries/getlist",
+			displayedValue: "name",
+			modelValue: "name"
+		}
+		let model = {
+			name: ""
+		}
+		document.body.style.backgroundColor = DarkBaseTheme.palette.canvasColor;
+		DarkBaseTheme.fontFamily = "Lucida Console";
+		return <MuiThemeProvider muiTheme={GetMuiTheme(DarkBaseTheme)}>
+			<div>
+				<IncantoAppBar />
+			</div>
+		</MuiThemeProvider>;
+	}
 }
 
 ReactDOM.render(
-    <Application name="YO"/>,
-    document.getElementById("application")
+	<Application name="YO" />,
+	document.getElementById("application")
 )

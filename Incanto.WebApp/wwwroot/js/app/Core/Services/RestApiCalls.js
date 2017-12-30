@@ -1,8 +1,8 @@
 ﻿import Axios from "axios/dist/axios";
 
-export default class RestService {
+export default class RestApiCalls {
     static get(url) {
-        return Axios.get(url);
+		return Axios.get(url).then((response) => { return response;  });
     }
 
     static post(url, model) {

@@ -7,18 +7,25 @@ class DataService {
 	}
 	//Get collection of object using api (host/api/controller/GetList)
 	static getItems(controller, callback) {
-		RestApiCalls.get(`/api/${controller}/GetList`).then(function (response) {
-			NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-			callback(response.data.records);
+	    let errorMessage = this.errorOccured;
+		return RestApiCalls.get(`/api/${controller}/GetList`).then(function (response) {
+			//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+			//console.log("Data service finished");
+			if (callback !== null) {
+			    callback(response.data);
+			}
+		    //return response;
 		}).catch(function (err) {
-			NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
+		//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
 		});
 	}
 	//Get object by id using api (host/api/controller/GetObject)
 	static getObject(controller, objectId, callback) {
 		RestApiCalls.get(`/api/${controller}/Get?id=${objectId}`).then(function (response) {
-			NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-			callback(response.data.record);
+			//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+		    if (callback !== null) {
+		        callback(response.data);
+		    }
 		}).catch(function (err) {
 			NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
 		});
@@ -26,8 +33,10 @@ class DataService {
 	//Add new object using api (host/api/controller/Add)
 	static addObject(controller, model, callback) {
 		RestApiCalls.post(`/api/${controller}/Add`, model).then(function (response) {
-			NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-			callback(response.data.record);
+			//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+		    if (callback !== null) {
+		        callback(response.data);
+		    }
 		}).catch(function (err) {
 			NotificationService.addNotification(this.errorOccured + err, function () { }, "Закрыть", false, false);
 		});

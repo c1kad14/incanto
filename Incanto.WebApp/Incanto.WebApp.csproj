@@ -22,17 +22,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Admin\" />
+    <None Include="wwwroot\fonts\BauerBodni\baubodti.svg" />
+    <None Include="wwwroot\fonts\BauerBodni\baubodti.woff2" />
+    <None Include="wwwroot\fonts\centuryGothic\gothic.svg" />
+    <None Include="wwwroot\fonts\centuryGothic\gothicbold.svg" />
+    <None Include="wwwroot\fonts\didot\didot-bold.svg" />
+    <None Include="wwwroot\fonts\didot\didot-italic.svg" />
+    <None Include="wwwroot\fonts\didot\didot.svg" />
+    <None Include="wwwroot\fonts\GeorgiaItalic\georgiaitalic.svg" />
+    <None Include="wwwroot\fonts\GeorgiaItalic\georgiaitalic.woff2" />
+    <None Include="wwwroot\fonts\gotham\GothamProBold.eot%40" />
+    <None Include="wwwroot\fonts\gotham\gothaprolig.svg" />
+    <None Include="wwwroot\fonts\gotham\gothaproreg.svg" />
+    <None Include="wwwroot\fonts\TrajanPro\trajanpro3-regular.svg" />
+    <None Include="wwwroot\fonts\TrajanPro\trajanpro3-regular.woff2" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.WebEncoders">
       <Version>2.0.0</Version>
