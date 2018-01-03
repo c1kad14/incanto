@@ -7,11 +7,12 @@ class IncantoRecords extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			controller: "countries"
+			controller: "countries",
+			shouldRefreshTable: false
 		}
 	}
 	selectedTableChangedHandler(controller) {
-		this.setState({ controller: controller }, function () { console.log("updated controller:" + controller) });
+		this.setState({ controller: controller, shouldRefreshTable: false }, function () { console.log("updated controller:" + controller) });
 	}
 
 	refreshDataTable() {
@@ -37,7 +38,7 @@ class IncantoRecords extends React.Component {
 				{ "gender": { "controller": "genders" } }
 			],
 			"categories": [
-				{ "type": { "controller": "types" } }
+				{ "type": { "controller": "types", "displayChild" : "gender" } }
 			],
 			"detailtypes": [
 				{ "category": { "controller": "categories" } }

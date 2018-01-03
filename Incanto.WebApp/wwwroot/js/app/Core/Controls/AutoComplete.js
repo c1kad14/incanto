@@ -13,7 +13,8 @@ class AutoCompleteControl extends React.Component {
 		    displayName: "AutoCompleteControl",
 			errorText: "",
 			autoCompleteData: [],
-			source: []
+			source: [],
+			autoCompleteDataDictionary: {}
 		};
 
 		this.updateData = this.updateData.bind(this);
@@ -32,16 +33,23 @@ class AutoCompleteControl extends React.Component {
 
 	updateData(data) {
 		if (data !== undefined && data != null && data.length > 0) {
-			this.setState({ source: data });
+			this.state.source = data;
 			const controlData = [];
 			for (let i = 0; i < this.state.source.length; i++) {
-				controlData.push(this.state.source[i].model.name);
-			    //controlData.push(this.createFormatedItem(this.state.source[i], this.props.fieldData.itemFormat));
+				let displayChild = this.props.fieldData.displayChild;
+				let unformatedName = this.state.source[i].model[this.props.fieldData.name];
+				
+				if (displayChild !== undefined) {
+					let formatedName = unformatedName + " - " + this.state.source[i].model[displayChild].name;
+					controlData.push(formatedName);
+					this.state.autoCompleteDataDictionary[formatedName] = unformatedName;
+				} else {
+					controlData.push(unformatedName);
+				}
+				//controlData.push(this.createFormatedItem(this.state.source[i], this.props.fieldData.itemFormat));
 			}
 			this.setState({ autoCompleteData: controlData });
-		} else {
-			this.setState({ autoCompleteData: data });
-		}
+		} 
 	}
 
 	checkErrors() {
@@ -58,40 +66,42 @@ class AutoCompleteControl extends React.Component {
 
 	handleChanges(newValue) {
 		let displayedValue = newValue;
-		let modelValue = newValue;
+		//let modelValue = this.props.fieldData.displayChild !== undefined ? this.state.autoCompleteDataDictionary[newValue] : newValue;
+		let values, modelValue, childValue;
+		let displayChild = this.props.fieldData.displayChild;
+		if (displayChild !== undefined) {
+			values = newValue.split(" - ");
+			modelValue = values[0];
+			childValue = values[1];
+		} else {
+			modelValue = newValue;
+		}
 
 		if (this.state.source.length > 0) {
 			for (let i = 0; i < this.state.source.length; i++) {
-				if (this.state.source[i].model.name.includes(newValue)) {
-				    //if (this.createFormatedItem(this.state.source[i], this.props.fieldData.itemFormat) === newValue) {
-				    //if (this.props.fieldData.displayedValue !== undefined) {
-				    //    displayedValue = this.state.source[i].model[this.props.fieldData.displayedValue];
-				    //} else {
-				    //    displayedValue = newValue;
-				    //}
-					if (this.state.source[i].model.name === newValue) {
-					    if (this.props.fieldData.isChildModel) {
-							this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] = modelValue;
-							this.props.model[this.props.fieldData.modelField]["id"] = this.state.source[i].model.id;
-					    } else {
-					        this.props.model[this.props.fieldData.name] = modelValue;
-					    }
-					} else {
+				if (this.state.source[i].model.name.includes(modelValue)) {
+					if (displayChild &&
+						this.state.source[i].model.name === modelValue &&
+						this.state.source[i].model[displayChild].name === childValue
+						|| !displayChild && this.state.source[i].model.name === modelValue) {
 						if (this.props.fieldData.isChildModel) {
-							this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] = undefined;
-							this.props.model[this.props.fieldData.modelField]["id"] = undefined;
+							this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] = modelValue;
+							this.props.model[this.props.fieldData.modelField].id = this.state.source[i].model.id;
 						} else {
-						    this.props.model[this.props.fieldData.name] = undefined;
+							this.props.model[this.props.fieldData.name] = modelValue;
 						}
 					}
-				    //if (this.props.fieldData.modelValue !== undefined) {
-				    //    modelValue = this.state.source[i].model[this.props.fieldData.modelValue];
-				    //} else {
-				    //    modelValue = newValue;
-				    //}
+					//else {
+					//		if (this.props.fieldData.isChildModel) {
+					//			this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] = undefined;
+					//			this.props.model[this.props.fieldData.modelField]["id"] = undefined;
+					//		} else {
+					//			this.props.model[this.props.fieldData.name] = undefined;
+					//		}
+					//	}
 				}
 			}
-		} 
+		}
 
 		this.props.fieldData.value = displayedValue;
 		this.checkErrors();

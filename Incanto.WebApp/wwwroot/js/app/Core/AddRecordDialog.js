@@ -46,13 +46,16 @@ class AddRecordDialog extends React.Component {
 			if (this.props.lookup !== undefined) {
 				lookupField = this.props.lookup.filter((field) => {
 					return field[modelField] !== undefined;
-				}
-				);
+				});
 			}
 
 			if (lookupField !== undefined && lookupField.length > 0) {
 				this.state.recordToUpdate[modelField] = {};
 				lookupField = lookupField[0];
+				if (lookupField[modelField].displayChild !== null || lookupField[modelField].displayChild !== undefined) {
+					fieldData["displayChild"] = lookupField[modelField].displayChild;
+				}
+		;
 				fieldData["isChildModel"] = true;
 			} else {
 				fieldData.name = modelField;

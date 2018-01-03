@@ -17,7 +17,8 @@ class RecordsList extends React.Component {
 			dataSource: [],
 			itemsPerPage: 5,
 			activePage: this.props.page === undefined ? 1 : this.props.page,
-			selectedItem: {}
+			selectedItem: {},
+			selectedItemIndex: -1
 		};
 		this.getDataForPage = this.getDataForPage.bind(this);
 		this.updateData = this.updateData.bind(this);
@@ -60,10 +61,11 @@ class RecordsList extends React.Component {
 		this.setState({ activePage: 1 });
 	}
 
-	onRowSelection(id) {
-		if (id.length > 0) {
-			let item = this.getDataForPage()[id];
+	onRowSelection(selectedRows) {
+		if (selectedRows.length > 0) {
+			let item = this.getDataForPage()[selectedRows[0]];
 			this.state.selectedItem = item;
+			this.state.selectedItemIndex = selectedRows[0];
 			console.log('updated state value', this.state.selectedItem);
 			//console.log('updated state value', this.state.selectedItem.name);
 		}
@@ -81,8 +83,7 @@ class RecordsList extends React.Component {
 		const rowColumns = this.props.columns.map(function (columnName) {
 			let columnValue;
 			let columnId;
-			if("discounts")
-			if (typeof (row[columnName]) === "object" && row[columnName] !== {} && row[columnName] !== [] && row[columnName] !== null ) {
+			if (typeof (row[columnName]) === "object" && row[columnName] !== {} && row[columnName] !== [] && row[columnName] !== null) {
 				columnValue = row[columnName].name;
 				columnId = row[columnName].id;
 			} else {
@@ -98,25 +99,23 @@ class RecordsList extends React.Component {
 	componentWillMount() {
 		var processData = this.updateData;
 		DataService.getItems(this.props.controller, processData);
-		//RestApiCalls.get(this.props.url).then(response => {
-		//	processData(response.data);
-		//});
 	}
 
 	componentWillReceiveProps(nextProps) {
-	    var processData = this.updateData;
-		if (nextProps.controller != this.props.controller) {
-		    DataService.getItems(nextProps.controller, processData);
+	    let processData = this.updateData;
+		if (nextProps.controller !== this.props.controller || nextProps.shouldRefreshTable) {
+			DataService.getItems(nextProps.controller, processData);
 			this.resetPage();
-		}
-		if (nextProps.shouldRefreshTable) {
-		    DataService.getItems(this.props.controller, processData);
-		    this.resetPage();
+		} else {
+			return;
 		}
 	}
 
-    shouldComponentUpdate(nextProps, nextState) {
-		if (nextState.dataSource === this.state.dataSource && this.state.activePage == nextState.activePage) {
+	shouldComponentUpdate(nextProps, nextState) {
+		if (nextState.selectedItemIndex !== this.state.selectedItemIndex) {
+			return true;
+		}
+		if (nextState.dataSource === this.state.dataSource && this.state.activePage === nextState.activePage) {
 			return false;
 		}
 		return true;
@@ -153,7 +152,7 @@ class RecordsList extends React.Component {
 						{headerColumns}
 					</TableRow>
 				</TableHeader>
-				<TableBody displayRowCheckbox={true}>
+				<TableBody displayRowCheckbox={true} deselectOnClickaway={false}>
 					{list}
 				</TableBody>
 			</Table>

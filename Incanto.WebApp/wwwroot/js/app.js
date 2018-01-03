@@ -40963,7 +40963,8 @@ var IncantoRecords = function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, (IncantoRecords.__proto__ || Object.getPrototypeOf(IncantoRecords)).call(this, props));
 
 		_this.state = {
-			controller: "countries"
+			controller: "countries",
+			shouldRefreshTable: false
 		};
 		return _this;
 	}
@@ -40971,7 +40972,7 @@ var IncantoRecords = function (_React$Component) {
 	_createClass(IncantoRecords, [{
 		key: "selectedTableChangedHandler",
 		value: function selectedTableChangedHandler(controller) {
-			this.setState({ controller: controller }, function () {
+			this.setState({ controller: controller, shouldRefreshTable: false }, function () {
 				console.log("updated controller:" + controller);
 			});
 		}
@@ -40996,7 +40997,7 @@ var IncantoRecords = function (_React$Component) {
 			var lookupFields = {
 				"brands": [{ "country": { "controller": "countries" } }],
 				"types": [{ "gender": { "controller": "genders" } }],
-				"categories": [{ "type": { "controller": "types" } }],
+				"categories": [{ "type": { "controller": "types", "displayChild": "gender" } }],
 				"detailtypes": [{ "category": { "controller": "categories" } }],
 				"detailtypevalues": [{ "detailType": { "controller": "detailtypes" } }],
 				"items": [{ "brand": { "controller": "brands" } }, { "category": { "controller": "categories" } }, { "discount": { "controller": "discounts" } }]
@@ -42813,6 +42814,10 @@ var AddRecordDialog = function (_React$Component) {
 				if (lookupField !== undefined && lookupField.length > 0) {
 					_this2.state.recordToUpdate[modelField] = {};
 					lookupField = lookupField[0];
+					if (lookupField[modelField].displayChild !== null || lookupField[modelField].displayChild !== undefined) {
+						fieldData["displayChild"] = lookupField[modelField].displayChild;
+					}
+					;
 					fieldData["isChildModel"] = true;
 				} else {
 					fieldData.name = modelField;
@@ -44744,7 +44749,8 @@ var AutoCompleteControl = function (_React$Component) {
 			displayName: "AutoCompleteControl",
 			errorText: "",
 			autoCompleteData: [],
-			source: []
+			source: [],
+			autoCompleteDataDictionary: {}
 		};
 
 		_this.updateData = _this.updateData.bind(_this);
@@ -44767,15 +44773,22 @@ var AutoCompleteControl = function (_React$Component) {
 		key: "updateData",
 		value: function updateData(data) {
 			if (data !== undefined && data != null && data.length > 0) {
-				this.setState({ source: data });
+				this.state.source = data;
 				var controlData = [];
 				for (var i = 0; i < this.state.source.length; i++) {
-					controlData.push(this.state.source[i].model.name);
+					var displayChild = this.props.fieldData.displayChild;
+					var unformatedName = this.state.source[i].model[this.props.fieldData.name];
+
+					if (displayChild !== undefined) {
+						var formatedName = unformatedName + " - " + this.state.source[i].model[displayChild].name;
+						controlData.push(formatedName);
+						this.state.autoCompleteDataDictionary[formatedName] = unformatedName;
+					} else {
+						controlData.push(unformatedName);
+					}
 					//controlData.push(this.createFormatedItem(this.state.source[i], this.props.fieldData.itemFormat));
 				}
 				this.setState({ autoCompleteData: controlData });
-			} else {
-				this.setState({ autoCompleteData: data });
 			}
 		}
 	}, {
@@ -44795,37 +44808,38 @@ var AutoCompleteControl = function (_React$Component) {
 		key: "handleChanges",
 		value: function handleChanges(newValue) {
 			var displayedValue = newValue;
-			var modelValue = newValue;
+			//let modelValue = this.props.fieldData.displayChild !== undefined ? this.state.autoCompleteDataDictionary[newValue] : newValue;
+			var values = void 0,
+			    modelValue = void 0,
+			    childValue = void 0;
+			var displayChild = this.props.fieldData.displayChild;
+			if (displayChild !== undefined) {
+				values = newValue.split(" - ");
+				modelValue = values[0];
+				childValue = values[1];
+			} else {
+				modelValue = newValue;
+			}
 
 			if (this.state.source.length > 0) {
 				for (var i = 0; i < this.state.source.length; i++) {
-					if (this.state.source[i].model.name.includes(newValue)) {
-						//if (this.createFormatedItem(this.state.source[i], this.props.fieldData.itemFormat) === newValue) {
-						//if (this.props.fieldData.displayedValue !== undefined) {
-						//    displayedValue = this.state.source[i].model[this.props.fieldData.displayedValue];
-						//} else {
-						//    displayedValue = newValue;
-						//}
-						if (this.state.source[i].model.name === newValue) {
+					if (this.state.source[i].model.name.includes(modelValue)) {
+						if (displayChild && this.state.source[i].model.name === modelValue && this.state.source[i].model[displayChild].name === childValue || !displayChild && this.state.source[i].model.name === modelValue) {
 							if (this.props.fieldData.isChildModel) {
 								this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] = modelValue;
-								this.props.model[this.props.fieldData.modelField]["id"] = this.state.source[i].model.id;
+								this.props.model[this.props.fieldData.modelField].id = this.state.source[i].model.id;
 							} else {
 								this.props.model[this.props.fieldData.name] = modelValue;
 							}
-						} else {
-							if (this.props.fieldData.isChildModel) {
-								this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] = undefined;
-								this.props.model[this.props.fieldData.modelField]["id"] = undefined;
-							} else {
-								this.props.model[this.props.fieldData.name] = undefined;
-							}
 						}
-						//if (this.props.fieldData.modelValue !== undefined) {
-						//    modelValue = this.state.source[i].model[this.props.fieldData.modelValue];
-						//} else {
-						//    modelValue = newValue;
-						//}
+						//else {
+						//		if (this.props.fieldData.isChildModel) {
+						//			this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] = undefined;
+						//			this.props.model[this.props.fieldData.modelField]["id"] = undefined;
+						//		} else {
+						//			this.props.model[this.props.fieldData.name] = undefined;
+						//		}
+						//	}
 					}
 				}
 			}
@@ -46424,7 +46438,8 @@ var RecordsList = function (_React$Component) {
 			dataSource: [],
 			itemsPerPage: 5,
 			activePage: _this.props.page === undefined ? 1 : _this.props.page,
-			selectedItem: {}
+			selectedItem: {},
+			selectedItemIndex: -1
 		};
 		_this.getDataForPage = _this.getDataForPage.bind(_this);
 		_this.updateData = _this.updateData.bind(_this);
@@ -46474,10 +46489,11 @@ var RecordsList = function (_React$Component) {
 		}
 	}, {
 		key: "onRowSelection",
-		value: function onRowSelection(id) {
-			if (id.length > 0) {
-				var item = this.getDataForPage()[id];
+		value: function onRowSelection(selectedRows) {
+			if (selectedRows.length > 0) {
+				var item = this.getDataForPage()[selectedRows[0]];
 				this.state.selectedItem = item;
+				this.state.selectedItemIndex = selectedRows[0];
 				console.log('updated state value', this.state.selectedItem);
 				//console.log('updated state value', this.state.selectedItem.name);
 			}
@@ -46495,7 +46511,7 @@ var RecordsList = function (_React$Component) {
 			var rowColumns = this.props.columns.map(function (columnName) {
 				var columnValue = void 0;
 				var columnId = void 0;
-				if ("discounts") if (_typeof(row[columnName]) === "object" && row[columnName] !== {} && row[columnName] !== [] && row[columnName] !== null) {
+				if (_typeof(row[columnName]) === "object" && row[columnName] !== {} && row[columnName] !== [] && row[columnName] !== null) {
 					columnValue = row[columnName].name;
 					columnId = row[columnName].id;
 				} else {
@@ -46518,27 +46534,25 @@ var RecordsList = function (_React$Component) {
 		value: function componentWillMount() {
 			var processData = this.updateData;
 			_DataService2.default.getItems(this.props.controller, processData);
-			//RestApiCalls.get(this.props.url).then(response => {
-			//	processData(response.data);
-			//});
 		}
 	}, {
 		key: "componentWillReceiveProps",
 		value: function componentWillReceiveProps(nextProps) {
 			var processData = this.updateData;
-			if (nextProps.controller != this.props.controller) {
+			if (nextProps.controller !== this.props.controller || nextProps.shouldRefreshTable) {
 				_DataService2.default.getItems(nextProps.controller, processData);
 				this.resetPage();
-			}
-			if (nextProps.shouldRefreshTable) {
-				_DataService2.default.getItems(this.props.controller, processData);
-				this.resetPage();
+			} else {
+				return;
 			}
 		}
 	}, {
 		key: "shouldComponentUpdate",
 		value: function shouldComponentUpdate(nextProps, nextState) {
-			if (nextState.dataSource === this.state.dataSource && this.state.activePage == nextState.activePage) {
+			if (nextState.selectedItemIndex !== this.state.selectedItemIndex) {
+				return true;
+			}
+			if (nextState.dataSource === this.state.dataSource && this.state.activePage === nextState.activePage) {
 				return false;
 			}
 			return true;
@@ -46590,7 +46604,7 @@ var RecordsList = function (_React$Component) {
 					),
 					_react2.default.createElement(
 						_Table.TableBody,
-						{ displayRowCheckbox: true },
+						{ displayRowCheckbox: true, deselectOnClickaway: false },
 						list
 					)
 				),
