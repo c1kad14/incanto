@@ -22,12 +22,12 @@ class IncantoRecords extends React.Component {
 	render() {
 		const columns = {
 			"countries": ["id", "name"],
-			"brands": ["id", "name", "country"],
-			"types": ["id", "name", "gender"],
-			"categories": ["id", "name", "type"],
-			"detailtypes": ["id", "name", "category"],
-			"detailtypevalues": ["id", "detailType", "value"],
-			"items": ["id", "name", "brand", "category", "description", "discount"]
+			"brands": ["id", "name", "country.name"],
+			"types": ["id", "name", "gender.name"],
+			"categories": ["id", "name", "type.name", "type-gender.name"],
+			"detailtypes": ["id", "name", "category.name", "category-type.name", "category-type-gender.name"],
+			"detailtypevalues": ["id", "value", "detailType.name", "detailType-category.name" , "detailType-category-type.name", "detailType-category-type-gender.name"],
+			"items": ["id", "name", "brand.name", "category.name", "category-type.name", "category-type-gender.name", "description", "discount.value"]
 		};
 
 		const lookupFields = {
@@ -38,10 +38,10 @@ class IncantoRecords extends React.Component {
 				{ "gender": { "controller": "genders" } }
 			],
 			"categories": [
-				{ "type": { "controller": "types", "displayChild" : "gender" } }
+				{ "type": { "controller": "types"} }
 			],
 			"detailtypes": [
-				{ "category": { "controller": "categories" } }
+				{ "category": { "controller": "categories"} }
 			],
 			"detailtypevalues": [
 				{ "detailType": { "controller": "detailtypes" } }

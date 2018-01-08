@@ -13,21 +13,33 @@ class AutoCompleteControl extends React.Component {
 		    displayName: "AutoCompleteControl",
 			errorText: "",
 			autoCompleteData: [],
-			source: [],
-			autoCompleteDataDictionary: {}
+			source: []
 		};
 
 		this.updateData = this.updateData.bind(this);
-	    this.handleChanges = this.handleChanges.bind(this);
+		this.handleChanges = this.handleChanges.bind(this);
+		this.createFormatedItem = this.createFormatedItem.bind(this);
+		this.checkChildFields = this.checkChildFields.bind(this);
 	}
 
-	createFormatedItem(item, format) {
-		let result = format;
-		for (let key in item) {
-	        if (item.hasOwnProperty(key)) {
-	            result = result.replace(`[${key}]`, item[key]);
-	        }
-	    }
+	createFormatedItem(iterator) {
+		let displayChild = this.props.fieldData.displayChild;
+		let result = "";
+		for (let i = 0; i < displayChild.length; i++) {
+			let itemToFormat = this.state.source[iterator].model;
+			let splittedChild = displayChild[i].split("-");
+			//we are working here with alerady with childModel, so we need to skip first splitted child
+			//because we don't have it here
+			for (let j = 1; j < splittedChild.length; j++) {
+				if (!splittedChild[j].includes(".")) {
+					itemToFormat = itemToFormat[splittedChild[j]];
+				} else {
+					let splittedFieldAndName = splittedChild[j].split(".");
+					result = result + "-" + itemToFormat[splittedFieldAndName[0]][splittedFieldAndName[1]];
+				}
+			}
+
+		}
 	    return result;
 	}
 
@@ -40,13 +52,11 @@ class AutoCompleteControl extends React.Component {
 				let unformatedName = this.state.source[i].model[this.props.fieldData.name];
 				
 				if (displayChild !== undefined) {
-					let formatedName = unformatedName + " - " + this.state.source[i].model[displayChild].name;
+					let formatedName = unformatedName + this.createFormatedItem(i);
 					controlData.push(formatedName);
-					this.state.autoCompleteDataDictionary[formatedName] = unformatedName;
 				} else {
 					controlData.push(unformatedName);
 				}
-				//controlData.push(this.createFormatedItem(this.state.source[i], this.props.fieldData.itemFormat));
 			}
 			this.setState({ autoCompleteData: controlData });
 		} 
@@ -64,15 +74,47 @@ class AutoCompleteControl extends React.Component {
 		return false;
 	}
 
+	checkChildFields(iterator, childValues) {
+		let displayChild = this.props.fieldData.displayChild;
+		let result = false;
+
+		if (childValues === undefined) {
+			return false;
+		}
+
+		for (let i = 0; i < displayChild.length; i++) {
+			let fieldsToCheck = this.state.source[iterator].model;
+			let child = displayChild[i];
+			let splittedChild = child.split("-");
+			for (let j = 1; j < splittedChild.length; j++)
+			{
+				if (!splittedChild[j].includes(".")) {
+					fieldsToCheck = fieldsToCheck[splittedChild[j]];
+				} else {
+					let splittedFieldAndName = splittedChild[j].split(".");
+					fieldsToCheck = fieldsToCheck[splittedFieldAndName[0]];
+					result = fieldsToCheck[splittedFieldAndName[1]] === childValues[i];
+				}
+			}
+			if (!result) {
+				return false;
+			} else {
+				if (displayChild.length !== i + 1) {
+					result = false;
+				}
+			}
+		}
+		return result;
+	}
+
 	handleChanges(newValue) {
 		let displayedValue = newValue;
-		//let modelValue = this.props.fieldData.displayChild !== undefined ? this.state.autoCompleteDataDictionary[newValue] : newValue;
-		let values, modelValue, childValue;
+		let values, modelValue, childValues;
 		let displayChild = this.props.fieldData.displayChild;
 		if (displayChild !== undefined) {
-			values = newValue.split(" - ");
+			values = newValue.split("-");
 			modelValue = values[0];
-			childValue = values[1];
+			childValues = values.filter(value => value !== modelValue);
 		} else {
 			modelValue = newValue;
 		}
@@ -82,8 +124,9 @@ class AutoCompleteControl extends React.Component {
 				if (this.state.source[i].model.name.includes(modelValue)) {
 					if (displayChild &&
 						this.state.source[i].model.name === modelValue &&
-						this.state.source[i].model[displayChild].name === childValue
+						this.checkChildFields(i, childValues)
 						|| !displayChild && this.state.source[i].model.name === modelValue) {
+
 						if (this.props.fieldData.isChildModel) {
 							this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] = modelValue;
 							this.props.model[this.props.fieldData.modelField].id = this.state.source[i].model.id;
@@ -91,14 +134,6 @@ class AutoCompleteControl extends React.Component {
 							this.props.model[this.props.fieldData.name] = modelValue;
 						}
 					}
-					//else {
-					//		if (this.props.fieldData.isChildModel) {
-					//			this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] = undefined;
-					//			this.props.model[this.props.fieldData.modelField]["id"] = undefined;
-					//		} else {
-					//			this.props.model[this.props.fieldData.name] = undefined;
-					//		}
-					//	}
 				}
 			}
 		}
@@ -120,12 +155,6 @@ class AutoCompleteControl extends React.Component {
 	    if (this.state.autoCompleteData.length === 0) {
 			DataService.getItems(this.props.controller, processData);
 	    }
-		//var processData = this.updateData;
-		//if (this.state.autoCompleteData.length === 0 && this.props.fieldData.dataSourceLink !== undefined) {
-		//	RestApiCalls.get(this.props.fieldData.dataSourceLink).then(function (response) {
-		//	    processData(response.data);
-		//	});
-		//}
 	}
 
 	render() {

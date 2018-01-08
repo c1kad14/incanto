@@ -12,7 +12,7 @@ import { pink500 } from 'material-ui/styles/colors';
 
 class AddRecordDialog extends React.Component {
 	constructor(props) {
-		super(props); 
+		super(props);
 		this.state = {
 			recordToUpdate: {}
 		}
@@ -31,18 +31,30 @@ class AddRecordDialog extends React.Component {
 
 	render() {
 		let modelFields = this.props.columns.filter(column => {
-			return (column !== "id");
+			return (column !== "id" && !column.includes("-"));
+		});
+
+		let childFields = this.props.columns.filter(column => {
+			return (column.includes("-"));
 		});
 
 		let controls = modelFields.map((modelField, index) => {
 
-			const fieldName = modelField === "value" ? "value" : "name";
+			let fieldName = "name";
+			let navigationPath = modelField.split(".");
+
+			modelField = navigationPath[0];
+			if (navigationPath.length === 2) {
+				fieldName = navigationPath[1];
+			}
+			
 			let fieldData = {
 				modelField: modelField,
 				name: fieldName,
 				value: ""
 			}
 			let lookupField = undefined;
+
 			if (this.props.lookup !== undefined) {
 				lookupField = this.props.lookup.filter((field) => {
 					return field[modelField] !== undefined;
@@ -52,15 +64,21 @@ class AddRecordDialog extends React.Component {
 			if (lookupField !== undefined && lookupField.length > 0) {
 				this.state.recordToUpdate[modelField] = {};
 				lookupField = lookupField[0];
-				if (lookupField[modelField].displayChild !== null || lookupField[modelField].displayChild !== undefined) {
-					fieldData["displayChild"] = lookupField[modelField].displayChild;
-				}
-		;
-				fieldData["isChildModel"] = true;
+				//here we need to split by "-"
+				childFields.map(child => {
+					let displayChild = child.split("-");
+					if (displayChild[0] === modelField) {
+						if (fieldData.displayChild === undefined) {
+							fieldData.displayChild = [];
+						}
+						fieldData.displayChild.push(child);
+					}
+				});
+				fieldData.isChildModel = true;
 			} else {
 				fieldData.name = modelField;
 				lookupField = undefined;
-				fieldData["isChildModel"] = false;
+				fieldData.isChildModel = false;
 			}
 			return (
 				<div key={index}>

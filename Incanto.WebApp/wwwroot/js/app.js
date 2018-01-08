@@ -40986,18 +40986,18 @@ var IncantoRecords = function (_React$Component) {
 		value: function render() {
 			var columns = {
 				"countries": ["id", "name"],
-				"brands": ["id", "name", "country"],
-				"types": ["id", "name", "gender"],
-				"categories": ["id", "name", "type"],
-				"detailtypes": ["id", "name", "category"],
-				"detailtypevalues": ["id", "detailType", "value"],
-				"items": ["id", "name", "brand", "category", "description", "discount"]
+				"brands": ["id", "name", "country.name"],
+				"types": ["id", "name", "gender.name"],
+				"categories": ["id", "name", "type.name", "type-gender.name"],
+				"detailtypes": ["id", "name", "category.name", "category-type.name", "category-type-gender.name"],
+				"detailtypevalues": ["id", "value", "detailType.name", "detailType-category.name", "detailType-category-type.name", "detailType-category-type-gender.name"],
+				"items": ["id", "name", "brand.name", "category.name", "category-type.name", "category-type-gender.name", "description", "discount.value"]
 			};
 
 			var lookupFields = {
 				"brands": [{ "country": { "controller": "countries" } }],
 				"types": [{ "gender": { "controller": "genders" } }],
-				"categories": [{ "type": { "controller": "types", "displayChild": "gender" } }],
+				"categories": [{ "type": { "controller": "types" } }],
 				"detailtypes": [{ "category": { "controller": "categories" } }],
 				"detailtypevalues": [{ "detailType": { "controller": "detailtypes" } }],
 				"items": [{ "brand": { "controller": "brands" } }, { "category": { "controller": "categories" } }, { "discount": { "controller": "discounts" } }]
@@ -42793,18 +42793,30 @@ var AddRecordDialog = function (_React$Component) {
 			var _this2 = this;
 
 			var modelFields = this.props.columns.filter(function (column) {
-				return column !== "id";
+				return column !== "id" && !column.includes("-");
+			});
+
+			var childFields = this.props.columns.filter(function (column) {
+				return column.includes("-");
 			});
 
 			var controls = modelFields.map(function (modelField, index) {
 
-				var fieldName = modelField === "value" ? "value" : "name";
+				var fieldName = "name";
+				var navigationPath = modelField.split(".");
+
+				modelField = navigationPath[0];
+				if (navigationPath.length === 2) {
+					fieldName = navigationPath[1];
+				}
+
 				var fieldData = {
 					modelField: modelField,
 					name: fieldName,
 					value: ""
 				};
 				var lookupField = undefined;
+
 				if (_this2.props.lookup !== undefined) {
 					lookupField = _this2.props.lookup.filter(function (field) {
 						return field[modelField] !== undefined;
@@ -42814,15 +42826,21 @@ var AddRecordDialog = function (_React$Component) {
 				if (lookupField !== undefined && lookupField.length > 0) {
 					_this2.state.recordToUpdate[modelField] = {};
 					lookupField = lookupField[0];
-					if (lookupField[modelField].displayChild !== null || lookupField[modelField].displayChild !== undefined) {
-						fieldData["displayChild"] = lookupField[modelField].displayChild;
-					}
-					;
-					fieldData["isChildModel"] = true;
+					//here we need to split by "-"
+					childFields.map(function (child) {
+						var displayChild = child.split("-");
+						if (displayChild[0] === modelField) {
+							if (fieldData.displayChild === undefined) {
+								fieldData.displayChild = [];
+							}
+							fieldData.displayChild.push(child);
+						}
+					});
+					fieldData.isChildModel = true;
 				} else {
 					fieldData.name = modelField;
 					lookupField = undefined;
-					fieldData["isChildModel"] = false;
+					fieldData.isChildModel = false;
 				}
 				return _react2.default.createElement(
 					'div',
@@ -44749,22 +44767,33 @@ var AutoCompleteControl = function (_React$Component) {
 			displayName: "AutoCompleteControl",
 			errorText: "",
 			autoCompleteData: [],
-			source: [],
-			autoCompleteDataDictionary: {}
+			source: []
 		};
 
 		_this.updateData = _this.updateData.bind(_this);
 		_this.handleChanges = _this.handleChanges.bind(_this);
+		_this.createFormatedItem = _this.createFormatedItem.bind(_this);
+		_this.checkChildFields = _this.checkChildFields.bind(_this);
 		return _this;
 	}
 
 	_createClass(AutoCompleteControl, [{
 		key: "createFormatedItem",
-		value: function createFormatedItem(item, format) {
-			var result = format;
-			for (var key in item) {
-				if (item.hasOwnProperty(key)) {
-					result = result.replace("[" + key + "]", item[key]);
+		value: function createFormatedItem(iterator) {
+			var displayChild = this.props.fieldData.displayChild;
+			var result = "";
+			for (var i = 0; i < displayChild.length; i++) {
+				var itemToFormat = this.state.source[iterator].model;
+				var splittedChild = displayChild[i].split("-");
+				//we are working here with alerady with childModel, so we need to skip first splitted child
+				//because we don't have it here
+				for (var j = 1; j < splittedChild.length; j++) {
+					if (!splittedChild[j].includes(".")) {
+						itemToFormat = itemToFormat[splittedChild[j]];
+					} else {
+						var splittedFieldAndName = splittedChild[j].split(".");
+						result = result + "-" + itemToFormat[splittedFieldAndName[0]][splittedFieldAndName[1]];
+					}
 				}
 			}
 			return result;
@@ -44780,13 +44809,11 @@ var AutoCompleteControl = function (_React$Component) {
 					var unformatedName = this.state.source[i].model[this.props.fieldData.name];
 
 					if (displayChild !== undefined) {
-						var formatedName = unformatedName + " - " + this.state.source[i].model[displayChild].name;
+						var formatedName = unformatedName + this.createFormatedItem(i);
 						controlData.push(formatedName);
-						this.state.autoCompleteDataDictionary[formatedName] = unformatedName;
 					} else {
 						controlData.push(unformatedName);
 					}
-					//controlData.push(this.createFormatedItem(this.state.source[i], this.props.fieldData.itemFormat));
 				}
 				this.setState({ autoCompleteData: controlData });
 			}
@@ -44805,18 +44832,52 @@ var AutoCompleteControl = function (_React$Component) {
 			return false;
 		}
 	}, {
+		key: "checkChildFields",
+		value: function checkChildFields(iterator, childValues) {
+			var displayChild = this.props.fieldData.displayChild;
+			var result = false;
+
+			if (childValues === undefined) {
+				return false;
+			}
+
+			for (var i = 0; i < displayChild.length; i++) {
+				var fieldsToCheck = this.state.source[iterator].model;
+				var child = displayChild[i];
+				var splittedChild = child.split("-");
+				for (var j = 1; j < splittedChild.length; j++) {
+					if (!splittedChild[j].includes(".")) {
+						fieldsToCheck = fieldsToCheck[splittedChild[j]];
+					} else {
+						var splittedFieldAndName = splittedChild[j].split(".");
+						fieldsToCheck = fieldsToCheck[splittedFieldAndName[0]];
+						result = fieldsToCheck[splittedFieldAndName[1]] === childValues[i];
+					}
+				}
+				if (!result) {
+					return false;
+				} else {
+					if (displayChild.length !== i + 1) {
+						result = false;
+					}
+				}
+			}
+			return result;
+		}
+	}, {
 		key: "handleChanges",
 		value: function handleChanges(newValue) {
 			var displayedValue = newValue;
-			//let modelValue = this.props.fieldData.displayChild !== undefined ? this.state.autoCompleteDataDictionary[newValue] : newValue;
 			var values = void 0,
 			    modelValue = void 0,
-			    childValue = void 0;
+			    childValues = void 0;
 			var displayChild = this.props.fieldData.displayChild;
 			if (displayChild !== undefined) {
-				values = newValue.split(" - ");
+				values = newValue.split("-");
 				modelValue = values[0];
-				childValue = values[1];
+				childValues = values.filter(function (value) {
+					return value !== modelValue;
+				});
 			} else {
 				modelValue = newValue;
 			}
@@ -44824,7 +44885,8 @@ var AutoCompleteControl = function (_React$Component) {
 			if (this.state.source.length > 0) {
 				for (var i = 0; i < this.state.source.length; i++) {
 					if (this.state.source[i].model.name.includes(modelValue)) {
-						if (displayChild && this.state.source[i].model.name === modelValue && this.state.source[i].model[displayChild].name === childValue || !displayChild && this.state.source[i].model.name === modelValue) {
+						if (displayChild && this.state.source[i].model.name === modelValue && this.checkChildFields(i, childValues) || !displayChild && this.state.source[i].model.name === modelValue) {
+
 							if (this.props.fieldData.isChildModel) {
 								this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] = modelValue;
 								this.props.model[this.props.fieldData.modelField].id = this.state.source[i].model.id;
@@ -44832,14 +44894,6 @@ var AutoCompleteControl = function (_React$Component) {
 								this.props.model[this.props.fieldData.name] = modelValue;
 							}
 						}
-						//else {
-						//		if (this.props.fieldData.isChildModel) {
-						//			this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] = undefined;
-						//			this.props.model[this.props.fieldData.modelField]["id"] = undefined;
-						//		} else {
-						//			this.props.model[this.props.fieldData.name] = undefined;
-						//		}
-						//	}
 					}
 				}
 			}
@@ -44861,12 +44915,6 @@ var AutoCompleteControl = function (_React$Component) {
 			if (this.state.autoCompleteData.length === 0) {
 				_DataService2.default.getItems(this.props.controller, processData);
 			}
-			//var processData = this.updateData;
-			//if (this.state.autoCompleteData.length === 0 && this.props.fieldData.dataSourceLink !== undefined) {
-			//	RestApiCalls.get(this.props.fieldData.dataSourceLink).then(function (response) {
-			//	    processData(response.data);
-			//	});
-			//}
 		}
 	}, {
 		key: "render",
@@ -46400,8 +46448,6 @@ exports.default = ToolbarTitle;
 "use strict";
 
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
@@ -46443,6 +46489,7 @@ var RecordsList = function (_React$Component) {
 		};
 		_this.getDataForPage = _this.getDataForPage.bind(_this);
 		_this.updateData = _this.updateData.bind(_this);
+		_this.formatHeaderName = _this.formatHeaderName.bind(_this);
 		return _this;
 	}
 
@@ -46460,6 +46507,51 @@ var RecordsList = function (_React$Component) {
 					console.log('updated state value', _this2.state.dataSource);
 				});
 			}
+		}
+	}, {
+		key: "getValueForField",
+		value: function getValueForField(row, columnName) {
+			var fieldToGetValue = row;
+			var result = undefined;
+
+			var splittedChild = columnName.split("-");
+			for (var j = 0; j < splittedChild.length; j++) {
+				if (!splittedChild[j].includes(".")) {
+					fieldToGetValue = fieldToGetValue[splittedChild[j]];
+				} else {
+					var splittedFieldAndName = splittedChild[j].split(".");
+					fieldToGetValue = fieldToGetValue[splittedFieldAndName[0]];
+					result = fieldToGetValue !== undefined && fieldToGetValue !== null ? fieldToGetValue[splittedFieldAndName[1]] : "пусто";
+				}
+			}
+
+			return result;
+		}
+	}, {
+		key: "getTableRowColumns",
+		value: function getTableRowColumns(row) {
+			var getValueForFieldFunc = this.getValueForField.bind(this);
+			var rowColumns = this.props.columns.map(function (columnName) {
+				var columnValue = void 0;
+				var columnId = void 0;
+				if (row[columnName] !== undefined) {
+					columnValue = row[columnName] !== undefined && row[columnName] !== "" && row[columnName] !== null ? row[columnName] : "пусто";
+					columnId = row.id;
+				} else {
+					var value = getValueForFieldFunc(row, columnName);
+					columnValue = value !== undefined ? value : "пусто";
+					columnId = row.id;
+				}
+				return _react2.default.createElement(
+					_Table.TableRowColumn,
+					{ key: columnId },
+					" ",
+					columnValue,
+					" "
+				);
+				//(row[columnName] != null ? <TableRowColumn key={columnId}> {columnValue} </TableRowColumn> : <span />);
+			});
+			return rowColumns;
 		}
 	}, {
 		key: "getDataForPage",
@@ -46506,30 +46598,6 @@ var RecordsList = function (_React$Component) {
 			//  }
 		}
 	}, {
-		key: "getTableRowColumns",
-		value: function getTableRowColumns(row) {
-			var rowColumns = this.props.columns.map(function (columnName) {
-				var columnValue = void 0;
-				var columnId = void 0;
-				if (_typeof(row[columnName]) === "object" && row[columnName] !== {} && row[columnName] !== [] && row[columnName] !== null) {
-					columnValue = row[columnName].name;
-					columnId = row[columnName].id;
-				} else {
-					columnValue = row[columnName] !== undefined ? row[columnName] : "пусто";
-					columnId = row.id;
-				}
-				return _react2.default.createElement(
-					_Table.TableRowColumn,
-					{ key: columnId },
-					" ",
-					columnValue,
-					" "
-				);
-				//(row[columnName] != null ? <TableRowColumn key={columnId}> {columnValue} </TableRowColumn> : <span />);
-			});
-			return rowColumns;
-		}
-	}, {
 		key: "componentWillMount",
 		value: function componentWillMount() {
 			var processData = this.updateData;
@@ -46558,6 +46626,12 @@ var RecordsList = function (_React$Component) {
 			return true;
 		}
 	}, {
+		key: "formatHeaderName",
+		value: function formatHeaderName(column) {
+			var splitted = column.split("-");
+			return splitted[splitted.length - 1].split(".")[0];
+		}
+	}, {
 		key: "render",
 		value: function render() {
 			var _this3 = this;
@@ -46579,7 +46653,7 @@ var RecordsList = function (_React$Component) {
 				return _react2.default.createElement(
 					_Table.TableHeaderColumn,
 					{ key: column },
-					column
+					_this3.formatHeaderName(column)
 				);
 			});
 			// headerColumns.push(<TableHeaderColumn key="Actions">Actions</TableHeaderColumn>);
@@ -46591,8 +46665,7 @@ var RecordsList = function (_React$Component) {
 				_react2.default.createElement(
 					_Table.Table,
 					{
-						onRowSelection: this.onRowSelection.bind(this)
-					},
+						onRowSelection: this.onRowSelection.bind(this) },
 					_react2.default.createElement(
 						_Table.TableHeader,
 						{ displaySelectAll: false },
