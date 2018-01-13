@@ -62,7 +62,7 @@ namespace Incanto.WebApp.Controllers
 			return Json(operationResult);
 		}
 
-		private OperationResult<TModel, TEntity> PerformOperation(TModel model, OperationType operation)
+		protected OperationResult<TModel, TEntity> PerformOperation(TModel model, OperationType operation)
 		{
 			BeforeStartCRUDOperation(model, operation);
 			var operationResult = ReadWriteDataService.Action(model, operation);

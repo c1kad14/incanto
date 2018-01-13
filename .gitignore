@@ -427,3 +427,4 @@ $RECYCLE.BIN/
 # !tools/packages.config
 
 # End of https://www.gitignore.io/api/windows,visualstudio,csharp
+/Incanto.WebApp/wwwroot/itemPhotos/

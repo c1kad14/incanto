@@ -22,6 +22,7 @@ class RecordsList extends React.Component {
 		};
 		this.getDataForPage = this.getDataForPage.bind(this);
 		this.updateData = this.updateData.bind(this);
+		this.formatHeaderName = this.formatHeaderName.bind(this);
 	}
 
 	updateData(data) {
@@ -35,7 +36,43 @@ class RecordsList extends React.Component {
 					console.log('updated state value', this.state.dataSource);
 				});
 		}
+	}
 
+	getValueForField(row, columnName) {
+		let fieldToGetValue = row;
+		let result = undefined;
+
+		let splittedChild = columnName.split("-");
+		for (let j = 0; j < splittedChild.length; j++) {
+			if (!splittedChild[j].includes(".")) {
+				fieldToGetValue = fieldToGetValue[splittedChild[j]];
+			} else {
+				let splittedFieldAndName = splittedChild[j].split(".");
+				fieldToGetValue = fieldToGetValue[splittedFieldAndName[0]];
+				result = fieldToGetValue !== undefined && fieldToGetValue !== null? fieldToGetValue[splittedFieldAndName[1]] : "пусто";
+			}
+		}
+
+		return result;
+	}
+
+	getTableRowColumns(row) {
+		let getValueForFieldFunc = this.getValueForField.bind(this);
+		const rowColumns = this.props.columns.map(function (columnName) {
+			let columnValue;
+			let columnId;
+			if (row[columnName] !== undefined) {
+				columnValue = row[columnName] !== undefined && row[columnName] !== "" && row[columnName] !== null ? row[columnName] : "пусто";
+				columnId = row.id;
+			} else {
+				let value = getValueForFieldFunc(row, columnName);
+				columnValue = value !== undefined ? value : "пусто";
+				columnId = row.id;
+			}
+			return (<TableRowColumn key={columnId}> {columnValue} </TableRowColumn>);
+			//(row[columnName] != null ? <TableRowColumn key={columnId}> {columnValue} </TableRowColumn> : <span />);
+		});
+		return rowColumns;
 	}
 
 	getDataForPage() {
@@ -79,30 +116,13 @@ class RecordsList extends React.Component {
 		//  }
 	}
 
-	getTableRowColumns(row) {
-		const rowColumns = this.props.columns.map(function (columnName) {
-			let columnValue;
-			let columnId;
-			if (typeof (row[columnName]) === "object" && row[columnName] !== {} && row[columnName] !== [] && row[columnName] !== null) {
-				columnValue = row[columnName].name;
-				columnId = row[columnName].id;
-			} else {
-				columnValue = row[columnName] !== undefined ? row[columnName] : "пусто";
-				columnId = row.id;
-			}
-			return (<TableRowColumn key={columnId}> {columnValue} </TableRowColumn>);
-			//(row[columnName] != null ? <TableRowColumn key={columnId}> {columnValue} </TableRowColumn> : <span />);
-		});
-		return rowColumns;
-	}
-
 	componentWillMount() {
 		var processData = this.updateData;
 		DataService.getItems(this.props.controller, processData);
 	}
 
 	componentWillReceiveProps(nextProps) {
-	    let processData = this.updateData;
+		let processData = this.updateData;
 		if (nextProps.controller !== this.props.controller || nextProps.shouldRefreshTable) {
 			DataService.getItems(nextProps.controller, processData);
 			this.resetPage();
@@ -119,7 +139,12 @@ class RecordsList extends React.Component {
 			return false;
 		}
 		return true;
-    }
+	}
+
+	formatHeaderName(column) {
+		let splitted = column.split("-");
+		return splitted[splitted.length - 1].split(".")[0];
+	}
 
 	render() {
 		if (this.state.dataSource.length === 0) {
@@ -135,9 +160,9 @@ class RecordsList extends React.Component {
 			);
 		});
 
-		const headerColumns = this.props.columns.map(function (column) {
+		const headerColumns = this.props.columns.map(column => {
 			return (
-				<TableHeaderColumn key={column}>{column}</TableHeaderColumn>
+				<TableHeaderColumn key={column}>{this.formatHeaderName(column)}</TableHeaderColumn>
 			);
 		});
 		// headerColumns.push(<TableHeaderColumn key="Actions">Actions</TableHeaderColumn>);
@@ -145,8 +170,7 @@ class RecordsList extends React.Component {
 		const pages = Math.floor(this.state.dataSource.length / this.state.itemsPerPage) + lastPage;
 		return <div>
 			<Table
-				onRowSelection={this.onRowSelection.bind(this)}
-			>
+				onRowSelection={this.onRowSelection.bind(this)}>
 				<TableHeader displaySelectAll={false}>
 					<TableRow>
 						{headerColumns}
