@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using Incanto.BusinessLogic.Services.Core;
+using Incanto.BusinessLogic.Services.Core.Interfaces;
 using Incanto.DataAccess;
 using Incanto.DataAccess.Context;
 using Incanto.DataAccess.Interfaces;
@@ -47,6 +49,7 @@ namespace Incanto.WebApp
 			//})
 			services.Configure<WebEncoderOptions>(options => new TextEncoderSettings(UnicodeRanges.All));
 			services.AddDbContext<IncantoDataContext>(optionsAction => optionsAction.UseSqlServer(Configuration.GetConnectionString("DevelopersConnection")));
+			services.AddTransient<IPhotoUploadService, PhotoUploadService>();
 			services.AddTransient(typeof(IDataRepository<>), typeof(DataRepository<>));
 			services.AddMvc();
 		}

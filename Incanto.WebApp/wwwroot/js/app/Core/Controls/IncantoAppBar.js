@@ -116,7 +116,7 @@ class IncantoAppBar extends Component {
 				{(this.state.showPhotosGrid === true) ? <div><RaisedButton onClick={this.openAddDialog.bind(this)} label="add photo" fullWidth={true} />
 					<ImageUploader baseItemId={1}
 						uploaderActions={this.state.uploaderActions}
-						uploadController="photos" />
+						uploadController="Photos" />
 				</div> : <span />}
 				<Drawer
 					open={this.state.menuOpen}

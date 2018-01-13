@@ -1,10 +1,8 @@
 ﻿import React from "react";
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import Text from "./Text";
 import ImagesGrid from "./ImagesGrid";
-import DataService from "../Services/DataService";
-//import FormControls from "./Controls/FormControls";
+import RestApiCalls from "../Services/RestApiCalls";
 import RaisedButton from 'material-ui/RaisedButton';
 
 class ImageUploader extends React.Component {
@@ -38,6 +36,7 @@ class ImageUploader extends React.Component {
 				}
 			]
 		};
+		this.imageChange.bind(this);
 	}
 
 
@@ -62,22 +61,25 @@ class ImageUploader extends React.Component {
 		this.setState({ imageUploadOpened: false });
 	}
 
+	handleCloseDialog() {
+		this.setState({ galleryOpened: false, addPhotoOpened: false });
+	}
+
 	handleSaveImage () {
 		var hasErrors = false;
-		for (let i = 0; i < this.photoFieldsData.length; i++) {
-			if (this.photoFieldsData[i].checkErrors()) {
-				hasErrors = true;
-			}
-		}
+		//for (let i = 0; i < this.state.photoFieldsData.length; i++) {
+		//	if (this.state.photoFieldsData[i].checkErrors()) {
+		//		hasErrors = true;
+		//	}
+		//}
 		if (!hasErrors) {
 			const imageSource = this.state.imageSource;
 			imageSource.push({
-				id: this.state.lastId,
+				priority: this.state.lastId,
 				src: this.state.currentImg.src,
 				file: this.state.currentImg.file,
-				title: this.state.currentImg.title,
-				type: this.state.currentImg.type,
-				author: ""
+				itemId: "1",
+				type: this.state.currentImg.type
 			});
 			this.clearDataAboutPhoto();
 			this.setState({ imageSource: imageSource, imageViewOpened: false, currentImg: {} });
@@ -86,17 +88,16 @@ class ImageUploader extends React.Component {
 	}
 
 	clearDataAboutPhoto () {
-		for (let i = 0; i < this.photoFieldsData.length; i++) {
-			this.photoFieldsData[i].value = "";
+		for (let i = 0; i < this.state.photoFieldsData.length; i++) {
+			this.state.photoFieldsData[i].value = "";
 		}
+		this.fileInput.value = "";
 	}
-
-
 
 	removeImage (image) {
 		const imageSource = this.state.imageSource;
 		for (let i = 0; i < imageSource.length; i++) {
-			if (imageSource[i].id === image.id) {
+			if (imageSource[i].priority === image.priority) {
 				imageSource.splice(i, 1);
 			}
 		}
@@ -111,37 +112,19 @@ class ImageUploader extends React.Component {
 
 	uploadImages () {
 		const itemId = this.props.baseItemId;
-		let formData = new FormData();
+		let formData = new FormData(this);
 		for (let i = 0; i < this.state.imageSource.length; i++) {
 			formData.append("files", this.state.imageSource[i].file);
-			formData.append("titles", this.state.imageSource[i].title);
-			formData.append("types", this.state.imageSource[i].type);
+			formData.append("priorities", this.state.imageSource[i].priority);
 		}
 		formData.set("itemId", itemId);
 		const config = { headers: { 'content-type': 'multipart/form-data' } }
 		const handleCloseImageUpload = this.handleCloseImageUpload;
 		const imageUploaded = this.imageUploaded;
-		DataService.post(this.props.uploadController,
-			formData,
-			config,
-			(function(response) {
+		RestApiCalls.post(`/api/${this.props.uploadController}/UploadPhotos`, formData, config).then(function(response) {
 				handleCloseImageUpload();
 				const result = response.data;
-				//LocalDbService.getObject("buildings",
-				//	itemId,
-				//	function(buildingRecord) {
-				//		for (let i = 0; i < result.length; i++) {
-				//			if (result[i].wasSuccessful === true) {
-				//				imageUploaded(result[i].record);
-				//				if (buildingRecord.photos === undefined) {
-				//					buildingRecord.photos = [];
-				//				}
-				//				buildingRecord.photos.push(result[i].record);
-				//			}
-				//		}
-				//		LocalDbService.updateObject("buildings", buildingRecord);
-				//	});
-			}));
+			});
 		this.state.imageSource = [];
 	}
 
@@ -163,27 +146,32 @@ class ImageUploader extends React.Component {
 		if (imageSource.length > 0) {
 			imagePreview = (
 				<ImagesGrid
-					removeImage={this.removeImage}
+					removeImage={this.removeImage.bind(this)}
 					imageSource={this.state.imageSource} />
 			);
-		} else {
-			imagePreview = (<image>{"choose image"}</image>);
+		}
+		else {
+			imagePreview = (<p style={{ height: '450px'}}>Фото отсутствуют. Выберите фото что бы добавить.</p>);
 		}
 		const imageViewActions = [
 			<FlatButton
-				label={"save"}
+				label={"Сохранить"}
 				primary={true}
-				onClick={this.handleSaveImage} />,
+				onClick={this.handleSaveImage.bind(this)} />,
+			<FlatButton
+				label={"Отмена"}
+				secondary={true}
+				onClick={this.handleCloseImageView.bind(this)} />
 		];
 		const imageUploadActions = [
 			<RaisedButton
-				label={"choose file"}
+				label={"Выберите фото"}
 				primary={true}
 				onClick={this.openFileInput.bind(this)} />,
 			<RaisedButton
-				label={"close"}
+				label={"Закрыть"}
 				secondary={true}
-				onClick={this.handleCloseDialog} />
+				onClick={this.handleCloseImageUpload.bind(this)} />
 
 		];
 		if (this.state.imageSource.length > 0) {
@@ -191,14 +179,14 @@ class ImageUploader extends React.Component {
 				<FlatButton
 					label={"upload"}
 					primary={true}
-					onClick={this.uploadImages} />);
+					onClick={this.uploadImages.bind(this)} />);
 		}
 		return (
 			<div>
 				<Dialog
 					actions={imageUploadActions}
-					contentStyle={{ width: "90%", maxWidth: 'none' }}
-					title={"add image"}
+					contentStyle={{ width: "90%", maxWidth: '90%' }}
+					title={"Добавить фото к товару"}
 					modal={false}
 					open={this.state.imageUploadOpened}
 					onRequestClose={this.handleCloseImageUpload.bind(this)}
@@ -210,20 +198,19 @@ class ImageUploader extends React.Component {
 							type="file"
 							onChange={(e) => this.imageChange(e)} />
 					</form>
-					<imgPreview>
+					<div>
 						{imagePreview}
-					</imgPreview>
+					</div>
 				</Dialog>
 				<Dialog
 					actions={imageViewActions}
-					contentStyle={{ width: "90%", maxWidth: 'none' }}
-					title="image info"
+					contentStyle={{ width: "90%", maxWidth: '90%' }}
+					title="Просмотр выбраного фото"
 					modal={false}
 					open={this.state.imageViewOpened}
-					onRequestClose={this.handleCloseImageView}
+					onRequestClose={this.handleCloseImageView.bind(this)}
 					autoScrollBodyContent={true}>
 					<div>
-
 						<img style={{ height: "42vw", display: "block", margin: "0 auto" }} src={this.state.currentImg.src} />
 					</div>
 				</Dialog>
@@ -231,8 +218,5 @@ class ImageUploader extends React.Component {
 		);
 	}
 };
-//<FormControls
-//	formFields={this.photoFieldsData}
-//	model={this.state.currentImg}
-//	localizationInfo={this.localization.controls} />
+
 export default ImageUploader;
