@@ -7,16 +7,25 @@ class IncantoRecords extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			controller: "countries",
-			shouldRefreshTable: false
+			controller: "items",
+			shouldRefreshTable: false,
+			selectedItem: undefined
 		}
 	}
 	selectedTableChangedHandler(controller) {
-		this.setState({ controller: controller, shouldRefreshTable: false }, function () { console.log("updated controller:" + controller) });
+		this.setState({ controller: controller, shouldRefreshTable: false, selectedItem: undefined }, function () { console.log("updated controller:" + controller) });
 	}
 
 	refreshDataTable() {
 		this.setState({ shouldRefreshTable: true });
+	}
+
+	itemSelectedHandler(item) {
+		this.setState({ selectedItem: item });
+	}
+
+	resetCallBack() {
+		this.setState({ shouldRefreshTable: false, selectedItem: undefined });
 	}
 
 	render() {
@@ -54,8 +63,8 @@ class IncantoRecords extends React.Component {
 		};
 		return (
 			<div>
-				<IncantoToolbar columns={columns[this.state.controller]} controller={this.state.controller} selectedTableChangedHandler={this.selectedTableChangedHandler.bind(this)} lookupFields={lookupFields[this.state.controller]} updateDataTable={this.refreshDataTable.bind(this)} />
-				<RecordsList columns={columns[this.state.controller]} controller={this.state.controller} shouldRefreshTable={this.state.shouldRefreshTable} />
+				<IncantoToolbar columns={columns[this.state.controller]} controller={this.state.controller} selectedTableChangedHandler={this.selectedTableChangedHandler.bind(this)} lookupFields={lookupFields[this.state.controller]} updateDataTable={this.refreshDataTable.bind(this)} selectedItem={this.state.selectedItem}/>
+				<RecordsList columns={columns[this.state.controller]} controller={this.state.controller} shouldRefreshTable={this.state.shouldRefreshTable} itemSelectedHandler={this.itemSelectedHandler.bind(this)} resetCallBack={this.resetCallBack.bind(this)}/>
 			</div>
 
 		);

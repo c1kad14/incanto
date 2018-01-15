@@ -25,18 +25,20 @@ namespace Incanto.BusinessLogic.Models
 		public DateTime Updated { get; set; }
 		public DiscountModel Discount { get; set; }
 		public List<PriceModel> Prices { get; set; }
-		public List<PictureModel> Pictures { get; set; }
+		public List<PhotoModel> Photos { get; set; }
 		public List<DetailModel> Details { get; set; }
 
 		public override IBaseModel ConvertFromEntity(Item item)
 		{
 			base.ConvertFromEntity(item);
+			Photos = new List<PhotoModel>();
+			Prices = new List<PriceModel>();
+			Details = new List<DetailModel>();
 			Brand = new BrandModel(item.Brand);
 			Category = new CategoryModel(item.Category);
 			if(item.Discount != null) Discount = new DiscountModel(item.Discount);
 			item.Price?.ForEach(p => Prices.Add(new PriceModel(p)));
-			item.Pictures?.ForEach(p => Pictures.Add(new PictureModel(p)));
-			Details = new List<DetailModel>();
+			item.Photos?.ForEach(p => Photos.Add(new PhotoModel(p)));
 			item.Details?.ForEach(d => Details.Add(new DetailModel(d)));
 			Description = item.Description;
 			Updated = item.Updated;
@@ -52,7 +54,7 @@ namespace Incanto.BusinessLogic.Models
 			item.Description = Description;
 			item.Updated = Updated;
 			Prices?.ForEach(p => item.Price.Add(p.ConvertToEntity()));
-			Pictures?.ForEach(p => item.Pictures.Add(p.ConvertToEntity()));
+			Photos?.ForEach(p => item.Photos.Add(p.ConvertToEntity()));
 			item.Details = new List<Detail>();
 			Details?.ForEach(d => item.Details.Add(d.ConvertToEntity()));
 			return item;

@@ -2,11 +2,12 @@
 
 namespace Incanto.Domain
 {
-	public class Picture : IBaseEntity
+	public class Photo : IBaseEntity
 	{
 		public int Id { get; set; }
 		public Item Item { get; set; }
 		public string Path { get; set; }
+		public int Priority { get; set; }
 
 	}
 }

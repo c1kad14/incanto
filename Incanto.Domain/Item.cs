@@ -13,7 +13,7 @@ namespace Incanto.Domain
 		public List<Price> Price { get; set; }
 		public Discount Discount { get; set; }
 		public DateTime Updated { get; set; }
-		public List<Picture> Pictures { get; set; }
+		public List<Photo> Photos { get; set; }
 
 	}
 }
