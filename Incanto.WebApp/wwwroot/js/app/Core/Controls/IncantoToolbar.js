@@ -7,6 +7,7 @@ import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
 import AddRecordDialog from "../AddRecordDialog";
+import ImageUploader from "./ImageUploader";
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 
 export default class IncantoToolbar extends React.Component {
@@ -15,7 +16,8 @@ export default class IncantoToolbar extends React.Component {
 		super(props);
 		this.state = {
 			value: this.props.controller,
-			addRecordDialogOpen: false
+			addRecordDialogOpen: false,
+			uploaderActions: {}
 		};
 	}
 
@@ -24,12 +26,26 @@ export default class IncantoToolbar extends React.Component {
 	    let controller = value;
 		this.props.selectedTableChangedHandler(controller);
 	}
+
 	addRecordDialogOpenHandler() {
 		this.setState({ addRecordDialogOpen: true });
 	}
+
 	addRecordDialogCloseHandler(addRecordDialogOpen) {
 		this.setState({addRecordDialogOpen});
 	}
+
+	openAddDialog() {
+		if (this.state.uploaderActions.openDialog !== undefined && this.props.selectedItem !== undefined) {
+			this.state.uploaderActions.openDialog(this.props.selectedItem);
+		}
+	}
+
+	//componentWillReceiveProps(nextProps) {
+	//	if (nextProps.selectedItem !== this.props.selectedItem) {
+	//		this.setState();
+	//	}
+	//}
 
 	render() {
 		return (
@@ -50,6 +66,9 @@ export default class IncantoToolbar extends React.Component {
 					<ToolbarTitle text="Записи" />
 					<FontIcon className="muidocs-icon-custom-sort" />
 					<ToolbarSeparator />
+					{this.props.controller === "items" && this.props.selectedItem !== undefined ? <div><RaisedButton onClick={this.openAddDialog.bind(this)} label="add photo" fullWidth={true} /><ImageUploader selectedItem={this.props.selectedItem}
+					                                                    uploaderActions={this.state.uploaderActions}
+																		uploadController="Photos" /> </div>: <span></span>}	
 					<RaisedButton label="Добавить" primary={true} onClick={this.addRecordDialogOpenHandler.bind(this)} />
 					{this.state.addRecordDialogOpen ? <AddRecordDialog columns={this.props.columns} lookup={this.props.lookupFields} controller={this.props.controller} open={this.state.addRecordDialogOpen} handleClose={this.addRecordDialogCloseHandler.bind(this)} />
 						: <span />}

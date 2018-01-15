@@ -1,5 +1,7 @@
 ﻿import React from "react";
 import DataService from "./Services/DataService";
+import ImageUploader from "./Controls/ImageUploader";
+import RaisedButton from "material-ui/RaisedButton";
 import {
 	Table,
 	TableBody,
@@ -17,8 +19,9 @@ class RecordsList extends React.Component {
 			dataSource: [],
 			itemsPerPage: 5,
 			activePage: this.props.page === undefined ? 1 : this.props.page,
-			selectedItem: {},
-			selectedItemIndex: -1
+			selectedItem: undefined,
+			selectedItemIndex: -1,
+			uploaderActions: {}
 		};
 		this.getDataForPage = this.getDataForPage.bind(this);
 		this.updateData = this.updateData.bind(this);
@@ -49,11 +52,17 @@ class RecordsList extends React.Component {
 			} else {
 				let splittedFieldAndName = splittedChild[j].split(".");
 				fieldToGetValue = fieldToGetValue[splittedFieldAndName[0]];
-				result = fieldToGetValue !== undefined && fieldToGetValue !== null? fieldToGetValue[splittedFieldAndName[1]] : "пусто";
+				result = fieldToGetValue !== undefined && fieldToGetValue !== null ? fieldToGetValue[splittedFieldAndName[1]] : "пусто";
 			}
 		}
 
 		return result;
+	}
+
+	openAddDialog() {
+		if (this.state.uploaderActions.openDialog !== undefined) {
+			this.state.uploaderActions.openDialog();
+		}
 	}
 
 	getTableRowColumns(row) {
@@ -72,6 +81,14 @@ class RecordsList extends React.Component {
 			return (<TableRowColumn key={columnId}> {columnValue} </TableRowColumn>);
 			//(row[columnName] != null ? <TableRowColumn key={columnId}> {columnValue} </TableRowColumn> : <span />);
 		});
+		//if (this.props.controller === "items") {
+		//	rowColumns.push(<TableRowColumn key={row.id}><RaisedButton onClick={this.openAddDialog.bind(this)} label="add photo" fullWidth={true} />
+		//		<ImageUploader baseItemId={row.id}
+		//			uploaderActions={this.state.uploaderActions}
+		//			uploadController="Photos" />
+		//	</TableRowColumn>);
+		//}
+		
 		return rowColumns;
 	}
 
@@ -91,29 +108,29 @@ class RecordsList extends React.Component {
 	}
 
 	selectPage(page) {
-		this.setState({ activePage: page });
+		this.setState({ activePage: page }, this.props.itemSelectedHandler(undefined));
 	}
 
 	resetPage() {
-		this.setState({ activePage: 1 });
+		this.setState({
+			activePage: 1,
+			selectedItem: undefined,
+			selectedItemIndex: -1
+		},
+			this.props.resetCallBack
+		);
 	}
 
 	onRowSelection(selectedRows) {
 		if (selectedRows.length > 0) {
 			let item = this.getDataForPage()[selectedRows[0]];
 			this.state.selectedItem = item;
+			this.props.itemSelectedHandler(item);
 			this.state.selectedItemIndex = selectedRows[0];
 			console.log('updated state value', this.state.selectedItem);
-			//console.log('updated state value', this.state.selectedItem.name);
+		} else {
+			this.setState({ selectedItem: undefined, selectedItemIndex: -1 }, this.props.itemSelectedHandler(undefined));
 		}
-
-
-		//this.setState({ selectedItem: item },
-		//          () => {
-		//          });
-		//  if(this.props.selectItem !== undefined) {
-		//   this.props.selectItem(item.element);
-		//  }
 	}
 
 	componentWillMount() {
@@ -132,10 +149,16 @@ class RecordsList extends React.Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		if (nextState.selectedItemIndex !== this.state.selectedItemIndex) {
-			return true;
-		}
-		if (nextState.dataSource === this.state.dataSource && this.state.activePage === nextState.activePage) {
+		//if (nextState.selectedItemIndex !== this.state.selectedItemIndex) {
+		//	return true;
+		//}
+		if (nextState.dataSource === this.state.dataSource) {
+			if (nextProps.controller !== this.props.controller) {
+				return false;
+			}
+			if (this.state.activePage !== nextState.activePage) {
+				return true;
+			}
 			return false;
 		}
 		return true;
@@ -152,7 +175,6 @@ class RecordsList extends React.Component {
 		}
 		const list = this.getDataForPage().map(record => {
 			const rowColumns = this.getTableRowColumns(record);
-			//rowColumns.push( <TableRowColumn key="Actions">{getActionCommands(item)}</TableRowColumn> );
 			return (
 				<TableRow key={record.id}>
 					{rowColumns}
@@ -165,7 +187,6 @@ class RecordsList extends React.Component {
 				<TableHeaderColumn key={column}>{this.formatHeaderName(column)}</TableHeaderColumn>
 			);
 		});
-		// headerColumns.push(<TableHeaderColumn key="Actions">Actions</TableHeaderColumn>);
 		const lastPage = ((this.state.dataSource.length) % this.state.itemsPerPage) !== 0 ? 1 : 0;
 		const pages = Math.floor(this.state.dataSource.length / this.state.itemsPerPage) + lastPage;
 		return <div>

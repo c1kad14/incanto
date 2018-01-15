@@ -11,9 +11,10 @@ using System;
 namespace Incanto.DataAccess.Migrations
 {
     [DbContext(typeof(IncantoDataContext))]
-    partial class IncantoDataContextModelSnapshot : ModelSnapshot
+    [Migration("20180114120550_added priority field to the photos table")]
+    partial class addedpriorityfieldtothephotostable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -364,7 +365,7 @@ namespace Incanto.DataAccess.Migrations
             modelBuilder.Entity("Incanto.Domain.Photo", b =>
                 {
                     b.HasOne("Incanto.Domain.Item", "Item")
-                        .WithMany("Photos")
+                        .WithMany("Pictures")
                         .HasForeignKey("ItemId");
                 });
 

@@ -16,6 +16,7 @@ class ImageUploader extends React.Component {
 			imageUploadOpened: false,
 			currentImg: {},
 			lastId: 0,
+			selectedItem: this.props.selectedItem,
 			photoFieldsData: [
 				{
 					name: "type",
@@ -78,7 +79,7 @@ class ImageUploader extends React.Component {
 				priority: this.state.lastId,
 				src: this.state.currentImg.src,
 				file: this.state.currentImg.file,
-				itemId: "1",
+				itemId: this.state.selectedItem.id,
 				type: this.state.currentImg.type
 			});
 			this.clearDataAboutPhoto();
@@ -111,7 +112,7 @@ class ImageUploader extends React.Component {
 	}
 
 	uploadImages () {
-		const itemId = this.props.baseItemId;
+		const itemId = this.state.selectedItem.id;
 		let formData = new FormData(this);
 		for (let i = 0; i < this.state.imageSource.length; i++) {
 			formData.append("files", this.state.imageSource[i].file);
@@ -119,7 +120,7 @@ class ImageUploader extends React.Component {
 		}
 		formData.set("itemId", itemId);
 		const config = { headers: { 'content-type': 'multipart/form-data' } }
-		const handleCloseImageUpload = this.handleCloseImageUpload;
+		const handleCloseImageUpload = this.handleCloseImageUpload.bind(this);
 		const imageUploaded = this.imageUploaded;
 		RestApiCalls.post(`/api/${this.props.uploadController}/UploadPhotos`, formData, config).then(function(response) {
 				handleCloseImageUpload();
@@ -132,8 +133,8 @@ class ImageUploader extends React.Component {
 		this.fileInput.click();
 	}
 
-	openImageUploadDialog () {
-		this.setState({ imageUploadOpened: true });
+	openImageUploadDialog (selectedItem) {
+		this.setState({ imageUploadOpened: true, selectedItem: selectedItem });
 	}
 
 	componentWillMount() {
@@ -186,7 +187,7 @@ class ImageUploader extends React.Component {
 				<Dialog
 					actions={imageUploadActions}
 					contentStyle={{ width: "90%", maxWidth: '90%' }}
-					title={"Добавить фото к товару"}
+					title={ "Добавить фото к товару с id: " + this.state.selectedItem.id }
 					modal={false}
 					open={this.state.imageUploadOpened}
 					onRequestClose={this.handleCloseImageUpload.bind(this)}

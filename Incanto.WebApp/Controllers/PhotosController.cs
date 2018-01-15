@@ -16,11 +16,11 @@ namespace Incanto.WebApp.Controllers
 {
 	[Produces("application/json")]
 	[Route("api/[controller]")]
-	public class PhotosController : CRUDController<PictureModel, Picture>
+	public class PhotosController : CRUDController<PhotoModel, Photo>
 	{
 		private readonly IPhotoUploadService _photoUploadService;
 		private readonly string _photoUploadPath;
-		public PhotosController(IDataRepository<Picture> dataRepository, IHostingEnvironment hostingEnvironment, IPhotoUploadService photoUploadService) : base(dataRepository, null)
+		public PhotosController(IDataRepository<Photo> dataRepository, IHostingEnvironment hostingEnvironment, IPhotoUploadService photoUploadService) : base(dataRepository, null)
 		{
 			this._photoUploadService = photoUploadService;
 
@@ -30,10 +30,11 @@ namespace Incanto.WebApp.Controllers
 		[HttpPost("UploadPhotos")]
 		public async Task<IActionResult> UploadPhotos(List<IFormFile> files, List<int> priorities, int itemId)
 		{
-			var models = new List<PictureModel>();
+			var models = new List<PhotoModel>();
 
-			foreach (IFormFile file in files)
+			for (var i = 0; i < files.Count; i++)
 			{
+				IFormFile file = files[i];
 				if (_photoUploadService.CheckFile(file.OpenReadStream(), file.ContentType, file.Length))
 				{
 					var fileName = _photoUploadService.GenerateFileName(file.FileName);
@@ -46,15 +47,16 @@ namespace Incanto.WebApp.Controllers
 					{
 						await file.CopyToAsync(stream);
 					}
-					models.Add(new PictureModel
+					models.Add(new PhotoModel
 					{
 						Path = filePath,
+						Priority = priorities[i],
 						ItemId = itemId
 					});
 				}
 			}
 
-			List<OperationResult<PictureModel, Picture>> operationResult = new List<OperationResult<PictureModel, Picture>>();
+			List<OperationResult<PhotoModel, Photo>> operationResult = new List<OperationResult<PhotoModel, Photo>>();
 			models.ForEach(m => operationResult.Add(PerformOperation(m, OperationType.Add)));
 			return Json(operationResult);
 		}
