@@ -16,7 +16,6 @@
     <Content Include="Controllers\DetailsController.cs" />
     <Content Include="Controllers\DetailTypesController.cs" />
     <Content Include="Controllers\DetailTypeValuesController.cs" />
-    <Content Include="Controllers\DiscountsController.cs" />
     <Content Include="Controllers\ItemsController.cs" />
     <Content Include="Controllers\TypesController.cs" />
   </ItemGroup>

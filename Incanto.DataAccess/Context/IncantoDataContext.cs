@@ -21,8 +21,6 @@ namespace Incanto.DataAccess.Context
 		public DbSet<Item> Items { get; set; }
 		public DbSet<Type> Types { get; set; }
 		public DbSet<Photo> Photos { get; set; }
-		public DbSet<Discount> Discounts { get; set; }
-		public DbSet<Price> Prices { get; set; }
 		public DbSet<ExistingItem> ExistingItems { get; set; }
 		public DbSet<Size> Sizes { get; set; }
 		public DbSet<Transaction> Transactions { get; set; }

@@ -233,11 +233,17 @@ input[type="checkbox"].input-validation-error {
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%
+    -webkit-text-size-adjust: 100%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
 }
 
 body {
-    margin: 0
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
@@ -312,7 +318,6 @@ img {
 }
 
 svg:not(:root) {
-    overflow: hidden
 }
 
 figure {
@@ -326,7 +331,6 @@ hr {
 }
 
 pre {
-    overflow: auto
 }
 
 code, kbd, pre, samp {
@@ -341,7 +345,6 @@ button, input, optgroup, select, textarea {
 }
 
 button {
-    overflow: visible
 }
 
 button, select {
@@ -398,7 +401,6 @@ legend {
 }
 
 textarea {
-    overflow: auto
 }
 
 optgroup {
@@ -428,19 +430,7 @@ td, th {
         outline: none !important
     }
 
-    *, *:before, *:after {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box
-    }
 
-body {
-    min-width: 1100px
-}
-
-html {
-    overflow-x: hidden
-}
 
 body::-webkit-scrollbar {
     width: 0
@@ -450,12 +440,10 @@ html, body {
     height: 100%;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased !important;
-    font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    font-smooth: always;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
-    -ms-backface-visibility: hidden
+    -ms-backface-visibility: hidden;
 }
 
 body, input, textarea {
@@ -926,30 +914,6 @@ fieldset {
         width: 100%
     }
 
-#extra {
-    display: none;
-    overflow: hidden;
-    position: relative
-}
-
-    #extra .close {
-        background: url(../themes/hmtest/images/close_big.png) no-repeat;
-        width: 22px;
-        height: 22px;
-        position: absolute;
-        top: 70px;
-        right: 40px;
-        z-index: 1
-    }
-
-        #extra .close:hover {
-            cursor: pointer
-        }
-
-    #extra .content {
-        width: 100%;
-        height: 100%
-    }
 
 .wrapper-popup {
     margin-top: 55px
@@ -957,7 +921,7 @@ fieldset {
 
     .wrapper-popup img {
         height: auto;
-        max-width: 1000px
+        max-width: 850px;
     }
 
 header {
@@ -993,7 +957,7 @@ header .close-notification {
     width: 12px;
     position: absolute;
     right: 20px;
-    top: 12px
+    top: 12px;
 }
 
     header .close-notification:hover {
@@ -1018,7 +982,6 @@ header #breadcrumbs {
 }
 
 .bc-separator {
-    overflow: hidden;
     background: url(../themes/hmtest/images/arrow.png) no-repeat 0 0;
     padding-left: 12px
 }
@@ -1120,20 +1083,6 @@ _:-o-prefocus, body:last-child #filters {
     height: 100%
 }
 
-.catalog .header {
-    margin: 25px 0 0 40px
-}
-
-.catalog {
-    min-width: 630px;
-    padding-top: 85px;
-    margin-bottom: 150px
-}
-
-.sort_head {
-    overflow: hidden
-}
-
 .sort_header {
     display: inline-block;
     float: left;
@@ -1217,6 +1166,9 @@ _:-o-prefocus, body:last-child #filters {
         margin-top: 35px;
         position: relative
     }
+.catalog > ul.items .item:hover {
+    cursor: pointer;
+}
 
 .soft-cube-wrap .catalog > ul.items .item {
     width: 24% !important;
@@ -1244,10 +1196,6 @@ _:-o-prefocus, body:last-child #filters {
     text-decoration: none !important
 }
 
-.catalog > .items .item img {
-    //opacity:0
-}
-
 .designer-info {
     margin-top: 25px
 }
@@ -1260,10 +1208,6 @@ _:-o-prefocus, body:last-child #filters {
     .baseline-helper p {
         line-height: 16px
     }
-
-.catalog > ul.items {
-    min-width: 550px
-}
 
 .logo_image {
     display: block;
@@ -1428,7 +1372,6 @@ _:-o-prefocus, body:last-child #filters {
 
 #filter-body {
     width: 200px;
-    //margin-top:53px;
     margin-bottom: 90px
 }
 
@@ -1988,7 +1931,6 @@ ul#rmenu {
 
 .promocode-container {
     height: 0;
-    overflow: hidden;
     -webkit-transition: height .5s;
     -moz-transition: height .5s;
     transition: height .5s
@@ -2076,7 +2018,6 @@ ul#rmenu {
 
 #product_wrap {
     height: 100%;
-    overflow: hidden;
     position: initial
 }
 
@@ -2100,11 +2041,10 @@ ul#rmenu {
 }
 
 .product-content {
-    padding-top: 25px
+    padding-top: 25px;
 }
 
     .product-content .left {
-        overflow: hidden;
         margin-left: 355px;
         margin-right: 400px
     }
@@ -2305,7 +2245,6 @@ ul#rmenu {
     background-color: #fff;
     z-index: 101;
     text-align: center;
-    overflow: hidden
 }
 
 .size-popup-mask {
@@ -2495,10 +2434,6 @@ ul#rmenu {
         color: #787878
     }
 
-.fotorama__active {
-    opacity: 0.67
-}
-
 .fotorama__caption, .fotorama__nav:after, .fotorama__nav:before, .fotorama__stage:after, .fotorama__stage:before, .fotorama__wrap--css3 .fotorama__html, .fotorama__wrap--css3 .fotorama__nav, .fotorama__wrap--css3 .fotorama__spinner, .fotorama__wrap--css3 .fotorama__stage, .fotorama__wrap--css3 .fotorama__stage .fotorama__img, .fotorama__wrap--css3 .fotorama__stage__frame {
     -webkit-transform: none !important;
     transform: none !important
@@ -2568,7 +2503,6 @@ ul#rmenu {
 
 .designers-list {
     margin: 125px auto 80px;
-    overflow: hidden;
     width: 720px
 }
 
@@ -2710,6 +2644,9 @@ ul#rmenu {
     .stores-page .our-shops-container, .soft-cube-wrap {
         margin-left: 220px
     }
+    .fotorama {
+        left: 30% !important;
+    }
 }
 
 .selection-block {
@@ -2786,6 +2723,9 @@ ul#rmenu {
 @media (max-width: 1200px) {
     .selection-block .catalog > ul.items {
         width: 54%
+    }
+    .fotorama {
+        left: 27% !important;
     }
 }
 
@@ -3004,8 +2944,8 @@ ul#rmenu {
 }
 
 @media screen and (max-width: 1024px) {
-    .store-page-address {
-        //right:0
+    .fotorama {
+        left: 20% !important;
     }
 }
 
@@ -3460,14 +3400,6 @@ textarea.form-input {
     cursor: pointer
 }
 
-.nano > .nano-content {
-    // padding-bottom:350px
-}
-
-.nano {
-    //position:inherit !important
-}
-
 .grf {
     font-family: "GothamPro", Arial, Helvetica, sans-serif
 }
@@ -3679,7 +3611,6 @@ header .header-right .hbuttons {
 }
 
 .designers-popup {
-    overflow: hidden;
     display: none;
     height: 550px;
     width: 680px;
@@ -3749,7 +3680,6 @@ header .header-right .hbuttons {
     display: none;
     padding: 0 0 18px 55px;
     min-height: 54px;
-    overflow: hidden;
     width: 615px;
     background: #fff
 }
@@ -3854,7 +3784,6 @@ header .header-right .hbuttons {
 .designers-popup .nano-content {
     left: 50px !important;
     top: 0 !important;
-    //margin-bottom:50px
 }
 
 .scrollPopUp {
@@ -4008,7 +3937,6 @@ header .header-right .hbuttons {
 .designer_info_textInner {
     //height:inherit;
     height: 70px;
-    overflow: hidden
 }
 
 .designerSeoBlock {
@@ -5105,7 +5033,6 @@ textarea::-moz-placeholder {
     margin: 0 auto;
     display: block;
     padding: 55px 0 55px 0;
-    overflow: hidden;
     box-sizing: content-box;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
@@ -5144,7 +5071,6 @@ textarea::-moz-placeholder {
 }
 
 .order-detail-button {
-    overflow: hidden;
     margin-right: 25px;
     margin-top: 62px
 }
@@ -5178,7 +5104,6 @@ textarea::-moz-placeholder {
 
 .order_catalog_subitem {
     position: relative;
-    overflow: hidden
 }
 
 .order_description {
@@ -5189,7 +5114,6 @@ textarea::-moz-placeholder {
     bottom: 0;
     right: 0;
     left: 320px;
-    overflow: hidden;
     background: #fff;
     opacity: 0.7
 }
@@ -5202,7 +5126,6 @@ textarea::-moz-placeholder {
     bottom: 0;
     right: 0;
     left: 0;
-    overflow: hidden;
     margin: auto;
     height: 150px
 }
@@ -6220,7 +6143,6 @@ footer {
     display: block;
     z-index: 99;
     display: none;
-    //overflow:hidden
 }
 
 .footer_wrapper {
@@ -6268,7 +6190,6 @@ footer {
 .footer-social {
     width: 60px;
     margin: 18px auto;
-    overflow: hidden
 }
 
 .footer-social_link {
@@ -6448,14 +6369,12 @@ footer {
     max-width: 480px;
     margin-left: auto;
     margin-right: auto;
-    overflow: hidden;
     position: relative;
     padding: 0 20px 0 20px !important
 }
 
 .adress-edit-button {
     margin-bottom: 8px;
-    overflow: hidden
 }
 
 #detailsupdate-form select, #feedback-form select, #customer-address-create-form select {
@@ -6824,7 +6743,6 @@ footer {
     }
 
 .vacancy-point-list {
-    // overflow:hidden
 }
 
     .vacancy-point-list ul {
@@ -7064,7 +6982,6 @@ footer {
 }
 
 .banner-main-block {
-    overflow: hidden;
     margin-top: 115px
 }
 
@@ -7073,7 +6990,6 @@ footer {
     max-height: 485px;
     float: left;
     text-align: center;
-    overflow: hidden
 }
 
     .banner-main-column:first-child {
@@ -7354,10 +7270,6 @@ body > img {
 }
 
 @media screen and (max-width: 1400px) {
-    .login-static-wrap {
-        //width:100%
-    }
-
     .product-content .right {
         width: 300px !important;
         margin: 240px 10px 40px 0 !important
@@ -7536,6 +7448,9 @@ body > img {
     .selection-page-item.main-block {
         width: 170px
     }
+    .fotorama {
+        left: 25%;
+    }
 }
 
 @media all and (max-width: 1120px) {
@@ -7550,7 +7465,6 @@ body > img {
 
 @media all and (max-width: 1100px) {
     body {
-        min-width: 800px
     }
 
     .catalog > ul.items {
@@ -7563,6 +7477,9 @@ body > img {
 
     .cart-main-table-footer {
         width: 660px
+    }
+    .fotorama {
+        left: 23%;
     }
 }
 
@@ -7739,7 +7656,6 @@ iframe[name=google_conversion_frame] {
     padding: 10px;
     display: inline-block;
     width: 100%;
-    overflow: hidden;
     position: relative;
     z-index: 1;
     -webkit-box-sizing: border-box;
@@ -7770,7 +7686,6 @@ iframe[name=google_conversion_frame] {
 }
 
 .safari-wrapper {
-    overflow: visible !important
 }
 
 .upper {
@@ -7889,7 +7804,6 @@ iframe[name=google_conversion_frame] {
 #preloader-catalog {
     background-color: rgba(0, 0, 0, .1);
     left: 0;
-    overflow: hidden;
     top: 0;
     position: absolute;
     width: 100vw;
@@ -7920,14 +7834,9 @@ iframe[name=google_conversion_frame] {
 
 /*** CSS File: /plugins/nanoscroller/nanoscroller.css, Original size: 1,470, Compressed size: 898 ***/
 .nano {
-    position: relative;
-    overflow: hidden
 }
 
     .nano > .nano-content {
-        position: absolute;
-        overflow: scroll;
-        overflow-x: hidden;
         top: 0;
         right: 0;
         bottom: 0;
@@ -8114,7 +8023,6 @@ iframe[name=google_conversion_frame] {
     padding: 8px 8px;
     display: inline-block;
     width: 100%;
-    overflow: hidden;
     position: relative;
     z-index: 1;
     -webkit-box-sizing: border-box;
@@ -8233,7 +8141,6 @@ iframe[name=google_conversion_frame] {
 
     .selectize-dropdown [data-selectable] {
         cursor: pointer;
-        overflow: hidden
     }
 
         .selectize-dropdown [data-selectable] .highlight {
@@ -8271,9 +8178,7 @@ iframe[name=google_conversion_frame] {
     }
 
 .selectize-dropdown-content {
-    overflow-y: auto;
     font-size: 10px;
-    overflow-x: hidden;
     max-height: 200px
 }
 
@@ -8487,3 +8392,100 @@ iframe[name=google_conversion_frame] {
     border-left: none
 }
 
+<!--
+for concrete item additional styles -->
+.fotorama1516232132390 .fotorama__nav--thumbs .fotorama__nav__frame {
+    padding: 2px;
+    height: 78px
+}
+
+.fotorama1516232132390 .fotorama__thumb-border {
+    height: 76px;
+    border-width: 1px;
+    margin-top: 2px
+}
+
+.fotorama {
+    position: absolute;
+    margin-bottom: 150px;
+    left: 35%;
+    width: 30% !important;
+}
+
+.fotorama__img {
+    vertical-align: middle;
+}
+
+    .fotorama__img:hover {
+        cursor: pointer;
+    }
+
+.fotorama__nav__frame .fotorama__img:hover {
+    opacity: 0.67;
+}
+
+.fotorama__active {
+    opacity: 0.67;
+}
+
+.catalog .header {
+    margin: 25px 0 0 40px
+}
+
+.catalog {
+    padding-top: 55px;
+    margin-bottom: 150px;
+}
+
+#extra {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+    #extra .close {
+        background: url(../btnIcons/close_big.png) no-repeat;
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        top: 70px;
+        right: 40px;
+        z-index: 1;
+        position: fixed !important;
+    }
+
+        #extra .close:hover {
+            cursor: pointer
+        }
+
+    #extra .content {
+        width: 100%;
+        height: 100%
+    }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+#main {
+    height: 100%;
+    width: 100%;
+    position: absolute !important;
+    overflow: auto !important;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }

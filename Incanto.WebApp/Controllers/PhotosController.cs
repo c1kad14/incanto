@@ -24,7 +24,7 @@ namespace Incanto.WebApp.Controllers
 		{
 			this._photoUploadService = photoUploadService;
 
-			_photoUploadPath = $"{hostingEnvironment.WebRootPath}\\itemPhotos";
+			_photoUploadPath = $"{hostingEnvironment.WebRootPath}";
 		}
 
 		[HttpPost("UploadPhotos")]
@@ -38,7 +38,8 @@ namespace Incanto.WebApp.Controllers
 				if (_photoUploadService.CheckFile(file.OpenReadStream(), file.ContentType, file.Length))
 				{
 					var fileName = _photoUploadService.GenerateFileName(file.FileName);
-					var filePath = $"{_photoUploadPath}\\{itemId}\\{fileName}";
+					var itemPhotosPath = $"\\itemPhotos\\{itemId}\\{fileName}";
+					var filePath = String.Concat(_photoUploadPath, itemPhotosPath);
 					if (!Directory.Exists(filePath))
 					{
 						Directory.CreateDirectory(Path.GetDirectoryName(filePath));
@@ -49,7 +50,7 @@ namespace Incanto.WebApp.Controllers
 					}
 					models.Add(new PhotoModel
 					{
-						Path = filePath,
+						Path = itemPhotosPath,
 						Priority = priorities[i],
 						ItemId = itemId
 					});
