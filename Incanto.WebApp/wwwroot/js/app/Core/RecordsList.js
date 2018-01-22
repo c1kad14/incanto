@@ -17,7 +17,7 @@ class RecordsList extends React.Component {
 		super(props);
 		this.state = {
 			dataSource: [],
-			itemsPerPage: 5,
+			itemsPerPage: 10,
 			activePage: this.props.page === undefined ? 1 : this.props.page,
 			selectedItem: undefined,
 			selectedItemIndex: -1,

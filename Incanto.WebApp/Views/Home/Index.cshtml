@@ -6,24 +6,38 @@
 <div id="banner-beta" style="top: 0;width: 100%; left:0; height:50px; background-color:#f1f1f1;">
     <p id="mainTicker"
        style="position: absolute; width: 100%; z-index: 99; background-color:#f1f1f1; text-align:center; font-size:10.01px; line-height:50px; letter-spacing:2.5px;text-transform: uppercase;display:none;">
-        СЕРВИСНЫЙ ЦЕНТР ИНТЕРНЕТ-МАГАЗИНА: +38 093 43 44 734
+        СВЯЗАТЬСЯ С НАМИ: +38 050 922 66 11
     </p>
     <p id="ticker_1" style="text-align:center; font-size:10.01px; line-height:50px; letter-spacing:2.5px;text-transform: uppercase;">
-        СЕРВИСНЫЙ ЦЕНТР ИНТЕРНЕТ-МАГАЗИНА: +38 093 43 44 734
+        СВЯЗАТЬСЯ С НАМИ: +38 050 922 66 11
     </p>
     <p id="ticker_2"
        style="text-align:center; font-size:10.01px; line-height:50px; letter-spacing:2.5px;display:none;text-transform: uppercase;">
-        Бесплатная экспресс-доставка по всей Украине
-    </p>
-    <p id="ticker_3"
-       style="text-align:center; font-size:10.01px; line-height:50px; letter-spacing:2.5px;display:none;text-transform: uppercase;">
-        Примерка в любом удобном для вас месте
+        Бесплатная доставка по всей Украине
     </p>
 </div>
-<div id="store" style="width: 99%"></div>
+<div id="store" onscroll="onScrollHandler()"></div>
 <script src="~/js/store.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+        function onScrollHandler () {
+            var pageBottom = $(window).scrollTop() + $(window).height();
+            var elementTop = $('.footer_wrapper').offset().top;
+            console.log("pageBottom: " + pageBottom);
+            console.log("elementTop: " + elementTop);
+            if (elementTop < pageBottom) {
+                console.log("switch to non fixed");
+                $('#left').css({ 'top': elementTop - pageBottom + 'px' });
+                $('.right').css({ 'top': elementTop - pageBottom + 'px' });
+            }
+            else {
+                console.log("switch to fixed");
+                $('#left').css({ 'top': '0px' });
+                $('.right').css({ 'top': '0px' });
+            } 
+        };
+
+
     initTicker = function () {
         var count = 1;
         setInterval(function () {

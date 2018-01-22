@@ -263,7 +263,7 @@ class ConcreteCatalogItem extends React.Component {
 		const photoBlock = this.generateLeftPhotoBlock();
 		const detailsBlock = this.generateRightInfoBlock();
 		
-		return <div>
+		return <div className="catalog fullw clear">
 			{detailsBlock}
 			{photoBlock}
 		</div>;

@@ -118,20 +118,23 @@ class NavigationMenu extends React.Component {
 
 	getGenderStyle(gender) {
 		return {
-			borderBottom: this.state.selectedGender === gender && this.state.selectedType === undefined && this.state.selectedCategory === undefined ? "1px solid" : ""
+			borderBottom: this.state.selectedGender === gender && this.state.selectedType === undefined && this.state.selectedCategory === undefined ? "1px solid" : "",
+			marginBottom: this.state.selectedGender === gender && this.state.selectedType === undefined && this.state.selectedCategory === undefined ? "-1px" : ""
 		
 		}
 	}
 
 	getTypeStyle(type) {
 		return {
-			borderBottom: this.state.selectedType === type && this.state.selectedCategory === undefined ? "1px solid" : ""
+			borderBottom: this.state.selectedType === type && this.state.selectedCategory === undefined ? "1px solid" : "",
+			marginBottom: this.state.selectedType === type && this.state.selectedCategory === undefined ? "-1px" : ""
 		}
 	}
 
 	getCategoryStyle(category) {
 		return {
-			borderBottom: this.state.selectedCategory === category ? "1px solid" : ""
+			borderBottom: this.state.selectedCategory === category ? "1px solid" : "",
+			marginBottom: this.state.selectedCategory === category ?  "-1px" : ""
 		}
 	}
 

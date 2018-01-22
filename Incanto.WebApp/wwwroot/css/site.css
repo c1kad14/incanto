@@ -457,7 +457,9 @@ a {
 }
 
     a:hover {
-        text-decoration: underline
+        text-decoration: underline;
+        padding: 0;
+        margin-bottom: -1px;
     }
 
 strike {
@@ -798,8 +800,8 @@ fieldset {
     text-align: left;
     margin-top: 50px;
     top: 0;
-    //margin-bottom:60px;
-    z-index: 1
+    z-index: 1;
+    overflow: hidden !important;
 }
 
 .menu_wrapper {
@@ -1212,8 +1214,8 @@ _:-o-prefocus, body:last-child #filters {
 .logo_image {
     display: block;
     width: 240px !important;
-    margin-left: 25px;
-    margin-top: 20px;
+    margin-left: 45px;
+    margin-top: 40px;
     margin-bottom: -30px;
     font-size: 26pt;
     border-bottom: none !important
@@ -2039,11 +2041,6 @@ ul#rmenu {
 .product-wrap-inner {
     height: 100%
 }
-
-.product-content {
-    padding-top: 25px;
-}
-
     .product-content .left {
         margin-left: 355px;
         margin-right: 400px
@@ -2645,7 +2642,7 @@ ul#rmenu {
         margin-left: 220px
     }
     .fotorama {
-        left: 30% !important;
+        left: 20% !important;
     }
 }
 
@@ -2725,7 +2722,7 @@ ul#rmenu {
         width: 54%
     }
     .fotorama {
-        left: 27% !important;
+        left: 17% !important;
     }
 }
 
@@ -2945,7 +2942,7 @@ ul#rmenu {
 
 @media screen and (max-width: 1024px) {
     .fotorama {
-        left: 20% !important;
+        left: 10% !important;
     }
 }
 
@@ -6133,31 +6130,11 @@ label.label_for_radio input[type="radio"]:checked + span {
     margin-top: 40px
 }
 
-footer {
-    //bottom:0;
-    //left:0;
-    width: 100%;
-    border-top: 1px solid #e4e4e4;
-    background: #f8f8f8;
-    position: relative;
-    display: block;
-    z-index: 99;
-    display: none;
-}
-
-.footer_wrapper {
-    width: 100%;
-    max-width: 390px;
-    height: 320px;
-    margin: 0 auto;
-    padding: 35px 0 0 0
-}
-
 .footer_list {
     text-align: center;
     list-style: none;
     height: 85px;
-    margin: 0 4px
+    margin: 0 4px;
 }
 
 .footer_list_item {
@@ -7449,7 +7426,7 @@ body > img {
         width: 170px
     }
     .fotorama {
-        left: 25%;
+        left: 15%;
     }
 }
 
@@ -7479,7 +7456,7 @@ body > img {
         width: 660px
     }
     .fotorama {
-        left: 23%;
+        left: 13%;
     }
 }
 
@@ -8392,8 +8369,6 @@ iframe[name=google_conversion_frame] {
     border-left: none
 }
 
-<!--
-for concrete item additional styles -->
 .fotorama1516232132390 .fotorama__nav--thumbs .fotorama__nav__frame {
     padding: 2px;
     height: 78px
@@ -8406,9 +8381,9 @@ for concrete item additional styles -->
 }
 
 .fotorama {
-    position: absolute;
+    position: relative;
     margin-bottom: 150px;
-    left: 35%;
+    left: 25%;
     width: 30% !important;
 }
 
@@ -8434,7 +8409,24 @@ for concrete item additional styles -->
 
 .catalog {
     padding-top: 55px;
-    margin-bottom: 150px;
+    padding-bottom: 150px;
+    min-height: 100%;
+    position: relative;
+}
+
+
+#main, #store {
+    min-height: 100%;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: auto !important;
+}
+
+.product-content {
+    padding-top: 25px;
+    min-height: 100%;
+    position: relative;
 }
 
 #extra {
@@ -8468,17 +8460,11 @@ for concrete item additional styles -->
 ::-webkit-scrollbar {
     width: 10px;
 }
-#main {
-    height: 100%;
-    width: 100%;
-    position: absolute !important;
-    overflow: auto !important;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
+ 
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
@@ -8489,3 +8475,14 @@ for concrete item additional styles -->
     ::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
+
+.footer_wrapper {
+    width: 100%;
+    height: 320px;
+    margin: 0 auto;
+    padding: 35px 0 0 0;
+    border-top: 1px solid #e4e4e4;
+    background: #f8f8f8;
+    position: absolute;
+    top: 100%;
+}

@@ -4,27 +4,11 @@ import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Drawer from 'material-ui/Drawer';
 import IncantoRecords from "../../IncantoRecords";
 import ImageUploader from "./ImageUploader";
 import RaisedButton from "material-ui/RaisedButton";
-
-class Login extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			name: 'FlatButton'
-		}
-	}
-
-	render() {
-		return (
-			<FlatButton {...this.props} label="Login" />
-		);
-	}
-}
 
 class Logged extends Component {
 	constructor(props) {
@@ -59,18 +43,10 @@ class IncantoAppBar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			logged: false,
 			showRecordsTable: false,
 			recordsTabIndex: 0,
 			uploaderActions: {}
 		}
-
-		this.handleChange = this.handleChange.bind(this);
-	}
-
-
-	handleChange(event, logged) {
-		this.setState({ logged: logged });
 	}
 
 	handleTouchMap() {
@@ -100,17 +76,10 @@ class IncantoAppBar extends Component {
 	render() {
 		return (
 			<div>
-				<Toggle
-					label="Logged"
-					defaultToggled={false}
-					onToggle={this.handleChange}
-					labelPosition="right"
-					style={{ margin: 20 }}
-				/>
 				<AppBar
 					title="Incanto"
 					onLeftIconButtonTouchTap={this.handleTouchMap.bind(this)}
-					iconElementRight={this.state.logged ? <Logged /> : <Login />}
+					iconElementRight={ <Logged />}
 				/>
 				{(this.state.showRecordsTable === true) ? <IncantoRecords /> : <span />}
 				{(this.state.showPhotosGrid === true) ? <div><RaisedButton onClick={this.openAddDialog.bind(this)} label="add photo" fullWidth={true} />
