@@ -48,7 +48,7 @@ namespace Incanto.WebApp
 			//	options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All);
 			//})
 			services.Configure<WebEncoderOptions>(options => new TextEncoderSettings(UnicodeRanges.All));
-			services.AddDbContext<IncantoDataContext>(optionsAction => optionsAction.UseSqlServer(Configuration.GetConnectionString("DevelopersAzureConnection")));
+			services.AddDbContext<IncantoDataContext>(optionsAction => optionsAction.UseSqlServer(Configuration.GetConnectionString("DevelopersConnection")));
 			services.AddTransient<IPhotoUploadService, PhotoUploadService>();
 			services.AddTransient(typeof(IDataRepository<>), typeof(DataRepository<>));
 			services.AddMvc();

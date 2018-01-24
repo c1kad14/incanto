@@ -34,25 +34,25 @@ class HomePage extends React.Component {
 
 	render() {
 		const logoFontMain = { fontWeight: "bold" };
-		const logoFont = { fontSize: "14.5pt", verticalAlign: "top"};
+		const logoFont = { fontSize: "14.5pt", verticalAlign: "top" };
 		let catalog = this.state.selectedItemId === undefined
 			? <Catalog gender={this.state.selectedGender} type={this.state.selectedType} category={this.state.selectedCategory
-			} brand={this.state.selectedBrand} onItemSelected={this.updateSelectedItem.bind(this)}/>
-			: <ConcreteCatalogItem selectedItemId={this.state.selectedItemId} changeNavigationMenuValue={this.changeNavigationMenuValue.bind(this)}/>;
+			} brand={this.state.selectedBrand} onItemSelected={this.updateSelectedItem.bind(this)} />
+			: <ConcreteCatalogItem selectedItemId={this.state.selectedItemId} changeNavigationMenuValue={this.changeNavigationMenuValue.bind(this)} />;
 		return <div className="product-content">
 			{this.state.showNavigationMenu ? <div id="left">
 				<div className="logo_image"><a href="" ><span style={logoFontMain}>INCANTO &nbsp;</span> <span style={logoFont}>ITALIAN CLOTHES</span></a>
-												</div>
-												<NavigationMenu updateFilters={this.updateFilters}
-													selectedGender={this.state.selectedGender}
-													selectedType={this.state.selectedType}
-													selectedCategory={this.state.selectedCategory}
-													selectedBrand={this.state.selectedBrand} />
-											</div> :
-											<span></span>
+				</div>
+				<NavigationMenu updateFilters={this.updateFilters}
+					selectedGender={this.state.selectedGender}
+					selectedType={this.state.selectedType}
+					selectedCategory={this.state.selectedCategory}
+					selectedBrand={this.state.selectedBrand} />
+			</div> :
+				<span></span>
 			}
 			{catalog}
-			<Footer />
+			{this.state.showNavigationMenu ? <Footer /> : <span></span>}
 		</div>;
 	}
 }

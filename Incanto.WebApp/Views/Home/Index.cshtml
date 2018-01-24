@@ -22,19 +22,19 @@
 <script>
         function onScrollHandler () {
             var pageBottom = $(window).scrollTop() + $(window).height();
-            var elementTop = $('.footer_wrapper').offset().top;
-            console.log("pageBottom: " + pageBottom);
-            console.log("elementTop: " + elementTop);
-            if (elementTop < pageBottom) {
-                console.log("switch to non fixed");
-                $('#left').css({ 'top': elementTop - pageBottom + 'px' });
-                $('.right').css({ 'top': elementTop - pageBottom + 'px' });
+            var element = $('.footer_wrapper');
+            if (element.length > 0) {
+                var elementTop = element.offset().top;
+                if (elementTop < pageBottom) {
+                    $('#left').css({ 'top': elementTop - pageBottom + 'px' });
+                    $('.right').css({ 'top': elementTop - pageBottom + 'px' });
+                }
+                else {
+                    $('#left').css({ 'top': '0px' });
+                    $('.right').css({ 'top': '0px' });
+                }  
             }
-            else {
-                console.log("switch to fixed");
-                $('#left').css({ 'top': '0px' });
-                $('.right').css({ 'top': '0px' });
-            } 
+           
         };
 
 

@@ -1,5 +1,6 @@
 ﻿import React from "react";
 import DataService from "../app/Core/Services/DataService";
+import ReactDom from "react-dom";
 
 const controller = "items";
 const style = {
@@ -106,6 +107,11 @@ class ConcreteCatalogItem extends React.Component {
 
 	componentWillUnmount() {
 		document.removeEventListener("keydown", this.handleKeyDown);
+	}
+
+	componentDidUpdate() {
+		const node = ReactDom.findDOMNode(this);
+		node !== null ? node.scrollIntoView() : true;
 	}
 
 	mainPhotoClick() {
@@ -262,7 +268,7 @@ class ConcreteCatalogItem extends React.Component {
 		}
 		const photoBlock = this.generateLeftPhotoBlock();
 		const detailsBlock = this.generateRightInfoBlock();
-		
+
 		return <div className="catalog fullw clear">
 			{detailsBlock}
 			{photoBlock}

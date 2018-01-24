@@ -1,6 +1,8 @@
 ﻿import React from "react";
+import ReactDom from "react-dom";
 import DataService from "../app/Core/Services/DataService";
 import CatalogItem from "./CatalogItem";
+import $ from "jquery";
 
 const controller = "catalogitems";
 
@@ -46,6 +48,21 @@ class Catalog extends React.Component {
 		let processData = this.updateData;
 		const queryString = this.getQueryString(this.props);
 		DataService.getItemsWithParameters(controller, queryString, processData);
+	}
+
+	componentWillUpdate() {
+		const node = ReactDom.findDOMNode(this); 
+		if (node !== null) {
+			$(node).stop(true, true).fadeOut('slow');
+		}
+	}
+
+	componentDidUpdate() {
+		const node = ReactDom.findDOMNode(this);
+		if (node !== null) {
+			$(node).stop(true, true).fadeIn('slow');
+			node.scrollIntoView();
+		}
 	}
 
 	render() {

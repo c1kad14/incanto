@@ -1218,13 +1218,17 @@ _:-o-prefocus, body:last-child #filters {
     margin-top: 40px;
     margin-bottom: -30px;
     font-size: 26pt;
-    border-bottom: none !important
+    border-bottom: none !important;
 }
-.logo_image:hover a {
-    text-decoration: none !important;
-    font-weight: bolder;
-    opacity: 0.7;
-}
+    .logo_image a {
+        opacity: 1;
+    }
+        .logo_image a:hover {
+            text-decoration: none !important;
+            font-weight: bold;
+            font-size: 26pt;
+            opacity: 0.6;
+        }
 
 .catalog > .items .item img {
     width: 100%
@@ -5592,15 +5596,15 @@ textarea::-moz-placeholder {
     }
 
 .subscribe_wrap-footer {
-    padding: 0 25px 0 25px
+    padding: 0 25px 0 25px;
+    text-align: center;
 }
 
 .subscribe-footer .form-input {
     width: 200px;
-    float: left;
-    height: 34px;
+    text-align: center;
+    height: 12px;
     border-right: none;
-    padding-top: 12px
 }
 
 .subscribe-footer .blackbtt {
@@ -5610,7 +5614,7 @@ textarea::-moz-placeholder {
 .subscribe_wrap-footer .subscribe_sex_select {
     margin-top: 20px;
     margin-bottom: 57px;
-    margin-left: 48px
+    text-align: center;
 }
 
 .form subscribe-footer {
@@ -5677,12 +5681,12 @@ input[type="checkbox"] + label .cb_classic {
     vertical-align: middle;
     width: 16px;
     height: 16px;
-    background: url(../themes/hmtest/images/1.png) no-repeat -16px 0;
+    background: url(../1.png) no-repeat -16px 0;
     cursor: pointer
 }
 
 input[type="checkbox"]:checked + label .cb_classic {
-    background: url(../themes/hmtest/images/1.png) no-repeat 0 0;
+    background: url(../1.png) no-repeat 0 0;
     color: #000
 }
 
@@ -6134,7 +6138,8 @@ label.label_for_radio input[type="radio"]:checked + span {
     text-align: center;
     list-style: none;
     height: 85px;
-    margin: 0 4px;
+    margin: 0 auto;
+    width: 400px;
 }
 
 .footer_list_item {
@@ -8485,4 +8490,5 @@ iframe[name=google_conversion_frame] {
     background: #f8f8f8;
     position: absolute;
     top: 100%;
+    display: block;
 }
