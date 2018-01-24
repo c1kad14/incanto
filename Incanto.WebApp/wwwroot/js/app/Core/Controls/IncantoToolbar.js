@@ -66,9 +66,14 @@ export default class IncantoToolbar extends React.Component {
 					<ToolbarTitle text="Записи" />
 					<FontIcon className="muidocs-icon-custom-sort" />
 					<ToolbarSeparator />
-					{this.props.controller === "items" && this.props.selectedItem !== undefined ? <div><RaisedButton onClick={this.openAddDialog.bind(this)} label="add photo" fullWidth={true} /><ImageUploader selectedItem={this.props.selectedItem}
+					{this.props.controller === "items" && this.props.selectedItem !== undefined ?
+						<div>
+						<RaisedButton onClick={this.openAddDialog.bind(this)} label="add photo" fullWidth={true} /><ImageUploader selectedItem={this.props.selectedItem}
 					                                                    uploaderActions={this.state.uploaderActions}
-																		uploadController="Photos" /> </div>: <span></span>}	
+																		uploadController="Photos" />
+
+						<ToolbarSeparator />
+					</div> : <span></span>}
 					<RaisedButton label="Добавить" primary={true} onClick={this.addRecordDialogOpenHandler.bind(this)} />
 					{this.state.addRecordDialogOpen ? <AddRecordDialog columns={this.props.columns} lookup={this.props.lookupFields} controller={this.props.controller} open={this.state.addRecordDialogOpen} handleClose={this.addRecordDialogCloseHandler.bind(this)} />
 						: <span />}

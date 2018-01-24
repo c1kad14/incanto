@@ -19,6 +19,20 @@ class DataService {
 		//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
 		});
 	}
+	static getItemsWithParameters(controller, parameters, callback) {
+		let errorMessage = this.errorOccured;
+		return RestApiCalls.get(`/api/${controller}/GetList?${parameters}`).then(function (response) {
+			//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+			//console.log("Data service finished");
+			if (callback !== null) {
+				callback(response.data);
+			}
+			//return response;
+		}).catch(function (err) {
+			//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
+		});
+	}
+
 	//Get object by id using api (host/api/controller/GetObject)
 	static getObject(controller, objectId, callback) {
 		RestApiCalls.get(`/api/${controller}/Get?id=${objectId}`).then(function (response) {
@@ -27,7 +41,8 @@ class DataService {
 		        callback(response.data);
 		    }
 		}).catch(function (err) {
-			NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
+			console.log(err);
+			//	NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
 		});
 	}
 	//Add new object using api (host/api/controller/Add)

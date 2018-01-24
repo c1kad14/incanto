@@ -11,9 +11,10 @@ using System;
 namespace Incanto.DataAccess.Migrations
 {
     [DbContext(typeof(IncantoDataContext))]
-    partial class IncantoDataContextModelSnapshot : ModelSnapshot
+    [Migration("20180115195215_removed price model")]
+    partial class removedpricemodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,6 +123,22 @@ namespace Incanto.DataAccess.Migrations
                     b.ToTable("DetailTypeValues");
                 });
 
+            modelBuilder.Entity("Incanto.Domain.Discount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Active");
+
+                    b.Property<DateTime>("Updated");
+
+                    b.Property<double>("Value");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Discounts");
+                });
+
             modelBuilder.Entity("Incanto.Domain.ExistingItem", b =>
                 {
                     b.Property<int>("Id")
@@ -169,7 +186,7 @@ namespace Incanto.DataAccess.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<double>("Discount");
+                    b.Property<int?>("DiscountId");
 
                     b.Property<string>("Name");
 
@@ -182,6 +199,10 @@ namespace Incanto.DataAccess.Migrations
                     b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("DiscountId")
+                        .IsUnique()
+                        .HasFilter("[DiscountId] IS NOT NULL");
 
                     b.ToTable("Items");
                 });
@@ -319,6 +340,10 @@ namespace Incanto.DataAccess.Migrations
                     b.HasOne("Incanto.Domain.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId");
+
+                    b.HasOne("Incanto.Domain.Discount", "Discount")
+                        .WithOne("Item")
+                        .HasForeignKey("Incanto.Domain.Item", "DiscountId");
                 });
 
             modelBuilder.Entity("Incanto.Domain.Photo", b =>

@@ -36,7 +36,7 @@ class IncantoRecords extends React.Component {
 			"categories": ["id", "name", "type.name", "type-gender.name"],
 			"detailtypes": ["id", "name", "category.name", "category-type.name", "category-type-gender.name"],
 			"detailtypevalues": ["id", "value", "detailType.name", "detailType-category.name" , "detailType-category-type.name", "detailType-category-type-gender.name"],
-			"items": ["id", "name", "brand.name", "category.name", "category-type.name", "category-type-gender.name", "description", "discount.value"]
+			"items": ["id", "name", "brand.name", "category.name", "category-type.name", "category-type-gender.name", "description", "discount", "price"]
 		};
 
 		const lookupFields = {
@@ -57,8 +57,7 @@ class IncantoRecords extends React.Component {
 			],
 			"items": [
 				{ "brand": { "controller": "brands" } },
-				{ "category": { "controller": "categories" } },
-				{ "discount": { "controller": "discounts" } }
+				{ "category": { "controller": "categories" } }
 			]
 		};
 		return (
