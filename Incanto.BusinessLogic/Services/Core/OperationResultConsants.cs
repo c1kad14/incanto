@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore.Design;
+﻿using System.Collections.Generic;
 
 namespace Incanto.BusinessLogic.Services.Core
 {

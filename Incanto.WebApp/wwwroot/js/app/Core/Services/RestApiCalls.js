@@ -15,7 +15,11 @@ export default class RestApiCalls {
 
     static del(url) {
         return Axios.delete(url);
-    }
+	}
+
+	static deleteMultiple(url, model) {
+		return Axios.delete(url, model);
+	}
 
     //static _getAuthorizationHeadersConfig() {
     //    return UserService.getUser()

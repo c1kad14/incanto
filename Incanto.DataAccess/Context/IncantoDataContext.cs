@@ -1,6 +1,4 @@
 ﻿using Incanto.Domain;
-using Incanto.Domain.Base;
-using Incanto.Domain.Base.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Incanto.DataAccess.Context

@@ -19,7 +19,7 @@ class AddRecordDialog extends React.Component {
 	}
 
 	handleClose() {
-		this.props.handleClose(false);
+		this.props.close(false);
 	}
 
 	addRecordClickHandler() {

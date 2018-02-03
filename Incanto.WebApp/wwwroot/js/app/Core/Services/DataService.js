@@ -69,10 +69,10 @@ class DataService {
 	static deleteObject(controller, model, callback) {
 		RestApiCalls.del(`/api/${controller}/Delete?id=${model.id}`)
 			.then(function (response) {
-				NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+			//	NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
 				callback();
 			}).catch(function (err) {
-				NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
+				//NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
 			});
 	}
 }

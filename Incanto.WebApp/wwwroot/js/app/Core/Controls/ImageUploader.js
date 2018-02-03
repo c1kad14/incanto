@@ -119,7 +119,7 @@ class ImageUploader extends React.Component {
 			formData.append("priorities", this.state.imageSource[i].priority);
 		}
 		formData.set("itemId", itemId);
-		const config = { headers: { 'content-type': 'multipart/form-data' } }
+		const config = { headers: { 'content-type': 'multipart/form-data' } };
 		const handleCloseImageUpload = this.handleCloseImageUpload.bind(this);
 		const imageUploaded = this.imageUploaded;
 		RestApiCalls.post(`/api/${this.props.uploadController}/UploadPhotos`, formData, config).then(function(response) {

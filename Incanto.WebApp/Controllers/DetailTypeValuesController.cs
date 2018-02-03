@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Incanto.BusinessLogic.Models;
+﻿using Incanto.BusinessLogic.Models;
 using Incanto.DataAccess.Interfaces;
 using Incanto.Domain;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,5 +14,13 @@ namespace Incanto.WebApp.Controllers
 		{
 		    
 	    }
-    }
+
+	    [HttpGet("{id}")]
+	    [Route("GetList")]
+	    public virtual ActionResult GetObjectsByDetailTypeId(int detailTypeId)
+	    {
+		    var operationResult = ReadWriteDataService.Get(detailTypeValue => detailTypeValue.DetailType.Id == detailTypeId);
+		    return Json(operationResult);
+	    }
+	}
 }

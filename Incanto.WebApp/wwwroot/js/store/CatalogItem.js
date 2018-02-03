@@ -19,11 +19,11 @@ class CatalogItem extends React.Component {
 						       <p className="item-info fs10 up ls2">{item.name}</p>
 					       </div>
 					       <p className="item-price fs10 filter-item up ls2" itemType="http://schema.org/Offer" itemProp="offers" itemScope="">
-						<span itemProp="price">{item.price}</span> грн
+						{item.newPrice !== 0 ? <span className="old-price" itemProp="price">{item.price} грн</span> : <span itemProp="price">{item.price} грн</span>}
 						       &nbsp;
-						       <span>
-							       {item.price} грн
-						       </span>
+						       {item.newPrice !== 0 ? <span>
+														{item.newPrice} грн
+						                              </span> : <span></span>}
 					       </p>
 				       </div>
 			       </a>

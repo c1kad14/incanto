@@ -25,6 +25,7 @@ namespace Incanto.BusinessLogic.Models
 		public DateTime Updated { get; set; }
 		public double Discount { get; set; }
 		public double Price { get; set; }
+		public double NewPrice { get; set; }
 		public List<PhotoModel> Photos { get; set; }
 		public List<DetailModel> Details { get; set; }
 
@@ -41,6 +42,7 @@ namespace Incanto.BusinessLogic.Models
 			item.Details?.ForEach(d => Details.Add(new DetailModel(d)));
 			Description = item.Description;
 			Updated = item.Updated;
+			NewPrice = Math.Abs(Discount) > 0 ? Price - ((Price / 100) * Discount) : 0;
 			return this;
 		}
 

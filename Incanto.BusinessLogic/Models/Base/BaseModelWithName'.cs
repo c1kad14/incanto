@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Incanto.Domain.Base;
+﻿using Incanto.Domain.Base;
 using Incanto.BusinessLogic.Models.Base.Interfaces;
 
 namespace Incanto.BusinessLogic.Models.Base
