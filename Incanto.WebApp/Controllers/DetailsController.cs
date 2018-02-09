@@ -25,6 +25,13 @@ namespace Incanto.WebApp.Controllers
 			return Json(operationResult);
 		}
 
+		[HttpGet("{itemId}")]
+		[Route("GetListByItemId")]
+		public ActionResult GetObjectsByItemId(int itemId)
+		{
+			var operationResult = ReadWriteDataService.Get(detail => detail.Item.Id == itemId);
+			return Json(operationResult);
+		}
 
 		[HttpPost]
 		[Route("AddList")]

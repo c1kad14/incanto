@@ -60,6 +60,14 @@ const style = {
 		transform: "translate(0px, 0px)"
 	}
 }
+function compareImages(a, b) {
+	if (a.priority < b.priority)
+		return -1;
+	if (a.priority > b.priority)
+		return 1;
+	return 0;
+}
+
 class ConcreteCatalogItem extends React.Component {
 	constructor(props) {	
 		super(props);
@@ -90,7 +98,9 @@ class ConcreteCatalogItem extends React.Component {
 	updateData(data) {
 		let currentItem = {};
 		if (data !== null || data !== undefined) {
-			currentItem = data.model;
+			currentItem = data.model
+			let photos = currentItem.photos.sort(compareImages);
+			currentItem.photos = photos;
 			this.setState({ currentItem: currentItem, currentItemSelectedPhoto: currentItem.photos[0] },
 				() => {
 					console.log('updated state value', this.state.currentItem);

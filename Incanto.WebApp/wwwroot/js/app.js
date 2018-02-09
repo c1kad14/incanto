@@ -366,7 +366,7 @@ module.exports = { "default": __webpack_require__(175), __esModule: true };
 
 exports.__esModule = true;
 
-var _typeof2 = __webpack_require__(44);
+var _typeof2 = __webpack_require__(45);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -397,7 +397,7 @@ var _create = __webpack_require__(199);
 
 var _create2 = _interopRequireDefault(_create);
 
-var _typeof2 = __webpack_require__(44);
+var _typeof2 = __webpack_require__(45);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -585,7 +585,7 @@ if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 /***/ (function(module, exports, __webpack_require__) {
 
 var store = __webpack_require__(65)('wks');
-var uid = __webpack_require__(43);
+var uid = __webpack_require__(44);
 var Symbol = __webpack_require__(17).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
@@ -1765,7 +1765,7 @@ function lighten(color, coefficient) {
 
 exports.__esModule = true;
 
-var _shallowEqual = __webpack_require__(42);
+var _shallowEqual = __webpack_require__(43);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
@@ -1775,6 +1775,135 @@ exports.default = _shallowEqual2.default;
 
 /***/ }),
 /* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _NotificationService = __webpack_require__(219);
+
+var _NotificationService2 = _interopRequireDefault(_NotificationService);
+
+var _RestApiCalls = __webpack_require__(104);
+
+var _RestApiCalls2 = _interopRequireDefault(_RestApiCalls);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var DataService = function () {
+	function DataService() {
+		_classCallCheck(this, DataService);
+
+		this.errorOccured = "Возникла ошибка: ";
+	}
+	//Get collection of object using api (host/api/controller/GetList)
+
+
+	_createClass(DataService, null, [{
+		key: "getItems",
+		value: function getItems(controller, callback) {
+			var errorMessage = this.errorOccured;
+			return _RestApiCalls2.default.get("/api/" + controller + "/GetList").then(function (response) {
+				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				//console.log("Data service finished");
+				if (callback !== null) {
+					callback(response.data);
+				}
+				//return response;
+			}).catch(function (err) {
+				//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
+			});
+		}
+	}, {
+		key: "getItemsWithParameters",
+		value: function getItemsWithParameters(controller, parameters, callback) {
+			var errorMessage = this.errorOccured;
+			return _RestApiCalls2.default.get("/api/" + controller + "/GetList?" + parameters).then(function (response) {
+				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				//console.log("Data service finished");
+				if (callback !== null) {
+					callback(response.data);
+				}
+				//return response;
+			}).catch(function (err) {
+				//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
+			});
+		}
+
+		//Get object by id using api (host/api/controller/GetObject)
+
+	}, {
+		key: "getObject",
+		value: function getObject(controller, objectId, callback) {
+			_RestApiCalls2.default.get("/api/" + controller + "/Get?id=" + objectId).then(function (response) {
+				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				if (callback !== null) {
+					callback(response.data);
+				}
+			}).catch(function (err) {
+				console.log(err);
+				//	NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
+			});
+		}
+		//Add new object using api (host/api/controller/Add)
+
+	}, {
+		key: "addObject",
+		value: function addObject(controller, model, callback) {
+			_RestApiCalls2.default.post("/api/" + controller + "/Add", model).then(function (response) {
+				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				if (callback !== null) {
+					callback(response.data);
+				}
+			}).catch(function (err) {
+				console.log(err);
+				//NotificationService.addNotification(this.errorOccured + err, function () { }, "Закрыть", false, false);
+			});
+		}
+		//Update object by model using api (/api/controller/Update) in server
+
+	}, {
+		key: "updateObject",
+		value: function updateObject(controller, model, callback) {
+			_RestApiCalls2.default.put("/api/" + controller + "/Update", model).then(function (response) {
+				//	NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				if (callback !== null) {
+					callback(response.data);
+				}
+			}).catch(function (err) {
+				console.log(err);
+				//NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
+			});
+		}
+		//Delete object by model using api (/api/${controller}/delete) model should contain "id" property
+
+	}, {
+		key: "deleteObject",
+		value: function deleteObject(controller, model, callback) {
+			_RestApiCalls2.default.del("/api/" + controller + "/Delete?id=" + model.id).then(function (response) {
+				//	NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				callback();
+			}).catch(function (err) {
+				//NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
+			});
+		}
+	}]);
+
+	return DataService;
+}();
+
+exports.default = DataService;
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1798,7 +1927,7 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1867,7 +1996,7 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1938,7 +2067,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -1949,7 +2078,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1976,14 +2105,14 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 };
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 // Source: http://jsfiddle.net/vWx8V/
@@ -2135,7 +2264,7 @@ for (var alias in aliases) {
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2155,7 +2284,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Paper2.default;
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2175,7 +2304,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _FlatButton2.default;
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2563,7 +2692,7 @@ function getMuiTheme(muiTheme) {
 }
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2599,7 +2728,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _getMuiTheme = __webpack_require__(49);
+var _getMuiTheme = __webpack_require__(50);
 
 var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
@@ -2640,7 +2769,7 @@ exports.default = MuiThemeProvider;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2656,7 +2785,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2686,7 +2815,7 @@ var _inherits2 = __webpack_require__(7);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _typeof2 = __webpack_require__(44);
+var _typeof2 = __webpack_require__(45);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -2710,7 +2839,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _shallowEqual = __webpack_require__(42);
+var _shallowEqual = __webpack_require__(43);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
@@ -2885,131 +3014,6 @@ exports.default = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _NotificationService = __webpack_require__(219);
-
-var _NotificationService2 = _interopRequireDefault(_NotificationService);
-
-var _RestApiCalls = __webpack_require__(104);
-
-var _RestApiCalls2 = _interopRequireDefault(_RestApiCalls);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var DataService = function () {
-	function DataService() {
-		_classCallCheck(this, DataService);
-
-		this.errorOccured = "Возникла ошибка: ";
-	}
-	//Get collection of object using api (host/api/controller/GetList)
-
-
-	_createClass(DataService, null, [{
-		key: "getItems",
-		value: function getItems(controller, callback) {
-			var errorMessage = this.errorOccured;
-			return _RestApiCalls2.default.get("/api/" + controller + "/GetList").then(function (response) {
-				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-				//console.log("Data service finished");
-				if (callback !== null) {
-					callback(response.data);
-				}
-				//return response;
-			}).catch(function (err) {
-				//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
-			});
-		}
-	}, {
-		key: "getItemsWithParameters",
-		value: function getItemsWithParameters(controller, parameters, callback) {
-			var errorMessage = this.errorOccured;
-			return _RestApiCalls2.default.get("/api/" + controller + "/GetList?" + parameters).then(function (response) {
-				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-				//console.log("Data service finished");
-				if (callback !== null) {
-					callback(response.data);
-				}
-				//return response;
-			}).catch(function (err) {
-				//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
-			});
-		}
-
-		//Get object by id using api (host/api/controller/GetObject)
-
-	}, {
-		key: "getObject",
-		value: function getObject(controller, objectId, callback) {
-			_RestApiCalls2.default.get("/api/" + controller + "/Get?id=" + objectId).then(function (response) {
-				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-				if (callback !== null) {
-					callback(response.data);
-				}
-			}).catch(function (err) {
-				console.log(err);
-				//	NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
-			});
-		}
-		//Add new object using api (host/api/controller/Add)
-
-	}, {
-		key: "addObject",
-		value: function addObject(controller, model, callback) {
-			_RestApiCalls2.default.post("/api/" + controller + "/Add", model).then(function (response) {
-				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-				if (callback !== null) {
-					callback(response.data);
-				}
-			}).catch(function (err) {
-				_NotificationService2.default.addNotification(this.errorOccured + err, function () {}, "Закрыть", false, false);
-			});
-		}
-		//Update object by model using api (/api/controller/Update) in server
-
-	}, {
-		key: "updateObject",
-		value: function updateObject(controller, model, callback) {
-			_RestApiCalls2.default.put("/api/" + controller + "/Update", model).then(function (response) {
-				_NotificationService2.default.addNotification(response.data.message, function () {}, true, response.data.wasSuccessful);
-				callback();
-			}).catch(function (err) {
-				_NotificationService2.default.addNotification(this.errorOccured + err, function () {}, false, false);
-			});
-		}
-		//Delete object by model using api (/api/${controller}/delete) model should contain "id" property
-
-	}, {
-		key: "deleteObject",
-		value: function deleteObject(controller, model, callback) {
-			_RestApiCalls2.default.del("/api/" + controller + "/Delete?id=" + model.id).then(function (response) {
-				//	NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-				callback();
-			}).catch(function (err) {
-				//NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
-			});
-		}
-	}]);
-
-	return DataService;
-}();
-
-exports.default = DataService;
-
-/***/ }),
 /* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3025,7 +3029,7 @@ exports.default = DataService;
 
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(32);
-  var warning = __webpack_require__(41);
+  var warning = __webpack_require__(42);
   var ReactPropTypesSecret = __webpack_require__(55);
   var loggedTypeFailures = {};
 }
@@ -3259,7 +3263,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var shared = __webpack_require__(65)('keys');
-var uid = __webpack_require__(43);
+var uid = __webpack_require__(44);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
@@ -3495,7 +3499,7 @@ var _events = __webpack_require__(74);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
@@ -4681,7 +4685,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 /* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE = __webpack_require__(45);
+var pIE = __webpack_require__(46);
 var createDesc = __webpack_require__(34);
 var toIObject = __webpack_require__(27);
 var toPrimitive = __webpack_require__(61);
@@ -5082,7 +5086,7 @@ var _shallowEqual = __webpack_require__(39);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
-var _autoPrefix = __webpack_require__(51);
+var _autoPrefix = __webpack_require__(52);
 
 var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
 
@@ -5671,7 +5675,7 @@ var _ClickAwayListener = __webpack_require__(102);
 
 var _ClickAwayListener2 = _interopRequireDefault(_ClickAwayListener);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
@@ -6375,7 +6379,7 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactEventListener = __webpack_require__(52);
+var _reactEventListener = __webpack_require__(53);
 
 var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
 
@@ -6387,7 +6391,7 @@ var _propTypes3 = __webpack_require__(30);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -6885,7 +6889,7 @@ exports.default = _RaisedButton2.default;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var m=__webpack_require__(31),n=__webpack_require__(40),p=__webpack_require__(15);
+var m=__webpack_require__(31),n=__webpack_require__(41),p=__webpack_require__(15);
 function q(a){for(var b=arguments.length-1,e="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)e+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var r={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function t(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}t.prototype.isReactComponent={};t.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?q("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};t.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function u(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}function v(){}v.prototype=t.prototype;var w=u.prototype=new v;w.constructor=u;m(w,t.prototype);w.isPureReactComponent=!0;function x(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}var y=x.prototype=new v;y.constructor=x;m(y,t.prototype);y.unstable_isAsyncReactComponent=!0;y.render=function(){return this.props.children};
@@ -6923,8 +6927,8 @@ if (process.env.NODE_ENV !== "production") {
 
 var _assign = __webpack_require__(31);
 var invariant = __webpack_require__(32);
-var emptyObject = __webpack_require__(40);
-var warning = __webpack_require__(41);
+var emptyObject = __webpack_require__(41);
+var warning = __webpack_require__(42);
 var emptyFunction = __webpack_require__(15);
 var checkPropTypes = __webpack_require__(54);
 
@@ -8268,7 +8272,7 @@ module.exports = react;
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0),m=__webpack_require__(79),A=__webpack_require__(31),B=__webpack_require__(15),ca=__webpack_require__(80),da=__webpack_require__(81),ea=__webpack_require__(42),ha=__webpack_require__(82),ia=__webpack_require__(83),C=__webpack_require__(40);
+var aa=__webpack_require__(0),m=__webpack_require__(79),A=__webpack_require__(31),B=__webpack_require__(15),ca=__webpack_require__(80),da=__webpack_require__(81),ea=__webpack_require__(43),ha=__webpack_require__(82),ia=__webpack_require__(83),C=__webpack_require__(41);
 function D(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:D("227");
 var la={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function qa(a,b){return(a&b)===b}
 var ra={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ra,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){sa.hasOwnProperty(f)?D("48",f):void 0;var g=f.toLowerCase(),k=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:qa(k,b.MUST_USE_PROPERTY),
@@ -8564,16 +8568,16 @@ if (process.env.NODE_ENV !== "production") {
 
 var React = __webpack_require__(0);
 var invariant = __webpack_require__(32);
-var warning = __webpack_require__(41);
+var warning = __webpack_require__(42);
 var ExecutionEnvironment = __webpack_require__(79);
 var _assign = __webpack_require__(31);
 var emptyFunction$1 = __webpack_require__(15);
 var EventListener = __webpack_require__(80);
 var getActiveElement = __webpack_require__(81);
-var shallowEqual = __webpack_require__(42);
+var shallowEqual = __webpack_require__(43);
 var containsNode = __webpack_require__(82);
 var focusNode = __webpack_require__(83);
-var emptyObject = __webpack_require__(40);
+var emptyObject = __webpack_require__(41);
 var checkPropTypes = __webpack_require__(54);
 var hyphenateStyleName = __webpack_require__(121);
 var camelizeStyleName = __webpack_require__(123);
@@ -29029,7 +29033,7 @@ var META = __webpack_require__(188).KEY;
 var $fails = __webpack_require__(26);
 var shared = __webpack_require__(65);
 var setToStringTag = __webpack_require__(67);
-var uid = __webpack_require__(43);
+var uid = __webpack_require__(44);
 var wks = __webpack_require__(14);
 var wksExt = __webpack_require__(70);
 var wksDefine = __webpack_require__(71);
@@ -29167,7 +29171,7 @@ if (!USE_NATIVE) {
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
   __webpack_require__(99).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(45).f = $propertyIsEnumerable;
+  __webpack_require__(46).f = $propertyIsEnumerable;
   __webpack_require__(72).f = $getOwnPropertySymbols;
 
   if (DESCRIPTORS && !__webpack_require__(59)) {
@@ -29258,7 +29262,7 @@ setToStringTag(global.JSON, 'JSON', true);
 /* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var META = __webpack_require__(43)('meta');
+var META = __webpack_require__(44)('meta');
 var isObject = __webpack_require__(33);
 var has = __webpack_require__(21);
 var setDesc = __webpack_require__(18).f;
@@ -29320,7 +29324,7 @@ var meta = module.exports = {
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(36);
 var gOPS = __webpack_require__(72);
-var pIE = __webpack_require__(45);
+var pIE = __webpack_require__(46);
 module.exports = function (it) {
   var result = getKeys(it);
   var getSymbols = gOPS.f;
@@ -29486,7 +29490,7 @@ $export($export.S, 'Object', { create: __webpack_require__(62) });
 
 var emptyFunction = __webpack_require__(15);
 var invariant = __webpack_require__(32);
-var warning = __webpack_require__(41);
+var warning = __webpack_require__(42);
 var assign = __webpack_require__(31);
 
 var ReactPropTypesSecret = __webpack_require__(55);
@@ -30112,7 +30116,7 @@ $export($export.S + $export.F, 'Object', { assign: __webpack_require__(206) });
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys = __webpack_require__(36);
 var gOPS = __webpack_require__(72);
-var pIE = __webpack_require__(45);
+var pIE = __webpack_require__(46);
 var toObject = __webpack_require__(37);
 var IObject = __webpack_require__(91);
 var $assign = Object.assign;
@@ -30457,7 +30461,7 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _autoPrefix = __webpack_require__(51);
+var _autoPrefix = __webpack_require__(52);
 
 var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
 
@@ -30638,7 +30642,7 @@ var _shallowEqual = __webpack_require__(39);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
-var _autoPrefix = __webpack_require__(51);
+var _autoPrefix = __webpack_require__(52);
 
 var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
 
@@ -31838,7 +31842,7 @@ var _Snackbar = __webpack_require__(221);
 
 var _Snackbar2 = _interopRequireDefault(_Snackbar);
 
-var _MuiThemeProvider = __webpack_require__(50);
+var _MuiThemeProvider = __webpack_require__(51);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
@@ -32287,7 +32291,7 @@ var _withWidth = __webpack_require__(224);
 
 var _withWidth2 = _interopRequireDefault(_withWidth);
 
-var _FlatButton = __webpack_require__(48);
+var _FlatButton = __webpack_require__(49);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
@@ -32466,7 +32470,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactEventListener = __webpack_require__(52);
+var _reactEventListener = __webpack_require__(53);
 
 var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
 
@@ -34393,7 +34397,7 @@ var _Dialog = __webpack_require__(218);
 
 var _Dialog2 = _interopRequireDefault(_Dialog);
 
-var _FlatButton = __webpack_require__(48);
+var _FlatButton = __webpack_require__(49);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
@@ -34404,6 +34408,10 @@ var _ImagesGrid2 = _interopRequireDefault(_ImagesGrid);
 var _RestApiCalls = __webpack_require__(104);
 
 var _RestApiCalls2 = _interopRequireDefault(_RestApiCalls);
+
+var _DataService = __webpack_require__(40);
+
+var _DataService2 = _interopRequireDefault(_DataService);
 
 var _RaisedButton = __webpack_require__(114);
 
@@ -34417,6 +34425,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+function compareImages(a, b) {
+	if (a.priority < b.priority) return -1;
+	if (a.priority > b.priority) return 1;
+	return 0;
+}
+
 var ImageUploader = function (_React$Component) {
 	_inherits(ImageUploader, _React$Component);
 
@@ -34429,27 +34443,12 @@ var ImageUploader = function (_React$Component) {
 			file: "",
 			imagePreviewUrl: "",
 			imageSource: [],
+			imagesToRemove: [],
 			imageViewOpened: false,
 			imageUploadOpened: false,
 			currentImg: {},
 			lastId: 0,
-			selectedItem: _this.props.selectedItem,
-			photoFieldsData: [{
-				name: "type",
-				type: "select",
-				value: "",
-				maxSearchResults: 5,
-				dataSourceLink: "",
-				displayedValue: "code",
-				modelValue: "id",
-				itemFormat: "[id] [code] [description]",
-				isRequired: true
-			}, {
-				name: "title",
-				type: "text",
-				value: "",
-				isRequired: true
-			}]
+			selectedItem: _this.props.selectedItem
 		};
 		_this.imageChange.bind(_this);
 		return _this;
@@ -34474,12 +34473,11 @@ var ImageUploader = function (_React$Component) {
 		key: 'handleCloseImageView',
 		value: function handleCloseImageView() {
 			this.clearDataAboutPhoto();
-			this.setState({ imageViewOpened: false, currentImg: {} });
 		}
 	}, {
 		key: 'handleCloseImageUpload',
 		value: function handleCloseImageUpload() {
-			this.setState({ imageUploadOpened: false });
+			this.setState({ imageUploadOpened: false, imageSource: [], imagesToRemove: [], lastId: 0 }, this.props.refreshDataTable);
 		}
 	}, {
 		key: 'handleCloseDialog',
@@ -34490,11 +34488,6 @@ var ImageUploader = function (_React$Component) {
 		key: 'handleSaveImage',
 		value: function handleSaveImage() {
 			var hasErrors = false;
-			//for (let i = 0; i < this.state.photoFieldsData.length; i++) {
-			//	if (this.state.photoFieldsData[i].checkErrors()) {
-			//		hasErrors = true;
-			//	}
-			//}
 			if (!hasErrors) {
 				var imageSource = this.state.imageSource;
 				imageSource.push({
@@ -34504,18 +34497,16 @@ var ImageUploader = function (_React$Component) {
 					itemId: this.state.selectedItem.id,
 					type: this.state.currentImg.type
 				});
-				this.clearDataAboutPhoto();
-				this.setState({ imageSource: imageSource, imageViewOpened: false, currentImg: {} });
+				this.state.imageSource = imageSource;
 				this.state.lastId = this.state.lastId + 1;
+				this.clearDataAboutPhoto();
 			}
 		}
 	}, {
 		key: 'clearDataAboutPhoto',
 		value: function clearDataAboutPhoto() {
-			for (var i = 0; i < this.state.photoFieldsData.length; i++) {
-				this.state.photoFieldsData[i].value = "";
-			}
 			this.fileInput.value = "";
+			this.setState({ imageViewOpened: false, currentImg: {} });
 		}
 	}, {
 		key: 'removeImage',
@@ -34526,33 +34517,52 @@ var ImageUploader = function (_React$Component) {
 					imageSource.splice(i, 1);
 				}
 			}
-			this.setState({ imageSource: imageSource });
-		}
-	}, {
-		key: 'imageUploaded',
-		value: function imageUploaded(image) {
-			if (this.props.imageUploadedFunc !== undefined) {
-				this.props.imageUploadedFunc(image);
+			if (image.id !== undefined) {
+				var imagesToRemove = this.state.imagesToRemove;
+				imagesToRemove.push(image);
+				this.setState({ imagesToRemove: imagesToRemove });
 			}
+
+			this.setState({ imageSource: imageSource });
 		}
 	}, {
 		key: 'uploadImages',
 		value: function uploadImages() {
+			var _this3 = this;
+
 			var itemId = this.state.selectedItem.id;
 			var formData = new FormData(this);
+			var recordsToUpdate = [];
 			for (var i = 0; i < this.state.imageSource.length; i++) {
-				formData.append("files", this.state.imageSource[i].file);
-				formData.append("priorities", this.state.imageSource[i].priority);
+				if (this.state.imageSource[i].file !== undefined) {
+					formData.append("files", this.state.imageSource[i].file);
+					formData.append("priorities", this.state.imageSource[i].priority);
+				} else {
+					recordsToUpdate.push(this.state.imageSource[i]);
+				}
 			}
 			formData.set("itemId", itemId);
 			var config = { headers: { 'content-type': 'multipart/form-data' } };
 			var handleCloseImageUpload = this.handleCloseImageUpload.bind(this);
-			var imageUploaded = this.imageUploaded;
+			if (this.state.imagesToRemove.length > 0) {
+				this.state.imagesToRemove.map(function (image) {
+					_DataService2.default.deleteObject(_this3.props.uploadController, image);
+				});
+			}
+
+			if (recordsToUpdate.length > 0) {
+				recordsToUpdate.map(function (image) {
+					var imageToUpdate = {
+						id: image.id,
+						priority: image.priority,
+						path: image.src
+					};
+					_DataService2.default.updateObject(_this3.props.uploadController, imageToUpdate);
+				});
+			}
 			_RestApiCalls2.default.post('/api/' + this.props.uploadController + '/UploadPhotos', formData, config).then(function (response) {
 				handleCloseImageUpload();
-				var result = response.data;
 			});
-			this.state.imageSource = [];
 		}
 	}, {
 		key: 'openFileInput',
@@ -34565,14 +34575,41 @@ var ImageUploader = function (_React$Component) {
 			this.setState({ imageUploadOpened: true, selectedItem: selectedItem });
 		}
 	}, {
+		key: 'processExistingImages',
+		value: function processExistingImages(props) {
+			var itemPhotos = props.selectedItem.photos;
+			var imageSource = [];
+			if (itemPhotos !== undefined && itemPhotos.length > 0) {
+				itemPhotos.sort(compareImages);
+				this.state.lastId = itemPhotos[itemPhotos.length - 1].priority + 1;
+				itemPhotos.map(function (photo) {
+					imageSource.push({
+						priority: photo.priority,
+						src: photo.path,
+						file: undefined,
+						itemId: props.selectedItem.id,
+						id: photo.id
+					});
+				});
+			}
+
+			this.setState({ imageSource: imageSource, imageViewOpened: false, currentImg: {} });
+		}
+	}, {
+		key: 'componentWillReceiveProps',
+		value: function componentWillReceiveProps(nextProps) {
+			this.processExistingImages(nextProps);
+		}
+	}, {
 		key: 'componentWillMount',
 		value: function componentWillMount() {
 			this.props.uploaderActions.openDialog = this.openImageUploadDialog.bind(this);
+			this.processExistingImages(this.props);
 		}
 	}, {
 		key: 'render',
 		value: function render() {
-			var _this3 = this;
+			var _this4 = this;
 
 			var imageSource = this.state.imageSource;
 
@@ -34626,12 +34663,12 @@ var ImageUploader = function (_React$Component) {
 						null,
 						_react2.default.createElement('input', {
 							ref: function ref(input) {
-								_this3.fileInput = input;
+								_this4.fileInput = input;
 							},
 							style: { visibility: "hidden" },
 							type: 'file',
 							onChange: function onChange(e) {
-								return _this3.imageChange(e);
+								return _this4.imageChange(e);
 							} })
 					),
 					_react2.default.createElement(
@@ -35926,11 +35963,11 @@ var _darkBaseTheme = __webpack_require__(105);
 
 var _darkBaseTheme2 = _interopRequireDefault(_darkBaseTheme);
 
-var _getMuiTheme = __webpack_require__(49);
+var _getMuiTheme = __webpack_require__(50);
 
 var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-var _MuiThemeProvider = __webpack_require__(50);
+var _MuiThemeProvider = __webpack_require__(51);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
@@ -36020,7 +36057,7 @@ var _MenuItem = __webpack_require__(103);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-var _FlatButton = __webpack_require__(48);
+var _FlatButton = __webpack_require__(49);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
@@ -36285,7 +36322,7 @@ var _menu = __webpack_require__(249);
 
 var _menu2 = _interopRequireDefault(_menu);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -38743,7 +38780,7 @@ var _propTypes3 = __webpack_require__(30);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -39875,15 +39912,15 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactEventListener = __webpack_require__(52);
+var _reactEventListener = __webpack_require__(53);
 
 var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
-var _autoPrefix = __webpack_require__(51);
+var _autoPrefix = __webpack_require__(52);
 
 var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
 
@@ -39895,7 +39932,7 @@ var _Overlay = __webpack_require__(235);
 
 var _Overlay2 = _interopRequireDefault(_Overlay);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -40476,6 +40513,10 @@ var _RecordsList = __webpack_require__(327);
 
 var _RecordsList2 = _interopRequireDefault(_RecordsList);
 
+var _DataService = __webpack_require__(40);
+
+var _DataService2 = _interopRequireDefault(_DataService);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -40523,6 +40564,12 @@ var IncantoRecords = function (_React$Component) {
 			this.setState({ shouldRefreshTable: false, selectedItem: undefined });
 		}
 	}, {
+		key: "deleteRecord",
+		value: function deleteRecord() {
+			var deleteCallBack = this.refreshDataTable.bind(this);
+			_DataService2.default.deleteObject(this.state.controller, this.state.selectedItem, deleteCallBack);
+		}
+	}, {
 		key: "render",
 		value: function render() {
 			var columns = {
@@ -40546,7 +40593,7 @@ var IncantoRecords = function (_React$Component) {
 			return _react2.default.createElement(
 				"div",
 				null,
-				_react2.default.createElement(_IncantoToolbar2.default, { columns: columns[this.state.controller], controller: this.state.controller, selectedTableChangedHandler: this.selectedTableChangedHandler.bind(this), lookupFields: lookupFields[this.state.controller], updateDataTable: this.refreshDataTable.bind(this), selectedItem: this.state.selectedItem }),
+				_react2.default.createElement(_IncantoToolbar2.default, { columns: columns[this.state.controller], controller: this.state.controller, selectedTableChangedHandler: this.selectedTableChangedHandler.bind(this), lookupFields: lookupFields[this.state.controller], refreshDataTable: this.refreshDataTable.bind(this), selectedItem: this.state.selectedItem, deleteRecord: this.deleteRecord.bind(this) }),
 				_react2.default.createElement(_RecordsList2.default, { columns: columns[this.state.controller], controller: this.state.controller, shouldRefreshTable: this.state.shouldRefreshTable, itemSelectedHandler: this.itemSelectedHandler.bind(this), resetCallBack: this.resetCallBack.bind(this) })
 			);
 		}
@@ -40636,6 +40683,7 @@ var IncantoToolbar = function (_React$Component) {
 			value: _this.props.controller,
 			addRecordDialogOpen: false,
 			addDetailsDialogOpen: false,
+			editRecordDialogOpen: false,
 			uploaderActions: {}
 		};
 		return _this;
@@ -40700,28 +40748,26 @@ var IncantoToolbar = function (_React$Component) {
 						_react2.default.createElement(_MenuItem2.default, { value: 'categories', primaryText: '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438' }),
 						_react2.default.createElement(_MenuItem2.default, { value: 'detailtypes', primaryText: '\u0422\u0438\u043F\u044B \u0434\u0435\u0442\u0430\u043B\u0435\u0439' }),
 						_react2.default.createElement(_MenuItem2.default, { value: 'detailtypevalues', primaryText: '\u0417\u043D\u0430\u0447\u0435\u043D\u0438\u044F \u0434\u0435\u0442\u0430\u043B\u0435\u0439' }),
-						_react2.default.createElement(_MenuItem2.default, { value: 'items', primaryText: '\u0422\u043E\u0432\u0430\u0440\u044B' }),
-						_react2.default.createElement(_MenuItem2.default, { value: 'discounts', primaryText: '\u0414\u0438\u0441\u043A\u0430\u0443\u043D\u0442' })
+						_react2.default.createElement(_MenuItem2.default, { value: 'items', primaryText: '\u0422\u043E\u0432\u0430\u0440\u044B' })
 					)
 				),
 				_react2.default.createElement(
 					_Toolbar.ToolbarGroup,
 					null,
-					this.state.addDetailsDialogOpen ? _react2.default.createElement(_AddDetailsDialog2.default, { open: this.state.addDetailsDialogOpen, close: this.addDetailsDialogCloseHandler.bind(this), item: this.props.selectedItem }) : _react2.default.createElement('span', null),
 					_react2.default.createElement(_Toolbar.ToolbarTitle, { text: '\u0417\u0430\u043F\u0438\u0441\u0438' }),
+					this.state.addDetailsDialogOpen ? _react2.default.createElement(_AddDetailsDialog2.default, { open: this.state.addDetailsDialogOpen, close: this.addDetailsDialogCloseHandler.bind(this), item: this.props.selectedItem }) : _react2.default.createElement('span', null),
 					this.props.controller === "items" && this.props.selectedItem !== undefined ? _react2.default.createElement(_Toolbar.ToolbarSeparator, null) : _react2.default.createElement('span', null),
-					_react2.default.createElement(_FontIcon2.default, { className: 'muidocs-icon-custom-sort' }),
 					this.props.controller === "items" && this.props.selectedItem !== undefined ? _react2.default.createElement(
 						'div',
 						null,
-						_react2.default.createElement(_RaisedButton2.default, { onClick: this.openAddDialog.bind(this), label: '\u0424\u043E\u0442\u043E', fullWidth: true }),
+						_react2.default.createElement(_RaisedButton2.default, { onClick: this.openAddDialog.bind(this), label: '\u0424\u043E\u0442\u043E' }),
 						_react2.default.createElement(_ImageUploader2.default, { selectedItem: this.props.selectedItem,
 							uploaderActions: this.state.uploaderActions,
-							uploadController: 'Photos' })
+							uploadController: 'Photos', refreshDataTable: this.props.refreshDataTable })
 					) : _react2.default.createElement('span', null),
-					_react2.default.createElement(_Toolbar.ToolbarSeparator, null),
-					_react2.default.createElement(_RaisedButton2.default, { label: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C', primary: true, onClick: this.addRecordDialogOpenHandler.bind(this) }),
-					this.state.addRecordDialogOpen ? _react2.default.createElement(_AddRecordDialog2.default, { columns: this.props.columns, lookup: this.props.lookupFields, controller: this.props.controller, open: this.state.addRecordDialogOpen, close: this.addRecordDialogCloseHandler.bind(this) }) : _react2.default.createElement('span', null),
+					this.props.controller === "items" && this.props.selectedItem !== undefined ? _react2.default.createElement(_RaisedButton2.default, { onClick: this.addDetailsDialogOpenHandler.bind(this), label: '\u0414\u0435\u0442\u0430\u043B\u0438' }) : _react2.default.createElement('span', null),
+					this.props.selectedItem !== undefined ? _react2.default.createElement(_RaisedButton2.default, { onClick: this.addRecordDialogOpenHandler.bind(this), label: '\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C', primary: true }) : _react2.default.createElement(_RaisedButton2.default, { label: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C', primary: true, onClick: this.addRecordDialogOpenHandler.bind(this) }),
+					this.state.addRecordDialogOpen ? _react2.default.createElement(_AddRecordDialog2.default, { columns: this.props.columns, lookup: this.props.lookupFields, controller: this.props.controller, open: this.state.addRecordDialogOpen, close: this.addRecordDialogCloseHandler.bind(this), refreshDataTable: this.props.refreshDataTable, recordToUpdate: this.props.selectedItem }) : _react2.default.createElement('span', null),
 					_react2.default.createElement(
 						_IconMenu2.default,
 						{
@@ -40731,8 +40777,8 @@ var IncantoToolbar = function (_React$Component) {
 								_react2.default.createElement(_expandMore2.default, null)
 							)
 						},
-						_react2.default.createElement(_MenuItem2.default, { primaryText: 'Refresh', onClick: this.props.updateDataTable }),
-						_react2.default.createElement(_MenuItem2.default, { primaryText: 'Download' })
+						_react2.default.createElement(_MenuItem2.default, { primaryText: 'Refresh', onClick: this.props.refreshDataTable }),
+						this.props.selectedItem !== undefined ? _react2.default.createElement(_MenuItem2.default, { primaryText: '\u0423\u0434\u0430\u043B\u0438\u0442\u044C', onClick: this.props.deleteRecord }) : _react2.default.createElement('span', null)
 					)
 				)
 			);
@@ -40826,7 +40872,7 @@ var _PopoverAnimationVertical = __webpack_require__(275);
 
 var _PopoverAnimationVertical2 = _interopRequireDefault(_PopoverAnimationVertical);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
@@ -41661,7 +41707,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -41833,7 +41879,7 @@ var _EnhancedButton = __webpack_require__(77);
 
 var _EnhancedButton2 = _interopRequireDefault(_EnhancedButton);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -42281,7 +42327,7 @@ var _Dialog = __webpack_require__(218);
 
 var _Dialog2 = _interopRequireDefault(_Dialog);
 
-var _FlatButton = __webpack_require__(48);
+var _FlatButton = __webpack_require__(49);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
@@ -42289,7 +42335,7 @@ var _Text = __webpack_require__(279);
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _DataService = __webpack_require__(53);
+var _DataService = __webpack_require__(40);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -42297,11 +42343,11 @@ var _AutoComplete = __webpack_require__(285);
 
 var _AutoComplete2 = _interopRequireDefault(_AutoComplete);
 
-var _getMuiTheme = __webpack_require__(49);
+var _getMuiTheme = __webpack_require__(50);
 
 var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-var _MuiThemeProvider = __webpack_require__(50);
+var _MuiThemeProvider = __webpack_require__(51);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
@@ -42328,7 +42374,7 @@ var AddRecordDialog = function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, (AddRecordDialog.__proto__ || Object.getPrototypeOf(AddRecordDialog)).call(this, props));
 
 		_this.state = {
-			recordToUpdate: {}
+			recordToUpdate: _this.props.recordToUpdate !== undefined ? _this.props.recordToUpdate : {}
 		};
 		return _this;
 	}
@@ -42342,10 +42388,21 @@ var AddRecordDialog = function (_React$Component) {
 		key: 'addRecordClickHandler',
 		value: function addRecordClickHandler() {
 			if (this.state.recordToUpdate !== undefined) {
-				_DataService2.default.addObject(this.props.controller, this.state.recordToUpdate, null);
+				_DataService2.default.addObject(this.props.controller, this.state.recordToUpdate, this.props.refreshDataTable);
 				this.handleClose();
 			}
 		}
+	}, {
+		key: 'editRecordClickHandler',
+		value: function editRecordClickHandler() {
+			if (this.state.recordToUpdate !== undefined) {
+				_DataService2.default.updateObject(this.props.controller, this.state.recordToUpdate, this.props.refreshDataTable);
+				this.handleClose();
+			}
+		}
+	}, {
+		key: 'componentWillMount',
+		value: function componentWillMount() {}
 	}, {
 		key: 'render',
 		value: function render() {
@@ -42374,6 +42431,7 @@ var AddRecordDialog = function (_React$Component) {
 					name: fieldName,
 					value: ""
 				};
+
 				var lookupField = undefined;
 
 				if (_this2.props.lookup !== undefined) {
@@ -42381,9 +42439,12 @@ var AddRecordDialog = function (_React$Component) {
 						return field[modelField] !== undefined;
 					});
 				}
-
 				if (lookupField !== undefined && lookupField.length > 0) {
-					_this2.state.recordToUpdate[modelField] = {};
+					var value = "";
+					if (_this2.state.recordToUpdate[modelField] !== undefined) {
+						value = _this2.state.recordToUpdate[modelField][fieldName];
+					}
+
 					lookupField = lookupField[0];
 					//here we need to split by "-"
 					childFields.map(function (child) {
@@ -42392,14 +42453,29 @@ var AddRecordDialog = function (_React$Component) {
 							if (fieldData.displayChild === undefined) {
 								fieldData.displayChild = [];
 							}
+							var result = "";
+							if (_this2.state.recordToUpdate[modelField] !== undefined) {
+								var itemToFormat = _this2.state.recordToUpdate[modelField];
+								for (var j = 1; j < displayChild.length; j++) {
+									if (!displayChild[j].includes(".")) {
+										itemToFormat = itemToFormat[displayChild[j]];
+									} else {
+										var splittedFieldAndName = displayChild[j].split(".");
+										result = itemToFormat[splittedFieldAndName[0]][splittedFieldAndName[1]];
+									}
+								}
+							}
+							value = value !== "" ? value + "-" + result : result;
 							fieldData.displayChild.push(child);
 						}
 					});
 					fieldData.isChildModel = true;
+					fieldData.value = value;
 				} else {
 					fieldData.name = modelField;
 					lookupField = undefined;
 					fieldData.isChildModel = false;
+					fieldData.value = _this2.state.recordToUpdate[modelField];
 				}
 				return _react2.default.createElement(
 					'div',
@@ -42423,7 +42499,7 @@ var AddRecordDialog = function (_React$Component) {
 					_Dialog2.default,
 					{ id: 'add-new-record-dialog', title: "Add new " + this.props.controller + " record", open: this.props.open, onRequestClose: this.handleClose.bind(this) },
 					controls,
-					_react2.default.createElement(_FlatButton2.default, { id: 'add-new-record-button', label: 'Add', onClick: this.addRecordClickHandler.bind(this) })
+					this.state.recordToUpdate.id !== undefined ? _react2.default.createElement(_FlatButton2.default, { id: 'edit-existing-record-button', label: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C', onClick: this.editRecordClickHandler.bind(this) }) : _react2.default.createElement(_FlatButton2.default, { id: 'add-new-record-button', label: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C', onClick: this.addRecordClickHandler.bind(this) })
 				)
 			);
 		}
@@ -42489,11 +42565,11 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactEventListener = __webpack_require__(52);
+var _reactEventListener = __webpack_require__(53);
 
 var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
@@ -42509,7 +42585,7 @@ var _RenderToLayer = __webpack_require__(233);
 
 var _RenderToLayer2 = _interopRequireDefault(_RenderToLayer);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -43065,11 +43141,11 @@ var _TextField = __webpack_require__(237);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
-var _getMuiTheme = __webpack_require__(49);
+var _getMuiTheme = __webpack_require__(50);
 
 var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-var _MuiThemeProvider = __webpack_require__(50);
+var _MuiThemeProvider = __webpack_require__(51);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
@@ -43140,7 +43216,8 @@ var Text = function (_React$Component) {
 			return _react2.default.createElement(
 				_MuiThemeProvider2.default,
 				{ muiTheme: muiTheme },
-				_react2.default.createElement(_TextField2.default, { id: "this.props.id", fullWidth: true, floatingLabelText: this.props.hintText, floatingLabelStyle: floatingLabelStyle.floatingLabelStyle, floatingLabelFocusStyle: floatingLabelStyle.floatingLabelFocusStyle, errorText: this.state.errorText, onChange: this.handleChanges.bind(this) })
+				_react2.default.createElement(_TextField2.default, { id: "this.props.id", fullWidth: true, floatingLabelText: this.props.hintText, floatingLabelStyle: floatingLabelStyle.floatingLabelStyle, floatingLabelFocusStyle: floatingLabelStyle.floatingLabelFocusStyle, errorText: this.state.errorText, onChange: this.handleChanges.bind(this),
+					value: this.state.value })
 			);
 		}
 	}]);
@@ -43799,7 +43876,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactEventListener = __webpack_require__(52);
+var _reactEventListener = __webpack_require__(53);
 
 var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
 
@@ -44390,7 +44467,7 @@ var _AutoComplete = __webpack_require__(286);
 
 var _AutoComplete2 = _interopRequireDefault(_AutoComplete);
 
-var _DataService = __webpack_require__(53);
+var _DataService = __webpack_require__(40);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -44398,11 +44475,11 @@ var _darkBaseTheme = __webpack_require__(105);
 
 var _darkBaseTheme2 = _interopRequireDefault(_darkBaseTheme);
 
-var _getMuiTheme = __webpack_require__(49);
+var _getMuiTheme = __webpack_require__(50);
 
 var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-var _MuiThemeProvider = __webpack_require__(50);
+var _MuiThemeProvider = __webpack_require__(51);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
@@ -44549,6 +44626,7 @@ var AutoCompleteControl = function (_React$Component) {
 						if (displayChild && this.state.source[i].model.name === modelValue && this.checkChildFields(i, childValues) || !displayChild && this.state.source[i].model.name === modelValue) {
 
 							if (this.props.fieldData.isChildModel) {
+								this.props.model[this.props.fieldData.modelField] = {};
 								this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] = modelValue;
 								this.props.model[this.props.fieldData.modelField].id = this.state.source[i].model.id;
 							} else {
@@ -44567,11 +44645,11 @@ var AutoCompleteControl = function (_React$Component) {
 	}, {
 		key: "componentWillMount",
 		value: function componentWillMount() {
-			this.props.fieldData.checkErrors = this.checkErrors;
-			var modelValue = this.props.fieldData.isChildModel ? this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] : this.props.model[this.props.fieldData.name];
-			if (modelValue !== "" && modelValue != undefined) {
-				this.props.fieldData.value = modelValue;
-			}
+			//this.props.fieldData.checkErrors = this.checkErrors;
+			//const modelValue = this.props.fieldData.isChildModel ? this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] : this.props.model[this.props.fieldData.name];
+			//if (modelValue !== "" && modelValue != undefined) {
+			//	this.props.fieldData.value = modelValue;
+			//}
 			var processData = this.updateData;
 			if (this.state.autoCompleteData.length === 0) {
 				_DataService2.default.getItems(this.props.controller, processData);
@@ -44654,7 +44732,7 @@ var _extends2 = __webpack_require__(10);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _typeof2 = __webpack_require__(44);
+var _typeof2 = __webpack_require__(45);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -44698,7 +44776,7 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
@@ -45502,7 +45580,7 @@ var _Dialog2 = _interopRequireDefault(_Dialog);
 
 var _Table = __webpack_require__(238);
 
-var _FlatButton = __webpack_require__(48);
+var _FlatButton = __webpack_require__(49);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
@@ -45518,15 +45596,15 @@ var _RestApiCalls = __webpack_require__(104);
 
 var _RestApiCalls2 = _interopRequireDefault(_RestApiCalls);
 
-var _DataService = __webpack_require__(53);
+var _DataService = __webpack_require__(40);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
-var _getMuiTheme = __webpack_require__(49);
+var _getMuiTheme = __webpack_require__(50);
 
 var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-var _MuiThemeProvider = __webpack_require__(50);
+var _MuiThemeProvider = __webpack_require__(51);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
@@ -45806,13 +45884,16 @@ var AddDetailDialog = function (_React$Component) {
 		value: function componentWillMount() {
 			var detailsQueryString = "itemId=" + this.state.itemId;
 			var detailTypesQueryString = "categoryId=" + this.state.categoryId;
-			var detailTypeValuesQueryString = "categoryId=" + this.state.categoryId;
 			var detailsCallback = this.setExistingDetails.bind(this);
 			var detailTypesCallback = this.setDetailTypes.bind(this);
 			var detailTypeValuesCallback = this.setDetailTypeValues.bind(this);
-			_DataService2.default.getItemsWithParameters(detailsController, detailsQueryString, detailsCallback);
-			_DataService2.default.getItemsWithParameters(detailTypesController, detailTypesQueryString, detailTypesCallback);
-			_DataService2.default.getItemsWithParameters(detailTypeValuesController, detailTypeValuesQueryString, detailTypeValuesCallback);
+			_RestApiCalls2.default.get("/api/" + detailsController + "/GetListByItemId?" + detailsQueryString).then(function (response) {
+				detailsCallback(response.data);
+			});
+			_RestApiCalls2.default.get("/api/" + detailTypesController + "/GetObjectsByCategoryId?" + detailTypesQueryString).then(function (response) {
+				detailTypesCallback(response.data);
+			});
+			_DataService2.default.getItems(detailTypeValuesController, detailTypeValuesCallback);
 		}
 	}, {
 		key: "render",
@@ -46256,7 +46337,7 @@ var _toConsumableArray2 = __webpack_require__(56);
 
 var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
-var _typeof2 = __webpack_require__(44);
+var _typeof2 = __webpack_require__(45);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -47137,11 +47218,11 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactEventListener = __webpack_require__(52);
+var _reactEventListener = __webpack_require__(53);
 
 var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
@@ -47157,7 +47238,7 @@ var _TouchRipple = __webpack_require__(109);
 
 var _TouchRipple2 = _interopRequireDefault(_TouchRipple);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -48396,7 +48477,7 @@ var _Card = __webpack_require__(311);
 
 var _Card2 = _interopRequireDefault(_Card);
 
-var _FlatButton = __webpack_require__(48);
+var _FlatButton = __webpack_require__(49);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
@@ -48552,7 +48633,7 @@ var ImagesGrid = function (_React$Component) {
 									titlePosition: 'bottom',
 									titleBackground: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)',
 									key: image.prioroty,
-									title: image.file.name,
+									title: "image",
 									subtitle: _react2.default.createElement(
 										'span',
 										null,
@@ -49479,7 +49560,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -51468,7 +51549,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _DataService = __webpack_require__(53);
+var _DataService = __webpack_require__(40);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -51749,7 +51830,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _FlatButton = __webpack_require__(48);
+var _FlatButton = __webpack_require__(49);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 

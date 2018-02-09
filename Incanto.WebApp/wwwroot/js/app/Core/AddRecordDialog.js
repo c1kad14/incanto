@@ -14,7 +14,7 @@ class AddRecordDialog extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			recordToUpdate: {}
+			recordToUpdate: this.props.recordToUpdate !== undefined ? this.props.recordToUpdate : {}
 		}
 	}
 
@@ -24,9 +24,20 @@ class AddRecordDialog extends React.Component {
 
 	addRecordClickHandler() {
 		if (this.state.recordToUpdate !== undefined) {
-			DataService.addObject(this.props.controller, this.state.recordToUpdate, null);
+			DataService.addObject(this.props.controller, this.state.recordToUpdate, this.props.refreshDataTable);
 			this.handleClose();
 		}
+	}
+
+	editRecordClickHandler() {
+		if (this.state.recordToUpdate !== undefined) {
+			DataService.updateObject(this.props.controller, this.state.recordToUpdate, this.props.refreshDataTable);
+			this.handleClose();
+		}
+	}
+
+	componentWillMount() {
+		
 	}
 
 	render() {
@@ -47,12 +58,13 @@ class AddRecordDialog extends React.Component {
 			if (navigationPath.length === 2) {
 				fieldName = navigationPath[1];
 			}
-			
+
 			let fieldData = {
 				modelField: modelField,
 				name: fieldName,
 				value: ""
 			}
+
 			let lookupField = undefined;
 
 			if (this.props.lookup !== undefined) {
@@ -60,9 +72,12 @@ class AddRecordDialog extends React.Component {
 					return field[modelField] !== undefined;
 				});
 			}
-
 			if (lookupField !== undefined && lookupField.length > 0) {
-				this.state.recordToUpdate[modelField] = {};
+				let value = "";
+				if (this.state.recordToUpdate[modelField] !== undefined) {
+					value = this.state.recordToUpdate[modelField][fieldName];
+				} 
+
 				lookupField = lookupField[0];
 				//here we need to split by "-"
 				childFields.map(child => {
@@ -71,14 +86,29 @@ class AddRecordDialog extends React.Component {
 						if (fieldData.displayChild === undefined) {
 							fieldData.displayChild = [];
 						}
+						let result = "";
+						if (this.state.recordToUpdate[modelField] !== undefined) {
+								let itemToFormat = this.state.recordToUpdate[modelField];
+								for (let j = 1; j < displayChild.length; j++) {
+									if (!displayChild[j].includes(".")) {
+										itemToFormat = itemToFormat[displayChild[j]];
+									} else {
+										let splittedFieldAndName = displayChild[j].split(".");
+										result = itemToFormat[splittedFieldAndName[0]][splittedFieldAndName[1]];
+									}
+								}
+						}
+						value = value !== "" ? value + "-" + result : result;
 						fieldData.displayChild.push(child);
 					}
 				});
 				fieldData.isChildModel = true;
+				fieldData.value = value;
 			} else {
 				fieldData.name = modelField;
 				lookupField = undefined;
 				fieldData.isChildModel = false;
+				fieldData.value = this.state.recordToUpdate[modelField];
 			}
 			return (
 				<div key={index}>
@@ -103,7 +133,7 @@ class AddRecordDialog extends React.Component {
 		return <MuiThemeProvider muiTheme={muiTheme}>
 			<Dialog id="add-new-record-dialog" title={"Add new " + this.props.controller + " record"} open={this.props.open} onRequestClose={this.handleClose.bind(this)}>
 				{controls}
-				<FlatButton id="add-new-record-button" label="Add" onClick={this.addRecordClickHandler.bind(this)} />
+				{this.state.recordToUpdate.id !== undefined ? <FlatButton id="edit-existing-record-button" label="Сохранить" onClick={this.editRecordClickHandler.bind(this)} /> : <FlatButton id="add-new-record-button" label="Добавить" onClick={this.addRecordClickHandler.bind(this)} />}
 			</Dialog>
 		</MuiThemeProvider>;
 	}

@@ -366,7 +366,7 @@ module.exports = { "default": __webpack_require__(175), __esModule: true };
 
 exports.__esModule = true;
 
-var _typeof2 = __webpack_require__(44);
+var _typeof2 = __webpack_require__(45);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -397,7 +397,7 @@ var _create = __webpack_require__(199);
 
 var _create2 = _interopRequireDefault(_create);
 
-var _typeof2 = __webpack_require__(44);
+var _typeof2 = __webpack_require__(45);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -585,7 +585,7 @@ if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 /***/ (function(module, exports, __webpack_require__) {
 
 var store = __webpack_require__(65)('wks');
-var uid = __webpack_require__(43);
+var uid = __webpack_require__(44);
 var Symbol = __webpack_require__(17).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
@@ -1665,7 +1665,7 @@ function lighten(color, coefficient) {
 
 exports.__esModule = true;
 
-var _shallowEqual = __webpack_require__(42);
+var _shallowEqual = __webpack_require__(43);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
@@ -1675,6 +1675,135 @@ exports.default = _shallowEqual2.default;
 
 /***/ }),
 /* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _NotificationService = __webpack_require__(219);
+
+var _NotificationService2 = _interopRequireDefault(_NotificationService);
+
+var _RestApiCalls = __webpack_require__(104);
+
+var _RestApiCalls2 = _interopRequireDefault(_RestApiCalls);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var DataService = function () {
+	function DataService() {
+		_classCallCheck(this, DataService);
+
+		this.errorOccured = "Возникла ошибка: ";
+	}
+	//Get collection of object using api (host/api/controller/GetList)
+
+
+	_createClass(DataService, null, [{
+		key: "getItems",
+		value: function getItems(controller, callback) {
+			var errorMessage = this.errorOccured;
+			return _RestApiCalls2.default.get("/api/" + controller + "/GetList").then(function (response) {
+				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				//console.log("Data service finished");
+				if (callback !== null) {
+					callback(response.data);
+				}
+				//return response;
+			}).catch(function (err) {
+				//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
+			});
+		}
+	}, {
+		key: "getItemsWithParameters",
+		value: function getItemsWithParameters(controller, parameters, callback) {
+			var errorMessage = this.errorOccured;
+			return _RestApiCalls2.default.get("/api/" + controller + "/GetList?" + parameters).then(function (response) {
+				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				//console.log("Data service finished");
+				if (callback !== null) {
+					callback(response.data);
+				}
+				//return response;
+			}).catch(function (err) {
+				//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
+			});
+		}
+
+		//Get object by id using api (host/api/controller/GetObject)
+
+	}, {
+		key: "getObject",
+		value: function getObject(controller, objectId, callback) {
+			_RestApiCalls2.default.get("/api/" + controller + "/Get?id=" + objectId).then(function (response) {
+				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				if (callback !== null) {
+					callback(response.data);
+				}
+			}).catch(function (err) {
+				console.log(err);
+				//	NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
+			});
+		}
+		//Add new object using api (host/api/controller/Add)
+
+	}, {
+		key: "addObject",
+		value: function addObject(controller, model, callback) {
+			_RestApiCalls2.default.post("/api/" + controller + "/Add", model).then(function (response) {
+				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				if (callback !== null) {
+					callback(response.data);
+				}
+			}).catch(function (err) {
+				console.log(err);
+				//NotificationService.addNotification(this.errorOccured + err, function () { }, "Закрыть", false, false);
+			});
+		}
+		//Update object by model using api (/api/controller/Update) in server
+
+	}, {
+		key: "updateObject",
+		value: function updateObject(controller, model, callback) {
+			_RestApiCalls2.default.put("/api/" + controller + "/Update", model).then(function (response) {
+				//	NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				if (callback !== null) {
+					callback(response.data);
+				}
+			}).catch(function (err) {
+				console.log(err);
+				//NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
+			});
+		}
+		//Delete object by model using api (/api/${controller}/delete) model should contain "id" property
+
+	}, {
+		key: "deleteObject",
+		value: function deleteObject(controller, model, callback) {
+			_RestApiCalls2.default.del("/api/" + controller + "/Delete?id=" + model.id).then(function (response) {
+				//	NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				callback();
+			}).catch(function (err) {
+				//NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
+			});
+		}
+	}]);
+
+	return DataService;
+}();
+
+exports.default = DataService;
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1698,7 +1827,7 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1767,7 +1896,7 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1838,7 +1967,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -1849,7 +1978,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1876,14 +2005,14 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 };
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 // Source: http://jsfiddle.net/vWx8V/
@@ -2035,8 +2164,8 @@ for (var alias in aliases) {
 
 
 /***/ }),
-/* 47 */,
-/* 48 */
+/* 48 */,
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2056,7 +2185,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _FlatButton2.default;
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2444,7 +2573,7 @@ function getMuiTheme(muiTheme) {
 }
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2480,7 +2609,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _getMuiTheme = __webpack_require__(49);
+var _getMuiTheme = __webpack_require__(50);
 
 var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
@@ -2521,7 +2650,7 @@ exports.default = MuiThemeProvider;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2537,7 +2666,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2567,7 +2696,7 @@ var _inherits2 = __webpack_require__(7);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _typeof2 = __webpack_require__(44);
+var _typeof2 = __webpack_require__(45);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -2591,7 +2720,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _shallowEqual = __webpack_require__(42);
+var _shallowEqual = __webpack_require__(43);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
@@ -2766,131 +2895,6 @@ exports.default = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _NotificationService = __webpack_require__(219);
-
-var _NotificationService2 = _interopRequireDefault(_NotificationService);
-
-var _RestApiCalls = __webpack_require__(104);
-
-var _RestApiCalls2 = _interopRequireDefault(_RestApiCalls);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var DataService = function () {
-	function DataService() {
-		_classCallCheck(this, DataService);
-
-		this.errorOccured = "Возникла ошибка: ";
-	}
-	//Get collection of object using api (host/api/controller/GetList)
-
-
-	_createClass(DataService, null, [{
-		key: "getItems",
-		value: function getItems(controller, callback) {
-			var errorMessage = this.errorOccured;
-			return _RestApiCalls2.default.get("/api/" + controller + "/GetList").then(function (response) {
-				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-				//console.log("Data service finished");
-				if (callback !== null) {
-					callback(response.data);
-				}
-				//return response;
-			}).catch(function (err) {
-				//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
-			});
-		}
-	}, {
-		key: "getItemsWithParameters",
-		value: function getItemsWithParameters(controller, parameters, callback) {
-			var errorMessage = this.errorOccured;
-			return _RestApiCalls2.default.get("/api/" + controller + "/GetList?" + parameters).then(function (response) {
-				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-				//console.log("Data service finished");
-				if (callback !== null) {
-					callback(response.data);
-				}
-				//return response;
-			}).catch(function (err) {
-				//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
-			});
-		}
-
-		//Get object by id using api (host/api/controller/GetObject)
-
-	}, {
-		key: "getObject",
-		value: function getObject(controller, objectId, callback) {
-			_RestApiCalls2.default.get("/api/" + controller + "/Get?id=" + objectId).then(function (response) {
-				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-				if (callback !== null) {
-					callback(response.data);
-				}
-			}).catch(function (err) {
-				console.log(err);
-				//	NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
-			});
-		}
-		//Add new object using api (host/api/controller/Add)
-
-	}, {
-		key: "addObject",
-		value: function addObject(controller, model, callback) {
-			_RestApiCalls2.default.post("/api/" + controller + "/Add", model).then(function (response) {
-				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-				if (callback !== null) {
-					callback(response.data);
-				}
-			}).catch(function (err) {
-				_NotificationService2.default.addNotification(this.errorOccured + err, function () {}, "Закрыть", false, false);
-			});
-		}
-		//Update object by model using api (/api/controller/Update) in server
-
-	}, {
-		key: "updateObject",
-		value: function updateObject(controller, model, callback) {
-			_RestApiCalls2.default.put("/api/" + controller + "/Update", model).then(function (response) {
-				_NotificationService2.default.addNotification(response.data.message, function () {}, true, response.data.wasSuccessful);
-				callback();
-			}).catch(function (err) {
-				_NotificationService2.default.addNotification(this.errorOccured + err, function () {}, false, false);
-			});
-		}
-		//Delete object by model using api (/api/${controller}/delete) model should contain "id" property
-
-	}, {
-		key: "deleteObject",
-		value: function deleteObject(controller, model, callback) {
-			_RestApiCalls2.default.del("/api/" + controller + "/Delete?id=" + model.id).then(function (response) {
-				//	NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-				callback();
-			}).catch(function (err) {
-				//NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
-			});
-		}
-	}]);
-
-	return DataService;
-}();
-
-exports.default = DataService;
-
-/***/ }),
 /* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2906,7 +2910,7 @@ exports.default = DataService;
 
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(32);
-  var warning = __webpack_require__(41);
+  var warning = __webpack_require__(42);
   var ReactPropTypesSecret = __webpack_require__(55);
   var loggedTypeFailures = {};
 }
@@ -3140,7 +3144,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var shared = __webpack_require__(65)('keys');
-var uid = __webpack_require__(43);
+var uid = __webpack_require__(44);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
@@ -3357,7 +3361,7 @@ var _events = __webpack_require__(74);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
@@ -4543,7 +4547,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 /* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE = __webpack_require__(45);
+var pIE = __webpack_require__(46);
 var createDesc = __webpack_require__(34);
 var toIObject = __webpack_require__(27);
 var toPrimitive = __webpack_require__(61);
@@ -4883,7 +4887,7 @@ var _shallowEqual = __webpack_require__(39);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
-var _autoPrefix = __webpack_require__(51);
+var _autoPrefix = __webpack_require__(52);
 
 var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
 
@@ -5421,7 +5425,7 @@ exports.default = {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var m=__webpack_require__(31),n=__webpack_require__(40),p=__webpack_require__(15);
+var m=__webpack_require__(31),n=__webpack_require__(41),p=__webpack_require__(15);
 function q(a){for(var b=arguments.length-1,e="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)e+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var r={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function t(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}t.prototype.isReactComponent={};t.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?q("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};t.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function u(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}function v(){}v.prototype=t.prototype;var w=u.prototype=new v;w.constructor=u;m(w,t.prototype);w.isPureReactComponent=!0;function x(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}var y=x.prototype=new v;y.constructor=x;m(y,t.prototype);y.unstable_isAsyncReactComponent=!0;y.render=function(){return this.props.children};
@@ -5459,8 +5463,8 @@ if (process.env.NODE_ENV !== "production") {
 
 var _assign = __webpack_require__(31);
 var invariant = __webpack_require__(32);
-var emptyObject = __webpack_require__(40);
-var warning = __webpack_require__(41);
+var emptyObject = __webpack_require__(41);
+var warning = __webpack_require__(42);
 var emptyFunction = __webpack_require__(15);
 var checkPropTypes = __webpack_require__(54);
 
@@ -6804,7 +6808,7 @@ module.exports = react;
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0),m=__webpack_require__(79),A=__webpack_require__(31),B=__webpack_require__(15),ca=__webpack_require__(80),da=__webpack_require__(81),ea=__webpack_require__(42),ha=__webpack_require__(82),ia=__webpack_require__(83),C=__webpack_require__(40);
+var aa=__webpack_require__(0),m=__webpack_require__(79),A=__webpack_require__(31),B=__webpack_require__(15),ca=__webpack_require__(80),da=__webpack_require__(81),ea=__webpack_require__(43),ha=__webpack_require__(82),ia=__webpack_require__(83),C=__webpack_require__(41);
 function D(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:D("227");
 var la={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function qa(a,b){return(a&b)===b}
 var ra={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ra,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){sa.hasOwnProperty(f)?D("48",f):void 0;var g=f.toLowerCase(),k=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:qa(k,b.MUST_USE_PROPERTY),
@@ -7100,16 +7104,16 @@ if (process.env.NODE_ENV !== "production") {
 
 var React = __webpack_require__(0);
 var invariant = __webpack_require__(32);
-var warning = __webpack_require__(41);
+var warning = __webpack_require__(42);
 var ExecutionEnvironment = __webpack_require__(79);
 var _assign = __webpack_require__(31);
 var emptyFunction$1 = __webpack_require__(15);
 var EventListener = __webpack_require__(80);
 var getActiveElement = __webpack_require__(81);
-var shallowEqual = __webpack_require__(42);
+var shallowEqual = __webpack_require__(43);
 var containsNode = __webpack_require__(82);
 var focusNode = __webpack_require__(83);
-var emptyObject = __webpack_require__(40);
+var emptyObject = __webpack_require__(41);
 var checkPropTypes = __webpack_require__(54);
 var hyphenateStyleName = __webpack_require__(121);
 var camelizeStyleName = __webpack_require__(123);
@@ -27565,7 +27569,7 @@ var META = __webpack_require__(188).KEY;
 var $fails = __webpack_require__(26);
 var shared = __webpack_require__(65);
 var setToStringTag = __webpack_require__(67);
-var uid = __webpack_require__(43);
+var uid = __webpack_require__(44);
 var wks = __webpack_require__(14);
 var wksExt = __webpack_require__(70);
 var wksDefine = __webpack_require__(71);
@@ -27703,7 +27707,7 @@ if (!USE_NATIVE) {
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
   __webpack_require__(99).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(45).f = $propertyIsEnumerable;
+  __webpack_require__(46).f = $propertyIsEnumerable;
   __webpack_require__(72).f = $getOwnPropertySymbols;
 
   if (DESCRIPTORS && !__webpack_require__(59)) {
@@ -27794,7 +27798,7 @@ setToStringTag(global.JSON, 'JSON', true);
 /* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var META = __webpack_require__(43)('meta');
+var META = __webpack_require__(44)('meta');
 var isObject = __webpack_require__(33);
 var has = __webpack_require__(21);
 var setDesc = __webpack_require__(18).f;
@@ -27856,7 +27860,7 @@ var meta = module.exports = {
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(36);
 var gOPS = __webpack_require__(72);
-var pIE = __webpack_require__(45);
+var pIE = __webpack_require__(46);
 module.exports = function (it) {
   var result = getKeys(it);
   var getSymbols = gOPS.f;
@@ -28022,7 +28026,7 @@ $export($export.S, 'Object', { create: __webpack_require__(62) });
 
 var emptyFunction = __webpack_require__(15);
 var invariant = __webpack_require__(32);
-var warning = __webpack_require__(41);
+var warning = __webpack_require__(42);
 var assign = __webpack_require__(31);
 
 var ReactPropTypesSecret = __webpack_require__(55);
@@ -28648,7 +28652,7 @@ $export($export.S + $export.F, 'Object', { assign: __webpack_require__(206) });
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys = __webpack_require__(36);
 var gOPS = __webpack_require__(72);
-var pIE = __webpack_require__(45);
+var pIE = __webpack_require__(46);
 var toObject = __webpack_require__(37);
 var IObject = __webpack_require__(91);
 var $assign = Object.assign;
@@ -28993,7 +28997,7 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _autoPrefix = __webpack_require__(51);
+var _autoPrefix = __webpack_require__(52);
 
 var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
 
@@ -29174,7 +29178,7 @@ var _shallowEqual = __webpack_require__(39);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
-var _autoPrefix = __webpack_require__(51);
+var _autoPrefix = __webpack_require__(52);
 
 var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
 
@@ -29924,7 +29928,7 @@ var _Snackbar = __webpack_require__(221);
 
 var _Snackbar2 = _interopRequireDefault(_Snackbar);
 
-var _MuiThemeProvider = __webpack_require__(50);
+var _MuiThemeProvider = __webpack_require__(51);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
@@ -30373,7 +30377,7 @@ var _withWidth = __webpack_require__(224);
 
 var _withWidth2 = _interopRequireDefault(_withWidth);
 
-var _FlatButton = __webpack_require__(48);
+var _FlatButton = __webpack_require__(49);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
@@ -30552,7 +30556,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactEventListener = __webpack_require__(52);
+var _reactEventListener = __webpack_require__(53);
 
 var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
 
@@ -32575,7 +32579,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _DataService = __webpack_require__(53);
+var _DataService = __webpack_require__(40);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -32858,7 +32862,7 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _DataService = __webpack_require__(53);
+var _DataService = __webpack_require__(40);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -33007,6 +33011,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+function compareImages(a, b) {
+	if (a.priority < b.priority) return -1;
+	if (a.priority > b.priority) return 1;
+	return 0;
+}
+
 var CatalogItem = function (_React$Component) {
 	_inherits(CatalogItem, _React$Component);
 
@@ -33025,6 +33035,7 @@ var CatalogItem = function (_React$Component) {
 				return false;
 			}
 			var item = this.props.item;
+			var imageToDisplay = item.photos.sort(compareImages);
 			return _react2.default.createElement(
 				"li",
 				{ className: "item", itemType: "http://schema.org/Product", itemProp: "itemListElement", itemScope: "" },
@@ -33033,7 +33044,7 @@ var CatalogItem = function (_React$Component) {
 					{ onClick: function onClick() {
 							_this2.props.onItemSelected(_this2.props.item.id);
 						} },
-					_react2.default.createElement("img", { className: "main-picture", src: item.photos[0].path, alt: item.name, itemProp: "image" }),
+					_react2.default.createElement("img", { className: "main-picture", src: imageToDisplay[0].path, alt: item.name, itemProp: "image" }),
 					_react2.default.createElement(
 						"div",
 						{ className: "baseline-helper" },
@@ -43361,7 +43372,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _DataService = __webpack_require__(53);
+var _DataService = __webpack_require__(40);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -43435,6 +43446,11 @@ var style = {
 		transform: "translate(0px, 0px)"
 	}
 };
+function compareImages(a, b) {
+	if (a.priority < b.priority) return -1;
+	if (a.priority > b.priority) return 1;
+	return 0;
+}
 
 var ConcreteCatalogItem = function (_React$Component) {
 	_inherits(ConcreteCatalogItem, _React$Component);
@@ -43478,6 +43494,8 @@ var ConcreteCatalogItem = function (_React$Component) {
 			var currentItem = {};
 			if (data !== null || data !== undefined) {
 				currentItem = data.model;
+				var photos = currentItem.photos.sort(compareImages);
+				currentItem.photos = photos;
 				this.setState({ currentItem: currentItem, currentItemSelectedPhoto: currentItem.photos[0] }, function () {
 					console.log('updated state value', _this2.state.currentItem);
 				});

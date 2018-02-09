@@ -51,7 +51,8 @@ class Text extends React.Component {
 		}
 		return <MuiThemeProvider muiTheme={muiTheme}>
 			<TextField id="this.props.id" fullWidth={true} floatingLabelText={this.props.hintText} floatingLabelStyle={
-				floatingLabelStyle.floatingLabelStyle} floatingLabelFocusStyle={floatingLabelStyle.floatingLabelFocusStyle} errorText={this.state.errorText} onChange={this.handleChanges.bind(this)} />
+				floatingLabelStyle.floatingLabelStyle} floatingLabelFocusStyle={floatingLabelStyle.floatingLabelFocusStyle} errorText={this.state.errorText} onChange={this.handleChanges.bind(this)}
+			           value={this.state.value}/>
 		</MuiThemeProvider>;
 	}
 }

@@ -3,7 +3,16 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import ImagesGrid from "./ImagesGrid";
 import RestApiCalls from "../Services/RestApiCalls";
+import DataService from "../Services/DataService";
 import RaisedButton from 'material-ui/RaisedButton';
+
+function compareImages(a, b) {
+	if (a.priority < b.priority)
+		return -1;
+	if (a.priority > b.priority)
+		return 1;
+	return 0;
+}
 
 class ImageUploader extends React.Component {
 	constructor(props) {
@@ -12,30 +21,12 @@ class ImageUploader extends React.Component {
 			file: "",
 			imagePreviewUrl: "",
 			imageSource: [],
+			imagesToRemove: [],
 			imageViewOpened: false,
 			imageUploadOpened: false,
 			currentImg: {},
 			lastId: 0,
-			selectedItem: this.props.selectedItem,
-			photoFieldsData: [
-				{
-					name: "type",
-					type: "select",
-					value: "",
-					maxSearchResults: 5,
-					dataSourceLink: "",
-					displayedValue: "code",
-					modelValue: "id",
-					itemFormat: "[id] [code] [description]",
-					isRequired: true
-				},
-				{
-					name: "title",
-					type: "text",
-					value: "",
-					isRequired: true
-				}
-			]
+			selectedItem: this.props.selectedItem
 		};
 		this.imageChange.bind(this);
 	}
@@ -55,11 +46,10 @@ class ImageUploader extends React.Component {
 
 	handleCloseImageView () {
 		this.clearDataAboutPhoto();
-		this.setState({ imageViewOpened: false, currentImg: {} });
 	}
 
 	handleCloseImageUpload () {
-		this.setState({ imageUploadOpened: false });
+		this.setState({imageUploadOpened: false, imageSource: [], imagesToRemove: [], lastId: 0 }, this.props.refreshDataTable);
 	}
 
 	handleCloseDialog() {
@@ -68,11 +58,6 @@ class ImageUploader extends React.Component {
 
 	handleSaveImage () {
 		var hasErrors = false;
-		//for (let i = 0; i < this.state.photoFieldsData.length; i++) {
-		//	if (this.state.photoFieldsData[i].checkErrors()) {
-		//		hasErrors = true;
-		//	}
-		//}
 		if (!hasErrors) {
 			const imageSource = this.state.imageSource;
 			imageSource.push({
@@ -82,17 +67,15 @@ class ImageUploader extends React.Component {
 				itemId: this.state.selectedItem.id,
 				type: this.state.currentImg.type
 			});
-			this.clearDataAboutPhoto();
-			this.setState({ imageSource: imageSource, imageViewOpened: false, currentImg: {} });
+			this.state.imageSource = imageSource;
 			this.state.lastId = this.state.lastId + 1;
+			this.clearDataAboutPhoto();
 		}
 	}
 
 	clearDataAboutPhoto () {
-		for (let i = 0; i < this.state.photoFieldsData.length; i++) {
-			this.state.photoFieldsData[i].value = "";
-		}
 		this.fileInput.value = "";
+		this.setState({ imageViewOpened: false, currentImg: {} });
 	}
 
 	removeImage (image) {
@@ -102,31 +85,49 @@ class ImageUploader extends React.Component {
 				imageSource.splice(i, 1);
 			}
 		}
-		this.setState({ imageSource: imageSource });
-	}
-
-	imageUploaded (image) {
-		if (this.props.imageUploadedFunc !== undefined) {
-			this.props.imageUploadedFunc(image);
+		if (image.id !== undefined) {
+			let imagesToRemove = this.state.imagesToRemove;
+			imagesToRemove.push(image);
+			this.setState({ imagesToRemove: imagesToRemove });
 		}
+
+		this.setState({ imageSource: imageSource });
 	}
 
 	uploadImages () {
 		const itemId = this.state.selectedItem.id;
 		let formData = new FormData(this);
+		let recordsToUpdate = [];
 		for (let i = 0; i < this.state.imageSource.length; i++) {
-			formData.append("files", this.state.imageSource[i].file);
-			formData.append("priorities", this.state.imageSource[i].priority);
+			if (this.state.imageSource[i].file !== undefined) {
+				formData.append("files", this.state.imageSource[i].file);
+				formData.append("priorities", this.state.imageSource[i].priority);
+			} else {
+				recordsToUpdate.push(this.state.imageSource[i]);
+			}
 		}
 		formData.set("itemId", itemId);
 		const config = { headers: { 'content-type': 'multipart/form-data' } };
 		const handleCloseImageUpload = this.handleCloseImageUpload.bind(this);
-		const imageUploaded = this.imageUploaded;
-		RestApiCalls.post(`/api/${this.props.uploadController}/UploadPhotos`, formData, config).then(function(response) {
-				handleCloseImageUpload();
-				const result = response.data;
+		if (this.state.imagesToRemove.length > 0) {
+			this.state.imagesToRemove.map((image) => {
+				DataService.deleteObject(this.props.uploadController, image);
 			});
-		this.state.imageSource = [];
+		}
+
+		if (recordsToUpdate.length > 0) {
+			recordsToUpdate.map((image) => {
+				const imageToUpdate = {
+					id: image.id,
+					priority: image.priority,
+					path: image.src
+				};
+				DataService.updateObject(this.props.uploadController, imageToUpdate);
+			});
+		}
+		RestApiCalls.post(`/api/${this.props.uploadController}/UploadPhotos`, formData, config).then(function (response) {
+			handleCloseImageUpload();
+		});
 	}
 
 	openFileInput () {
@@ -137,8 +138,33 @@ class ImageUploader extends React.Component {
 		this.setState({ imageUploadOpened: true, selectedItem: selectedItem });
 	}
 
+	processExistingImages(props) {
+		let itemPhotos = props.selectedItem.photos;
+		let imageSource = [];
+		if (itemPhotos !== undefined && itemPhotos.length > 0) {
+			itemPhotos.sort(compareImages);
+			this.state.lastId = itemPhotos[itemPhotos.length - 1].priority + 1;
+			itemPhotos.map((photo) => {
+				imageSource.push({
+					priority: photo.priority,
+					src: photo.path,
+					file: undefined,
+					itemId: props.selectedItem.id,
+					id: photo.id
+				});
+			});
+		}
+
+		this.setState({ imageSource: imageSource, imageViewOpened: false, currentImg: {} });
+	} 
+
+	componentWillReceiveProps(nextProps) {
+		this.processExistingImages(nextProps);
+	}
+
 	componentWillMount() {
 		this.props.uploaderActions.openDialog = this.openImageUploadDialog.bind(this);
+		this.processExistingImages(this.props);
 	}
 
 	render () {

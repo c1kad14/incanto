@@ -2645,12 +2645,6 @@ ul#rmenu {
     .stores-page .our-shops-container, .soft-cube-wrap {
         margin-left: 220px
     }
-    .fotorama {
-        left: 20% !important;
-    }
-    #back-image {
-        margin-left: 10px !important;
-    }
 }
 
 .selection-block {
@@ -2724,27 +2718,16 @@ ul#rmenu {
     }
 }
 
-@media (max-width: 1220px) {
+@media (max-width: 1200px) {
+    .selection-block .catalog > ul.items {
+        width: 54%
+    }
     #back-image {
         display: none !important;
     }
 
     #forward-image {
         display: none !important;
-    }
-
-    #fotorama {
-        margin-left: 100px !important;
-    }
-}
-
-@media (max-width: 1200px) {
-    .selection-block .catalog > ul.items {
-        width: 54%
-    }
-
-    .fotorama {
-        left: 17% !important;
     }
 }
 
@@ -2962,12 +2945,6 @@ ul#rmenu {
         }
     }
 
-    @media screen and (max-width: 1500px) {
-        #back-image {
-            margin-left: 25px !important;
-        }
-    }
-
     @media screen and (max-width: 1024px) {
         .fotorama {
             left: 10% !important;
@@ -2981,9 +2958,6 @@ ul#rmenu {
             display: none !important;
         }
 
-        #fotorama {
-            margin-left: 80px !important;
-        }
     }
 
     #shop {
@@ -7240,6 +7214,10 @@ ul#rmenu {
             margin-left: 280px;
             margin-right: 210px
         }
+
+        .product-content .left {
+            margin-left: 350px
+        }
     }
 
     @media all and (max-width: 1500px) {
@@ -7254,12 +7232,22 @@ ul#rmenu {
         .similar .owl-theme .owl-controls .owl-nav .owl-prev {
             left: -60px
         }
+        .product-content .left {
+            margin-left: 310px
+        }
+
+        .fotorama-nav {
+            margin: 0 auto;
+        }
     }
 
     @media (max-width: 1460px) {
         .favorite-page .catalog > ul.items, .soft-cube-page.favorite-page .favorite-page-wrap {
             margin-left: 275px;
             margin-right: 205px
+        }
+        .product-content .left {
+            margin-left: 290px;
         }
     }
 
@@ -7279,7 +7267,7 @@ ul#rmenu {
         }
 
         .product-content .left {
-            margin-left: 280px
+            margin-left: 260px
         }
 
         #left .logo_image {
@@ -7294,7 +7282,7 @@ ul#rmenu {
         }
 
         .product-content .left {
-            margin-right: 300px
+            margin-right: 290px
         }
 
         .cart-main-table {
@@ -7309,6 +7297,10 @@ ul#rmenu {
 
         .content-wrap {
             margin-left: 330px
+        }
+
+        .product-content .left {
+            margin-right: 230px
         }
     }
 
@@ -7325,16 +7317,20 @@ ul#rmenu {
         .cart-main-table-footer {
             margin-left: 320px
         }
+
+        .product-content .left {
+            margin-left: 220px
+        }
     }
 
     @media (max-width: 1340px) {
-        .favorite-page .catalog > ul.items, .soft-cube-page.favorite-page .favorite-page-wrap {
-            margin-left: 230px;
-            margin-right: 200px
-        }
 
         .selection-page-item.main-block {
             width: 200px
+        }
+
+        .product-content .left {
+            margin-left: 200px;
         }
     }
 
@@ -7343,10 +7339,6 @@ ul#rmenu {
             margin-left: 160px
         }
 
-        .favorite-page .catalog > ul.items, .soft-cube-page.favorite-page .favorite-page-wrap {
-            margin-left: 200px;
-            margin-right: 180px
-        }
 
         .about-page {
             margin-left: 200px;
@@ -7360,18 +7352,13 @@ ul#rmenu {
         .similar .owl-theme .owl-controls .owl-nav .owl-prev {
             left: -40px
         }
+
+        .product-content .left {
+            margin-left: 190px;
+        }
     }
 
     @media all and (max-width: 1260px) {
-        .catalog > ul.items {
-            margin-left: 325px
-        }
-
-        .favorite-page .catalog > ul.items, .soft-cube-page.favorite-page .favorite-page-wrap {
-            margin-left: 155px;
-            margin-right: 170px
-        }
-
         .selection-desc, .designer-wrap-catalog {
             margin-left: 280px
         }
@@ -7387,14 +7374,13 @@ ul#rmenu {
         .similar .owl-theme .owl-controls .owl-nav .owl-prev {
             left: -25px
         }
+
+        .product-content .left {
+            margin-left: 170px;
+        }
     }
 
     @media all and (max-width: 1200px) {
-        .catalog > ul.items .item {
-            width: 30%;
-            margin: 3% 0 0 0
-        }
-
         #left {
             width: 280px
         }
@@ -7408,22 +7394,20 @@ ul#rmenu {
             width: 230px
         }
 
-        .catalog > ul.items {
-            margin-left: 265px;
-            margin-right: 225px
-        }
-
         .favorite-page-wrap {
             margin-left: 0
         }
 
         .favorite-page .static-content {
-            margin-left: 0
+            margin-left: 0;
         }
 
         .product-content .left {
-            margin-left: 245px;
-            margin-right: 270px
+            margin-left: 370px;
+        }
+
+        .fotorama-nav {
+            margin: 0 !important;
         }
 
         .landing_wrap {
@@ -7480,14 +7464,15 @@ ul#rmenu {
         .designer-wrapp {
             margin-left: 200px
         }
+
+        .product-content .left {
+            margin-left: 340px;
+        }
     }
 
     @media all and (max-width: 1100px) {
-        body {
-        }
-
-        .catalog > ul.items {
-            width: 54%
+        .product-content .left {
+            margin-left: 320px;
         }
 
         .cart-main-table {
@@ -7498,17 +7483,9 @@ ul#rmenu {
             width: 660px
         }
 
-        .fotorama {
-            left: 13%;
-        }
     }
 
     @media all and (max-width: 1085px) {
-        .catalog > ul.items .item {
-            width: 35%;
-            margin: 3% 13% 0 0
-        }
-
         .product-content .right {
             width: 240px !important
         }
@@ -7526,7 +7503,7 @@ ul#rmenu {
         }
 
         .product-content .left {
-            margin-left: 200px;
+            margin-left: 300px;
             margin-right: 200px
         }
     }

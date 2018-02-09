@@ -1,5 +1,13 @@
 ﻿import React from "react";
 
+function compareImages(a, b) {
+	if (a.priority < b.priority)
+		return -1;
+	if (a.priority > b.priority)
+		return 1;
+	return 0;
+}
+
 class CatalogItem extends React.Component {
 	constructor(props) {
 		super(props);
@@ -10,9 +18,10 @@ class CatalogItem extends React.Component {
 			return false;
 		}
 		const item = this.props.item;
+		let imageToDisplay = item.photos.sort(compareImages);
 		return (<li className="item" itemType="http://schema.org/Product" itemProp="itemListElement" itemScope="">
 			<a onClick={() => { this.props.onItemSelected(this.props.item.id)}}>
-				<img className="main-picture" src={item.photos[0].path} alt={item.name} itemProp="image" />
+				<img className="main-picture" src={imageToDisplay[0].path} alt={item.name} itemProp="image" />
 				       <div className="baseline-helper">
 					       <div itemProp="name">
 						       <p className="designer-info fs10 up ls2 bold">{item.brand.name}</p>

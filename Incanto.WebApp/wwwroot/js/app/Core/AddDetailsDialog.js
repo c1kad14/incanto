@@ -215,13 +215,16 @@ class AddDetailDialog extends React.Component {
 	componentWillMount() {
 		const detailsQueryString = "itemId=" + this.state.itemId;
 		const detailTypesQueryString = "categoryId=" + this.state.categoryId;
-		const detailTypeValuesQueryString = "categoryId=" + this.state.categoryId;
 		const detailsCallback = this.setExistingDetails.bind(this);
 		const detailTypesCallback = this.setDetailTypes.bind(this);
 		const detailTypeValuesCallback = this.setDetailTypeValues.bind(this);
-		DataService.getItemsWithParameters(detailsController, detailsQueryString, detailsCallback);
-		DataService.getItemsWithParameters(detailTypesController, detailTypesQueryString, detailTypesCallback);
-		DataService.getItemsWithParameters(detailTypeValuesController, detailTypeValuesQueryString, detailTypeValuesCallback);
+		RestApiCall.get(`/api/${detailsController}/GetListByItemId?${detailsQueryString}`).then((response) => {
+			detailsCallback(response.data);
+		});
+		RestApiCall.get(`/api/${detailTypesController}/GetObjectsByCategoryId?${detailTypesQueryString}`).then((response) => {
+			detailTypesCallback(response.data);
+		});
+		DataService.getItems(detailTypeValuesController, detailTypeValuesCallback);
 	}
 
 	render() {

@@ -15,8 +15,8 @@ namespace Incanto.WebApp.Controllers
 		    
 	    }
 
-	    [HttpGet("{id}")]
-	    [Route("GetList")]
+	    [HttpGet("{detailTypeId}")]
+	    [Route("GetObjectsByDetailTypeId")]
 	    public virtual ActionResult GetObjectsByDetailTypeId(int detailTypeId)
 	    {
 		    var operationResult = ReadWriteDataService.Get(detailTypeValue => detailTypeValue.DetailType.Id == detailTypeId);

@@ -120,7 +120,7 @@ class ImagesGrid extends React.Component {
 							titlePosition="bottom"
 							titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
 							key={image.prioroty}
-							title={image.file.name}
+							title={"image"}
 							subtitle={<span>{image.priority === "" ? "" : "Priority:"} <b>{image.priority}</b></span>}
 							actionIcon={actionButton}>
 							<img src={image.src} onClick={function () { selectImage(image.priority); }} />

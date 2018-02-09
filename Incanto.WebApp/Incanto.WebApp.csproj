@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Properties\PublishProfiles\CustomProfile1.pubxml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Controllers\BrandsController.cs" />
     <Content Include="Controllers\CategoriesController.cs" />
     <Content Include="Controllers\CountriesController.cs" />

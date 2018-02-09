@@ -19,6 +19,7 @@ export default class IncantoToolbar extends React.Component {
 			value: this.props.controller,
 			addRecordDialogOpen: false,
 			addDetailsDialogOpen: false,
+			editRecordDialogOpen: false,
 			uploaderActions: {}
 		};
 	}
@@ -69,23 +70,23 @@ export default class IncantoToolbar extends React.Component {
 						<MenuItem value="detailtypes" primaryText="Типы деталей" />
 						<MenuItem value="detailtypevalues" primaryText="Значения деталей" />
 						<MenuItem value="items" primaryText="Товары" />
-						<MenuItem value="discounts" primaryText="Дискаунт" />
 					</DropDownMenu>
 				</ToolbarGroup>
 				<ToolbarGroup>
-					{this.state.addDetailsDialogOpen ? <AddDetailDialog open={this.state.addDetailsDialogOpen} close={this.addDetailsDialogCloseHandler.bind(this)} item={this.props.selectedItem} /> : <span></span>}
 					<ToolbarTitle text="Записи" />
-					{this.props.controller === "items" && this.props.selectedItem !== undefined ?<ToolbarSeparator /> : <span></span>}
-					<FontIcon className="muidocs-icon-custom-sort" />
+					{this.state.addDetailsDialogOpen ? <AddDetailDialog open={this.state.addDetailsDialogOpen} close={this.addDetailsDialogCloseHandler.bind(this)} item={this.props.selectedItem} /> : <span></span>}
+					{this.props.controller === "items" && this.props.selectedItem !== undefined ? <ToolbarSeparator /> : <span></span>}
 					{this.props.controller === "items" && this.props.selectedItem !== undefined ?
 							<div>
-								<RaisedButton onClick={this.openAddDialog.bind(this)} label="Фото" fullWidth={true} /><ImageUploader selectedItem={this.props.selectedItem}
-									uploaderActions={this.state.uploaderActions}
-									uploadController="Photos" />
-							</div> : <span></span>}
-					<ToolbarSeparator />
-					<RaisedButton label="Добавить" primary={true} onClick={this.addRecordDialogOpenHandler.bind(this)} />
-					{this.state.addRecordDialogOpen ? <AddRecordDialog columns={this.props.columns} lookup={this.props.lookupFields} controller={this.props.controller} open={this.state.addRecordDialogOpen} close={this.addRecordDialogCloseHandler.bind(this)} />
+							<RaisedButton onClick={this.openAddDialog.bind(this)} label="Фото" />
+							<ImageUploader selectedItem={this.props.selectedItem}
+								uploaderActions={this.state.uploaderActions}
+								uploadController="Photos" refreshDataTable={this.props.refreshDataTable}/>
+						</div> : <span></span>}
+					{this.props.controller === "items" && this.props.selectedItem !== undefined ?
+						<RaisedButton onClick={this.addDetailsDialogOpenHandler.bind(this)} label="Детали" /> : <span></span>}
+					{this.props.selectedItem !== undefined ? <RaisedButton onClick={this.addRecordDialogOpenHandler.bind(this)} label="Редактировать" primary={true}/> : <RaisedButton label="Добавить" primary={true} onClick={this.addRecordDialogOpenHandler.bind(this)} />}
+					{this.state.addRecordDialogOpen ? <AddRecordDialog columns={this.props.columns} lookup={this.props.lookupFields} controller={this.props.controller} open={this.state.addRecordDialogOpen} close={this.addRecordDialogCloseHandler.bind(this)} refreshDataTable={this.props.refreshDataTable} recordToUpdate={this.props.selectedItem}/>
 						: <span />}
 					<IconMenu
 						iconButtonElement={
@@ -94,8 +95,8 @@ export default class IncantoToolbar extends React.Component {
 							</IconButton>
 						}
 					>
-						<MenuItem primaryText="Refresh" onClick={this.props.updateDataTable} />
-						<MenuItem primaryText="Download" />
+						<MenuItem primaryText="Refresh" onClick={ this.props.refreshDataTable } />
+						{this.props.selectedItem !== undefined ? <MenuItem primaryText="Удалить" onClick={this.props.deleteRecord} /> : <span></span>}
 					</IconMenu>
 				</ToolbarGroup>
 			</Toolbar>
