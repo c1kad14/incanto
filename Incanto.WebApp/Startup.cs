@@ -1,13 +1,11 @@
-﻿using System;
-using System.Text.Encodings.Web;
+﻿using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using Incanto.BusinessLogic.Services.Core;
 using Incanto.BusinessLogic.Services.Core.Interfaces;
-using Incanto.DataAccess;
 using Incanto.DataAccess.Context;
 using Incanto.DataAccess.Interfaces;
 using Incanto.DataAccess.Repository;
-using Incanto.Domain.Base.Interfaces;
+using Incanto.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -51,6 +49,7 @@ namespace Incanto.WebApp
 			services.AddDbContext<IncantoDataContext>(optionsAction => optionsAction.UseSqlServer(Configuration.GetConnectionString("DevelopersConnection")));
 			services.AddTransient<IPhotoUploadService, PhotoUploadService>();
 			services.AddTransient(typeof(IDataRepository<>), typeof(DataRepository<>));
+			services.AddTransient<IDataRepository<Item>, ItemsDataRepository>();
 			services.AddMvc();
 		}
 

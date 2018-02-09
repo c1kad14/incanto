@@ -1,6 +1,7 @@
 ﻿import React from "react";
 import IncantoToolbar from "./Core/Controls/IncantoToolbar";
 import RecordsList from "./Core/RecordsList";
+import DataService from "./Core/Services/DataService";
 
 
 class IncantoRecords extends React.Component {
@@ -26,6 +27,11 @@ class IncantoRecords extends React.Component {
 
 	resetCallBack() {
 		this.setState({ shouldRefreshTable: false, selectedItem: undefined });
+	}
+
+	deleteRecord() {
+		const deleteCallBack = this.refreshDataTable.bind(this);
+		DataService.deleteObject(this.state.controller, this.state.selectedItem, deleteCallBack);
 	}
 
 	render() {
@@ -62,8 +68,8 @@ class IncantoRecords extends React.Component {
 		};
 		return (
 			<div>
-				<IncantoToolbar columns={columns[this.state.controller]} controller={this.state.controller} selectedTableChangedHandler={this.selectedTableChangedHandler.bind(this)} lookupFields={lookupFields[this.state.controller]} updateDataTable={this.refreshDataTable.bind(this)} selectedItem={this.state.selectedItem}/>
-				<RecordsList columns={columns[this.state.controller]} controller={this.state.controller} shouldRefreshTable={this.state.shouldRefreshTable} itemSelectedHandler={this.itemSelectedHandler.bind(this)} resetCallBack={this.resetCallBack.bind(this)}/>
+				<IncantoToolbar columns={columns[this.state.controller]} controller={this.state.controller} selectedTableChangedHandler={this.selectedTableChangedHandler.bind(this)} lookupFields={lookupFields[this.state.controller]} refreshDataTable={this.refreshDataTable.bind(this)} selectedItem={this.state.selectedItem} deleteRecord={this.deleteRecord.bind(this)}/>
+				<RecordsList columns={columns[this.state.controller]} controller={this.state.controller} shouldRefreshTable={this.state.shouldRefreshTable} itemSelectedHandler={this.itemSelectedHandler.bind(this)} resetCallBack={this.resetCallBack.bind(this)} />
 			</div>
 
 		);

@@ -60,6 +60,14 @@ const style = {
 		transform: "translate(0px, 0px)"
 	}
 }
+function compareImages(a, b) {
+	if (a.priority < b.priority)
+		return -1;
+	if (a.priority > b.priority)
+		return 1;
+	return 0;
+}
+
 class ConcreteCatalogItem extends React.Component {
 	constructor(props) {	
 		super(props);
@@ -69,14 +77,18 @@ class ConcreteCatalogItem extends React.Component {
 			showOriginal: false
 		}
 		this.updateData = this.updateData.bind(this);
+		this.previousPhoto = this.previousPhoto.bind(this);
+		this.nextPhoto = this.nextPhoto.bind(this);
+		this.handleKeyDown = this.handleKeyDown.bind(this);
 	}
 
 	handleKeyDown(e) {
 		switch (e.keyCode) {
 			case 37:
-
+				this.previousPhoto();
 				break;
 			case 39:
+				this.nextPhoto();
 				break;
 			default:
 				break;
@@ -86,7 +98,9 @@ class ConcreteCatalogItem extends React.Component {
 	updateData(data) {
 		let currentItem = {};
 		if (data !== null || data !== undefined) {
-			currentItem = data.model;
+			currentItem = data.model
+			let photos = currentItem.photos.sort(compareImages);
+			currentItem.photos = photos;
 			this.setState({ currentItem: currentItem, currentItemSelectedPhoto: currentItem.photos[0] },
 				() => {
 					console.log('updated state value', this.state.currentItem);
@@ -130,6 +144,38 @@ class ConcreteCatalogItem extends React.Component {
 		this.setState({ currentItemSelectedPhoto: selectedItem[0]});
 	}
 
+	nextPhoto() {
+		const selectedPhoto = this.state.currentItemSelectedPhoto;
+		let selectedItem = undefined;
+		for (let i = 0; i < this.state.currentItem.photos.length; i++) {
+			if (this.state.currentItem.photos[i] === selectedPhoto) {
+				if (this.state.currentItem.photos[i + 1] !== undefined) {
+					selectedItem = this.state.currentItem.photos[i + 1];
+				}
+				break;
+			}
+		}
+		if (selectedItem !== undefined) {
+			this.setState({ currentItemSelectedPhoto: selectedItem });
+		}
+	}
+
+	previousPhoto() {
+		const selectedPhoto = this.state.currentItemSelectedPhoto;
+		let selectedItem = undefined;
+		for (let i = 0; i < this.state.currentItem.photos.length; i++) {
+			if (this.state.currentItem.photos[i] === selectedPhoto) {
+				if (this.state.currentItem.photos[i-1] !== undefined) {
+					selectedItem = this.state.currentItem.photos[i - 1];
+				}
+				break;
+			}
+		}
+		if (selectedItem !== undefined) {
+			this.setState({ currentItemSelectedPhoto: selectedItem });
+		}
+	}
+
 	prepareAllPhotosForItem() {
 		let otherItemPhotoClick = this.otherItemPhotClick.bind(this);
 		const itemPhotos = this.state.currentItem.photos.map(photo => {
@@ -152,8 +198,9 @@ class ConcreteCatalogItem extends React.Component {
 		console.log(this.state.currentItemSelectedPhoto.path);
 		return <div className="left">
 			<div className="fotorama-slider-wrapper">
-				<div className="fotorama fotorama1516232132390">
-					<div className="fotorama__wrap fotorama__wrap--css3 fotorama__wrap--slide fotorama__wrap--toggle-arrows fotorama__wrap--no-controls" style={style.mainPhotoContainerWrapper}>
+				<div id="back-image" onClick={this.previousPhoto}></div>
+				<div id="fotorama">
+					<div style={style.mainPhotoContainerWrapper}>
 						<div className="fotorama__stage" style={style.mainPhotoContainer}>
 							<div className="fotorama__stage__shaft fotorama__grab" style={style.mainPhotoChildContainer}>
 								<div className="fotorama__stage__frame fotorama__loaded fotorama__loaded--img" style={style.mainPhotoImageWrapper}>
@@ -162,14 +209,15 @@ class ConcreteCatalogItem extends React.Component {
 								</div>
 							</div>
 						</div>
-						<div className="fotorama__nav-wrap">
-							<div className="fotorama__nav fotorama__nav--thumbs" style={style.navContainerWrapper}>
-								<div className="fotorama__nav__shaft" style={style.navContainer}>
-									<div className="fotorama__thumb-border" style={style.navContainerHiddenBlock}></div>
-									<div className="fotorama__thumb fotorama__loaded fotorama__loaded--img">{allPhotos}</div>
-								</div>
-							</div>
-						</div>
+					</div>
+				</div>
+				<div id="forward-image" onClick={this.nextPhoto}></div>
+			</div>
+			<div className="fotorama-nav-wrap">
+				<div className="fotorama-nav" style={style.navContainerWrapper}>
+					<div className="fotorama-nav-shaft" style={style.navContainer}>
+						<div className="fotorama__thumb-border" style={style.navContainerHiddenBlock}></div>
+						<div>{allPhotos}</div>
 					</div>
 				</div>
 			</div>
@@ -177,6 +225,35 @@ class ConcreteCatalogItem extends React.Component {
 	}
 
 	generateRightInfoBlock() {
+		let handledDetailTypesIds = [];
+		const details = [];
+		const curItem = this.state.currentItem;
+		this.state.currentItem.details.forEach((detail) => {
+			const curDetailTypeId = detail.detailValue.detailType.id;
+			if (handledDetailTypesIds.filter((hdtid) => hdtid === curDetailTypeId).length === 0) {
+				let curDetailTypeIdDetails = curItem.details.filter((detail) => {
+					return detail.detailValue.detailType.id === curDetailTypeId;
+				});
+				let detailValue = "";
+				for (let i = 0; i < curDetailTypeIdDetails.length; i++) {
+					if (i + 1 !== curDetailTypeIdDetails.length) {
+						detailValue = detailValue.concat(curDetailTypeIdDetails[i].detailValue.value + ", ");
+					} else {
+						detailValue = detailValue.concat(curDetailTypeIdDetails[i].detailValue.value);
+					}
+				}
+				details.push(
+					<li key={curDetailTypeId}>{curDetailTypeIdDetails[0].detailValue.detailType.name + ": " + detailValue}
+					</li>);
+				handledDetailTypesIds.push(curDetailTypeId);
+			}
+		});
+
+
+
+		//const details = this.state.currentItem.details.map((detail) => {
+		//	return <li> {detail.detailValue.detailType.name + ": " + detail.detailValue.value}</li>;
+		//});
 		return <div className="right fr">
 			<h2 className="productBrand ls16">
 				<a className="bold">
@@ -193,11 +270,10 @@ class ConcreteCatalogItem extends React.Component {
 
 			<div className="clear data-block" itemProp="offers" itemScope="" itemType="https://schema.org/Offer">
 				<link itemProp="availability" href="https://schema.org/InStock" />
+				{this.state.currentItem.newPrice !== 0 ? <span className="fs11 ls2">{this.state.currentItem.newPrice} ГРН</span> : <span></span>}
 				<span className="fs11 ls2">
-					<span itemProp="price" className="prod-price">{this.state.currentItem.price}</span>
-					<span itemProp="priceCurrency" content="UAH">ГРН</span>
+					{this.state.currentItem.newPrice !== 0 ? <span itemProp="price" className="old-price">{this.state.currentItem.price} ГРН</span> : <span itemProp="price">{this.state.currentItem.price} ГРН</span>}
 				</span>
-				<span className="fs11 ls2">{this.state.currentItem.price} ГРН</span>
 			</div>
 
 			<div className="clear data-block sizes">
@@ -224,15 +300,10 @@ class ConcreteCatalogItem extends React.Component {
 					</div>
 			</div>
 
-
 			<div className="clear data-block details grf fs11">
-				<p className="block-content">• Цвет: синий, белый, зеленый, желтый <br />
-					• Состав: 100% хлопок; 100% полиэстер<br />
-					• Застежка: пуговицы<br />
-					• Два кармана<br />
-					• Принт<br />
-					• На модели (рост 176см) размер: 34<br />
-				</p>
+				<ul className="block-content">
+					{details}
+				</ul>
 			</div>
 
 			<div className="clear other-links">

@@ -13,7 +13,7 @@ namespace Incanto.DataAccess.Repository
 		where TEntity : class, IBaseEntity, new()
 	{
 		public Func<IQueryable<TEntity>, IQueryable<TEntity>> IncludeFunc { get; set; }
-		private readonly DbContextOptions _dbContextOptions;
+		protected readonly DbContextOptions _dbContextOptions;
 
 		public DataRepository()
 		{
@@ -37,13 +37,14 @@ namespace Incanto.DataAccess.Repository
 		{
 			using (var context = new IncantoDataContext(_dbContextOptions))
 			{
+				context.Entry(entity).State = EntityState.Detached;
 				context.Set<TEntity>().Attach(entity);
 				context.Update(entity);
 				context.SaveChanges();
 			}
 		}
 
-		public void Delete(TEntity entity)
+		public virtual void Delete(TEntity entity)
 		{
 			using (var context = new IncantoDataContext(_dbContextOptions))
 			{

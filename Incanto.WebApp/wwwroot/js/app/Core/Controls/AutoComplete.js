@@ -128,6 +128,7 @@ class AutoCompleteControl extends React.Component {
 						|| !displayChild && this.state.source[i].model.name === modelValue) {
 
 						if (this.props.fieldData.isChildModel) {
+							this.props.model[this.props.fieldData.modelField] = {};
 							this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] = modelValue;
 							this.props.model[this.props.fieldData.modelField].id = this.state.source[i].model.id;
 						} else {
@@ -146,11 +147,11 @@ class AutoCompleteControl extends React.Component {
 	}
 
 	componentWillMount() {
-		this.props.fieldData.checkErrors = this.checkErrors;
-		const modelValue = this.props.fieldData.isChildModel ? this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] : this.props.model[this.props.fieldData.name];
-		if (modelValue !== "" && modelValue != undefined) {
-			this.props.fieldData.value = modelValue;
-		}
+		//this.props.fieldData.checkErrors = this.checkErrors;
+		//const modelValue = this.props.fieldData.isChildModel ? this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] : this.props.model[this.props.fieldData.name];
+		//if (modelValue !== "" && modelValue != undefined) {
+		//	this.props.fieldData.value = modelValue;
+		//}
 	    var processData = this.updateData;
 	    if (this.state.autoCompleteData.length === 0) {
 			DataService.getItems(this.props.controller, processData);

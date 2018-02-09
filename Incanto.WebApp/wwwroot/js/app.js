@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 240);
+/******/ 	return __webpack_require__(__webpack_require__.s = 242);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,9 +71,9 @@
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(114);
-} else {
   module.exports = __webpack_require__(115);
+} else {
+  module.exports = __webpack_require__(116);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -366,7 +366,7 @@ module.exports = { "default": __webpack_require__(175), __esModule: true };
 
 exports.__esModule = true;
 
-var _typeof2 = __webpack_require__(44);
+var _typeof2 = __webpack_require__(45);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -397,7 +397,7 @@ var _create = __webpack_require__(199);
 
 var _create2 = _interopRequireDefault(_create);
 
-var _typeof2 = __webpack_require__(44);
+var _typeof2 = __webpack_require__(45);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -565,9 +565,9 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(116);
+  module.exports = __webpack_require__(117);
 } else {
-  module.exports = __webpack_require__(119);
+  module.exports = __webpack_require__(120);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -584,8 +584,8 @@ if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var store = __webpack_require__(63)('wks');
-var uid = __webpack_require__(43);
+var store = __webpack_require__(65)('wks');
+var uid = __webpack_require__(44);
 var Symbol = __webpack_require__(17).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
@@ -645,7 +645,7 @@ module.exports = emptyFunction;
 
 var global = __webpack_require__(17);
 var core = __webpack_require__(13);
-var ctx = __webpack_require__(58);
+var ctx = __webpack_require__(60);
 var hide = __webpack_require__(24);
 var PROTOTYPE = 'prototype';
 
@@ -724,7 +724,7 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 var anObject = __webpack_require__(25);
 var IE8_DOM_DEFINE = __webpack_require__(87);
-var toPrimitive = __webpack_require__(59);
+var toPrimitive = __webpack_require__(61);
 var dP = Object.defineProperty;
 
 exports.f = __webpack_require__(20) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
@@ -837,7 +837,7 @@ module.exports = function (it, key) {
 
 exports.__esModule = true;
 
-var _shouldUpdate = __webpack_require__(248);
+var _shouldUpdate = __webpack_require__(250);
 
 var _shouldUpdate2 = _interopRequireDefault(_shouldUpdate);
 
@@ -845,11 +845,11 @@ var _shallowEqual = __webpack_require__(39);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
-var _setDisplayName = __webpack_require__(228);
+var _setDisplayName = __webpack_require__(229);
 
 var _setDisplayName2 = _interopRequireDefault(_setDisplayName);
 
-var _wrapDisplayName = __webpack_require__(229);
+var _wrapDisplayName = __webpack_require__(230);
 
 var _wrapDisplayName2 = _interopRequireDefault(_wrapDisplayName);
 
@@ -882,7 +882,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _SvgIcon = __webpack_require__(251);
+var _SvgIcon = __webpack_require__(253);
 
 var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
 
@@ -934,7 +934,7 @@ module.exports = function (exec) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
 var IObject = __webpack_require__(91);
-var defined = __webpack_require__(56);
+var defined = __webpack_require__(58);
 module.exports = function (it) {
   return IObject(defined(it));
 };
@@ -961,204 +961,6 @@ module.exports = exports["default"];
 
 /***/ }),
 /* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var horizontal = _propTypes2.default.oneOf(['left', 'middle', 'right']);
-var vertical = _propTypes2.default.oneOf(['top', 'center', 'bottom']);
-
-exports.default = {
-
-  corners: _propTypes2.default.oneOf(['bottom-left', 'bottom-right', 'top-left', 'top-right']),
-
-  horizontal: horizontal,
-
-  vertical: vertical,
-
-  origin: _propTypes2.default.shape({
-    horizontal: horizontal,
-    vertical: vertical
-  }),
-
-  cornersAndCenter: _propTypes2.default.oneOf(['bottom-center', 'bottom-left', 'bottom-right', 'top-center', 'top-left', 'top-right']),
-
-  stringOrNumber: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
-
-  zDepth: _propTypes2.default.oneOf([0, 1, 2, 3, 4, 5])
-
-};
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-
-/* eslint-disable no-unused-vars */
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-function toObject(val) {
-	if (val === null || val === undefined) {
-		throw new TypeError('Object.assign cannot be called with null or undefined');
-	}
-
-	return Object(val);
-}
-
-function shouldUseNative() {
-	try {
-		if (!Object.assign) {
-			return false;
-		}
-
-		// Detect buggy property enumeration order in older V8 versions.
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
-		test1[5] = 'de';
-		if (Object.getOwnPropertyNames(test1)[0] === '5') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test2 = {};
-		for (var i = 0; i < 10; i++) {
-			test2['_' + String.fromCharCode(i)] = i;
-		}
-		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-			return test2[n];
-		});
-		if (order2.join('') !== '0123456789') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test3 = {};
-		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-			test3[letter] = letter;
-		});
-		if (Object.keys(Object.assign({}, test3)).join('') !==
-				'abcdefghijklmnopqrst') {
-			return false;
-		}
-
-		return true;
-	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
-		return false;
-	}
-}
-
-module.exports = shouldUseNative() ? Object.assign : function (target, source) {
-	var from;
-	var to = toObject(target);
-	var symbols;
-
-	for (var s = 1; s < arguments.length; s++) {
-		from = Object(arguments[s]);
-
-		for (var key in from) {
-			if (hasOwnProperty.call(from, key)) {
-				to[key] = from[key];
-			}
-		}
-
-		if (getOwnPropertySymbols) {
-			symbols = getOwnPropertySymbols(from);
-			for (var i = 0; i < symbols.length; i++) {
-				if (propIsEnumerable.call(from, symbols[i])) {
-					to[symbols[i]] = from[symbols[i]];
-				}
-			}
-		}
-	}
-
-	return to;
-};
-
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var validateFormat = function validateFormat(format) {};
-
-if (process.env.NODE_ENV !== 'production') {
-  validateFormat = function validateFormat(format) {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
-  };
-}
-
-function invariant(condition, format, a, b, c, d, e, f) {
-  validateFormat(format);
-
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(format.replace(/%s/g, function () {
-        return args[argIndex++];
-      }));
-      error.name = 'Invariant Violation';
-    }
-
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-}
-
-module.exports = invariant;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1454,6 +1256,204 @@ var darkWhite = exports.darkWhite = 'rgba(255, 255, 255, 0.87)';
 var lightWhite = exports.lightWhite = 'rgba(255, 255, 255, 0.54)';
 
 /***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var horizontal = _propTypes2.default.oneOf(['left', 'middle', 'right']);
+var vertical = _propTypes2.default.oneOf(['top', 'center', 'bottom']);
+
+exports.default = {
+
+  corners: _propTypes2.default.oneOf(['bottom-left', 'bottom-right', 'top-left', 'top-right']),
+
+  horizontal: horizontal,
+
+  vertical: vertical,
+
+  origin: _propTypes2.default.shape({
+    horizontal: horizontal,
+    vertical: vertical
+  }),
+
+  cornersAndCenter: _propTypes2.default.oneOf(['bottom-center', 'bottom-left', 'bottom-right', 'top-center', 'top-left', 'top-right']),
+
+  stringOrNumber: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+
+  zDepth: _propTypes2.default.oneOf([0, 1, 2, 3, 4, 5])
+
+};
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+
+/* eslint-disable no-unused-vars */
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+function toObject(val) {
+	if (val === null || val === undefined) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+function shouldUseNative() {
+	try {
+		if (!Object.assign) {
+			return false;
+		}
+
+		// Detect buggy property enumeration order in older V8 versions.
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		test1[5] = 'de';
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test2 = {};
+		for (var i = 0; i < 10; i++) {
+			test2['_' + String.fromCharCode(i)] = i;
+		}
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+			return test2[n];
+		});
+		if (order2.join('') !== '0123456789') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test3 = {};
+		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+			test3[letter] = letter;
+		});
+		if (Object.keys(Object.assign({}, test3)).join('') !==
+				'abcdefghijklmnopqrst') {
+			return false;
+		}
+
+		return true;
+	} catch (err) {
+		// We don't expect any of the above to throw, but better to be safe.
+		return false;
+	}
+}
+
+module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+	var from;
+	var to = toObject(target);
+	var symbols;
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = Object(arguments[s]);
+
+		for (var key in from) {
+			if (hasOwnProperty.call(from, key)) {
+				to[key] = from[key];
+			}
+		}
+
+		if (getOwnPropertySymbols) {
+			symbols = getOwnPropertySymbols(from);
+			for (var i = 0; i < symbols.length; i++) {
+				if (propIsEnumerable.call(from, symbols[i])) {
+					to[symbols[i]] = from[symbols[i]];
+				}
+			}
+		}
+	}
+
+	return to;
+};
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var validateFormat = function validateFormat(format) {};
+
+if (process.env.NODE_ENV !== 'production') {
+  validateFormat = function validateFormat(format) {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  };
+}
+
+function invariant(condition, format, a, b, c, d, e, f) {
+  validateFormat(format);
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(format.replace(/%s/g, function () {
+        return args[argIndex++];
+      }));
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+}
+
+module.exports = invariant;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
 /* 33 */
 /***/ (function(module, exports) {
 
@@ -1489,7 +1489,7 @@ module.exports = {};
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 var $keys = __webpack_require__(90);
-var enumBugKeys = __webpack_require__(64);
+var enumBugKeys = __webpack_require__(66);
 
 module.exports = Object.keys || function keys(O) {
   return $keys(O, enumBugKeys);
@@ -1501,7 +1501,7 @@ module.exports = Object.keys || function keys(O) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
-var defined = __webpack_require__(56);
+var defined = __webpack_require__(58);
 module.exports = function (it) {
   return Object(defined(it));
 };
@@ -1765,7 +1765,7 @@ function lighten(color, coefficient) {
 
 exports.__esModule = true;
 
-var _shallowEqual = __webpack_require__(42);
+var _shallowEqual = __webpack_require__(43);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
@@ -1775,6 +1775,135 @@ exports.default = _shallowEqual2.default;
 
 /***/ }),
 /* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _NotificationService = __webpack_require__(219);
+
+var _NotificationService2 = _interopRequireDefault(_NotificationService);
+
+var _RestApiCalls = __webpack_require__(104);
+
+var _RestApiCalls2 = _interopRequireDefault(_RestApiCalls);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var DataService = function () {
+	function DataService() {
+		_classCallCheck(this, DataService);
+
+		this.errorOccured = "Возникла ошибка: ";
+	}
+	//Get collection of object using api (host/api/controller/GetList)
+
+
+	_createClass(DataService, null, [{
+		key: "getItems",
+		value: function getItems(controller, callback) {
+			var errorMessage = this.errorOccured;
+			return _RestApiCalls2.default.get("/api/" + controller + "/GetList").then(function (response) {
+				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				//console.log("Data service finished");
+				if (callback !== null) {
+					callback(response.data);
+				}
+				//return response;
+			}).catch(function (err) {
+				//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
+			});
+		}
+	}, {
+		key: "getItemsWithParameters",
+		value: function getItemsWithParameters(controller, parameters, callback) {
+			var errorMessage = this.errorOccured;
+			return _RestApiCalls2.default.get("/api/" + controller + "/GetList?" + parameters).then(function (response) {
+				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				//console.log("Data service finished");
+				if (callback !== null) {
+					callback(response.data);
+				}
+				//return response;
+			}).catch(function (err) {
+				//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
+			});
+		}
+
+		//Get object by id using api (host/api/controller/GetObject)
+
+	}, {
+		key: "getObject",
+		value: function getObject(controller, objectId, callback) {
+			_RestApiCalls2.default.get("/api/" + controller + "/Get?id=" + objectId).then(function (response) {
+				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				if (callback !== null) {
+					callback(response.data);
+				}
+			}).catch(function (err) {
+				console.log(err);
+				//	NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
+			});
+		}
+		//Add new object using api (host/api/controller/Add)
+
+	}, {
+		key: "addObject",
+		value: function addObject(controller, model, callback) {
+			_RestApiCalls2.default.post("/api/" + controller + "/Add", model).then(function (response) {
+				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				if (callback !== null) {
+					callback(response.data);
+				}
+			}).catch(function (err) {
+				console.log(err);
+				//NotificationService.addNotification(this.errorOccured + err, function () { }, "Закрыть", false, false);
+			});
+		}
+		//Update object by model using api (/api/controller/Update) in server
+
+	}, {
+		key: "updateObject",
+		value: function updateObject(controller, model, callback) {
+			_RestApiCalls2.default.put("/api/" + controller + "/Update", model).then(function (response) {
+				//	NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				if (callback !== null) {
+					callback(response.data);
+				}
+			}).catch(function (err) {
+				console.log(err);
+				//NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
+			});
+		}
+		//Delete object by model using api (/api/${controller}/delete) model should contain "id" property
+
+	}, {
+		key: "deleteObject",
+		value: function deleteObject(controller, model, callback) {
+			_RestApiCalls2.default.del("/api/" + controller + "/Delete?id=" + model.id).then(function (response) {
+				//	NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+				callback();
+			}).catch(function (err) {
+				//NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
+			});
+		}
+	}]);
+
+	return DataService;
+}();
+
+exports.default = DataService;
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1798,7 +1927,7 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1867,7 +1996,7 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1938,7 +2067,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -1949,7 +2078,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1976,14 +2105,14 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 };
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports) {
 
 // Source: http://jsfiddle.net/vWx8V/
@@ -2135,7 +2264,7 @@ for (var alias in aliases) {
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2146,7 +2275,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _Paper = __webpack_require__(252);
+var _Paper = __webpack_require__(254);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -2155,252 +2284,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Paper2.default;
 
 /***/ }),
-/* 48 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  set: function set(style, key, value) {
-    style[key] = value;
-  }
-};
-
-/***/ }),
 /* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _getPrototypeOf = __webpack_require__(5);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _typeof2 = __webpack_require__(44);
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
-var _keys = __webpack_require__(75);
-
-var _keys2 = _interopRequireDefault(_keys);
-
-var _objectWithoutProperties2 = __webpack_require__(9);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _assign = __webpack_require__(101);
-
-var _assign2 = _interopRequireDefault(_assign);
-
-exports.withOptions = withOptions;
-
-var _react = __webpack_require__(0);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _shallowEqual = __webpack_require__(42);
-
-var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
-
-var _warning = __webpack_require__(19);
-
-var _warning2 = _interopRequireDefault(_warning);
-
-var _supports = __webpack_require__(213);
-
-var supports = _interopRequireWildcard(_supports);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var defaultEventOptions = {
-  capture: false,
-  passive: false
-};
-/* eslint-disable prefer-spread */
-
-function mergeDefaultEventOptions(options) {
-  return (0, _assign2.default)({}, defaultEventOptions, options);
-}
-
-function getEventListenerArgs(eventName, callback, options) {
-  var args = [eventName, callback];
-  args.push(supports.passiveOption ? options : options.capture);
-  return args;
-}
-
-function on(target, eventName, callback, options) {
-  if (supports.addEventListener) {
-    target.addEventListener.apply(target, getEventListenerArgs(eventName, callback, options));
-  } else if (supports.attachEvent) {
-    // IE8+ Support
-    target.attachEvent('on' + eventName, function () {
-      callback.call(target);
-    });
-  }
-}
-
-function off(target, eventName, callback, options) {
-  if (supports.removeEventListener) {
-    target.removeEventListener.apply(target, getEventListenerArgs(eventName, callback, options));
-  } else if (supports.detachEvent) {
-    // IE8+ Support
-    target.detachEvent('on' + eventName, callback);
-  }
-}
-
-function forEachListener(props, iteratee) {
-  var children = props.children,
-      target = props.target,
-      eventProps = (0, _objectWithoutProperties3.default)(props, ['children', 'target']);
-
-
-  (0, _keys2.default)(eventProps).forEach(function (name) {
-    if (name.substring(0, 2) !== 'on') {
-      return;
-    }
-
-    var prop = eventProps[name];
-    var type = typeof prop === 'undefined' ? 'undefined' : (0, _typeof3.default)(prop);
-    var isObject = type === 'object';
-    var isFunction = type === 'function';
-
-    if (!isObject && !isFunction) {
-      return;
-    }
-
-    var capture = name.substr(-7).toLowerCase() === 'capture';
-    var eventName = name.substring(2).toLowerCase();
-    eventName = capture ? eventName.substring(0, eventName.length - 7) : eventName;
-
-    if (isObject) {
-      iteratee(eventName, prop.handler, prop.options);
-    } else {
-      iteratee(eventName, prop, mergeDefaultEventOptions({ capture: capture }));
-    }
-  });
-}
-
-function withOptions(handler, options) {
-  process.env.NODE_ENV !== "production" ? (0, _warning2.default)(options, 'react-event-listener: Should be specified options in withOptions.') : void 0;
-
-  return {
-    handler: handler,
-    options: mergeDefaultEventOptions(options)
-  };
-}
-
-var EventListener = function (_Component) {
-  (0, _inherits3.default)(EventListener, _Component);
-
-  function EventListener() {
-    (0, _classCallCheck3.default)(this, EventListener);
-    return (0, _possibleConstructorReturn3.default)(this, (EventListener.__proto__ || (0, _getPrototypeOf2.default)(EventListener)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(EventListener, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.addListeners();
-    }
-  }, {
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps) {
-      return !(0, _shallowEqual2.default)(this.props, nextProps);
-    }
-  }, {
-    key: 'componentWillUpdate',
-    value: function componentWillUpdate() {
-      this.removeListeners();
-    }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
-      this.addListeners();
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      this.removeListeners();
-    }
-  }, {
-    key: 'addListeners',
-    value: function addListeners() {
-      this.applyListeners(on);
-    }
-  }, {
-    key: 'removeListeners',
-    value: function removeListeners() {
-      this.applyListeners(off);
-    }
-  }, {
-    key: 'applyListeners',
-    value: function applyListeners(onOrOff) {
-      var target = this.props.target;
-
-
-      if (target) {
-        var element = target;
-
-        if (typeof target === 'string') {
-          element = window[target];
-        }
-
-        forEachListener(this.props, onOrOff.bind(null, element));
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return this.props.children || null;
-    }
-  }]);
-  return EventListener;
-}(_react.Component);
-
-EventListener.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * You can provide a single child too.
-   */
-  children: _propTypes2.default.element,
-  /**
-   * The DOM target to listen to.
-   */
-  target: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.string]).isRequired
-} : {};
-exports.default = EventListener;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2420,93 +2304,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _FlatButton2.default;
 
 /***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-if (process.env.NODE_ENV !== 'production') {
-  var invariant = __webpack_require__(31);
-  var warning = __webpack_require__(41);
-  var ReactPropTypesSecret = __webpack_require__(52);
-  var loggedTypeFailures = {};
-}
-
-/**
- * Assert that the values match with the type specs.
- * Error messages are memorized and will only be shown once.
- *
- * @param {object} typeSpecs Map of name to a ReactPropType
- * @param {object} values Runtime values that need to be type-checked
- * @param {string} location e.g. "prop", "context", "child context"
- * @param {string} componentName Name of the component for error messages.
- * @param {?Function} getStack Returns the component stack.
- * @private
- */
-function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-  if (process.env.NODE_ENV !== 'production') {
-    for (var typeSpecName in typeSpecs) {
-      if (typeSpecs.hasOwnProperty(typeSpecName)) {
-        var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
-        try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
-          invariant(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
-          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
-        } catch (ex) {
-          error = ex;
-        }
-        warning(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
-        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
-          loggedTypeFailures[error.message] = true;
-
-          var stack = getStack ? getStack() : '';
-
-          warning(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
-        }
-      }
-    }
-  }
-}
-
-module.exports = checkPropTypes;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-module.exports = ReactPropTypesSecret;
-
-
-/***/ }),
-/* 53 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2516,7 +2314,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _toConsumableArray2 = __webpack_require__(54);
+var _toConsumableArray2 = __webpack_require__(56);
 
 var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
@@ -2556,7 +2354,7 @@ var _typography = __webpack_require__(174);
 
 var _typography2 = _interopRequireDefault(_typography);
 
-var _colors = __webpack_require__(32);
+var _colors = __webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2894,246 +2692,7 @@ function getMuiTheme(muiTheme) {
 }
 
 /***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _from = __webpack_require__(84);
-
-var _from2 = _interopRequireDefault(_from);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }
-
-    return arr2;
-  } else {
-    return (0, _from2.default)(arr);
-  }
-};
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports) {
-
-// 7.1.4 ToInteger
-var ceil = Math.ceil;
-var floor = Math.floor;
-module.exports = function (it) {
-  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
-};
-
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports) {
-
-// 7.2.1 RequireObjectCoercible(argument)
-module.exports = function (it) {
-  if (it == undefined) throw TypeError("Can't call method on  " + it);
-  return it;
-};
-
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports) {
-
-module.exports = true;
-
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// optional / simple context binding
-var aFunction = __webpack_require__(127);
-module.exports = function (fn, that, length) {
-  aFunction(fn);
-  if (that === undefined) return fn;
-  switch (length) {
-    case 1: return function (a) {
-      return fn.call(that, a);
-    };
-    case 2: return function (a, b) {
-      return fn.call(that, a, b);
-    };
-    case 3: return function (a, b, c) {
-      return fn.call(that, a, b, c);
-    };
-  }
-  return function (/* ...args */) {
-    return fn.apply(that, arguments);
-  };
-};
-
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(33);
-// instead of the ES6 spec version, we didn't implement @@toPrimitive case
-// and the second argument - flag - preferred type is a string
-module.exports = function (it, S) {
-  if (!isObject(it)) return it;
-  var fn, val;
-  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
-  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
-  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
-  throw TypeError("Can't convert object to primitive value");
-};
-
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-var anObject = __webpack_require__(25);
-var dPs = __webpack_require__(129);
-var enumBugKeys = __webpack_require__(64);
-var IE_PROTO = __webpack_require__(62)('IE_PROTO');
-var Empty = function () { /* empty */ };
-var PROTOTYPE = 'prototype';
-
-// Create object with fake `null` prototype: use iframe Object with cleared prototype
-var createDict = function () {
-  // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(88)('iframe');
-  var i = enumBugKeys.length;
-  var lt = '<';
-  var gt = '>';
-  var iframeDocument;
-  iframe.style.display = 'none';
-  __webpack_require__(132).appendChild(iframe);
-  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
-  // createDict = iframe.contentWindow.Object;
-  // html.removeChild(iframe);
-  iframeDocument = iframe.contentWindow.document;
-  iframeDocument.open();
-  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
-  iframeDocument.close();
-  createDict = iframeDocument.F;
-  while (i--) delete createDict[PROTOTYPE][enumBugKeys[i]];
-  return createDict();
-};
-
-module.exports = Object.create || function create(O, Properties) {
-  var result;
-  if (O !== null) {
-    Empty[PROTOTYPE] = anObject(O);
-    result = new Empty();
-    Empty[PROTOTYPE] = null;
-    // add "__proto__" for Object.getPrototypeOf polyfill
-    result[IE_PROTO] = O;
-  } else result = createDict();
-  return Properties === undefined ? result : dPs(result, Properties);
-};
-
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = function (it) {
-  return toString.call(it).slice(8, -1);
-};
-
-
-/***/ }),
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var shared = __webpack_require__(63)('keys');
-var uid = __webpack_require__(43);
-module.exports = function (key) {
-  return shared[key] || (shared[key] = uid(key));
-};
-
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__(17);
-var SHARED = '__core-js_shared__';
-var store = global[SHARED] || (global[SHARED] = {});
-module.exports = function (key) {
-  return store[key] || (store[key] = {});
-};
-
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports) {
-
-// IE 8- don't enum bug keys
-module.exports = (
-  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
-).split(',');
-
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var def = __webpack_require__(18).f;
-var has = __webpack_require__(21);
-var TAG = __webpack_require__(14)('toStringTag');
-
-module.exports = function (it, tag, stat) {
-  if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
-};
-
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = capitalizeString;
-function capitalizeString(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-module.exports = exports["default"];
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = isPrefixedValue;
-var regex = /-webkit-|-moz-|-ms-/;
-
-function isPrefixedValue(value) {
-  return typeof value === 'string' && regex.test(value);
-}
-module.exports = exports['default'];
-
-/***/ }),
-/* 68 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3169,7 +2728,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _getMuiTheme = __webpack_require__(53);
+var _getMuiTheme = __webpack_require__(50);
 
 var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
@@ -3210,20 +2769,590 @@ exports.default = MuiThemeProvider;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  set: function set(style, key, value) {
+    style[key] = value;
+  }
+};
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _typeof2 = __webpack_require__(45);
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+var _keys = __webpack_require__(75);
+
+var _keys2 = _interopRequireDefault(_keys);
+
+var _objectWithoutProperties2 = __webpack_require__(9);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _assign = __webpack_require__(101);
+
+var _assign2 = _interopRequireDefault(_assign);
+
+exports.withOptions = withOptions;
+
+var _react = __webpack_require__(0);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _shallowEqual = __webpack_require__(43);
+
+var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
+
+var _warning = __webpack_require__(19);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _supports = __webpack_require__(213);
+
+var supports = _interopRequireWildcard(_supports);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var defaultEventOptions = {
+  capture: false,
+  passive: false
+};
+/* eslint-disable prefer-spread */
+
+function mergeDefaultEventOptions(options) {
+  return (0, _assign2.default)({}, defaultEventOptions, options);
+}
+
+function getEventListenerArgs(eventName, callback, options) {
+  var args = [eventName, callback];
+  args.push(supports.passiveOption ? options : options.capture);
+  return args;
+}
+
+function on(target, eventName, callback, options) {
+  if (supports.addEventListener) {
+    target.addEventListener.apply(target, getEventListenerArgs(eventName, callback, options));
+  } else if (supports.attachEvent) {
+    // IE8+ Support
+    target.attachEvent('on' + eventName, function () {
+      callback.call(target);
+    });
+  }
+}
+
+function off(target, eventName, callback, options) {
+  if (supports.removeEventListener) {
+    target.removeEventListener.apply(target, getEventListenerArgs(eventName, callback, options));
+  } else if (supports.detachEvent) {
+    // IE8+ Support
+    target.detachEvent('on' + eventName, callback);
+  }
+}
+
+function forEachListener(props, iteratee) {
+  var children = props.children,
+      target = props.target,
+      eventProps = (0, _objectWithoutProperties3.default)(props, ['children', 'target']);
+
+
+  (0, _keys2.default)(eventProps).forEach(function (name) {
+    if (name.substring(0, 2) !== 'on') {
+      return;
+    }
+
+    var prop = eventProps[name];
+    var type = typeof prop === 'undefined' ? 'undefined' : (0, _typeof3.default)(prop);
+    var isObject = type === 'object';
+    var isFunction = type === 'function';
+
+    if (!isObject && !isFunction) {
+      return;
+    }
+
+    var capture = name.substr(-7).toLowerCase() === 'capture';
+    var eventName = name.substring(2).toLowerCase();
+    eventName = capture ? eventName.substring(0, eventName.length - 7) : eventName;
+
+    if (isObject) {
+      iteratee(eventName, prop.handler, prop.options);
+    } else {
+      iteratee(eventName, prop, mergeDefaultEventOptions({ capture: capture }));
+    }
+  });
+}
+
+function withOptions(handler, options) {
+  process.env.NODE_ENV !== "production" ? (0, _warning2.default)(options, 'react-event-listener: Should be specified options in withOptions.') : void 0;
+
+  return {
+    handler: handler,
+    options: mergeDefaultEventOptions(options)
+  };
+}
+
+var EventListener = function (_Component) {
+  (0, _inherits3.default)(EventListener, _Component);
+
+  function EventListener() {
+    (0, _classCallCheck3.default)(this, EventListener);
+    return (0, _possibleConstructorReturn3.default)(this, (EventListener.__proto__ || (0, _getPrototypeOf2.default)(EventListener)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(EventListener, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.addListeners();
+    }
+  }, {
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps) {
+      return !(0, _shallowEqual2.default)(this.props, nextProps);
+    }
+  }, {
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate() {
+      this.removeListeners();
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      this.addListeners();
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.removeListeners();
+    }
+  }, {
+    key: 'addListeners',
+    value: function addListeners() {
+      this.applyListeners(on);
+    }
+  }, {
+    key: 'removeListeners',
+    value: function removeListeners() {
+      this.applyListeners(off);
+    }
+  }, {
+    key: 'applyListeners',
+    value: function applyListeners(onOrOff) {
+      var target = this.props.target;
+
+
+      if (target) {
+        var element = target;
+
+        if (typeof target === 'string') {
+          element = window[target];
+        }
+
+        forEachListener(this.props, onOrOff.bind(null, element));
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return this.props.children || null;
+    }
+  }]);
+  return EventListener;
+}(_react.Component);
+
+EventListener.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * You can provide a single child too.
+   */
+  children: _propTypes2.default.element,
+  /**
+   * The DOM target to listen to.
+   */
+  target: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.string]).isRequired
+} : {};
+exports.default = EventListener;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+if (process.env.NODE_ENV !== 'production') {
+  var invariant = __webpack_require__(32);
+  var warning = __webpack_require__(42);
+  var ReactPropTypesSecret = __webpack_require__(55);
+  var loggedTypeFailures = {};
+}
+
+/**
+ * Assert that the values match with the type specs.
+ * Error messages are memorized and will only be shown once.
+ *
+ * @param {object} typeSpecs Map of name to a ReactPropType
+ * @param {object} values Runtime values that need to be type-checked
+ * @param {string} location e.g. "prop", "context", "child context"
+ * @param {string} componentName Name of the component for error messages.
+ * @param {?Function} getStack Returns the component stack.
+ * @private
+ */
+function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+  if (process.env.NODE_ENV !== 'production') {
+    for (var typeSpecName in typeSpecs) {
+      if (typeSpecs.hasOwnProperty(typeSpecName)) {
+        var error;
+        // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          invariant(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
+        } catch (ex) {
+          error = ex;
+        }
+        warning(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
+        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures[error.message] = true;
+
+          var stack = getStack ? getStack() : '';
+
+          warning(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
+        }
+      }
+    }
+  }
+}
+
+module.exports = checkPropTypes;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _from = __webpack_require__(84);
+
+var _from2 = _interopRequireDefault(_from);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  } else {
+    return (0, _from2.default)(arr);
+  }
+};
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports) {
+
+// 7.1.4 ToInteger
+var ceil = Math.ceil;
+var floor = Math.floor;
+module.exports = function (it) {
+  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+};
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports) {
+
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function (it) {
+  if (it == undefined) throw TypeError("Can't call method on  " + it);
+  return it;
+};
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports) {
+
+module.exports = true;
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// optional / simple context binding
+var aFunction = __webpack_require__(127);
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = __webpack_require__(33);
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function (it, S) {
+  if (!isObject(it)) return it;
+  var fn, val;
+  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+var anObject = __webpack_require__(25);
+var dPs = __webpack_require__(129);
+var enumBugKeys = __webpack_require__(66);
+var IE_PROTO = __webpack_require__(64)('IE_PROTO');
+var Empty = function () { /* empty */ };
+var PROTOTYPE = 'prototype';
+
+// Create object with fake `null` prototype: use iframe Object with cleared prototype
+var createDict = function () {
+  // Thrash, waste and sodomy: IE GC bug
+  var iframe = __webpack_require__(88)('iframe');
+  var i = enumBugKeys.length;
+  var lt = '<';
+  var gt = '>';
+  var iframeDocument;
+  iframe.style.display = 'none';
+  __webpack_require__(132).appendChild(iframe);
+  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
+  // createDict = iframe.contentWindow.Object;
+  // html.removeChild(iframe);
+  iframeDocument = iframe.contentWindow.document;
+  iframeDocument.open();
+  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
+  iframeDocument.close();
+  createDict = iframeDocument.F;
+  while (i--) delete createDict[PROTOTYPE][enumBugKeys[i]];
+  return createDict();
+};
+
+module.exports = Object.create || function create(O, Properties) {
+  var result;
+  if (O !== null) {
+    Empty[PROTOTYPE] = anObject(O);
+    result = new Empty();
+    Empty[PROTOTYPE] = null;
+    // add "__proto__" for Object.getPrototypeOf polyfill
+    result[IE_PROTO] = O;
+  } else result = createDict();
+  return Properties === undefined ? result : dPs(result, Properties);
+};
+
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = function (it) {
+  return toString.call(it).slice(8, -1);
+};
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var shared = __webpack_require__(65)('keys');
+var uid = __webpack_require__(44);
+module.exports = function (key) {
+  return shared[key] || (shared[key] = uid(key));
+};
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__(17);
+var SHARED = '__core-js_shared__';
+var store = global[SHARED] || (global[SHARED] = {});
+module.exports = function (key) {
+  return store[key] || (store[key] = {});
+};
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports) {
+
+// IE 8- don't enum bug keys
+module.exports = (
+  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
+).split(',');
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var def = __webpack_require__(18).f;
+var has = __webpack_require__(21);
+var TAG = __webpack_require__(14)('toStringTag');
+
+module.exports = function (it, tag, stat) {
+  if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
+};
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = capitalizeString;
+function capitalizeString(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+module.exports = exports["default"];
+
+/***/ }),
 /* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = isPrefixedValue;
+var regex = /-webkit-|-moz-|-ms-/;
+
+function isPrefixedValue(value) {
+  return typeof value === 'string' && regex.test(value);
+}
+module.exports = exports['default'];
+
+/***/ }),
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports.f = __webpack_require__(14);
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(17);
 var core = __webpack_require__(13);
-var LIBRARY = __webpack_require__(57);
-var wksExt = __webpack_require__(69);
+var LIBRARY = __webpack_require__(59);
+var wksExt = __webpack_require__(70);
 var defineProperty = __webpack_require__(18).f;
 module.exports = function (name) {
   var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
@@ -3232,14 +3361,14 @@ module.exports = function (name) {
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3250,7 +3379,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _IconButton = __webpack_require__(244);
+var _IconButton = __webpack_require__(246);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -3259,7 +3388,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _IconButton2.default;
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3302,131 +3431,6 @@ exports.default = {
     return ['keydown', 'keypress', 'keyup'].indexOf(event.type) !== -1;
   }
 };
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _NotificationService = __webpack_require__(218);
-
-var _NotificationService2 = _interopRequireDefault(_NotificationService);
-
-var _RestApiCalls = __webpack_require__(113);
-
-var _RestApiCalls2 = _interopRequireDefault(_RestApiCalls);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var DataService = function () {
-	function DataService() {
-		_classCallCheck(this, DataService);
-
-		this.errorOccured = "Возникла ошибка: ";
-	}
-	//Get collection of object using api (host/api/controller/GetList)
-
-
-	_createClass(DataService, null, [{
-		key: "getItems",
-		value: function getItems(controller, callback) {
-			var errorMessage = this.errorOccured;
-			return _RestApiCalls2.default.get("/api/" + controller + "/GetList").then(function (response) {
-				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-				//console.log("Data service finished");
-				if (callback !== null) {
-					callback(response.data);
-				}
-				//return response;
-			}).catch(function (err) {
-				//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
-			});
-		}
-	}, {
-		key: "getItemsWithParameters",
-		value: function getItemsWithParameters(controller, parameters, callback) {
-			var errorMessage = this.errorOccured;
-			return _RestApiCalls2.default.get("/api/" + controller + "/GetList?" + parameters).then(function (response) {
-				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-				//console.log("Data service finished");
-				if (callback !== null) {
-					callback(response.data);
-				}
-				//return response;
-			}).catch(function (err) {
-				//	NotificationService.addNotification(errorMessage + err, function () { }, false, false);
-			});
-		}
-
-		//Get object by id using api (host/api/controller/GetObject)
-
-	}, {
-		key: "getObject",
-		value: function getObject(controller, objectId, callback) {
-			_RestApiCalls2.default.get("/api/" + controller + "/Get?id=" + objectId).then(function (response) {
-				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-				if (callback !== null) {
-					callback(response.data);
-				}
-			}).catch(function (err) {
-				console.log(err);
-				//	NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
-			});
-		}
-		//Add new object using api (host/api/controller/Add)
-
-	}, {
-		key: "addObject",
-		value: function addObject(controller, model, callback) {
-			_RestApiCalls2.default.post("/api/" + controller + "/Add", model).then(function (response) {
-				//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-				if (callback !== null) {
-					callback(response.data);
-				}
-			}).catch(function (err) {
-				_NotificationService2.default.addNotification(this.errorOccured + err, function () {}, "Закрыть", false, false);
-			});
-		}
-		//Update object by model using api (/api/controller/Update) in server
-
-	}, {
-		key: "updateObject",
-		value: function updateObject(controller, model, callback) {
-			_RestApiCalls2.default.put("/api/" + controller + "/Update", model).then(function (response) {
-				_NotificationService2.default.addNotification(response.data.message, function () {}, true, response.data.wasSuccessful);
-				callback();
-			}).catch(function (err) {
-				_NotificationService2.default.addNotification(this.errorOccured + err, function () {}, false, false);
-			});
-		}
-		//Delete object by model using api (/api/${controller}/delete) model should contain "id" property
-
-	}, {
-		key: "deleteObject",
-		value: function deleteObject(controller, model, callback) {
-			_RestApiCalls2.default.del("/api/" + controller + "/Delete?id=" + model.id).then(function (response) {
-				_NotificationService2.default.addNotification(response.data.message, function () {}, true, response.data.wasSuccessful);
-				callback();
-			}).catch(function (err) {
-				_NotificationService2.default.addNotification(this.errorOccured + err, function () {}, false, false);
-			});
-		}
-	}]);
-
-	return DataService;
-}();
-
-exports.default = DataService;
 
 /***/ }),
 /* 75 */
@@ -3491,19 +3495,19 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _events = __webpack_require__(73);
+var _events = __webpack_require__(74);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
-var _FocusRipple = __webpack_require__(105);
+var _FocusRipple = __webpack_require__(108);
 
 var _FocusRipple2 = _interopRequireDefault(_FocusRipple);
 
-var _TouchRipple = __webpack_require__(106);
+var _TouchRipple = __webpack_require__(109);
 
 var _TouchRipple2 = _interopRequireDefault(_TouchRipple);
 
@@ -4298,7 +4302,7 @@ module.exports = getActiveElement;
  * 
  */
 
-var isTextNode = __webpack_require__(117);
+var isTextNode = __webpack_require__(118);
 
 /*eslint-disable no-bitwise */
 
@@ -4391,14 +4395,14 @@ __webpack_require__(86)(String, 'String', function (iterated) {
 
 "use strict";
 
-var LIBRARY = __webpack_require__(57);
+var LIBRARY = __webpack_require__(59);
 var $export = __webpack_require__(16);
 var redefine = __webpack_require__(89);
 var hide = __webpack_require__(24);
 var has = __webpack_require__(21);
 var Iterators = __webpack_require__(35);
 var $iterCreate = __webpack_require__(128);
-var setToStringTag = __webpack_require__(65);
+var setToStringTag = __webpack_require__(67);
 var getPrototypeOf = __webpack_require__(93);
 var ITERATOR = __webpack_require__(14)('iterator');
 var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
@@ -4498,7 +4502,7 @@ module.exports = __webpack_require__(24);
 var has = __webpack_require__(21);
 var toIObject = __webpack_require__(27);
 var arrayIndexOf = __webpack_require__(130)(false);
-var IE_PROTO = __webpack_require__(62)('IE_PROTO');
+var IE_PROTO = __webpack_require__(64)('IE_PROTO');
 
 module.exports = function (object, names) {
   var O = toIObject(object);
@@ -4519,7 +4523,7 @@ module.exports = function (object, names) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(61);
+var cof = __webpack_require__(63);
 // eslint-disable-next-line no-prototype-builtins
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
@@ -4531,7 +4535,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
-var toInteger = __webpack_require__(55);
+var toInteger = __webpack_require__(57);
 var min = Math.min;
 module.exports = function (it) {
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
@@ -4545,7 +4549,7 @@ module.exports = function (it) {
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has = __webpack_require__(21);
 var toObject = __webpack_require__(37);
-var IE_PROTO = __webpack_require__(62)('IE_PROTO');
+var IE_PROTO = __webpack_require__(64)('IE_PROTO');
 var ObjectProto = Object.prototype;
 
 module.exports = Object.getPrototypeOf || function (O) {
@@ -4670,7 +4674,7 @@ module.exports = function (KEY, exec) {
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
 var $keys = __webpack_require__(90);
-var hiddenKeys = __webpack_require__(64).concat('length', 'prototype');
+var hiddenKeys = __webpack_require__(66).concat('length', 'prototype');
 
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return $keys(O, hiddenKeys);
@@ -4681,10 +4685,10 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 /* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE = __webpack_require__(45);
+var pIE = __webpack_require__(46);
 var createDesc = __webpack_require__(34);
 var toIObject = __webpack_require__(27);
-var toPrimitive = __webpack_require__(59);
+var toPrimitive = __webpack_require__(61);
 var has = __webpack_require__(21);
 var IE8_DOM_DEFINE = __webpack_require__(87);
 var gOPD = Object.getOwnPropertyDescriptor;
@@ -4746,7 +4750,7 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _events = __webpack_require__(73);
+var _events = __webpack_require__(74);
 
 var _events2 = _interopRequireDefault(_events);
 
@@ -4851,6 +4855,144 @@ exports.default = ClickAwayListener;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = undefined;
+
+var _MenuItem = __webpack_require__(215);
+
+var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _MenuItem2.default;
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _axios = __webpack_require__(225);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var RestApiCalls = function () {
+    function RestApiCalls() {
+        _classCallCheck(this, RestApiCalls);
+    }
+
+    _createClass(RestApiCalls, null, [{
+        key: "get",
+        value: function get(url) {
+            return _axios2.default.get(url).then(function (response) {
+                return response;
+            });
+        }
+    }, {
+        key: "post",
+        value: function post(url, model) {
+            return _axios2.default.post(url, model);
+        }
+    }, {
+        key: "put",
+        value: function put(url, model) {
+            return _axios2.default.put(url, model);
+        }
+    }, {
+        key: "del",
+        value: function del(url) {
+            return _axios2.default.delete(url);
+        }
+    }, {
+        key: "deleteMultiple",
+        value: function deleteMultiple(url, model) {
+            return _axios2.default.delete(url, model);
+        }
+
+        //static _getAuthorizationHeadersConfig() {
+        //    return UserService.getUser()
+        //        .then(function (user) {
+        //            const config = {};
+        //            if (user) {
+        //                const authHeader = "Bearer ".concat(user.access_token);
+        //                config.headers = { Authorization: authHeader };
+        //                config.withCredentials = true;
+        //            }
+        //            return config;
+        //        });
+        //}
+
+    }]);
+
+    return RestApiCalls;
+}();
+
+exports.default = RestApiCalls;
+;
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _colors = __webpack_require__(29);
+
+var _colorManipulator = __webpack_require__(38);
+
+var _spacing = __webpack_require__(106);
+
+var _spacing2 = _interopRequireDefault(_spacing);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  spacing: _spacing2.default,
+  fontFamily: 'Roboto, sans-serif',
+  borderRadius: 2,
+  palette: {
+    primary1Color: _colors.cyan700,
+    primary2Color: _colors.cyan700,
+    primary3Color: _colors.grey600,
+    accent1Color: _colors.pinkA200,
+    accent2Color: _colors.pinkA400,
+    accent3Color: _colors.pinkA100,
+    textColor: _colors.fullWhite,
+    secondaryTextColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.7),
+    alternateTextColor: '#303030',
+    canvasColor: '#303030',
+    borderColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.3),
+    disabledColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.3),
+    pickerHeaderColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.12),
+    clockCircleColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.12)
+  }
+};
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = {
   iconSize: 24,
 
@@ -4867,7 +5009,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 104 */
+/* 107 */
 /***/ (function(module, exports) {
 
 var g;
@@ -4894,7 +5036,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 105 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4944,7 +5086,7 @@ var _shallowEqual = __webpack_require__(39);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
-var _autoPrefix = __webpack_require__(48);
+var _autoPrefix = __webpack_require__(52);
 
 var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
 
@@ -5100,7 +5242,7 @@ exports.default = FocusRipple;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 106 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5110,7 +5252,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _toConsumableArray2 = __webpack_require__(54);
+var _toConsumableArray2 = __webpack_require__(56);
 
 var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
@@ -5134,7 +5276,7 @@ var _inherits2 = __webpack_require__(7);
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _toArray2 = __webpack_require__(107);
+var _toArray2 = __webpack_require__(110);
 
 var _toArray3 = _interopRequireDefault(_toArray2);
 
@@ -5158,7 +5300,7 @@ var _TransitionGroup = __webpack_require__(78);
 
 var _TransitionGroup2 = _interopRequireDefault(_TransitionGroup);
 
-var _dom = __webpack_require__(108);
+var _dom = __webpack_require__(111);
 
 var _dom2 = _interopRequireDefault(_dom);
 
@@ -5418,7 +5560,7 @@ exports.default = TouchRipple;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 107 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5437,7 +5579,7 @@ exports.default = function (arr) {
 };
 
 /***/ }),
-/* 108 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5467,7 +5609,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 109 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5485,7 +5627,7 @@ var _objectWithoutProperties2 = __webpack_require__(9);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-var _toArray2 = __webpack_require__(107);
+var _toArray2 = __webpack_require__(110);
 
 var _toArray3 = _interopRequireDefault(_toArray2);
 
@@ -5533,19 +5675,19 @@ var _ClickAwayListener = __webpack_require__(102);
 
 var _ClickAwayListener2 = _interopRequireDefault(_ClickAwayListener);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
-var _propTypes3 = __webpack_require__(29);
+var _propTypes3 = __webpack_require__(30);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
-var _List = __webpack_require__(231);
+var _List = __webpack_require__(232);
 
 var _List2 = _interopRequireDefault(_List);
 
-var _menuUtils = __webpack_require__(256);
+var _menuUtils = __webpack_require__(258);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6183,7 +6325,7 @@ exports.default = Menu;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 110 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6237,27 +6379,27 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactEventListener = __webpack_require__(49);
+var _reactEventListener = __webpack_require__(53);
 
 var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
 
-var _RenderToLayer = __webpack_require__(232);
+var _RenderToLayer = __webpack_require__(233);
 
 var _RenderToLayer2 = _interopRequireDefault(_RenderToLayer);
 
-var _propTypes3 = __webpack_require__(29);
+var _propTypes3 = __webpack_require__(30);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
-var _lodash = __webpack_require__(257);
+var _lodash = __webpack_require__(259);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _PopoverAnimationDefault = __webpack_require__(258);
+var _PopoverAnimationDefault = __webpack_require__(260);
 
 var _PopoverAnimationDefault2 = _interopRequireDefault(_PopoverAnimationDefault);
 
@@ -6715,7 +6857,7 @@ exports.default = Popover;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 111 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6726,27 +6868,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _MenuItem = __webpack_require__(215);
-
-var _MenuItem2 = _interopRequireDefault(_MenuItem);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _MenuItem2.default;
-
-/***/ }),
-/* 112 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _RaisedButton = __webpack_require__(275);
+var _RaisedButton = __webpack_require__(276);
 
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -6755,77 +6877,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _RaisedButton2.default;
 
 /***/ }),
-/* 113 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _axios = __webpack_require__(224);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var RestApiCalls = function () {
-    function RestApiCalls() {
-        _classCallCheck(this, RestApiCalls);
-    }
-
-    _createClass(RestApiCalls, null, [{
-        key: "get",
-        value: function get(url) {
-            return _axios2.default.get(url).then(function (response) {
-                return response;
-            });
-        }
-    }, {
-        key: "post",
-        value: function post(url, model) {
-            return _axios2.default.post(url, model);
-        }
-    }, {
-        key: "put",
-        value: function put(url, model) {
-            return _axios2.default.put(url, model);
-        }
-    }, {
-        key: "del",
-        value: function del(url) {
-            return _axios2.default.delete(url);
-        }
-
-        //static _getAuthorizationHeadersConfig() {
-        //    return UserService.getUser()
-        //        .then(function (user) {
-        //            const config = {};
-        //            if (user) {
-        //                const authHeader = "Bearer ".concat(user.access_token);
-        //                config.headers = { Authorization: authHeader };
-        //                config.withCredentials = true;
-        //            }
-        //            return config;
-        //        });
-        //}
-
-    }]);
-
-    return RestApiCalls;
-}();
-
-exports.default = RestApiCalls;
-;
-
-/***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6837,7 +6889,7 @@ exports.default = RestApiCalls;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var m=__webpack_require__(30),n=__webpack_require__(40),p=__webpack_require__(15);
+var m=__webpack_require__(31),n=__webpack_require__(41),p=__webpack_require__(15);
 function q(a){for(var b=arguments.length-1,e="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)e+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var r={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function t(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}t.prototype.isReactComponent={};t.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?q("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};t.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function u(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}function v(){}v.prototype=t.prototype;var w=u.prototype=new v;w.constructor=u;m(w,t.prototype);w.isPureReactComponent=!0;function x(a,b,e){this.props=a;this.context=b;this.refs=n;this.updater=e||r}var y=x.prototype=new v;y.constructor=x;m(y,t.prototype);y.unstable_isAsyncReactComponent=!0;y.render=function(){return this.props.children};
@@ -6854,7 +6906,7 @@ version:"16.1.1",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED:{ReactCurren
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6873,12 +6925,12 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var _assign = __webpack_require__(30);
-var invariant = __webpack_require__(31);
-var emptyObject = __webpack_require__(40);
-var warning = __webpack_require__(41);
+var _assign = __webpack_require__(31);
+var invariant = __webpack_require__(32);
+var emptyObject = __webpack_require__(41);
+var warning = __webpack_require__(42);
 var emptyFunction = __webpack_require__(15);
-var checkPropTypes = __webpack_require__(51);
+var checkPropTypes = __webpack_require__(54);
 
 // TODO: this is special because it gets imported during build.
 
@@ -8205,7 +8257,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8220,7 +8272,7 @@ module.exports = react;
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0),m=__webpack_require__(79),A=__webpack_require__(30),B=__webpack_require__(15),ca=__webpack_require__(80),da=__webpack_require__(81),ea=__webpack_require__(42),ha=__webpack_require__(82),ia=__webpack_require__(83),C=__webpack_require__(40);
+var aa=__webpack_require__(0),m=__webpack_require__(79),A=__webpack_require__(31),B=__webpack_require__(15),ca=__webpack_require__(80),da=__webpack_require__(81),ea=__webpack_require__(43),ha=__webpack_require__(82),ia=__webpack_require__(83),C=__webpack_require__(41);
 function D(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:D("227");
 var la={children:!0,dangerouslySetInnerHTML:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,suppressHydrationWarning:!0,style:!0};function qa(a,b){return(a&b)===b}
 var ra={MUST_USE_PROPERTY:1,HAS_BOOLEAN_VALUE:4,HAS_NUMERIC_VALUE:8,HAS_POSITIVE_NUMERIC_VALUE:24,HAS_OVERLOADED_BOOLEAN_VALUE:32,HAS_STRING_BOOLEAN_VALUE:64,injectDOMPropertyConfig:function(a){var b=ra,c=a.Properties||{},d=a.DOMAttributeNamespaces||{},e=a.DOMAttributeNames||{};a=a.DOMMutationMethods||{};for(var f in c){sa.hasOwnProperty(f)?D("48",f):void 0;var g=f.toLowerCase(),k=c[f];g={attributeName:g,attributeNamespace:null,propertyName:f,mutationMethod:null,mustUseProperty:qa(k,b.MUST_USE_PROPERTY),
@@ -8439,7 +8491,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:qb,bundleType:0,version:"16.1.1",r
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8454,7 +8506,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:qb,bundleType:0,version:"16.1.1",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(118);
+var isNode = __webpack_require__(119);
 
 /**
  * @param {*} object The object to check.
@@ -8467,7 +8519,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8495,7 +8547,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8515,20 +8567,20 @@ if (process.env.NODE_ENV !== "production") {
 'use strict';
 
 var React = __webpack_require__(0);
-var invariant = __webpack_require__(31);
-var warning = __webpack_require__(41);
+var invariant = __webpack_require__(32);
+var warning = __webpack_require__(42);
 var ExecutionEnvironment = __webpack_require__(79);
-var _assign = __webpack_require__(30);
+var _assign = __webpack_require__(31);
 var emptyFunction$1 = __webpack_require__(15);
 var EventListener = __webpack_require__(80);
 var getActiveElement = __webpack_require__(81);
-var shallowEqual = __webpack_require__(42);
+var shallowEqual = __webpack_require__(43);
 var containsNode = __webpack_require__(82);
 var focusNode = __webpack_require__(83);
-var emptyObject = __webpack_require__(40);
-var checkPropTypes = __webpack_require__(51);
-var hyphenateStyleName = __webpack_require__(120);
-var camelizeStyleName = __webpack_require__(122);
+var emptyObject = __webpack_require__(41);
+var checkPropTypes = __webpack_require__(54);
+var hyphenateStyleName = __webpack_require__(121);
+var camelizeStyleName = __webpack_require__(123);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -23903,7 +23955,7 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23918,7 +23970,7 @@ module.exports = reactDom;
 
 
 
-var hyphenate = __webpack_require__(121);
+var hyphenate = __webpack_require__(122);
 
 var msPattern = /^ms-/;
 
@@ -23945,7 +23997,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23981,7 +24033,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23996,7 +24048,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(123);
+var camelize = __webpack_require__(124);
 
 var msPattern = /^-ms-/;
 
@@ -24024,7 +24076,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24059,49 +24111,6 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 124 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _colors = __webpack_require__(32);
-
-var _colorManipulator = __webpack_require__(38);
-
-var _spacing = __webpack_require__(103);
-
-var _spacing2 = _interopRequireDefault(_spacing);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  spacing: _spacing2.default,
-  fontFamily: 'Roboto, sans-serif',
-  borderRadius: 2,
-  palette: {
-    primary1Color: _colors.cyan700,
-    primary2Color: _colors.cyan700,
-    primary3Color: _colors.grey600,
-    accent1Color: _colors.pinkA200,
-    accent2Color: _colors.pinkA400,
-    accent3Color: _colors.pinkA100,
-    textColor: _colors.fullWhite,
-    secondaryTextColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.7),
-    alternateTextColor: '#303030',
-    canvasColor: '#303030',
-    borderColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.3),
-    disabledColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.3),
-    pickerHeaderColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.12),
-    clockCircleColor: (0, _colorManipulator.fade)(_colors.fullWhite, 0.12)
-  }
-};
-
-/***/ }),
 /* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24114,8 +24123,8 @@ module.exports = __webpack_require__(13).Array.from;
 /* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(55);
-var defined = __webpack_require__(56);
+var toInteger = __webpack_require__(57);
+var defined = __webpack_require__(58);
 // true  -> String#at
 // false -> String#codePointAt
 module.exports = function (TO_STRING) {
@@ -24149,9 +24158,9 @@ module.exports = function (it) {
 
 "use strict";
 
-var create = __webpack_require__(60);
+var create = __webpack_require__(62);
 var descriptor = __webpack_require__(34);
-var setToStringTag = __webpack_require__(65);
+var setToStringTag = __webpack_require__(67);
 var IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
@@ -24215,7 +24224,7 @@ module.exports = function (IS_INCLUDES) {
 /* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(55);
+var toInteger = __webpack_require__(57);
 var max = Math.max;
 var min = Math.min;
 module.exports = function (index, length) {
@@ -24238,7 +24247,7 @@ module.exports = document && document.documentElement;
 
 "use strict";
 
-var ctx = __webpack_require__(58);
+var ctx = __webpack_require__(60);
 var $export = __webpack_require__(16);
 var toObject = __webpack_require__(37);
 var call = __webpack_require__(134);
@@ -24342,7 +24351,7 @@ module.exports = __webpack_require__(13).getIteratorMethod = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(61);
+var cof = __webpack_require__(63);
 var TAG = __webpack_require__(14)('toStringTag');
 // ES3 wrong here
 var ARG = cof(function () { return arguments; }()) == 'Arguments';
@@ -26606,7 +26615,7 @@ function stubFalse() {
 
 module.exports = merge;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(104), __webpack_require__(141)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(107), __webpack_require__(141)(module)))
 
 /***/ }),
 /* 141 */
@@ -26647,11 +26656,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _colors = __webpack_require__(32);
+var _colors = __webpack_require__(29);
 
 var _colorManipulator = __webpack_require__(38);
 
-var _spacing = __webpack_require__(103);
+var _spacing = __webpack_require__(106);
 
 var _spacing2 = _interopRequireDefault(_spacing);
 
@@ -26883,7 +26892,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = prefixProperty;
 
-var _capitalizeString = __webpack_require__(66);
+var _capitalizeString = __webpack_require__(68);
 
 var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
 
@@ -26922,7 +26931,7 @@ var _getPrefixedKeyframes = __webpack_require__(151);
 
 var _getPrefixedKeyframes2 = _interopRequireDefault(_getPrefixedKeyframes);
 
-var _capitalizeString = __webpack_require__(66);
+var _capitalizeString = __webpack_require__(68);
 
 var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
 
@@ -28332,7 +28341,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = calc;
 
-var _isPrefixedValue = __webpack_require__(67);
+var _isPrefixedValue = __webpack_require__(69);
 
 var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
@@ -28463,7 +28472,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = gradient;
 
-var _isPrefixedValue = __webpack_require__(67);
+var _isPrefixedValue = __webpack_require__(69);
 
 var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
@@ -28537,11 +28546,11 @@ var _hyphenateProperty = __webpack_require__(97);
 
 var _hyphenateProperty2 = _interopRequireDefault(_hyphenateProperty);
 
-var _isPrefixedValue = __webpack_require__(67);
+var _isPrefixedValue = __webpack_require__(69);
 
 var _isPrefixedValue2 = _interopRequireDefault(_isPrefixedValue);
 
-var _capitalizeString = __webpack_require__(66);
+var _capitalizeString = __webpack_require__(68);
 
 var _capitalizeString2 = _interopRequireDefault(_capitalizeString);
 
@@ -28825,7 +28834,7 @@ var _classCallCheck2 = __webpack_require__(3);
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _colors = __webpack_require__(32);
+var _colors = __webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28906,7 +28915,7 @@ module.exports = { "default": __webpack_require__(180), __esModule: true };
 
 __webpack_require__(85);
 __webpack_require__(181);
-module.exports = __webpack_require__(69).f('iterator');
+module.exports = __webpack_require__(70).f('iterator');
 
 
 /***/ }),
@@ -29022,19 +29031,19 @@ var $export = __webpack_require__(16);
 var redefine = __webpack_require__(89);
 var META = __webpack_require__(188).KEY;
 var $fails = __webpack_require__(26);
-var shared = __webpack_require__(63);
-var setToStringTag = __webpack_require__(65);
-var uid = __webpack_require__(43);
+var shared = __webpack_require__(65);
+var setToStringTag = __webpack_require__(67);
+var uid = __webpack_require__(44);
 var wks = __webpack_require__(14);
-var wksExt = __webpack_require__(69);
-var wksDefine = __webpack_require__(70);
+var wksExt = __webpack_require__(70);
+var wksDefine = __webpack_require__(71);
 var enumKeys = __webpack_require__(189);
 var isArray = __webpack_require__(190);
 var anObject = __webpack_require__(25);
 var toIObject = __webpack_require__(27);
-var toPrimitive = __webpack_require__(59);
+var toPrimitive = __webpack_require__(61);
 var createDesc = __webpack_require__(34);
-var _create = __webpack_require__(60);
+var _create = __webpack_require__(62);
 var gOPNExt = __webpack_require__(191);
 var $GOPD = __webpack_require__(100);
 var $DP = __webpack_require__(18);
@@ -29162,10 +29171,10 @@ if (!USE_NATIVE) {
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
   __webpack_require__(99).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(45).f = $propertyIsEnumerable;
-  __webpack_require__(71).f = $getOwnPropertySymbols;
+  __webpack_require__(46).f = $propertyIsEnumerable;
+  __webpack_require__(72).f = $getOwnPropertySymbols;
 
-  if (DESCRIPTORS && !__webpack_require__(57)) {
+  if (DESCRIPTORS && !__webpack_require__(59)) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
   }
 
@@ -29253,7 +29262,7 @@ setToStringTag(global.JSON, 'JSON', true);
 /* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var META = __webpack_require__(43)('meta');
+var META = __webpack_require__(44)('meta');
 var isObject = __webpack_require__(33);
 var has = __webpack_require__(21);
 var setDesc = __webpack_require__(18).f;
@@ -29314,8 +29323,8 @@ var meta = module.exports = {
 
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(36);
-var gOPS = __webpack_require__(71);
-var pIE = __webpack_require__(45);
+var gOPS = __webpack_require__(72);
+var pIE = __webpack_require__(46);
 module.exports = function (it) {
   var result = getKeys(it);
   var getSymbols = gOPS.f;
@@ -29334,7 +29343,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
-var cof = __webpack_require__(61);
+var cof = __webpack_require__(63);
 module.exports = Array.isArray || function isArray(arg) {
   return cof(arg) == 'Array';
 };
@@ -29375,14 +29384,14 @@ module.exports.f = function getOwnPropertyNames(it) {
 /* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(70)('asyncIterator');
+__webpack_require__(71)('asyncIterator');
 
 
 /***/ }),
 /* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(70)('observable');
+__webpack_require__(71)('observable');
 
 
 /***/ }),
@@ -29424,7 +29433,7 @@ module.exports = {
   set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
     function (test, buggy, set) {
       try {
-        set = __webpack_require__(58)(Function.call, __webpack_require__(100).f(Object.prototype, '__proto__').set, 2);
+        set = __webpack_require__(60)(Function.call, __webpack_require__(100).f(Object.prototype, '__proto__').set, 2);
         set(test, []);
         buggy = !(test instanceof Array);
       } catch (e) { buggy = true; }
@@ -29462,7 +29471,7 @@ module.exports = function create(P, D) {
 
 var $export = __webpack_require__(16);
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-$export($export.S, 'Object', { create: __webpack_require__(60) });
+$export($export.S, 'Object', { create: __webpack_require__(62) });
 
 
 /***/ }),
@@ -29480,12 +29489,12 @@ $export($export.S, 'Object', { create: __webpack_require__(60) });
 
 
 var emptyFunction = __webpack_require__(15);
-var invariant = __webpack_require__(31);
-var warning = __webpack_require__(41);
-var assign = __webpack_require__(30);
+var invariant = __webpack_require__(32);
+var warning = __webpack_require__(42);
+var assign = __webpack_require__(31);
 
-var ReactPropTypesSecret = __webpack_require__(52);
-var checkPropTypes = __webpack_require__(51);
+var ReactPropTypesSecret = __webpack_require__(55);
+var checkPropTypes = __webpack_require__(54);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -30030,8 +30039,8 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 
 var emptyFunction = __webpack_require__(15);
-var invariant = __webpack_require__(31);
-var ReactPropTypesSecret = __webpack_require__(52);
+var invariant = __webpack_require__(32);
+var ReactPropTypesSecret = __webpack_require__(55);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -30106,8 +30115,8 @@ $export($export.S + $export.F, 'Object', { assign: __webpack_require__(206) });
 
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys = __webpack_require__(36);
-var gOPS = __webpack_require__(71);
-var pIE = __webpack_require__(45);
+var gOPS = __webpack_require__(72);
+var pIE = __webpack_require__(46);
 var toObject = __webpack_require__(37);
 var IObject = __webpack_require__(91);
 var $assign = Object.assign;
@@ -30452,7 +30461,7 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _autoPrefix = __webpack_require__(48);
+var _autoPrefix = __webpack_require__(52);
 
 var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
 
@@ -30633,7 +30642,7 @@ var _shallowEqual = __webpack_require__(39);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
-var _autoPrefix = __webpack_require__(48);
+var _autoPrefix = __webpack_require__(52);
 
 var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
 
@@ -30765,7 +30774,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _FontIcon = __webpack_require__(245);
+var _FontIcon = __webpack_require__(247);
 
 var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
@@ -30911,23 +30920,23 @@ var _shallowEqual = __webpack_require__(39);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
-var _Popover = __webpack_require__(110);
+var _Popover = __webpack_require__(113);
 
 var _Popover2 = _interopRequireDefault(_Popover);
 
-var _check = __webpack_require__(259);
+var _check = __webpack_require__(261);
 
 var _check2 = _interopRequireDefault(_check);
 
-var _ListItem = __webpack_require__(260);
+var _ListItem = __webpack_require__(262);
 
 var _ListItem2 = _interopRequireDefault(_ListItem);
 
-var _Menu = __webpack_require__(109);
+var _Menu = __webpack_require__(112);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _propTypes3 = __webpack_require__(29);
+var _propTypes3 = __webpack_require__(30);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -31723,6 +31732,26 @@ exports.default = FlatButtonLabel;
 
 
 Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _Dialog = __webpack_require__(278);
+
+var _Dialog2 = _interopRequireDefault(_Dialog);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Dialog2.default;
+
+/***/ }),
+/* 219 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
@@ -31736,7 +31765,7 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _NotificationSnackbar = __webpack_require__(219);
+var _NotificationSnackbar = __webpack_require__(220);
 
 var _NotificationSnackbar2 = _interopRequireDefault(_NotificationSnackbar);
 
@@ -31797,7 +31826,7 @@ var NotificationService = function () {
 exports.default = NotificationService;
 
 /***/ }),
-/* 219 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31809,11 +31838,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Snackbar = __webpack_require__(220);
+var _Snackbar = __webpack_require__(221);
 
 var _Snackbar2 = _interopRequireDefault(_Snackbar);
 
-var _MuiThemeProvider = __webpack_require__(68);
+var _MuiThemeProvider = __webpack_require__(51);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
@@ -31883,7 +31912,7 @@ var NotificationSnackbar = function (_React$Component) {
 module.exports = NotificationSnackbar;
 
 /***/ }),
-/* 220 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31894,7 +31923,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _Snackbar = __webpack_require__(221);
+var _Snackbar = __webpack_require__(222);
 
 var _Snackbar2 = _interopRequireDefault(_Snackbar);
 
@@ -31903,7 +31932,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Snackbar2.default;
 
 /***/ }),
-/* 221 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31961,7 +31990,7 @@ var _ClickAwayListener = __webpack_require__(102);
 
 var _ClickAwayListener2 = _interopRequireDefault(_ClickAwayListener);
 
-var _SnackbarBody = __webpack_require__(222);
+var _SnackbarBody = __webpack_require__(223);
 
 var _SnackbarBody2 = _interopRequireDefault(_SnackbarBody);
 
@@ -32223,7 +32252,7 @@ exports.default = Snackbar;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 222 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32258,11 +32287,11 @@ var _transitions = __webpack_require__(11);
 
 var _transitions2 = _interopRequireDefault(_transitions);
 
-var _withWidth = __webpack_require__(223);
+var _withWidth = __webpack_require__(224);
 
 var _withWidth2 = _interopRequireDefault(_withWidth);
 
-var _FlatButton = __webpack_require__(50);
+var _FlatButton = __webpack_require__(49);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
@@ -32400,7 +32429,7 @@ exports.default = (0, _withWidth2.default)()(SnackbarBody);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 223 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32441,7 +32470,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactEventListener = __webpack_require__(49);
+var _reactEventListener = __webpack_require__(53);
 
 var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
 
@@ -32551,7 +32580,7 @@ function withWidth() {
 }
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/* axios v0.17.1 | (c) 2017 by Matt Zabriskie */
@@ -34158,301 +34187,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 225 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Dialog = __webpack_require__(235);
-
-var _Dialog2 = _interopRequireDefault(_Dialog);
-
-var _FlatButton = __webpack_require__(50);
-
-var _FlatButton2 = _interopRequireDefault(_FlatButton);
-
-var _ImagesGrid = __webpack_require__(290);
-
-var _ImagesGrid2 = _interopRequireDefault(_ImagesGrid);
-
-var _RestApiCalls = __webpack_require__(113);
-
-var _RestApiCalls2 = _interopRequireDefault(_RestApiCalls);
-
-var _RaisedButton = __webpack_require__(112);
-
-var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ImageUploader = function (_React$Component) {
-	_inherits(ImageUploader, _React$Component);
-
-	function ImageUploader(props) {
-		_classCallCheck(this, ImageUploader);
-
-		var _this = _possibleConstructorReturn(this, (ImageUploader.__proto__ || Object.getPrototypeOf(ImageUploader)).call(this, props));
-
-		_this.state = {
-			file: "",
-			imagePreviewUrl: "",
-			imageSource: [],
-			imageViewOpened: false,
-			imageUploadOpened: false,
-			currentImg: {},
-			lastId: 0,
-			selectedItem: _this.props.selectedItem,
-			photoFieldsData: [{
-				name: "type",
-				type: "select",
-				value: "",
-				maxSearchResults: 5,
-				dataSourceLink: "",
-				displayedValue: "code",
-				modelValue: "id",
-				itemFormat: "[id] [code] [description]",
-				isRequired: true
-			}, {
-				name: "title",
-				type: "text",
-				value: "",
-				isRequired: true
-			}]
-		};
-		_this.imageChange.bind(_this);
-		return _this;
-	}
-
-	_createClass(ImageUploader, [{
-		key: 'imageChange',
-		value: function imageChange(e) {
-			var _this2 = this;
-
-			e.preventDefault();
-			var reader = new FileReader();
-			if (e.target.files.length > 0) {
-				var file = e.target.files[0];
-				reader.onloadend = function () {
-					_this2.setState({ currentImg: { src: reader.result, file: file }, imageViewOpened: true });
-				};
-				reader.readAsDataURL(file);
-			}
-		}
-	}, {
-		key: 'handleCloseImageView',
-		value: function handleCloseImageView() {
-			this.clearDataAboutPhoto();
-			this.setState({ imageViewOpened: false, currentImg: {} });
-		}
-	}, {
-		key: 'handleCloseImageUpload',
-		value: function handleCloseImageUpload() {
-			this.setState({ imageUploadOpened: false });
-		}
-	}, {
-		key: 'handleCloseDialog',
-		value: function handleCloseDialog() {
-			this.setState({ galleryOpened: false, addPhotoOpened: false });
-		}
-	}, {
-		key: 'handleSaveImage',
-		value: function handleSaveImage() {
-			var hasErrors = false;
-			//for (let i = 0; i < this.state.photoFieldsData.length; i++) {
-			//	if (this.state.photoFieldsData[i].checkErrors()) {
-			//		hasErrors = true;
-			//	}
-			//}
-			if (!hasErrors) {
-				var imageSource = this.state.imageSource;
-				imageSource.push({
-					priority: this.state.lastId,
-					src: this.state.currentImg.src,
-					file: this.state.currentImg.file,
-					itemId: this.state.selectedItem.id,
-					type: this.state.currentImg.type
-				});
-				this.clearDataAboutPhoto();
-				this.setState({ imageSource: imageSource, imageViewOpened: false, currentImg: {} });
-				this.state.lastId = this.state.lastId + 1;
-			}
-		}
-	}, {
-		key: 'clearDataAboutPhoto',
-		value: function clearDataAboutPhoto() {
-			for (var i = 0; i < this.state.photoFieldsData.length; i++) {
-				this.state.photoFieldsData[i].value = "";
-			}
-			this.fileInput.value = "";
-		}
-	}, {
-		key: 'removeImage',
-		value: function removeImage(image) {
-			var imageSource = this.state.imageSource;
-			for (var i = 0; i < imageSource.length; i++) {
-				if (imageSource[i].priority === image.priority) {
-					imageSource.splice(i, 1);
-				}
-			}
-			this.setState({ imageSource: imageSource });
-		}
-	}, {
-		key: 'imageUploaded',
-		value: function imageUploaded(image) {
-			if (this.props.imageUploadedFunc !== undefined) {
-				this.props.imageUploadedFunc(image);
-			}
-		}
-	}, {
-		key: 'uploadImages',
-		value: function uploadImages() {
-			var itemId = this.state.selectedItem.id;
-			var formData = new FormData(this);
-			for (var i = 0; i < this.state.imageSource.length; i++) {
-				formData.append("files", this.state.imageSource[i].file);
-				formData.append("priorities", this.state.imageSource[i].priority);
-			}
-			formData.set("itemId", itemId);
-			var config = { headers: { 'content-type': 'multipart/form-data' } };
-			var handleCloseImageUpload = this.handleCloseImageUpload.bind(this);
-			var imageUploaded = this.imageUploaded;
-			_RestApiCalls2.default.post('/api/' + this.props.uploadController + '/UploadPhotos', formData, config).then(function (response) {
-				handleCloseImageUpload();
-				var result = response.data;
-			});
-			this.state.imageSource = [];
-		}
-	}, {
-		key: 'openFileInput',
-		value: function openFileInput() {
-			this.fileInput.click();
-		}
-	}, {
-		key: 'openImageUploadDialog',
-		value: function openImageUploadDialog(selectedItem) {
-			this.setState({ imageUploadOpened: true, selectedItem: selectedItem });
-		}
-	}, {
-		key: 'componentWillMount',
-		value: function componentWillMount() {
-			this.props.uploaderActions.openDialog = this.openImageUploadDialog.bind(this);
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			var _this3 = this;
-
-			var imageSource = this.state.imageSource;
-
-			var imagePreview = null;
-			if (imageSource.length > 0) {
-				imagePreview = _react2.default.createElement(_ImagesGrid2.default, {
-					removeImage: this.removeImage.bind(this),
-					imageSource: this.state.imageSource });
-			} else {
-				imagePreview = _react2.default.createElement(
-					'p',
-					{ style: { height: '450px' } },
-					'\u0424\u043E\u0442\u043E \u043E\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u044E\u0442. \u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0444\u043E\u0442\u043E \u0447\u0442\u043E \u0431\u044B \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C.'
-				);
-			}
-			var imageViewActions = [_react2.default.createElement(_FlatButton2.default, {
-				label: "Сохранить",
-				primary: true,
-				onClick: this.handleSaveImage.bind(this) }), _react2.default.createElement(_FlatButton2.default, {
-				label: "Отмена",
-				secondary: true,
-				onClick: this.handleCloseImageView.bind(this) })];
-			var imageUploadActions = [_react2.default.createElement(_RaisedButton2.default, {
-				label: "Выберите фото",
-				primary: true,
-				onClick: this.openFileInput.bind(this) }), _react2.default.createElement(_RaisedButton2.default, {
-				label: "Закрыть",
-				secondary: true,
-				onClick: this.handleCloseImageUpload.bind(this) })];
-			if (this.state.imageSource.length > 0) {
-				imageUploadActions.push(_react2.default.createElement(_FlatButton2.default, {
-					label: "upload",
-					primary: true,
-					onClick: this.uploadImages.bind(this) }));
-			}
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement(
-					_Dialog2.default,
-					{
-						actions: imageUploadActions,
-						contentStyle: { width: "90%", maxWidth: '90%' },
-						title: "Добавить фото к товару с id: " + this.state.selectedItem.id,
-						modal: false,
-						open: this.state.imageUploadOpened,
-						onRequestClose: this.handleCloseImageUpload.bind(this),
-						autoScrollBodyContent: true },
-					_react2.default.createElement(
-						'form',
-						null,
-						_react2.default.createElement('input', {
-							ref: function ref(input) {
-								_this3.fileInput = input;
-							},
-							style: { visibility: "hidden" },
-							type: 'file',
-							onChange: function onChange(e) {
-								return _this3.imageChange(e);
-							} })
-					),
-					_react2.default.createElement(
-						'div',
-						null,
-						imagePreview
-					)
-				),
-				_react2.default.createElement(
-					_Dialog2.default,
-					{
-						actions: imageViewActions,
-						contentStyle: { width: "90%", maxWidth: '90%' },
-						title: '\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440 \u0432\u044B\u0431\u0440\u0430\u043D\u043E\u0433\u043E \u0444\u043E\u0442\u043E',
-						modal: false,
-						open: this.state.imageViewOpened,
-						onRequestClose: this.handleCloseImageView.bind(this),
-						autoScrollBodyContent: true },
-					_react2.default.createElement(
-						'div',
-						null,
-						_react2.default.createElement('img', { style: { height: "42vw", display: "block", margin: "0 auto" }, src: this.state.currentImg.src })
-					)
-				)
-			);
-		}
-	}]);
-
-	return ImageUploader;
-}(_react2.default.Component);
-
-;
-
-exports.default = ImageUploader;
-
-/***/ }),
 /* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34644,6 +34378,334 @@ exports.default = TableRowColumn;
 
 /***/ }),
 /* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Dialog = __webpack_require__(218);
+
+var _Dialog2 = _interopRequireDefault(_Dialog);
+
+var _FlatButton = __webpack_require__(49);
+
+var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
+var _ImagesGrid = __webpack_require__(301);
+
+var _ImagesGrid2 = _interopRequireDefault(_ImagesGrid);
+
+var _RestApiCalls = __webpack_require__(104);
+
+var _RestApiCalls2 = _interopRequireDefault(_RestApiCalls);
+
+var _DataService = __webpack_require__(40);
+
+var _DataService2 = _interopRequireDefault(_DataService);
+
+var _RaisedButton = __webpack_require__(114);
+
+var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function compareImages(a, b) {
+	if (a.priority < b.priority) return -1;
+	if (a.priority > b.priority) return 1;
+	return 0;
+}
+
+var ImageUploader = function (_React$Component) {
+	_inherits(ImageUploader, _React$Component);
+
+	function ImageUploader(props) {
+		_classCallCheck(this, ImageUploader);
+
+		var _this = _possibleConstructorReturn(this, (ImageUploader.__proto__ || Object.getPrototypeOf(ImageUploader)).call(this, props));
+
+		_this.state = {
+			file: "",
+			imagePreviewUrl: "",
+			imageSource: [],
+			imagesToRemove: [],
+			imageViewOpened: false,
+			imageUploadOpened: false,
+			currentImg: {},
+			lastId: 0,
+			selectedItem: _this.props.selectedItem
+		};
+		_this.imageChange.bind(_this);
+		return _this;
+	}
+
+	_createClass(ImageUploader, [{
+		key: 'imageChange',
+		value: function imageChange(e) {
+			var _this2 = this;
+
+			e.preventDefault();
+			var reader = new FileReader();
+			if (e.target.files.length > 0) {
+				var file = e.target.files[0];
+				reader.onloadend = function () {
+					_this2.setState({ currentImg: { src: reader.result, file: file }, imageViewOpened: true });
+				};
+				reader.readAsDataURL(file);
+			}
+		}
+	}, {
+		key: 'handleCloseImageView',
+		value: function handleCloseImageView() {
+			this.clearDataAboutPhoto();
+		}
+	}, {
+		key: 'handleCloseImageUpload',
+		value: function handleCloseImageUpload() {
+			this.setState({ imageUploadOpened: false, imageSource: [], imagesToRemove: [], lastId: 0 }, this.props.refreshDataTable);
+		}
+	}, {
+		key: 'handleCloseDialog',
+		value: function handleCloseDialog() {
+			this.setState({ galleryOpened: false, addPhotoOpened: false });
+		}
+	}, {
+		key: 'handleSaveImage',
+		value: function handleSaveImage() {
+			var hasErrors = false;
+			if (!hasErrors) {
+				var imageSource = this.state.imageSource;
+				imageSource.push({
+					priority: this.state.lastId,
+					src: this.state.currentImg.src,
+					file: this.state.currentImg.file,
+					itemId: this.state.selectedItem.id,
+					type: this.state.currentImg.type
+				});
+				this.state.imageSource = imageSource;
+				this.state.lastId = this.state.lastId + 1;
+				this.clearDataAboutPhoto();
+			}
+		}
+	}, {
+		key: 'clearDataAboutPhoto',
+		value: function clearDataAboutPhoto() {
+			this.fileInput.value = "";
+			this.setState({ imageViewOpened: false, currentImg: {} });
+		}
+	}, {
+		key: 'removeImage',
+		value: function removeImage(image) {
+			var imageSource = this.state.imageSource;
+			for (var i = 0; i < imageSource.length; i++) {
+				if (imageSource[i].priority === image.priority) {
+					imageSource.splice(i, 1);
+				}
+			}
+			if (image.id !== undefined) {
+				var imagesToRemove = this.state.imagesToRemove;
+				imagesToRemove.push(image);
+				this.setState({ imagesToRemove: imagesToRemove });
+			}
+
+			this.setState({ imageSource: imageSource });
+		}
+	}, {
+		key: 'uploadImages',
+		value: function uploadImages() {
+			var _this3 = this;
+
+			var itemId = this.state.selectedItem.id;
+			var formData = new FormData(this);
+			var recordsToUpdate = [];
+			for (var i = 0; i < this.state.imageSource.length; i++) {
+				if (this.state.imageSource[i].file !== undefined) {
+					formData.append("files", this.state.imageSource[i].file);
+					formData.append("priorities", this.state.imageSource[i].priority);
+				} else {
+					recordsToUpdate.push(this.state.imageSource[i]);
+				}
+			}
+			formData.set("itemId", itemId);
+			var config = { headers: { 'content-type': 'multipart/form-data' } };
+			var handleCloseImageUpload = this.handleCloseImageUpload.bind(this);
+			if (this.state.imagesToRemove.length > 0) {
+				this.state.imagesToRemove.map(function (image) {
+					_DataService2.default.deleteObject(_this3.props.uploadController, image);
+				});
+			}
+
+			if (recordsToUpdate.length > 0) {
+				recordsToUpdate.map(function (image) {
+					var imageToUpdate = {
+						id: image.id,
+						priority: image.priority,
+						path: image.src
+					};
+					_DataService2.default.updateObject(_this3.props.uploadController, imageToUpdate);
+				});
+			}
+			_RestApiCalls2.default.post('/api/' + this.props.uploadController + '/UploadPhotos', formData, config).then(function (response) {
+				handleCloseImageUpload();
+			});
+		}
+	}, {
+		key: 'openFileInput',
+		value: function openFileInput() {
+			this.fileInput.click();
+		}
+	}, {
+		key: 'openImageUploadDialog',
+		value: function openImageUploadDialog(selectedItem) {
+			this.setState({ imageUploadOpened: true, selectedItem: selectedItem });
+		}
+	}, {
+		key: 'processExistingImages',
+		value: function processExistingImages(props) {
+			var itemPhotos = props.selectedItem.photos;
+			var imageSource = [];
+			if (itemPhotos !== undefined && itemPhotos.length > 0) {
+				itemPhotos.sort(compareImages);
+				this.state.lastId = itemPhotos[itemPhotos.length - 1].priority + 1;
+				itemPhotos.map(function (photo) {
+					imageSource.push({
+						priority: photo.priority,
+						src: photo.path,
+						file: undefined,
+						itemId: props.selectedItem.id,
+						id: photo.id
+					});
+				});
+			}
+
+			this.setState({ imageSource: imageSource, imageViewOpened: false, currentImg: {} });
+		}
+	}, {
+		key: 'componentWillReceiveProps',
+		value: function componentWillReceiveProps(nextProps) {
+			this.processExistingImages(nextProps);
+		}
+	}, {
+		key: 'componentWillMount',
+		value: function componentWillMount() {
+			this.props.uploaderActions.openDialog = this.openImageUploadDialog.bind(this);
+			this.processExistingImages(this.props);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var _this4 = this;
+
+			var imageSource = this.state.imageSource;
+
+			var imagePreview = null;
+			if (imageSource.length > 0) {
+				imagePreview = _react2.default.createElement(_ImagesGrid2.default, {
+					removeImage: this.removeImage.bind(this),
+					imageSource: this.state.imageSource });
+			} else {
+				imagePreview = _react2.default.createElement(
+					'p',
+					{ style: { height: '450px' } },
+					'\u0424\u043E\u0442\u043E \u043E\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u044E\u0442. \u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0444\u043E\u0442\u043E \u0447\u0442\u043E \u0431\u044B \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C.'
+				);
+			}
+			var imageViewActions = [_react2.default.createElement(_FlatButton2.default, {
+				label: "Сохранить",
+				primary: true,
+				onClick: this.handleSaveImage.bind(this) }), _react2.default.createElement(_FlatButton2.default, {
+				label: "Отмена",
+				secondary: true,
+				onClick: this.handleCloseImageView.bind(this) })];
+			var imageUploadActions = [_react2.default.createElement(_RaisedButton2.default, {
+				label: "Выберите фото",
+				primary: true,
+				onClick: this.openFileInput.bind(this) }), _react2.default.createElement(_RaisedButton2.default, {
+				label: "Закрыть",
+				secondary: true,
+				onClick: this.handleCloseImageUpload.bind(this) })];
+			if (this.state.imageSource.length > 0) {
+				imageUploadActions.push(_react2.default.createElement(_FlatButton2.default, {
+					label: "upload",
+					primary: true,
+					onClick: this.uploadImages.bind(this) }));
+			}
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement(
+					_Dialog2.default,
+					{
+						actions: imageUploadActions,
+						contentStyle: { width: "90%", maxWidth: '90%' },
+						title: "Добавить фото к товару с id: " + this.state.selectedItem.id,
+						modal: false,
+						open: this.state.imageUploadOpened,
+						onRequestClose: this.handleCloseImageUpload.bind(this),
+						autoScrollBodyContent: true },
+					_react2.default.createElement(
+						'form',
+						null,
+						_react2.default.createElement('input', {
+							ref: function ref(input) {
+								_this4.fileInput = input;
+							},
+							style: { visibility: "hidden" },
+							type: 'file',
+							onChange: function onChange(e) {
+								return _this4.imageChange(e);
+							} })
+					),
+					_react2.default.createElement(
+						'div',
+						null,
+						imagePreview
+					)
+				),
+				_react2.default.createElement(
+					_Dialog2.default,
+					{
+						actions: imageViewActions,
+						contentStyle: { width: "90%", maxWidth: '90%' },
+						title: '\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440 \u0432\u044B\u0431\u0440\u0430\u043D\u043E\u0433\u043E \u0444\u043E\u0442\u043E',
+						modal: false,
+						open: this.state.imageViewOpened,
+						onRequestClose: this.handleCloseImageView.bind(this),
+						autoScrollBodyContent: true },
+					_react2.default.createElement(
+						'div',
+						null,
+						_react2.default.createElement('img', { style: { height: "42vw", display: "block", margin: "0 auto" }, src: this.state.currentImg.src })
+					)
+				)
+			);
+		}
+	}]);
+
+	return ImageUploader;
+}(_react2.default.Component);
+
+;
+
+exports.default = ImageUploader;
+
+/***/ }),
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34878,7 +34940,7 @@ exports.default = Tooltip;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34886,7 +34948,7 @@ exports.default = Tooltip;
 
 exports.__esModule = true;
 
-var _setStatic = __webpack_require__(249);
+var _setStatic = __webpack_require__(251);
 
 var _setStatic2 = _interopRequireDefault(_setStatic);
 
@@ -34899,7 +34961,7 @@ var setDisplayName = function setDisplayName(displayName) {
 exports.default = setDisplayName;
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34907,7 +34969,7 @@ exports.default = setDisplayName;
 
 exports.__esModule = true;
 
-var _getDisplayName = __webpack_require__(250);
+var _getDisplayName = __webpack_require__(252);
 
 var _getDisplayName2 = _interopRequireDefault(_getDisplayName);
 
@@ -34920,7 +34982,7 @@ var wrapDisplayName = function wrapDisplayName(BaseComponent, hocName) {
 exports.default = wrapDisplayName;
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34931,7 +34993,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.MenuItem = exports.IconMenu = undefined;
 
-var _IconMenu2 = __webpack_require__(253);
+var _IconMenu2 = __webpack_require__(255);
 
 var _IconMenu3 = _interopRequireDefault(_IconMenu2);
 
@@ -34946,7 +35008,7 @@ exports.MenuItem = _MenuItem3.default;
 exports.default = _IconMenu3.default;
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34996,7 +35058,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Subheader = __webpack_require__(254);
+var _Subheader = __webpack_require__(256);
 
 var _Subheader2 = _interopRequireDefault(_Subheader);
 
@@ -35061,7 +35123,7 @@ exports.default = List;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 232 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35099,7 +35161,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactDom = __webpack_require__(12);
 
-var _dom = __webpack_require__(108);
+var _dom = __webpack_require__(111);
 
 var _dom2 = _interopRequireDefault(_dom);
 
@@ -35251,7 +35313,7 @@ exports.default = RenderToLayer;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35289,7 +35351,7 @@ NavigationExpandMore.muiName = 'SvgIcon';
 exports.default = NavigationExpandMore;
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35343,7 +35405,7 @@ var _transitions = __webpack_require__(11);
 
 var _transitions2 = _interopRequireDefault(_transitions);
 
-var _AutoLockScrolling = __webpack_require__(266);
+var _AutoLockScrolling = __webpack_require__(268);
 
 var _AutoLockScrolling2 = _interopRequireDefault(_AutoLockScrolling);
 
@@ -35440,26 +35502,6 @@ exports.default = Overlay;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 235 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _Dialog = __webpack_require__(277);
-
-var _Dialog2 = _interopRequireDefault(_Dialog);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _Dialog2.default;
-
-/***/ }),
 /* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -35469,129 +35511,41 @@ exports.default = _Dialog2.default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = undefined;
+exports.default = exports.MenuItem = exports.DropDownMenu = undefined;
 
-var _TextField = __webpack_require__(279);
+var _DropDownMenu2 = __webpack_require__(271);
 
-var _TextField2 = _interopRequireDefault(_TextField);
+var _DropDownMenu3 = _interopRequireDefault(_DropDownMenu2);
+
+var _MenuItem2 = __webpack_require__(215);
+
+var _MenuItem3 = _interopRequireDefault(_MenuItem2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _TextField2.default;
+exports.DropDownMenu = _DropDownMenu3.default;
+exports.MenuItem = _MenuItem3.default;
+exports.default = _DropDownMenu3.default;
 
 /***/ }),
 /* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
+
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = undefined;
 
-var _getPrototypeOf = __webpack_require__(5);
+var _TextField = __webpack_require__(280);
 
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(8);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _keyboardArrowUp = __webpack_require__(302);
-
-var _keyboardArrowUp2 = _interopRequireDefault(_keyboardArrowUp);
-
-var _keyboardArrowDown = __webpack_require__(303);
-
-var _keyboardArrowDown2 = _interopRequireDefault(_keyboardArrowDown);
-
-var _IconButton = __webpack_require__(72);
-
-var _IconButton2 = _interopRequireDefault(_IconButton);
+var _TextField2 = _interopRequireDefault(_TextField);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function getStyles() {
-  return {
-    root: {
-      top: 0,
-      bottom: 0,
-      right: 4,
-      margin: 'auto',
-      position: 'absolute'
-    }
-  };
-}
-
-var CardExpandable = function (_Component) {
-  (0, _inherits3.default)(CardExpandable, _Component);
-
-  function CardExpandable() {
-    (0, _classCallCheck3.default)(this, CardExpandable);
-    return (0, _possibleConstructorReturn3.default)(this, (CardExpandable.__proto__ || (0, _getPrototypeOf2.default)(CardExpandable)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(CardExpandable, [{
-    key: 'render',
-    value: function render() {
-      var styles = getStyles(this.props, this.context);
-
-      return _react2.default.createElement(
-        _IconButton2.default,
-        {
-          style: (0, _simpleAssign2.default)(styles.root, this.props.style),
-          onClick: this.props.onExpanding,
-          iconStyle: this.props.iconStyle
-        },
-        this.props.expanded ? this.props.openIcon : this.props.closeIcon
-      );
-    }
-  }]);
-  return CardExpandable;
-}(_react.Component);
-
-CardExpandable.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-CardExpandable.defaultProps = {
-  closeIcon: _react2.default.createElement(_keyboardArrowDown2.default, null),
-  openIcon: _react2.default.createElement(_keyboardArrowUp2.default, null)
-};
-CardExpandable.propTypes = process.env.NODE_ENV !== "production" ? {
-  closeIcon: _propTypes2.default.node,
-  expanded: _propTypes2.default.bool,
-  iconStyle: _propTypes2.default.object,
-  onExpanding: _propTypes2.default.func.isRequired,
-  openIcon: _propTypes2.default.node,
-  style: _propTypes2.default.object
-} : {};
-exports.default = CardExpandable;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+exports.default = _TextField2.default;
 
 /***/ }),
 /* 238 */
@@ -35603,9 +35557,60 @@ exports.default = CardExpandable;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = exports.TableRowColumn = exports.TableRow = exports.TableHeaderColumn = exports.TableHeader = exports.TableFooter = exports.TableBody = exports.Table = undefined;
+
+var _Table2 = __webpack_require__(292);
+
+var _Table3 = _interopRequireDefault(_Table2);
+
+var _TableBody2 = __webpack_require__(293);
+
+var _TableBody3 = _interopRequireDefault(_TableBody2);
+
+var _TableFooter2 = __webpack_require__(298);
+
+var _TableFooter3 = _interopRequireDefault(_TableFooter2);
+
+var _TableHeader2 = __webpack_require__(299);
+
+var _TableHeader3 = _interopRequireDefault(_TableHeader2);
+
+var _TableHeaderColumn2 = __webpack_require__(240);
+
+var _TableHeaderColumn3 = _interopRequireDefault(_TableHeaderColumn2);
+
+var _TableRow2 = __webpack_require__(300);
+
+var _TableRow3 = _interopRequireDefault(_TableRow2);
+
+var _TableRowColumn2 = __webpack_require__(226);
+
+var _TableRowColumn3 = _interopRequireDefault(_TableRowColumn2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.Table = _Table3.default;
+exports.TableBody = _TableBody3.default;
+exports.TableFooter = _TableFooter3.default;
+exports.TableHeader = _TableHeader3.default;
+exports.TableHeaderColumn = _TableHeaderColumn3.default;
+exports.TableRow = _TableRow3.default;
+exports.TableRowColumn = _TableRowColumn3.default;
+exports.default = _Table3.default;
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = undefined;
 
-var _Checkbox = __webpack_require__(320);
+var _Checkbox = __webpack_require__(294);
 
 var _Checkbox2 = _interopRequireDefault(_Checkbox);
 
@@ -35614,7 +35619,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Checkbox2.default;
 
 /***/ }),
-/* 239 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35664,7 +35669,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Tooltip = __webpack_require__(227);
+var _Tooltip = __webpack_require__(228);
 
 var _Tooltip2 = _interopRequireDefault(_Tooltip);
 
@@ -35823,7 +35828,121 @@ exports.default = TableHeaderColumn;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 240 */
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _simpleAssign = __webpack_require__(8);
+
+var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _keyboardArrowUp = __webpack_require__(313);
+
+var _keyboardArrowUp2 = _interopRequireDefault(_keyboardArrowUp);
+
+var _keyboardArrowDown = __webpack_require__(314);
+
+var _keyboardArrowDown2 = _interopRequireDefault(_keyboardArrowDown);
+
+var _IconButton = __webpack_require__(73);
+
+var _IconButton2 = _interopRequireDefault(_IconButton);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getStyles() {
+  return {
+    root: {
+      top: 0,
+      bottom: 0,
+      right: 4,
+      margin: 'auto',
+      position: 'absolute'
+    }
+  };
+}
+
+var CardExpandable = function (_Component) {
+  (0, _inherits3.default)(CardExpandable, _Component);
+
+  function CardExpandable() {
+    (0, _classCallCheck3.default)(this, CardExpandable);
+    return (0, _possibleConstructorReturn3.default)(this, (CardExpandable.__proto__ || (0, _getPrototypeOf2.default)(CardExpandable)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(CardExpandable, [{
+    key: 'render',
+    value: function render() {
+      var styles = getStyles(this.props, this.context);
+
+      return _react2.default.createElement(
+        _IconButton2.default,
+        {
+          style: (0, _simpleAssign2.default)(styles.root, this.props.style),
+          onClick: this.props.onExpanding,
+          iconStyle: this.props.iconStyle
+        },
+        this.props.expanded ? this.props.openIcon : this.props.closeIcon
+      );
+    }
+  }]);
+  return CardExpandable;
+}(_react.Component);
+
+CardExpandable.contextTypes = {
+  muiTheme: _propTypes2.default.object.isRequired
+};
+CardExpandable.defaultProps = {
+  closeIcon: _react2.default.createElement(_keyboardArrowDown2.default, null),
+  openIcon: _react2.default.createElement(_keyboardArrowUp2.default, null)
+};
+CardExpandable.propTypes = process.env.NODE_ENV !== "production" ? {
+  closeIcon: _propTypes2.default.node,
+  expanded: _propTypes2.default.bool,
+  iconStyle: _propTypes2.default.object,
+  onExpanding: _propTypes2.default.func.isRequired,
+  openIcon: _propTypes2.default.node,
+  style: _propTypes2.default.object
+} : {};
+exports.default = CardExpandable;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35840,19 +35959,19 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _darkBaseTheme = __webpack_require__(124);
+var _darkBaseTheme = __webpack_require__(105);
 
 var _darkBaseTheme2 = _interopRequireDefault(_darkBaseTheme);
 
-var _getMuiTheme = __webpack_require__(53);
+var _getMuiTheme = __webpack_require__(50);
 
 var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-var _MuiThemeProvider = __webpack_require__(68);
+var _MuiThemeProvider = __webpack_require__(51);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-var _IncantoAppBar = __webpack_require__(241);
+var _IncantoAppBar = __webpack_require__(243);
 
 var _IncantoAppBar2 = _interopRequireDefault(_IncantoAppBar);
 
@@ -35906,7 +36025,7 @@ var Application = function (_React$Component) {
 _reactDom2.default.render(_react2.default.createElement(Application, { name: "YO" }), document.getElementById("application"));
 
 /***/ }),
-/* 241 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35922,43 +36041,43 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _AppBar = __webpack_require__(242);
+var _AppBar = __webpack_require__(244);
 
 var _AppBar2 = _interopRequireDefault(_AppBar);
 
-var _IconButton = __webpack_require__(72);
+var _IconButton = __webpack_require__(73);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
-var _IconMenu = __webpack_require__(230);
+var _IconMenu = __webpack_require__(231);
 
 var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-var _MenuItem = __webpack_require__(111);
+var _MenuItem = __webpack_require__(103);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-var _FlatButton = __webpack_require__(50);
+var _FlatButton = __webpack_require__(49);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-var _moreVert = __webpack_require__(263);
+var _moreVert = __webpack_require__(265);
 
 var _moreVert2 = _interopRequireDefault(_moreVert);
 
-var _Drawer = __webpack_require__(264);
+var _Drawer = __webpack_require__(266);
 
 var _Drawer2 = _interopRequireDefault(_Drawer);
 
-var _IncantoRecords = __webpack_require__(267);
+var _IncantoRecords = __webpack_require__(269);
 
 var _IncantoRecords2 = _interopRequireDefault(_IncantoRecords);
 
-var _ImageUploader = __webpack_require__(225);
+var _ImageUploader = __webpack_require__(227);
 
 var _ImageUploader2 = _interopRequireDefault(_ImageUploader);
 
-var _RaisedButton = __webpack_require__(112);
+var _RaisedButton = __webpack_require__(114);
 
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
@@ -36119,7 +36238,7 @@ var IncantoAppBar = function (_Component2) {
 exports.default = IncantoAppBar;
 
 /***/ }),
-/* 242 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36130,7 +36249,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _AppBar = __webpack_require__(243);
+var _AppBar = __webpack_require__(245);
 
 var _AppBar2 = _interopRequireDefault(_AppBar);
 
@@ -36139,7 +36258,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _AppBar2.default;
 
 /***/ }),
-/* 243 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36195,19 +36314,19 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _IconButton = __webpack_require__(72);
+var _IconButton = __webpack_require__(73);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
-var _menu = __webpack_require__(247);
+var _menu = __webpack_require__(249);
 
 var _menu2 = _interopRequireDefault(_menu);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
-var _propTypes3 = __webpack_require__(29);
+var _propTypes3 = __webpack_require__(30);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -36530,7 +36649,7 @@ exports.default = AppBar;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 244 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36584,7 +36703,7 @@ var _transitions = __webpack_require__(11);
 
 var _transitions2 = _interopRequireDefault(_transitions);
 
-var _propTypes3 = __webpack_require__(29);
+var _propTypes3 = __webpack_require__(30);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -36596,11 +36715,11 @@ var _FontIcon = __webpack_require__(212);
 
 var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-var _Tooltip = __webpack_require__(227);
+var _Tooltip = __webpack_require__(228);
 
 var _Tooltip2 = _interopRequireDefault(_Tooltip);
 
-var _childUtils = __webpack_require__(246);
+var _childUtils = __webpack_require__(248);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36921,7 +37040,7 @@ exports.default = IconButton;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 245 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37086,7 +37205,7 @@ exports.default = FontIcon;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 246 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37118,7 +37237,7 @@ function extendChildren(children, extendedProps, extendedChildren) {
 }
 
 /***/ }),
-/* 247 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37156,7 +37275,7 @@ NavigationMenu.muiName = 'SvgIcon';
 exports.default = NavigationMenu;
 
 /***/ }),
-/* 248 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37166,11 +37285,11 @@ exports.__esModule = true;
 
 var _react = __webpack_require__(0);
 
-var _setDisplayName = __webpack_require__(228);
+var _setDisplayName = __webpack_require__(229);
 
 var _setDisplayName2 = _interopRequireDefault(_setDisplayName);
 
-var _wrapDisplayName = __webpack_require__(229);
+var _wrapDisplayName = __webpack_require__(230);
 
 var _wrapDisplayName2 = _interopRequireDefault(_wrapDisplayName);
 
@@ -37217,7 +37336,7 @@ exports.default = shouldUpdate;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 249 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37236,7 +37355,7 @@ var setStatic = function setStatic(key, value) {
 exports.default = setStatic;
 
 /***/ }),
-/* 250 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37258,7 +37377,7 @@ var getDisplayName = function getDisplayName(Component) {
 exports.default = getDisplayName;
 
 /***/ }),
-/* 251 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37430,7 +37549,7 @@ exports.default = SvgIcon;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 252 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37480,7 +37599,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _propTypes3 = __webpack_require__(29);
+var _propTypes3 = __webpack_require__(30);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -37588,7 +37707,7 @@ exports.default = Paper;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 253 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37642,19 +37761,19 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _events = __webpack_require__(73);
+var _events = __webpack_require__(74);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _propTypes3 = __webpack_require__(29);
+var _propTypes3 = __webpack_require__(30);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
-var _Menu = __webpack_require__(109);
+var _Menu = __webpack_require__(112);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _Popover = __webpack_require__(110);
+var _Popover = __webpack_require__(113);
 
 var _Popover2 = _interopRequireDefault(_Popover);
 
@@ -38010,7 +38129,7 @@ exports.default = IconMenu;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 254 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38021,7 +38140,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _Subheader = __webpack_require__(255);
+var _Subheader = __webpack_require__(257);
 
 var _Subheader2 = _interopRequireDefault(_Subheader);
 
@@ -38030,7 +38149,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Subheader2.default;
 
 /***/ }),
-/* 255 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38120,7 +38239,7 @@ exports.default = Subheader;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 256 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38165,7 +38284,7 @@ var HotKeyHolder = exports.HotKeyHolder = function () {
 }();
 
 /***/ }),
-/* 257 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -38608,10 +38727,10 @@ function toNumber(value) {
 
 module.exports = throttle;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(104)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(107)))
 
 /***/ }),
-/* 258 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38657,11 +38776,11 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _propTypes3 = __webpack_require__(29);
+var _propTypes3 = __webpack_require__(30);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -38790,7 +38909,7 @@ exports.default = PopoverAnimationDefault;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 259 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38828,7 +38947,7 @@ NavigationCheck.muiName = 'SvgIcon';
 exports.default = NavigationCheck;
 
 /***/ }),
-/* 260 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38896,19 +39015,19 @@ var _EnhancedButton = __webpack_require__(77);
 
 var _EnhancedButton2 = _interopRequireDefault(_EnhancedButton);
 
-var _IconButton = __webpack_require__(72);
+var _IconButton = __webpack_require__(73);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
-var _expandLess = __webpack_require__(261);
+var _expandLess = __webpack_require__(263);
 
 var _expandLess2 = _interopRequireDefault(_expandLess);
 
-var _expandMore = __webpack_require__(233);
+var _expandMore = __webpack_require__(234);
 
 var _expandMore2 = _interopRequireDefault(_expandMore);
 
-var _NestedList = __webpack_require__(262);
+var _NestedList = __webpack_require__(264);
 
 var _NestedList2 = _interopRequireDefault(_NestedList);
 
@@ -39591,7 +39710,7 @@ exports.default = ListItem;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 261 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39629,7 +39748,7 @@ NavigationExpandLess.muiName = 'SvgIcon';
 exports.default = NavigationExpandLess;
 
 /***/ }),
-/* 262 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39647,7 +39766,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _List = __webpack_require__(231);
+var _List = __webpack_require__(232);
 
 var _List2 = _interopRequireDefault(_List);
 
@@ -39689,7 +39808,7 @@ exports.default = NestedList;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 263 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39727,7 +39846,7 @@ NavigationMoreVert.muiName = 'SvgIcon';
 exports.default = NavigationMoreVert;
 
 /***/ }),
-/* 264 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39738,7 +39857,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _Drawer = __webpack_require__(265);
+var _Drawer = __webpack_require__(267);
 
 var _Drawer2 = _interopRequireDefault(_Drawer);
 
@@ -39747,7 +39866,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Drawer2.default;
 
 /***/ }),
-/* 265 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39793,15 +39912,15 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactEventListener = __webpack_require__(49);
+var _reactEventListener = __webpack_require__(53);
 
 var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
-var _autoPrefix = __webpack_require__(48);
+var _autoPrefix = __webpack_require__(52);
 
 var _autoPrefix2 = _interopRequireDefault(_autoPrefix);
 
@@ -39809,15 +39928,15 @@ var _transitions = __webpack_require__(11);
 
 var _transitions2 = _interopRequireDefault(_transitions);
 
-var _Overlay = __webpack_require__(234);
+var _Overlay = __webpack_require__(235);
 
 var _Overlay2 = _interopRequireDefault(_Overlay);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
-var _propTypes3 = __webpack_require__(29);
+var _propTypes3 = __webpack_require__(30);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -40243,7 +40362,7 @@ exports.default = Drawer;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 266 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40374,7 +40493,7 @@ exports.default = AutoLockScrolling;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 267 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40386,13 +40505,17 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _IncantoToolbar = __webpack_require__(268);
+var _IncantoToolbar = __webpack_require__(270);
 
 var _IncantoToolbar2 = _interopRequireDefault(_IncantoToolbar);
 
-var _RecordsList = __webpack_require__(316);
+var _RecordsList = __webpack_require__(327);
 
 var _RecordsList2 = _interopRequireDefault(_RecordsList);
+
+var _DataService = __webpack_require__(40);
+
+var _DataService2 = _interopRequireDefault(_DataService);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -40441,6 +40564,12 @@ var IncantoRecords = function (_React$Component) {
 			this.setState({ shouldRefreshTable: false, selectedItem: undefined });
 		}
 	}, {
+		key: "deleteRecord",
+		value: function deleteRecord() {
+			var deleteCallBack = this.refreshDataTable.bind(this);
+			_DataService2.default.deleteObject(this.state.controller, this.state.selectedItem, deleteCallBack);
+		}
+	}, {
 		key: "render",
 		value: function render() {
 			var columns = {
@@ -40464,7 +40593,7 @@ var IncantoRecords = function (_React$Component) {
 			return _react2.default.createElement(
 				"div",
 				null,
-				_react2.default.createElement(_IncantoToolbar2.default, { columns: columns[this.state.controller], controller: this.state.controller, selectedTableChangedHandler: this.selectedTableChangedHandler.bind(this), lookupFields: lookupFields[this.state.controller], updateDataTable: this.refreshDataTable.bind(this), selectedItem: this.state.selectedItem }),
+				_react2.default.createElement(_IncantoToolbar2.default, { columns: columns[this.state.controller], controller: this.state.controller, selectedTableChangedHandler: this.selectedTableChangedHandler.bind(this), lookupFields: lookupFields[this.state.controller], refreshDataTable: this.refreshDataTable.bind(this), selectedItem: this.state.selectedItem, deleteRecord: this.deleteRecord.bind(this) }),
 				_react2.default.createElement(_RecordsList2.default, { columns: columns[this.state.controller], controller: this.state.controller, shouldRefreshTable: this.state.shouldRefreshTable, itemSelectedHandler: this.itemSelectedHandler.bind(this), resetCallBack: this.resetCallBack.bind(this) })
 			);
 		}
@@ -40476,7 +40605,7 @@ var IncantoRecords = function (_React$Component) {
 module.exports = IncantoRecords;
 
 /***/ }),
-/* 268 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40492,11 +40621,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _IconMenu = __webpack_require__(230);
+var _IconMenu = __webpack_require__(231);
 
 var _IconMenu2 = _interopRequireDefault(_IconMenu);
 
-var _IconButton = __webpack_require__(72);
+var _IconButton = __webpack_require__(73);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
@@ -40504,31 +40633,35 @@ var _FontIcon = __webpack_require__(212);
 
 var _FontIcon2 = _interopRequireDefault(_FontIcon);
 
-var _expandMore = __webpack_require__(233);
+var _expandMore = __webpack_require__(234);
 
 var _expandMore2 = _interopRequireDefault(_expandMore);
 
-var _MenuItem = __webpack_require__(111);
+var _MenuItem = __webpack_require__(103);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-var _DropDownMenu = __webpack_require__(269);
+var _DropDownMenu = __webpack_require__(236);
 
 var _DropDownMenu2 = _interopRequireDefault(_DropDownMenu);
 
-var _RaisedButton = __webpack_require__(112);
+var _RaisedButton = __webpack_require__(114);
 
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-var _AddRecordDialog = __webpack_require__(276);
+var _AddRecordDialog = __webpack_require__(277);
 
 var _AddRecordDialog2 = _interopRequireDefault(_AddRecordDialog);
 
-var _ImageUploader = __webpack_require__(225);
+var _AddDetailsDialog = __webpack_require__(291);
+
+var _AddDetailsDialog2 = _interopRequireDefault(_AddDetailsDialog);
+
+var _ImageUploader = __webpack_require__(227);
 
 var _ImageUploader2 = _interopRequireDefault(_ImageUploader);
 
-var _Toolbar = __webpack_require__(311);
+var _Toolbar = __webpack_require__(322);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -40549,6 +40682,8 @@ var IncantoToolbar = function (_React$Component) {
 		_this.state = {
 			value: _this.props.controller,
 			addRecordDialogOpen: false,
+			addDetailsDialogOpen: false,
+			editRecordDialogOpen: false,
 			uploaderActions: {}
 		};
 		return _this;
@@ -40570,6 +40705,16 @@ var IncantoToolbar = function (_React$Component) {
 		key: 'addRecordDialogCloseHandler',
 		value: function addRecordDialogCloseHandler(addRecordDialogOpen) {
 			this.setState({ addRecordDialogOpen: addRecordDialogOpen });
+		}
+	}, {
+		key: 'addDetailsDialogOpenHandler',
+		value: function addDetailsDialogOpenHandler() {
+			this.setState({ addDetailsDialogOpen: true });
+		}
+	}, {
+		key: 'addDetailsDialogCloseHandler',
+		value: function addDetailsDialogCloseHandler(addDetailsDialogOpen) {
+			this.setState({ addDetailsDialogOpen: addDetailsDialogOpen });
 		}
 	}, {
 		key: 'openAddDialog',
@@ -40603,27 +40748,26 @@ var IncantoToolbar = function (_React$Component) {
 						_react2.default.createElement(_MenuItem2.default, { value: 'categories', primaryText: '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438' }),
 						_react2.default.createElement(_MenuItem2.default, { value: 'detailtypes', primaryText: '\u0422\u0438\u043F\u044B \u0434\u0435\u0442\u0430\u043B\u0435\u0439' }),
 						_react2.default.createElement(_MenuItem2.default, { value: 'detailtypevalues', primaryText: '\u0417\u043D\u0430\u0447\u0435\u043D\u0438\u044F \u0434\u0435\u0442\u0430\u043B\u0435\u0439' }),
-						_react2.default.createElement(_MenuItem2.default, { value: 'items', primaryText: '\u0422\u043E\u0432\u0430\u0440\u044B' }),
-						_react2.default.createElement(_MenuItem2.default, { value: 'discounts', primaryText: '\u0414\u0438\u0441\u043A\u0430\u0443\u043D\u0442' })
+						_react2.default.createElement(_MenuItem2.default, { value: 'items', primaryText: '\u0422\u043E\u0432\u0430\u0440\u044B' })
 					)
 				),
 				_react2.default.createElement(
 					_Toolbar.ToolbarGroup,
 					null,
 					_react2.default.createElement(_Toolbar.ToolbarTitle, { text: '\u0417\u0430\u043F\u0438\u0441\u0438' }),
-					_react2.default.createElement(_FontIcon2.default, { className: 'muidocs-icon-custom-sort' }),
-					_react2.default.createElement(_Toolbar.ToolbarSeparator, null),
+					this.state.addDetailsDialogOpen ? _react2.default.createElement(_AddDetailsDialog2.default, { open: this.state.addDetailsDialogOpen, close: this.addDetailsDialogCloseHandler.bind(this), item: this.props.selectedItem }) : _react2.default.createElement('span', null),
+					this.props.controller === "items" && this.props.selectedItem !== undefined ? _react2.default.createElement(_Toolbar.ToolbarSeparator, null) : _react2.default.createElement('span', null),
 					this.props.controller === "items" && this.props.selectedItem !== undefined ? _react2.default.createElement(
 						'div',
 						null,
-						_react2.default.createElement(_RaisedButton2.default, { onClick: this.openAddDialog.bind(this), label: 'add photo', fullWidth: true }),
+						_react2.default.createElement(_RaisedButton2.default, { onClick: this.openAddDialog.bind(this), label: '\u0424\u043E\u0442\u043E' }),
 						_react2.default.createElement(_ImageUploader2.default, { selectedItem: this.props.selectedItem,
 							uploaderActions: this.state.uploaderActions,
-							uploadController: 'Photos' }),
-						_react2.default.createElement(_Toolbar.ToolbarSeparator, null)
+							uploadController: 'Photos', refreshDataTable: this.props.refreshDataTable })
 					) : _react2.default.createElement('span', null),
-					_react2.default.createElement(_RaisedButton2.default, { label: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C', primary: true, onClick: this.addRecordDialogOpenHandler.bind(this) }),
-					this.state.addRecordDialogOpen ? _react2.default.createElement(_AddRecordDialog2.default, { columns: this.props.columns, lookup: this.props.lookupFields, controller: this.props.controller, open: this.state.addRecordDialogOpen, handleClose: this.addRecordDialogCloseHandler.bind(this) }) : _react2.default.createElement('span', null),
+					this.props.controller === "items" && this.props.selectedItem !== undefined ? _react2.default.createElement(_RaisedButton2.default, { onClick: this.addDetailsDialogOpenHandler.bind(this), label: '\u0414\u0435\u0442\u0430\u043B\u0438' }) : _react2.default.createElement('span', null),
+					this.props.selectedItem !== undefined ? _react2.default.createElement(_RaisedButton2.default, { onClick: this.addRecordDialogOpenHandler.bind(this), label: '\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C', primary: true }) : _react2.default.createElement(_RaisedButton2.default, { label: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C', primary: true, onClick: this.addRecordDialogOpenHandler.bind(this) }),
+					this.state.addRecordDialogOpen ? _react2.default.createElement(_AddRecordDialog2.default, { columns: this.props.columns, lookup: this.props.lookupFields, controller: this.props.controller, open: this.state.addRecordDialogOpen, close: this.addRecordDialogCloseHandler.bind(this), refreshDataTable: this.props.refreshDataTable, recordToUpdate: this.props.selectedItem }) : _react2.default.createElement('span', null),
 					_react2.default.createElement(
 						_IconMenu2.default,
 						{
@@ -40633,8 +40777,8 @@ var IncantoToolbar = function (_React$Component) {
 								_react2.default.createElement(_expandMore2.default, null)
 							)
 						},
-						_react2.default.createElement(_MenuItem2.default, { primaryText: 'Refresh', onClick: this.props.updateDataTable }),
-						_react2.default.createElement(_MenuItem2.default, { primaryText: 'Download' })
+						_react2.default.createElement(_MenuItem2.default, { primaryText: 'Refresh', onClick: this.props.refreshDataTable }),
+						this.props.selectedItem !== undefined ? _react2.default.createElement(_MenuItem2.default, { primaryText: '\u0423\u0434\u0430\u043B\u0438\u0442\u044C', onClick: this.props.deleteRecord }) : _react2.default.createElement('span', null)
 					)
 				)
 			);
@@ -40650,33 +40794,7 @@ exports.default = IncantoToolbar;
 module.exports = IncantoToolbar;
 
 /***/ }),
-/* 269 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = exports.MenuItem = exports.DropDownMenu = undefined;
-
-var _DropDownMenu2 = __webpack_require__(270);
-
-var _DropDownMenu3 = _interopRequireDefault(_DropDownMenu2);
-
-var _MenuItem2 = __webpack_require__(215);
-
-var _MenuItem3 = _interopRequireDefault(_MenuItem2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.DropDownMenu = _DropDownMenu3.default;
-exports.MenuItem = _MenuItem3.default;
-exports.default = _DropDownMenu3.default;
-
-/***/ }),
-/* 270 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40734,39 +40852,39 @@ var _transitions = __webpack_require__(11);
 
 var _transitions2 = _interopRequireDefault(_transitions);
 
-var _arrowDropDown = __webpack_require__(271);
+var _arrowDropDown = __webpack_require__(272);
 
 var _arrowDropDown2 = _interopRequireDefault(_arrowDropDown);
 
-var _Menu = __webpack_require__(109);
+var _Menu = __webpack_require__(112);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _ClearFix = __webpack_require__(272);
+var _ClearFix = __webpack_require__(273);
 
 var _ClearFix2 = _interopRequireDefault(_ClearFix);
 
-var _Popover = __webpack_require__(110);
+var _Popover = __webpack_require__(113);
 
 var _Popover2 = _interopRequireDefault(_Popover);
 
-var _PopoverAnimationVertical = __webpack_require__(274);
+var _PopoverAnimationVertical = __webpack_require__(275);
 
 var _PopoverAnimationVertical2 = _interopRequireDefault(_PopoverAnimationVertical);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
-var _events = __webpack_require__(73);
+var _events = __webpack_require__(74);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _IconButton = __webpack_require__(72);
+var _IconButton = __webpack_require__(73);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
-var _propTypes3 = __webpack_require__(29);
+var _propTypes3 = __webpack_require__(30);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -41275,7 +41393,7 @@ exports.default = DropDownMenu;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 271 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41313,7 +41431,7 @@ NavigationArrowDropDown.muiName = 'SvgIcon';
 exports.default = NavigationArrowDropDown;
 
 /***/ }),
-/* 272 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41339,7 +41457,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _BeforeAfterWrapper = __webpack_require__(273);
+var _BeforeAfterWrapper = __webpack_require__(274);
 
 var _BeforeAfterWrapper2 = _interopRequireDefault(_BeforeAfterWrapper);
 
@@ -41386,7 +41504,7 @@ exports.default = ClearFix;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 273 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41547,7 +41665,7 @@ exports.default = BeforeAfterWrapper;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 274 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41589,7 +41707,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -41597,7 +41715,7 @@ var _transitions = __webpack_require__(11);
 
 var _transitions2 = _interopRequireDefault(_transitions);
 
-var _propTypes3 = __webpack_require__(29);
+var _propTypes3 = __webpack_require__(30);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -41701,7 +41819,7 @@ exports.default = PopoverAnimationVertical;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 275 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41761,7 +41879,7 @@ var _EnhancedButton = __webpack_require__(77);
 
 var _EnhancedButton2 = _interopRequireDefault(_EnhancedButton);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -42193,7 +42311,7 @@ exports.default = RaisedButton;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 276 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42205,39 +42323,39 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Dialog = __webpack_require__(235);
+var _Dialog = __webpack_require__(218);
 
 var _Dialog2 = _interopRequireDefault(_Dialog);
 
-var _FlatButton = __webpack_require__(50);
+var _FlatButton = __webpack_require__(49);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-var _Text = __webpack_require__(278);
+var _Text = __webpack_require__(279);
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _DataService = __webpack_require__(74);
+var _DataService = __webpack_require__(40);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
-var _AutoComplete = __webpack_require__(284);
+var _AutoComplete = __webpack_require__(285);
 
 var _AutoComplete2 = _interopRequireDefault(_AutoComplete);
 
-var _getMuiTheme = __webpack_require__(53);
+var _getMuiTheme = __webpack_require__(50);
 
 var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-var _MuiThemeProvider = __webpack_require__(68);
+var _MuiThemeProvider = __webpack_require__(51);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-var _darkBaseTheme = __webpack_require__(124);
+var _darkBaseTheme = __webpack_require__(105);
 
 var _darkBaseTheme2 = _interopRequireDefault(_darkBaseTheme);
 
-var _colors = __webpack_require__(32);
+var _colors = __webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42256,7 +42374,7 @@ var AddRecordDialog = function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, (AddRecordDialog.__proto__ || Object.getPrototypeOf(AddRecordDialog)).call(this, props));
 
 		_this.state = {
-			recordToUpdate: {}
+			recordToUpdate: _this.props.recordToUpdate !== undefined ? _this.props.recordToUpdate : {}
 		};
 		return _this;
 	}
@@ -42264,16 +42382,27 @@ var AddRecordDialog = function (_React$Component) {
 	_createClass(AddRecordDialog, [{
 		key: 'handleClose',
 		value: function handleClose() {
-			this.props.handleClose(false);
+			this.props.close(false);
 		}
 	}, {
 		key: 'addRecordClickHandler',
 		value: function addRecordClickHandler() {
 			if (this.state.recordToUpdate !== undefined) {
-				_DataService2.default.addObject(this.props.controller, this.state.recordToUpdate, null);
+				_DataService2.default.addObject(this.props.controller, this.state.recordToUpdate, this.props.refreshDataTable);
 				this.handleClose();
 			}
 		}
+	}, {
+		key: 'editRecordClickHandler',
+		value: function editRecordClickHandler() {
+			if (this.state.recordToUpdate !== undefined) {
+				_DataService2.default.updateObject(this.props.controller, this.state.recordToUpdate, this.props.refreshDataTable);
+				this.handleClose();
+			}
+		}
+	}, {
+		key: 'componentWillMount',
+		value: function componentWillMount() {}
 	}, {
 		key: 'render',
 		value: function render() {
@@ -42302,6 +42431,7 @@ var AddRecordDialog = function (_React$Component) {
 					name: fieldName,
 					value: ""
 				};
+
 				var lookupField = undefined;
 
 				if (_this2.props.lookup !== undefined) {
@@ -42309,9 +42439,12 @@ var AddRecordDialog = function (_React$Component) {
 						return field[modelField] !== undefined;
 					});
 				}
-
 				if (lookupField !== undefined && lookupField.length > 0) {
-					_this2.state.recordToUpdate[modelField] = {};
+					var value = "";
+					if (_this2.state.recordToUpdate[modelField] !== undefined) {
+						value = _this2.state.recordToUpdate[modelField][fieldName];
+					}
+
 					lookupField = lookupField[0];
 					//here we need to split by "-"
 					childFields.map(function (child) {
@@ -42320,14 +42453,29 @@ var AddRecordDialog = function (_React$Component) {
 							if (fieldData.displayChild === undefined) {
 								fieldData.displayChild = [];
 							}
+							var result = "";
+							if (_this2.state.recordToUpdate[modelField] !== undefined) {
+								var itemToFormat = _this2.state.recordToUpdate[modelField];
+								for (var j = 1; j < displayChild.length; j++) {
+									if (!displayChild[j].includes(".")) {
+										itemToFormat = itemToFormat[displayChild[j]];
+									} else {
+										var splittedFieldAndName = displayChild[j].split(".");
+										result = itemToFormat[splittedFieldAndName[0]][splittedFieldAndName[1]];
+									}
+								}
+							}
+							value = value !== "" ? value + "-" + result : result;
 							fieldData.displayChild.push(child);
 						}
 					});
 					fieldData.isChildModel = true;
+					fieldData.value = value;
 				} else {
 					fieldData.name = modelField;
 					lookupField = undefined;
 					fieldData.isChildModel = false;
+					fieldData.value = _this2.state.recordToUpdate[modelField];
 				}
 				return _react2.default.createElement(
 					'div',
@@ -42351,7 +42499,7 @@ var AddRecordDialog = function (_React$Component) {
 					_Dialog2.default,
 					{ id: 'add-new-record-dialog', title: "Add new " + this.props.controller + " record", open: this.props.open, onRequestClose: this.handleClose.bind(this) },
 					controls,
-					_react2.default.createElement(_FlatButton2.default, { id: 'add-new-record-button', label: 'Add', onClick: this.addRecordClickHandler.bind(this) })
+					this.state.recordToUpdate.id !== undefined ? _react2.default.createElement(_FlatButton2.default, { id: 'edit-existing-record-button', label: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C', onClick: this.editRecordClickHandler.bind(this) }) : _react2.default.createElement(_FlatButton2.default, { id: 'add-new-record-button', label: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C', onClick: this.addRecordClickHandler.bind(this) })
 				)
 			);
 		}
@@ -42363,7 +42511,7 @@ var AddRecordDialog = function (_React$Component) {
 module.exports = AddRecordDialog;
 
 /***/ }),
-/* 277 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42417,11 +42565,11 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactEventListener = __webpack_require__(49);
+var _reactEventListener = __webpack_require__(53);
 
 var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
@@ -42429,15 +42577,15 @@ var _transitions = __webpack_require__(11);
 
 var _transitions2 = _interopRequireDefault(_transitions);
 
-var _Overlay = __webpack_require__(234);
+var _Overlay = __webpack_require__(235);
 
 var _Overlay2 = _interopRequireDefault(_Overlay);
 
-var _RenderToLayer = __webpack_require__(232);
+var _RenderToLayer = __webpack_require__(233);
 
 var _RenderToLayer2 = _interopRequireDefault(_RenderToLayer);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -42977,7 +43125,7 @@ exports.default = Dialog;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 278 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42989,19 +43137,19 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _TextField = __webpack_require__(236);
+var _TextField = __webpack_require__(237);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
-var _getMuiTheme = __webpack_require__(53);
+var _getMuiTheme = __webpack_require__(50);
 
 var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-var _MuiThemeProvider = __webpack_require__(68);
+var _MuiThemeProvider = __webpack_require__(51);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-var _colors = __webpack_require__(32);
+var _colors = __webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43068,7 +43216,8 @@ var Text = function (_React$Component) {
 			return _react2.default.createElement(
 				_MuiThemeProvider2.default,
 				{ muiTheme: muiTheme },
-				_react2.default.createElement(_TextField2.default, { id: "this.props.id", fullWidth: true, floatingLabelText: this.props.hintText, floatingLabelStyle: floatingLabelStyle.floatingLabelStyle, floatingLabelFocusStyle: floatingLabelStyle.floatingLabelFocusStyle, errorText: this.state.errorText, onChange: this.handleChanges.bind(this) })
+				_react2.default.createElement(_TextField2.default, { id: "this.props.id", fullWidth: true, floatingLabelText: this.props.hintText, floatingLabelStyle: floatingLabelStyle.floatingLabelStyle, floatingLabelFocusStyle: floatingLabelStyle.floatingLabelFocusStyle, errorText: this.state.errorText, onChange: this.handleChanges.bind(this),
+					value: this.state.value })
 			);
 		}
 	}]);
@@ -43079,7 +43228,7 @@ var Text = function (_React$Component) {
 module.exports = Text;
 
 /***/ }),
-/* 279 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43141,19 +43290,19 @@ var _transitions = __webpack_require__(11);
 
 var _transitions2 = _interopRequireDefault(_transitions);
 
-var _EnhancedTextarea = __webpack_require__(280);
+var _EnhancedTextarea = __webpack_require__(281);
 
 var _EnhancedTextarea2 = _interopRequireDefault(_EnhancedTextarea);
 
-var _TextFieldHint = __webpack_require__(281);
+var _TextFieldHint = __webpack_require__(282);
 
 var _TextFieldHint2 = _interopRequireDefault(_TextFieldHint);
 
-var _TextFieldLabel = __webpack_require__(282);
+var _TextFieldLabel = __webpack_require__(283);
 
 var _TextFieldLabel2 = _interopRequireDefault(_TextFieldLabel);
 
-var _TextFieldUnderline = __webpack_require__(283);
+var _TextFieldUnderline = __webpack_require__(284);
 
 var _TextFieldUnderline2 = _interopRequireDefault(_TextFieldUnderline);
 
@@ -43677,7 +43826,7 @@ exports.default = TextField;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 280 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43727,7 +43876,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactEventListener = __webpack_require__(49);
+var _reactEventListener = __webpack_require__(53);
 
 var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
 
@@ -43941,7 +44090,7 @@ exports.default = EnhancedTextarea;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 281 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44028,7 +44177,7 @@ exports.default = TextFieldHint;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 282 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44152,7 +44301,7 @@ exports.default = TextFieldLabel;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 283 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44298,7 +44447,7 @@ exports.default = TextFieldUnderline;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 284 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44314,27 +44463,27 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _AutoComplete = __webpack_require__(285);
+var _AutoComplete = __webpack_require__(286);
 
 var _AutoComplete2 = _interopRequireDefault(_AutoComplete);
 
-var _DataService = __webpack_require__(74);
+var _DataService = __webpack_require__(40);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
-var _darkBaseTheme = __webpack_require__(124);
+var _darkBaseTheme = __webpack_require__(105);
 
 var _darkBaseTheme2 = _interopRequireDefault(_darkBaseTheme);
 
-var _getMuiTheme = __webpack_require__(53);
+var _getMuiTheme = __webpack_require__(50);
 
 var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-var _MuiThemeProvider = __webpack_require__(68);
+var _MuiThemeProvider = __webpack_require__(51);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-var _colors = __webpack_require__(32);
+var _colors = __webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44477,6 +44626,7 @@ var AutoCompleteControl = function (_React$Component) {
 						if (displayChild && this.state.source[i].model.name === modelValue && this.checkChildFields(i, childValues) || !displayChild && this.state.source[i].model.name === modelValue) {
 
 							if (this.props.fieldData.isChildModel) {
+								this.props.model[this.props.fieldData.modelField] = {};
 								this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] = modelValue;
 								this.props.model[this.props.fieldData.modelField].id = this.state.source[i].model.id;
 							} else {
@@ -44495,11 +44645,11 @@ var AutoCompleteControl = function (_React$Component) {
 	}, {
 		key: "componentWillMount",
 		value: function componentWillMount() {
-			this.props.fieldData.checkErrors = this.checkErrors;
-			var modelValue = this.props.fieldData.isChildModel ? this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] : this.props.model[this.props.fieldData.name];
-			if (modelValue !== "" && modelValue != undefined) {
-				this.props.fieldData.value = modelValue;
-			}
+			//this.props.fieldData.checkErrors = this.checkErrors;
+			//const modelValue = this.props.fieldData.isChildModel ? this.props.model[this.props.fieldData.modelField][this.props.fieldData.name] : this.props.model[this.props.fieldData.name];
+			//if (modelValue !== "" && modelValue != undefined) {
+			//	this.props.fieldData.value = modelValue;
+			//}
 			var processData = this.updateData;
 			if (this.state.autoCompleteData.length === 0) {
 				_DataService2.default.getItems(this.props.controller, processData);
@@ -44548,7 +44698,7 @@ var AutoCompleteControl = function (_React$Component) {
 exports.default = AutoCompleteControl;
 
 /***/ }),
-/* 285 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44559,7 +44709,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _AutoComplete = __webpack_require__(286);
+var _AutoComplete = __webpack_require__(287);
 
 var _AutoComplete2 = _interopRequireDefault(_AutoComplete);
 
@@ -44568,7 +44718,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _AutoComplete2.default;
 
 /***/ }),
-/* 286 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44582,7 +44732,7 @@ var _extends2 = __webpack_require__(10);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _typeof2 = __webpack_require__(44);
+var _typeof2 = __webpack_require__(45);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -44626,31 +44776,31 @@ var _reactDom = __webpack_require__(12);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
-var _TextField = __webpack_require__(236);
+var _TextField = __webpack_require__(237);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
-var _Menu = __webpack_require__(287);
+var _Menu = __webpack_require__(288);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _MenuItem = __webpack_require__(111);
+var _MenuItem = __webpack_require__(103);
 
 var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-var _Divider = __webpack_require__(288);
+var _Divider = __webpack_require__(289);
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _Popover = __webpack_require__(110);
+var _Popover = __webpack_require__(113);
 
 var _Popover2 = _interopRequireDefault(_Popover);
 
-var _propTypes3 = __webpack_require__(29);
+var _propTypes3 = __webpack_require__(30);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -45282,7 +45432,7 @@ exports.default = AutoComplete;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 287 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45293,11 +45443,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = exports.MenuItem = exports.Menu = undefined;
 
-var _Menu2 = __webpack_require__(109);
+var _Menu2 = __webpack_require__(112);
 
 var _Menu3 = _interopRequireDefault(_Menu2);
 
-var _MenuItem2 = __webpack_require__(111);
+var _MenuItem2 = __webpack_require__(103);
 
 var _MenuItem3 = _interopRequireDefault(_MenuItem2);
 
@@ -45308,7 +45458,7 @@ exports.MenuItem = _MenuItem3.default;
 exports.default = _Menu3.default;
 
 /***/ }),
-/* 288 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45319,7 +45469,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _Divider = __webpack_require__(289);
+var _Divider = __webpack_require__(290);
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
@@ -45328,7 +45478,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Divider2.default;
 
 /***/ }),
-/* 289 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45408,261 +45558,6 @@ exports.default = Divider;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 290 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _GridList = __webpack_require__(291);
-
-var _IconButton = __webpack_require__(72);
-
-var _IconButton2 = _interopRequireDefault(_IconButton);
-
-var _starBorder = __webpack_require__(295);
-
-var _starBorder2 = _interopRequireDefault(_starBorder);
-
-var _deleteForever = __webpack_require__(296);
-
-var _deleteForever2 = _interopRequireDefault(_deleteForever);
-
-var _navigateBefore = __webpack_require__(297);
-
-var _navigateBefore2 = _interopRequireDefault(_navigateBefore);
-
-var _navigateNext = __webpack_require__(298);
-
-var _navigateNext2 = _interopRequireDefault(_navigateNext);
-
-var _DesignService = __webpack_require__(299);
-
-var _DesignService2 = _interopRequireDefault(_DesignService);
-
-var _Card = __webpack_require__(300);
-
-var _Card2 = _interopRequireDefault(_Card);
-
-var _FlatButton = __webpack_require__(50);
-
-var _FlatButton2 = _interopRequireDefault(_FlatButton);
-
-var _FontIcon = __webpack_require__(212);
-
-var _FontIcon2 = _interopRequireDefault(_FontIcon);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-//import Lightbox from 'react-images';
-
-
-var ImagesGrid = function (_React$Component) {
-	_inherits(ImagesGrid, _React$Component);
-
-	function ImagesGrid(props) {
-		_classCallCheck(this, ImagesGrid);
-
-		var _this = _possibleConstructorReturn(this, (ImagesGrid.__proto__ || Object.getPrototypeOf(ImagesGrid)).call(this, props));
-
-		_this.state = {
-			cols: 5
-		};
-		_DesignService2.default._init();
-		return _this;
-	}
-
-	_createClass(ImagesGrid, [{
-		key: 'increasePriority',
-		value: function increasePriority(image) {
-			var source = this.props.imageSource;
-			for (var i = 0; i < source.length; i++) {
-				if (source[i].priority === image.priority && source[i - 1] !== undefined) {
-					var p1 = source[i].priority;
-					var p2 = source[i - 1].priority;
-					var tmp = source[i];
-					source[i] = source[i - 1];
-					source[i - 1] = tmp;
-					source[i].priority = p1;
-					source[i - 1].priority = p2;
-					break;
-				}
-			}
-			this.setState({});
-		}
-	}, {
-		key: 'decreasePriority',
-		value: function decreasePriority(image) {
-			var source = this.props.imageSource;
-			for (var i = 0; i < source.length; i++) {
-				if (source[i].priority === image.priority && source[i + 1] !== undefined) {
-					var p1 = source[i].priority;
-					var p2 = source[i + 1].priority;
-					var tmp = source[i];
-					source[i] = source[i + 1];
-					source[i + 1] = tmp;
-					source[i].priority = p1;
-					source[i + 1].priority = p2;
-					//we need break because elements are already swapped and on the next iteration selected element will be swapped again till to the end
-					break;
-				}
-			}
-			this.setState({});
-		}
-	}, {
-		key: 'selectImage',
-		value: function selectImage(priority) {
-			if (this.props.selectImage !== undefined) {
-				this.props.selectImage(priority);
-			}
-		}
-	}, {
-		key: 'deleteImage',
-		value: function deleteImage(image) {
-			if (this.props.removeImage !== undefined) {
-				this.props.removeImage(image);
-			}
-		}
-	}, {
-		key: 'setLarge',
-		value: function setLarge() {
-			this.setState({ cols: this.props.imageSource.length < 3 ? this.props.imageSource.length : 3 });
-		}
-	}, {
-		key: 'setMedium',
-		value: function setMedium() {
-			this.setState({ cols: this.props.imageSource.length < 2 ? this.props.imageSource.length : 2 });
-		}
-	}, {
-		key: 'setSmall',
-		value: function setSmall() {
-			this.setState({ cols: 1 });
-		}
-	}, {
-		key: 'componentWillMount',
-		value: function componentWillMount() {
-			_DesignService2.default.onChangedToSmall(this.setSmall.bind(this));
-			_DesignService2.default.onChangedToMedium(this.setMedium.bind(this));
-			_DesignService2.default.onChangedToLarge(this.setLarge.bind(this));
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			var styles = {
-				root: {
-					display: 'flex',
-					flexWrap: 'wrap',
-					margin: "0",
-					justifyContent: 'space-around'
-				},
-				gridList: {
-					width: 1100,
-					height: 450
-				},
-				gridTile: {
-					height: 175,
-					width: 200
-				}
-			};
-
-			var deleteImage = this.deleteImage.bind(this);
-			var selectImage = this.selectImage.bind(this);
-			var increasePriority = this.increasePriority.bind(this);
-			var decreasePriority = this.decreasePriority.bind(this);
-			return _react2.default.createElement(
-				'div',
-				{ style: styles.root, key: 'grid-list-container' },
-				_react2.default.createElement(
-					_GridList.GridList,
-					{
-						cols: this.state.cols,
-						key: 'grid-list',
-						style: styles.gridList },
-					this.props.imageSource.map(function (image) {
-						var actionButton = _react2.default.createElement(
-							_IconButton2.default,
-							null,
-							_react2.default.createElement(_deleteForever2.default, { color: 'white', onClick: function onClick() {
-									deleteImage(image);
-								} })
-						);
-						return _react2.default.createElement(
-							'div',
-							{ style: styles.gridTile, key: "grid-tile-container" + image.priority },
-							_react2.default.createElement(
-								_GridList.GridTile,
-								{
-									titlePosition: 'bottom',
-									titleBackground: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)',
-									key: image.prioroty,
-									title: image.file.name,
-									subtitle: _react2.default.createElement(
-										'span',
-										null,
-										image.priority === "" ? "" : "Priority:",
-										' ',
-										_react2.default.createElement(
-											'b',
-											null,
-											image.priority
-										)
-									),
-									actionIcon: actionButton },
-								_react2.default.createElement('img', { src: image.src, onClick: function onClick() {
-										selectImage(image.priority);
-									} })
-							),
-							_react2.default.createElement(
-								_Card2.default,
-								null,
-								_react2.default.createElement(
-									_FlatButton2.default,
-									{ style: { width: '50%' }, onClick: function onClick() {
-											return increasePriority(image);
-										} },
-									_react2.default.createElement(_navigateBefore2.default, { color: 'white', style: { marginTop: '7px' } })
-								),
-								_react2.default.createElement(
-									_FlatButton2.default,
-									{ style: { width: '50%' }, onClick: function onClick() {
-											return decreasePriority(image);
-										} },
-									_react2.default.createElement(_navigateNext2.default, { color: 'white', style: { marginTop: '7px' } })
-								)
-							)
-						);
-					})
-				)
-			);
-		}
-	}, {
-		key: 'componentWillUnmount',
-		value: function componentWillUnmount() {
-			window.onresize = undefined;
-		}
-	}]);
-
-	return ImagesGrid;
-}(_react2.default.Component);
-
-exports.default = ImagesGrid;
-
-/***/ }),
 /* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -45670,2879 +45565,54 @@ exports.default = ImagesGrid;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = exports.GridTile = exports.GridList = undefined;
-
-var _GridList2 = __webpack_require__(292);
-
-var _GridList3 = _interopRequireDefault(_GridList2);
-
-var _GridTile2 = __webpack_require__(293);
-
-var _GridTile3 = _interopRequireDefault(_GridTile2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.GridList = _GridList3.default;
-exports.GridTile = _GridTile3.default;
-exports.default = _GridList3.default;
-
-/***/ }),
-/* 292 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(10);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(9);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(5);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(8);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props) {
-  return {
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      margin: -props.padding / 2
-    },
-    item: {
-      boxSizing: 'border-box',
-      padding: props.padding / 2
-    }
-  };
-}
-
-var GridList = function (_Component) {
-  (0, _inherits3.default)(GridList, _Component);
-
-  function GridList() {
-    (0, _classCallCheck3.default)(this, GridList);
-    return (0, _possibleConstructorReturn3.default)(this, (GridList.__proto__ || (0, _getPrototypeOf2.default)(GridList)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(GridList, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          cols = _props.cols,
-          padding = _props.padding,
-          cellHeight = _props.cellHeight,
-          children = _props.children,
-          style = _props.style,
-          other = (0, _objectWithoutProperties3.default)(_props, ['cols', 'padding', 'cellHeight', 'children', 'style']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-      var mergedRootStyles = (0, _simpleAssign2.default)(styles.root, style);
-
-      var wrappedChildren = _react2.default.Children.map(children, function (currentChild) {
-        if (_react2.default.isValidElement(currentChild) && currentChild.type.muiName === 'Subheader') {
-          return currentChild;
-        }
-        var childCols = currentChild.props.cols || 1;
-        var childRows = currentChild.props.rows || 1;
-        var itemStyle = (0, _simpleAssign2.default)({}, styles.item, {
-          width: 100 / cols * childCols + '%',
-          height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + padding
-        });
-
-        return _react2.default.createElement(
-          'div',
-          { style: prepareStyles(itemStyle) },
-          currentChild
-        );
-      });
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({ style: prepareStyles(mergedRootStyles) }, other),
-        wrappedChildren
-      );
-    }
-  }]);
-  return GridList;
-}(_react.Component);
-
-GridList.defaultProps = {
-  cols: 2,
-  padding: 4,
-  cellHeight: 180
-};
-GridList.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-GridList.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * Number of px for one cell height.
-   * You can set `'auto'` if you want to let the children determine the height.
-   */
-  cellHeight: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.oneOf(['auto'])]),
-  /**
-   * Grid Tiles that will be in Grid List.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * Number of columns.
-   */
-  cols: _propTypes2.default.number,
-  /**
-   * Number of px for the padding/spacing between items.
-   */
-  padding: _propTypes2.default.number,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = GridList;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 293 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(10);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(9);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(5);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _defineProperty2 = __webpack_require__(294);
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _simpleAssign = __webpack_require__(8);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var _titleBar;
-
-  var _context$muiTheme = context.muiTheme,
-      baseTheme = _context$muiTheme.baseTheme,
-      gridTile = _context$muiTheme.gridTile;
-
-
-  var actionPos = props.actionIcon && props.actionPosition;
-
-  var styles = {
-    root: {
-      position: 'relative',
-      display: 'block',
-      height: '100%',
-      overflow: 'hidden'
-    },
-    titleBar: (_titleBar = {
-      position: 'absolute',
-      left: 0,
-      right: 0
-    }, (0, _defineProperty3.default)(_titleBar, props.titlePosition, 0), (0, _defineProperty3.default)(_titleBar, 'height', props.subtitle ? 68 : 48), (0, _defineProperty3.default)(_titleBar, 'background', props.titleBackground), (0, _defineProperty3.default)(_titleBar, 'display', 'flex'), (0, _defineProperty3.default)(_titleBar, 'alignItems', 'center'), _titleBar),
-    titleWrap: {
-      flexGrow: 1,
-      marginLeft: actionPos !== 'left' ? baseTheme.spacing.desktopGutterLess : 0,
-      marginRight: actionPos === 'left' ? baseTheme.spacing.desktopGutterLess : 0,
-      color: gridTile.textColor,
-      overflow: 'hidden'
-    },
-    title: {
-      fontSize: '16px',
-      textOverflow: 'ellipsis',
-      overflow: 'hidden',
-      whiteSpace: 'nowrap'
-    },
-    subtitle: {
-      fontSize: '12px',
-      textOverflow: 'ellipsis',
-      overflow: 'hidden',
-      whiteSpace: 'nowrap'
-    },
-    actionIcon: {
-      order: actionPos === 'left' ? -1 : 1
-    },
-    childImg: {
-      height: '100%',
-      transform: 'translateX(-50%)',
-      position: 'relative',
-      left: '50%'
-    }
-  };
-  return styles;
-}
-
-var GridTile = function (_Component) {
-  (0, _inherits3.default)(GridTile, _Component);
-
-  function GridTile() {
-    (0, _classCallCheck3.default)(this, GridTile);
-    return (0, _possibleConstructorReturn3.default)(this, (GridTile.__proto__ || (0, _getPrototypeOf2.default)(GridTile)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(GridTile, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.ensureImageCover();
-    }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
-      this.ensureImageCover();
-    }
-  }, {
-    key: 'ensureImageCover',
-    value: function ensureImageCover() {
-      var _this2 = this;
-
-      var imgEl = this.refs.img;
-
-      if (imgEl) {
-        var fit = function fit() {
-          if (imgEl.offsetWidth < imgEl.parentNode.offsetWidth) {
-            var isRtl = _this2.context.muiTheme.isRtl;
-
-            imgEl.style.height = 'auto';
-            if (isRtl) {
-              imgEl.style.right = '0';
-            } else {
-              imgEl.style.left = '0';
-            }
-            imgEl.style.width = '100%';
-            imgEl.style.top = '50%';
-            imgEl.style.transform = imgEl.style.WebkitTransform = 'translateY(-50%)';
-          }
-          imgEl.removeEventListener('load', fit);
-          imgEl = null; // prevent closure memory leak
-        };
-        if (imgEl.complete) {
-          fit();
-        } else {
-          imgEl.addEventListener('load', fit);
-        }
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          title = _props.title,
-          subtitle = _props.subtitle,
-          titlePosition = _props.titlePosition,
-          titleBackground = _props.titleBackground,
-          titleStyle = _props.titleStyle,
-          subtitleStyle = _props.subtitleStyle,
-          actionIcon = _props.actionIcon,
-          actionPosition = _props.actionPosition,
-          style = _props.style,
-          children = _props.children,
-          containerElement = _props.containerElement,
-          other = (0, _objectWithoutProperties3.default)(_props, ['title', 'subtitle', 'titlePosition', 'titleBackground', 'titleStyle', 'subtitleStyle', 'actionIcon', 'actionPosition', 'style', 'children', 'containerElement']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-      var mergedRootStyles = (0, _simpleAssign2.default)(styles.root, style);
-
-      var titleBar = null;
-
-      if (title) {
-        titleBar = _react2.default.createElement(
-          'div',
-          { key: 'titlebar', style: prepareStyles(styles.titleBar) },
-          _react2.default.createElement(
-            'div',
-            { style: prepareStyles(styles.titleWrap) },
-            _react2.default.createElement(
-              'div',
-              { style: prepareStyles((0, _simpleAssign2.default)(styles.title, titleStyle)) },
-              title
-            ),
-            subtitle ? _react2.default.createElement(
-              'div',
-              { style: prepareStyles((0, _simpleAssign2.default)(styles.subtitle, subtitleStyle)) },
-              subtitle
-            ) : null
-          ),
-          actionIcon ? _react2.default.createElement(
-            'div',
-            { style: prepareStyles(styles.actionIcon) },
-            actionIcon
-          ) : null
-        );
-      }
-
-      var newChildren = children;
-
-      // if there is a single image passed as children
-      // clone it and add our styles
-      if (_react2.default.Children.count(children) === 1) {
-        newChildren = _react2.default.Children.map(children, function (child) {
-          if (child.type === 'img') {
-            return _react2.default.cloneElement(child, {
-              key: 'img',
-              ref: 'img',
-              style: prepareStyles((0, _simpleAssign2.default)({}, styles.childImg, child.props.style))
-            });
-          } else {
-            return child;
-          }
-        });
-      }
-
-      var containerProps = (0, _extends3.default)({
-        style: prepareStyles(mergedRootStyles)
-      }, other);
-
-      return _react2.default.isValidElement(containerElement) ? _react2.default.cloneElement(containerElement, containerProps, [newChildren, titleBar]) : _react2.default.createElement(containerElement, containerProps, [newChildren, titleBar]);
-    }
-  }]);
-  return GridTile;
-}(_react.Component);
-
-GridTile.defaultProps = {
-  titlePosition: 'bottom',
-  titleBackground: 'rgba(0, 0, 0, 0.4)',
-  actionPosition: 'right',
-  cols: 1,
-  rows: 1,
-  containerElement: 'div'
-};
-GridTile.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-GridTile.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * An IconButton element to be used as secondary action target
-   * (primary action target is the tile itself).
-   */
-  actionIcon: _propTypes2.default.element,
-  /**
-   * Position of secondary action IconButton.
-   */
-  actionPosition: _propTypes2.default.oneOf(['left', 'right']),
-  /**
-   * Theoretically you can pass any node as children, but the main use case is to pass an img,
-   * in whichcase GridTile takes care of making the image "cover" available space
-   * (similar to background-size: cover or to object-fit:cover).
-   */
-  children: _propTypes2.default.node,
-  /**
-   * Width of the tile in number of grid cells.
-   */
-  cols: _propTypes2.default.number,
-  /**
-   * Either a string used as tag name for the tile root element, or a ReactElement.
-   * This is useful when you have, for example, a custom implementation of
-   * a navigation link (that knows about your routes) and you want to use it as the primary tile action.
-   * In case you pass a ReactElement, please ensure that it passes all props,
-   * accepts styles overrides and render it's children.
-   */
-  containerElement: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.element]),
-  /**
-   * Height of the tile in number of grid cells.
-   */
-  rows: _propTypes2.default.number,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object,
-  /**
-   * String or element serving as subtitle (support text).
-   */
-  subtitle: _propTypes2.default.node,
-  /**
-   * Override the inline-styles of the subtitle element.
-   */
-  subtitleStyle: _propTypes2.default.object,
-  /**
-   * Title to be displayed on tile.
-   */
-  title: _propTypes2.default.node,
-  /**
-   * Style used for title bar background.
-   * Useful for setting custom gradients for example
-   */
-  titleBackground: _propTypes2.default.string,
-  /**
-   * Position of the title bar (container of title, subtitle and action icon).
-   */
-  titlePosition: _propTypes2.default.oneOf(['top', 'bottom']),
-  /**
-   * Override the inline-styles of the title element.
-   */
-  titleStyle: _propTypes2.default.object
-} : {};
-exports.default = GridTile;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 294 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _defineProperty = __webpack_require__(76);
-
-var _defineProperty2 = _interopRequireDefault(_defineProperty);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (obj, key, value) {
-  if (key in obj) {
-    (0, _defineProperty2.default)(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-};
-
-/***/ }),
-/* 295 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _pure = __webpack_require__(22);
-
-var _pure2 = _interopRequireDefault(_pure);
-
-var _SvgIcon = __webpack_require__(23);
-
-var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ToggleStarBorder = function ToggleStarBorder(props) {
-  return _react2.default.createElement(
-    _SvgIcon2.default,
-    props,
-    _react2.default.createElement('path', { d: 'M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z' })
-  );
-};
-ToggleStarBorder = (0, _pure2.default)(ToggleStarBorder);
-ToggleStarBorder.displayName = 'ToggleStarBorder';
-ToggleStarBorder.muiName = 'SvgIcon';
-
-exports.default = ToggleStarBorder;
-
-/***/ }),
-/* 296 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _pure = __webpack_require__(22);
-
-var _pure2 = _interopRequireDefault(_pure);
-
-var _SvgIcon = __webpack_require__(23);
-
-var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ActionDeleteForever = function ActionDeleteForever(props) {
-  return _react2.default.createElement(
-    _SvgIcon2.default,
-    props,
-    _react2.default.createElement('path', { d: 'M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z' })
-  );
-};
-ActionDeleteForever = (0, _pure2.default)(ActionDeleteForever);
-ActionDeleteForever.displayName = 'ActionDeleteForever';
-ActionDeleteForever.muiName = 'SvgIcon';
-
-exports.default = ActionDeleteForever;
-
-/***/ }),
-/* 297 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _pure = __webpack_require__(22);
-
-var _pure2 = _interopRequireDefault(_pure);
-
-var _SvgIcon = __webpack_require__(23);
-
-var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ImageNavigateBefore = function ImageNavigateBefore(props) {
-  return _react2.default.createElement(
-    _SvgIcon2.default,
-    props,
-    _react2.default.createElement('path', { d: 'M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z' })
-  );
-};
-ImageNavigateBefore = (0, _pure2.default)(ImageNavigateBefore);
-ImageNavigateBefore.displayName = 'ImageNavigateBefore';
-ImageNavigateBefore.muiName = 'SvgIcon';
-
-exports.default = ImageNavigateBefore;
-
-/***/ }),
-/* 298 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _pure = __webpack_require__(22);
-
-var _pure2 = _interopRequireDefault(_pure);
-
-var _SvgIcon = __webpack_require__(23);
-
-var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ImageNavigateNext = function ImageNavigateNext(props) {
-  return _react2.default.createElement(
-    _SvgIcon2.default,
-    props,
-    _react2.default.createElement('path', { d: 'M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z' })
-  );
-};
-ImageNavigateNext = (0, _pure2.default)(ImageNavigateNext);
-ImageNavigateNext.displayName = 'ImageNavigateNext';
-ImageNavigateNext.muiName = 'SvgIcon';
-
-exports.default = ImageNavigateNext;
-
-/***/ }),
-/* 299 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var largeFrom = 900;
-var mediumFrom = 600;
-
-/**
- * ScreenFormats: 3 - large; 2 - medium; 1 - small
- */
-
-var DesignService = function () {
-	function DesignService() {
-		_classCallCheck(this, DesignService);
-	}
-
-	_createClass(DesignService, null, [{
-		key: "isLarge",
-		value: function isLarge() {
-			return window.innerWidth > largeFrom;
-		}
-	}, {
-		key: "isSmall",
-		value: function isSmall() {
-			return window.innerWidth < mediumFrom;
-		}
-	}, {
-		key: "onChangedToLarge",
-		value: function onChangedToLarge(func) {
-			if (func in DesignService.ChangedToLarge) {} else {
-				DesignService.ChangedToLarge.push(func);
-			}
-		}
-	}, {
-		key: "onChangedToMedium",
-		value: function onChangedToMedium(func) {
-			if (func in DesignService.ChangedToMedium) {} else {
-				DesignService.ChangedToMedium.push(func);
-			}
-		}
-	}, {
-		key: "onChangedToSmall",
-		value: function onChangedToSmall(func) {
-			if (func in DesignService.ChangedToSmall && func !== undefined) {} else {
-				DesignService.ChangedToSmall.push(func);
-			}
-		}
-	}, {
-		key: "raiseEvent",
-		value: function raiseEvent(array) {
-			for (var i = 0; i < array.length; i++) {
-				array[i]();
-			}
-		}
-	}, {
-		key: "handleChangeWidth",
-		value: function handleChangeWidth(width) {
-			if (width > largeFrom) {
-				DesignService.ScreenFormat = 3;
-				DesignService.raiseEvent(DesignService.ChangedToLarge);
-			}
-			if (width > mediumFrom && width < largeFrom) {
-				DesignService.ScreenFormat = 2;
-				DesignService.raiseEvent(DesignService.ChangedToMedium);
-			}
-			if (width < mediumFrom) {
-				DesignService.ScreenFormat = 1;
-				DesignService.raiseEvent(DesignService.ChangedToSmall);
-			}
-		}
-	}, {
-		key: "_init",
-		value: function _init() {
-			DesignService.ChangedToLarge = [];
-			DesignService.ChangedToMedium = [];
-			DesignService.ChangedToSmall = [];
-			window.onresize = function (event) {
-				DesignService.handleChangeWidth(event.target.innerWidth);
-			};
-		}
-	}]);
-
-	return DesignService;
-}();
-
-exports.default = DesignService;
-;
-
-/***/ }),
-/* 300 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = exports.CardExpandable = exports.CardActions = exports.CardText = exports.CardMedia = exports.CardTitle = exports.CardHeader = exports.Card = undefined;
-
-var _Card2 = __webpack_require__(301);
-
-var _Card3 = _interopRequireDefault(_Card2);
-
-var _CardHeader2 = __webpack_require__(304);
-
-var _CardHeader3 = _interopRequireDefault(_CardHeader2);
-
-var _CardTitle2 = __webpack_require__(307);
-
-var _CardTitle3 = _interopRequireDefault(_CardTitle2);
-
-var _CardMedia2 = __webpack_require__(308);
-
-var _CardMedia3 = _interopRequireDefault(_CardMedia2);
-
-var _CardText2 = __webpack_require__(309);
-
-var _CardText3 = _interopRequireDefault(_CardText2);
-
-var _CardActions2 = __webpack_require__(310);
-
-var _CardActions3 = _interopRequireDefault(_CardActions2);
-
-var _CardExpandable2 = __webpack_require__(237);
-
-var _CardExpandable3 = _interopRequireDefault(_CardExpandable2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.Card = _Card3.default;
-exports.CardHeader = _CardHeader3.default;
-exports.CardTitle = _CardTitle3.default;
-exports.CardMedia = _CardMedia3.default;
-exports.CardText = _CardText3.default;
-exports.CardActions = _CardActions3.default;
-exports.CardExpandable = _CardExpandable3.default;
-exports.default = _Card3.default;
-
-/***/ }),
-/* 301 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(10);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(9);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(5);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(8);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(2);
+var _Dialog = __webpack_require__(218);
 
-var _propTypes2 = _interopRequireDefault(_propTypes);
+var _Dialog2 = _interopRequireDefault(_Dialog);
 
-var _Paper = __webpack_require__(47);
+var _Table = __webpack_require__(238);
 
-var _Paper2 = _interopRequireDefault(_Paper);
+var _FlatButton = __webpack_require__(49);
 
-var _CardExpandable = __webpack_require__(237);
+var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
-var _CardExpandable2 = _interopRequireDefault(_CardExpandable);
+var _DropDownMenu = __webpack_require__(236);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _DropDownMenu2 = _interopRequireDefault(_DropDownMenu);
 
-var Card = function (_Component) {
-  (0, _inherits3.default)(Card, _Component);
+var _MenuItem = __webpack_require__(103);
 
-  function Card() {
-    var _ref;
+var _MenuItem2 = _interopRequireDefault(_MenuItem);
 
-    var _temp, _this, _ret;
+var _RestApiCalls = __webpack_require__(104);
 
-    (0, _classCallCheck3.default)(this, Card);
+var _RestApiCalls2 = _interopRequireDefault(_RestApiCalls);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Card.__proto__ || (0, _getPrototypeOf2.default)(Card)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      expanded: null
-    }, _this.handleExpanding = function (event) {
-      event.preventDefault();
-      var newExpandedState = !_this.state.expanded;
-      // no automatic state update when the component is controlled
-      if (_this.props.expanded === null) {
-        _this.setState({ expanded: newExpandedState });
-      }
-      if (_this.props.onExpandChange) {
-        _this.props.onExpandChange(newExpandedState);
-      }
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-  }
-
-  (0, _createClass3.default)(Card, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      this.setState({
-        expanded: this.props.expanded === null ? this.props.initiallyExpanded === true : this.props.expanded
-      });
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      // update the state when the component is controlled.
-      if (nextProps.expanded !== null) this.setState({ expanded: nextProps.expanded });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          style = _props.style,
-          containerStyle = _props.containerStyle,
-          children = _props.children,
-          expandable = _props.expandable,
-          expandedProp = _props.expanded,
-          initiallyExpanded = _props.initiallyExpanded,
-          onExpandChange = _props.onExpandChange,
-          other = (0, _objectWithoutProperties3.default)(_props, ['style', 'containerStyle', 'children', 'expandable', 'expanded', 'initiallyExpanded', 'onExpandChange']);
-
-
-      var lastElement = void 0;
-      var expanded = this.state.expanded;
-      var newChildren = _react2.default.Children.map(children, function (currentChild) {
-        var doClone = false;
-        var newChild = undefined;
-        var newProps = {};
-        var element = currentChild;
-        if (!currentChild || !currentChild.props) {
-          return null;
-        }
-        if (expanded === false && currentChild.props.expandable === true) return;
-        if (currentChild.props.actAsExpander === true) {
-          doClone = true;
-          newProps.onClick = _this2.handleExpanding;
-          newProps.style = (0, _simpleAssign2.default)({ cursor: 'pointer' }, currentChild.props.style);
-        }
-        if (currentChild.props.showExpandableButton === true) {
-          doClone = true;
-          newChild = _react2.default.createElement(_CardExpandable2.default, {
-            closeIcon: currentChild.props.closeIcon,
-            expanded: expanded,
-            onExpanding: _this2.handleExpanding,
-            openIcon: currentChild.props.openIcon,
-            iconStyle: currentChild.props.iconStyle
-          });
-        }
-        if (doClone) {
-          element = _react2.default.cloneElement(currentChild, newProps, currentChild.props.children, newChild);
-        }
-        lastElement = element;
-        return element;
-      }, this);
-
-      // If the last element is text or a title we should add
-      // 8px padding to the bottom of the card
-      var addBottomPadding = lastElement && (lastElement.type.muiName === 'CardText' || lastElement.type.muiName === 'CardTitle');
-
-      var mergedStyles = (0, _simpleAssign2.default)({
-        zIndex: 1
-      }, style);
-      var containerMergedStyles = (0, _simpleAssign2.default)({
-        paddingBottom: addBottomPadding ? 8 : 0
-      }, containerStyle);
-
-      return _react2.default.createElement(
-        _Paper2.default,
-        (0, _extends3.default)({}, other, { style: mergedStyles }),
-        _react2.default.createElement(
-          'div',
-          { style: containerMergedStyles },
-          newChildren
-        )
-      );
-    }
-  }]);
-  return Card;
-}(_react.Component);
-
-Card.defaultProps = {
-  expandable: false,
-  expanded: null,
-  initiallyExpanded: false
-};
-Card.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * Can be used to render elements inside the Card.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * Override the inline-styles of the container element.
-   */
-  containerStyle: _propTypes2.default.object,
-  /**
-   * If true, this card component is expandable. Can be set on any child of the `Card` component.
-   */
-  expandable: _propTypes2.default.bool,
-  /**
-   * Whether this card is expanded.
-   * If `true` or `false` the component is controlled.
-   * if `null` the component is uncontrolled.
-   */
-  expanded: _propTypes2.default.bool,
-  /**
-   * Whether this card is initially expanded.
-   */
-  initiallyExpanded: _propTypes2.default.bool,
-  /**
-   * Callback function fired when the `expandable` state of the card has changed.
-   *
-   * @param {boolean} newExpandedState Represents the new `expanded` state of the card.
-   */
-  onExpandChange: _propTypes2.default.func,
-  /**
-   * If true, this card component will include a button to expand the card. `CardTitle`,
-   * `CardHeader` and `CardActions` implement `showExpandableButton`. Any child component
-   * of `Card` can implements `showExpandableButton` or forwards the property to a child
-   * component supporting it.
-   */
-  showExpandableButton: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = Card;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 302 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _pure = __webpack_require__(22);
-
-var _pure2 = _interopRequireDefault(_pure);
-
-var _SvgIcon = __webpack_require__(23);
-
-var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var HardwareKeyboardArrowUp = function HardwareKeyboardArrowUp(props) {
-  return _react2.default.createElement(
-    _SvgIcon2.default,
-    props,
-    _react2.default.createElement('path', { d: 'M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z' })
-  );
-};
-HardwareKeyboardArrowUp = (0, _pure2.default)(HardwareKeyboardArrowUp);
-HardwareKeyboardArrowUp.displayName = 'HardwareKeyboardArrowUp';
-HardwareKeyboardArrowUp.muiName = 'SvgIcon';
-
-exports.default = HardwareKeyboardArrowUp;
-
-/***/ }),
-/* 303 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _pure = __webpack_require__(22);
-
-var _pure2 = _interopRequireDefault(_pure);
-
-var _SvgIcon = __webpack_require__(23);
-
-var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var HardwareKeyboardArrowDown = function HardwareKeyboardArrowDown(props) {
-  return _react2.default.createElement(
-    _SvgIcon2.default,
-    props,
-    _react2.default.createElement('path', { d: 'M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z' })
-  );
-};
-HardwareKeyboardArrowDown = (0, _pure2.default)(HardwareKeyboardArrowDown);
-HardwareKeyboardArrowDown.displayName = 'HardwareKeyboardArrowDown';
-HardwareKeyboardArrowDown.muiName = 'SvgIcon';
-
-exports.default = HardwareKeyboardArrowDown;
-
-/***/ }),
-/* 304 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(10);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(9);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(5);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(8);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _Avatar = __webpack_require__(305);
-
-var _Avatar2 = _interopRequireDefault(_Avatar);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var card = context.muiTheme.card;
-
-
-  return {
-    root: {
-      padding: 16,
-      fontWeight: card.fontWeight,
-      boxSizing: 'border-box',
-      position: 'relative',
-      whiteSpace: 'nowrap'
-    },
-    text: {
-      display: 'inline-block',
-      verticalAlign: 'top',
-      whiteSpace: 'normal',
-      paddingRight: '90px'
-    },
-    avatar: {
-      marginRight: 16
-    },
-    title: {
-      color: props.titleColor || card.titleColor,
-      display: 'block',
-      fontSize: 15
-    },
-    subtitle: {
-      color: props.subtitleColor || card.subtitleColor,
-      display: 'block',
-      fontSize: 14
-    }
-  };
-}
-
-var CardHeader = function (_Component) {
-  (0, _inherits3.default)(CardHeader, _Component);
-
-  function CardHeader() {
-    (0, _classCallCheck3.default)(this, CardHeader);
-    return (0, _possibleConstructorReturn3.default)(this, (CardHeader.__proto__ || (0, _getPrototypeOf2.default)(CardHeader)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(CardHeader, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          actAsExpander = _props.actAsExpander,
-          avatarProp = _props.avatar,
-          children = _props.children,
-          closeIcon = _props.closeIcon,
-          expandable = _props.expandable,
-          openIcon = _props.openIcon,
-          showExpandableButton = _props.showExpandableButton,
-          style = _props.style,
-          subtitle = _props.subtitle,
-          subtitleColor = _props.subtitleColor,
-          subtitleStyle = _props.subtitleStyle,
-          textStyle = _props.textStyle,
-          title = _props.title,
-          titleColor = _props.titleColor,
-          titleStyle = _props.titleStyle,
-          iconStyle = _props.iconStyle,
-          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'avatar', 'children', 'closeIcon', 'expandable', 'openIcon', 'showExpandableButton', 'style', 'subtitle', 'subtitleColor', 'subtitleStyle', 'textStyle', 'title', 'titleColor', 'titleStyle', 'iconStyle']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-
-      var avatar = avatarProp;
-
-      if ((0, _react.isValidElement)(avatarProp)) {
-        avatar = _react2.default.cloneElement(avatar, {
-          style: (0, _simpleAssign2.default)(styles.avatar, avatar.props.style)
-        });
-      } else if (avatar !== null) {
-        avatar = _react2.default.createElement(_Avatar2.default, { src: avatarProp, style: styles.avatar });
-      }
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) }),
-        avatar,
-        _react2.default.createElement(
-          'div',
-          { style: prepareStyles((0, _simpleAssign2.default)(styles.text, textStyle)) },
-          _react2.default.createElement(
-            'span',
-            { style: prepareStyles((0, _simpleAssign2.default)(styles.title, titleStyle)) },
-            title
-          ),
-          _react2.default.createElement(
-            'span',
-            { style: prepareStyles((0, _simpleAssign2.default)(styles.subtitle, subtitleStyle)) },
-            subtitle
-          )
-        ),
-        children
-      );
-    }
-  }]);
-  return CardHeader;
-}(_react.Component);
-
-CardHeader.muiName = 'CardHeader';
-CardHeader.defaultProps = {
-  avatar: null
-};
-CardHeader.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-CardHeader.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * If true, a click on this card component expands the card.
-   */
-  actAsExpander: _propTypes2.default.bool,
-  /**
-   * This is the [Avatar](/#/components/avatar) element to be displayed on the Card Header.
-   * If `avatar` is an `Avatar` or other element, it will be rendered.
-   * If `avatar` is a string, it will be used as the image `src` for an `Avatar`.
-   */
-  avatar: _propTypes2.default.node,
-  /**
-   * Can be used to render elements inside the Card Header.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * Can be used to pass a closeIcon if you don't like the default expandable close Icon.
-   */
-  closeIcon: _propTypes2.default.node,
-  /**
-   * If true, this card component is expandable.
-   */
-  expandable: _propTypes2.default.bool,
-  /**
-   * Override the iconStyle of the Icon Button.
-   */
-  iconStyle: _propTypes2.default.object,
-  /**
-   * Can be used to pass a openIcon if you don't like the default expandable open Icon.
-   */
-  openIcon: _propTypes2.default.node,
-  /**
-   * If true, this card component will include a button to expand the card.
-   */
-  showExpandableButton: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object,
-  /**
-   * Can be used to render a subtitle in Card Header.
-   */
-  subtitle: _propTypes2.default.node,
-  /**
-   * Override the subtitle color.
-   */
-  subtitleColor: _propTypes2.default.string,
-  /**
-   * Override the inline-styles of the subtitle.
-   */
-  subtitleStyle: _propTypes2.default.object,
-  /**
-   * Override the inline-styles of the text.
-   */
-  textStyle: _propTypes2.default.object,
-  /**
-   * Can be used to render a title in Card Header.
-   */
-  title: _propTypes2.default.node,
-  /**
-   * Override the title color.
-   */
-  titleColor: _propTypes2.default.string,
-  /**
-   * Override the inline-styles of the title.
-   */
-  titleStyle: _propTypes2.default.object
-} : {};
-exports.default = CardHeader;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 305 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = undefined;
-
-var _Avatar = __webpack_require__(306);
-
-var _Avatar2 = _interopRequireDefault(_Avatar);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _Avatar2.default;
-
-/***/ }),
-/* 306 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(10);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(9);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(5);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(8);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var backgroundColor = props.backgroundColor,
-      color = props.color,
-      size = props.size;
-  var avatar = context.muiTheme.avatar;
-
-
-  var styles = {
-    root: {
-      color: color || avatar.color,
-      backgroundColor: backgroundColor || avatar.backgroundColor,
-      userSelect: 'none',
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: size / 2,
-      borderRadius: '50%',
-      height: size,
-      width: size
-    },
-    icon: {
-      color: color || avatar.color,
-      width: size * 0.6,
-      height: size * 0.6,
-      fontSize: size * 0.6,
-      margin: size * 0.2
-    }
-  };
-
-  return styles;
-}
-
-var Avatar = function (_Component) {
-  (0, _inherits3.default)(Avatar, _Component);
-
-  function Avatar() {
-    (0, _classCallCheck3.default)(this, Avatar);
-    return (0, _possibleConstructorReturn3.default)(this, (Avatar.__proto__ || (0, _getPrototypeOf2.default)(Avatar)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(Avatar, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          backgroundColor = _props.backgroundColor,
-          icon = _props.icon,
-          src = _props.src,
-          style = _props.style,
-          className = _props.className,
-          other = (0, _objectWithoutProperties3.default)(_props, ['backgroundColor', 'icon', 'src', 'style', 'className']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-
-      if (src) {
-        return _react2.default.createElement('img', (0, _extends3.default)({
-          style: prepareStyles((0, _simpleAssign2.default)(styles.root, style))
-        }, other, {
-          src: src,
-          className: className
-        }));
-      } else {
-        return _react2.default.createElement(
-          'div',
-          (0, _extends3.default)({}, other, {
-            style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)),
-            className: className
-          }),
-          icon && _react2.default.cloneElement(icon, {
-            color: styles.icon.color,
-            style: (0, _simpleAssign2.default)(styles.icon, icon.props.style)
-          }),
-          this.props.children
-        );
-      }
-    }
-  }]);
-  return Avatar;
-}(_react.Component);
-
-Avatar.muiName = 'Avatar';
-Avatar.defaultProps = {
-  size: 40
-};
-Avatar.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-Avatar.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * The backgroundColor of the avatar. Does not apply to image avatars.
-   */
-  backgroundColor: _propTypes2.default.string,
-  /**
-   * Can be used, for instance, to render a letter inside the avatar.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * The css class name of the root `div` or `img` element.
-   */
-  className: _propTypes2.default.string,
-  /**
-   * The icon or letter's color.
-   */
-  color: _propTypes2.default.string,
-  /**
-   * This is the SvgIcon or FontIcon to be used inside the avatar.
-   */
-  icon: _propTypes2.default.element,
-  /**
-   * This is the size of the avatar in pixels.
-   */
-  size: _propTypes2.default.number,
-  /**
-   * If passed in, this component will render an img element. Otherwise, a div will be rendered.
-   */
-  src: _propTypes2.default.string,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = Avatar;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 307 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(10);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(9);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(5);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(8);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var card = context.muiTheme.card;
-
-
-  return {
-    root: {
-      padding: 16,
-      position: 'relative'
-    },
-    title: {
-      fontSize: 24,
-      color: props.titleColor || card.titleColor,
-      display: 'block',
-      lineHeight: '36px'
-    },
-    subtitle: {
-      fontSize: 14,
-      color: props.subtitleColor || card.subtitleColor,
-      display: 'block'
-    }
-  };
-}
-
-var CardTitle = function (_Component) {
-  (0, _inherits3.default)(CardTitle, _Component);
-
-  function CardTitle() {
-    (0, _classCallCheck3.default)(this, CardTitle);
-    return (0, _possibleConstructorReturn3.default)(this, (CardTitle.__proto__ || (0, _getPrototypeOf2.default)(CardTitle)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(CardTitle, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          actAsExpander = _props.actAsExpander,
-          children = _props.children,
-          closeIcon = _props.closeIcon,
-          expandable = _props.expandable,
-          showExpandableButton = _props.showExpandableButton,
-          style = _props.style,
-          subtitle = _props.subtitle,
-          subtitleColor = _props.subtitleColor,
-          subtitleStyle = _props.subtitleStyle,
-          title = _props.title,
-          titleColor = _props.titleColor,
-          titleStyle = _props.titleStyle,
-          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'children', 'closeIcon', 'expandable', 'showExpandableButton', 'style', 'subtitle', 'subtitleColor', 'subtitleStyle', 'title', 'titleColor', 'titleStyle']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-      var rootStyle = (0, _simpleAssign2.default)({}, styles.root, style);
-      var extendedTitleStyle = (0, _simpleAssign2.default)({}, styles.title, titleStyle);
-      var extendedSubtitleStyle = (0, _simpleAssign2.default)({}, styles.subtitle, subtitleStyle);
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, { style: prepareStyles(rootStyle) }),
-        _react2.default.createElement(
-          'span',
-          { style: prepareStyles(extendedTitleStyle) },
-          title
-        ),
-        _react2.default.createElement(
-          'span',
-          { style: prepareStyles(extendedSubtitleStyle) },
-          subtitle
-        ),
-        children
-      );
-    }
-  }]);
-  return CardTitle;
-}(_react.Component);
-
-CardTitle.muiName = 'CardTitle';
-CardTitle.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-CardTitle.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * If true, a click on this card component expands the card.
-   */
-  actAsExpander: _propTypes2.default.bool,
-  /**
-   * Can be used to render elements inside the Card Title.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * Can be used to pass a closeIcon if you don't like the default expandable close Icon.
-   */
-  closeIcon: _propTypes2.default.node,
-  /**
-   * If true, this card component is expandable.
-   */
-  expandable: _propTypes2.default.bool,
-  /**
-   * If true, this card component will include a button to expand the card.
-   */
-  showExpandableButton: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object,
-  /**
-   * Can be used to render a subtitle in the Card Title.
-   */
-  subtitle: _propTypes2.default.node,
-  /**
-   * Override the subtitle color.
-   */
-  subtitleColor: _propTypes2.default.string,
-  /**
-   * Override the inline-styles of the subtitle.
-   */
-  subtitleStyle: _propTypes2.default.object,
-  /**
-   * Can be used to render a title in the Card Title.
-   */
-  title: _propTypes2.default.node,
-  /**
-   * Override the title color.
-   */
-  titleColor: _propTypes2.default.string,
-  /**
-   * Override the inline-styles of the title.
-   */
-  titleStyle: _propTypes2.default.object
-} : {};
-exports.default = CardTitle;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 308 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(10);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(9);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(5);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(8);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var cardMedia = context.muiTheme.cardMedia;
-
-
-  return {
-    root: {
-      position: 'relative'
-    },
-    overlayContainer: {
-      position: 'absolute',
-      top: 0,
-      bottom: 0,
-      right: 0,
-      left: 0
-    },
-    overlay: {
-      height: '100%',
-      position: 'relative'
-    },
-    overlayContent: {
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      left: 0,
-      paddingTop: 8,
-      background: cardMedia.overlayContentBackground
-    },
-    media: {},
-    mediaChild: {
-      verticalAlign: 'top',
-      maxWidth: '100%',
-      minWidth: '100%',
-      width: '100%'
-    }
-  };
-}
-
-var CardMedia = function (_Component) {
-  (0, _inherits3.default)(CardMedia, _Component);
-
-  function CardMedia() {
-    (0, _classCallCheck3.default)(this, CardMedia);
-    return (0, _possibleConstructorReturn3.default)(this, (CardMedia.__proto__ || (0, _getPrototypeOf2.default)(CardMedia)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(CardMedia, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          actAsExpander = _props.actAsExpander,
-          children = _props.children,
-          expandable = _props.expandable,
-          mediaStyle = _props.mediaStyle,
-          overlay = _props.overlay,
-          overlayContainerStyle = _props.overlayContainerStyle,
-          overlayContentStyle = _props.overlayContentStyle,
-          overlayStyle = _props.overlayStyle,
-          style = _props.style,
-          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'children', 'expandable', 'mediaStyle', 'overlay', 'overlayContainerStyle', 'overlayContentStyle', 'overlayStyle', 'style']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-      var rootStyle = (0, _simpleAssign2.default)(styles.root, style);
-      var extendedMediaStyle = (0, _simpleAssign2.default)(styles.media, mediaStyle);
-      var extendedOverlayContainerStyle = (0, _simpleAssign2.default)(styles.overlayContainer, overlayContainerStyle);
-      var extendedOverlayContentStyle = (0, _simpleAssign2.default)(styles.overlayContent, overlayContentStyle);
-      var extendedOverlayStyle = (0, _simpleAssign2.default)(styles.overlay, overlayStyle);
-      var titleColor = this.context.muiTheme.cardMedia.titleColor;
-      var subtitleColor = this.context.muiTheme.cardMedia.subtitleColor;
-      var color = this.context.muiTheme.cardMedia.color;
-
-      var styledChildren = _react2.default.Children.map(children, function (child) {
-        if (!child) {
-          return child;
-        }
-
-        return _react2.default.cloneElement(child, {
-          style: prepareStyles((0, _simpleAssign2.default)({}, styles.mediaChild, child.props.style))
-        });
-      });
-
-      var overlayChildren = _react2.default.Children.map(overlay, function (child) {
-        var childMuiName = child && child.type ? child.type.muiName : null;
-
-        if (childMuiName === 'CardHeader' || childMuiName === 'CardTitle') {
-          return _react2.default.cloneElement(child, {
-            titleColor: titleColor,
-            subtitleColor: subtitleColor
-          });
-        } else if (childMuiName === 'CardText') {
-          return _react2.default.cloneElement(child, {
-            color: color
-          });
-        } else {
-          return child;
-        }
-      });
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, { style: prepareStyles(rootStyle) }),
-        _react2.default.createElement(
-          'div',
-          { style: prepareStyles(extendedMediaStyle) },
-          styledChildren
-        ),
-        overlay ? _react2.default.createElement(
-          'div',
-          { style: prepareStyles(extendedOverlayContainerStyle) },
-          _react2.default.createElement(
-            'div',
-            { style: prepareStyles(extendedOverlayStyle) },
-            _react2.default.createElement(
-              'div',
-              { style: prepareStyles(extendedOverlayContentStyle) },
-              overlayChildren
-            )
-          )
-        ) : ''
-      );
-    }
-  }]);
-  return CardMedia;
-}(_react.Component);
-
-CardMedia.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-CardMedia.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * If true, a click on this card component expands the card.
-   */
-  actAsExpander: _propTypes2.default.bool,
-  /**
-   * Can be used to render elements inside the Card Media.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * If true, this card component is expandable.
-   */
-  expandable: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the Card Media.
-   */
-  mediaStyle: _propTypes2.default.object,
-  /**
-   * Can be used to render overlay element in Card Media.
-   */
-  overlay: _propTypes2.default.node,
-  /**
-   * Override the inline-styles of the overlay container.
-   */
-  overlayContainerStyle: _propTypes2.default.object,
-  /**
-   * Override the inline-styles of the overlay content.
-   */
-  overlayContentStyle: _propTypes2.default.object,
-  /**
-   * Override the inline-styles of the overlay element.
-   */
-  overlayStyle: _propTypes2.default.object,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = CardMedia;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 309 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(10);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(9);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(5);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(8);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var cardText = context.muiTheme.cardText;
-
-
-  return {
-    root: {
-      padding: 16,
-      fontSize: 14,
-      color: props.color || cardText.textColor
-    }
-  };
-}
-
-var CardText = function (_Component) {
-  (0, _inherits3.default)(CardText, _Component);
-
-  function CardText() {
-    (0, _classCallCheck3.default)(this, CardText);
-    return (0, _possibleConstructorReturn3.default)(this, (CardText.__proto__ || (0, _getPrototypeOf2.default)(CardText)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(CardText, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          actAsExpander = _props.actAsExpander,
-          children = _props.children,
-          color = _props.color,
-          expandable = _props.expandable,
-          style = _props.style,
-          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'children', 'color', 'expandable', 'style']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-      var rootStyle = (0, _simpleAssign2.default)(styles.root, style);
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, { style: prepareStyles(rootStyle) }),
-        children
-      );
-    }
-  }]);
-  return CardText;
-}(_react.Component);
-
-CardText.muiName = 'CardText';
-CardText.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-CardText.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * If true, a click on this card component expands the card.
-   */
-  actAsExpander: _propTypes2.default.bool,
-  /**
-   * Can be used to render elements inside the Card Text.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * Override the CardText color.
-   */
-  color: _propTypes2.default.string,
-  /**
-   * If true, this card component is expandable.
-   */
-  expandable: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = CardText;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 310 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(10);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(9);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(5);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(8);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles() {
-  return {
-    root: {
-      padding: 8,
-      position: 'relative'
-    },
-    action: {
-      marginRight: 8
-    }
-  };
-}
-
-var CardActions = function (_Component) {
-  (0, _inherits3.default)(CardActions, _Component);
-
-  function CardActions() {
-    (0, _classCallCheck3.default)(this, CardActions);
-    return (0, _possibleConstructorReturn3.default)(this, (CardActions.__proto__ || (0, _getPrototypeOf2.default)(CardActions)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(CardActions, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          actAsExpander = _props.actAsExpander,
-          children = _props.children,
-          expandable = _props.expandable,
-          showExpandableButton = _props.showExpandableButton,
-          style = _props.style,
-          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'children', 'expandable', 'showExpandableButton', 'style']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-
-      var styledChildren = _react2.default.Children.map(children, function (child) {
-        if (_react2.default.isValidElement(child)) {
-          return _react2.default.cloneElement(child, {
-            style: (0, _simpleAssign2.default)({}, styles.action, child.props.style)
-          });
-        }
-      });
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) }),
-        styledChildren
-      );
-    }
-  }]);
-  return CardActions;
-}(_react.Component);
-
-CardActions.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-CardActions.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * If true, a click on this card component expands the card.
-   */
-  actAsExpander: _propTypes2.default.bool,
-  /**
-   * Can be used to render elements inside the Card Action.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * If true, this card component is expandable.
-   */
-  expandable: _propTypes2.default.bool,
-  /**
-   * If true, this card component will include a button to expand the card.
-   */
-  showExpandableButton: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = CardActions;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 311 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = exports.ToolbarTitle = exports.ToolbarSeparator = exports.ToolbarGroup = exports.Toolbar = undefined;
-
-var _Toolbar2 = __webpack_require__(312);
-
-var _Toolbar3 = _interopRequireDefault(_Toolbar2);
-
-var _ToolbarGroup2 = __webpack_require__(313);
-
-var _ToolbarGroup3 = _interopRequireDefault(_ToolbarGroup2);
-
-var _ToolbarSeparator2 = __webpack_require__(314);
-
-var _ToolbarSeparator3 = _interopRequireDefault(_ToolbarSeparator2);
-
-var _ToolbarTitle2 = __webpack_require__(315);
-
-var _ToolbarTitle3 = _interopRequireDefault(_ToolbarTitle2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.Toolbar = _Toolbar3.default;
-exports.ToolbarGroup = _ToolbarGroup3.default;
-exports.ToolbarSeparator = _ToolbarSeparator3.default;
-exports.ToolbarTitle = _ToolbarTitle3.default;
-exports.default = _Toolbar3.default;
-
-/***/ }),
-/* 312 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(10);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(9);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(5);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(8);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var noGutter = props.noGutter;
-  var _context$muiTheme = context.muiTheme,
-      baseTheme = _context$muiTheme.baseTheme,
-      toolbar = _context$muiTheme.toolbar;
-
-
-  return {
-    root: {
-      boxSizing: 'border-box',
-      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
-      backgroundColor: toolbar.backgroundColor,
-      height: toolbar.height,
-      padding: noGutter ? 0 : '0px ' + baseTheme.spacing.desktopGutter + 'px',
-      display: 'flex',
-      justifyContent: 'space-between'
-    }
-  };
-}
-
-var Toolbar = function (_Component) {
-  (0, _inherits3.default)(Toolbar, _Component);
-
-  function Toolbar() {
-    (0, _classCallCheck3.default)(this, Toolbar);
-    return (0, _possibleConstructorReturn3.default)(this, (Toolbar.__proto__ || (0, _getPrototypeOf2.default)(Toolbar)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(Toolbar, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          children = _props.children,
-          className = _props.className,
-          noGutter = _props.noGutter,
-          style = _props.style,
-          other = (0, _objectWithoutProperties3.default)(_props, ['children', 'className', 'noGutter', 'style']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, { className: className, style: prepareStyles((0, _simpleAssign2.default)({}, styles.root, style)) }),
-        children
-      );
-    }
-  }]);
-  return Toolbar;
-}(_react.Component);
-
-Toolbar.defaultProps = {
-  noGutter: false
-};
-Toolbar.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-Toolbar.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * Can be a `ToolbarGroup` to render a group of related items.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * The css class name of the root element.
-   */
-  className: _propTypes2.default.string,
-  /**
-   * Do not apply `desktopGutter` to the `Toolbar`.
-   */
-  noGutter: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = Toolbar;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 313 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(10);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(9);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(5);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(8);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var firstChild = props.firstChild,
-      lastChild = props.lastChild;
-  var _context$muiTheme = context.muiTheme,
-      baseTheme = _context$muiTheme.baseTheme,
-      button = _context$muiTheme.button,
-      toolbar = _context$muiTheme.toolbar;
-
-
-  var marginHorizontal = baseTheme.spacing.desktopGutter;
-  var marginVertical = (toolbar.height - button.height) / 2;
-
-  var styles = {
-    root: {
-      position: 'relative',
-      marginLeft: firstChild ? -marginHorizontal : undefined,
-      marginRight: lastChild ? -marginHorizontal : undefined,
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    },
-    dropDownMenu: {
-      root: {
-        color: toolbar.color, // removes hover color change, we want to keep it
-        marginRight: baseTheme.spacing.desktopGutter,
-        flex: 1,
-        whiteSpace: 'nowrap'
-      },
-      controlBg: {
-        backgroundColor: toolbar.menuHoverColor,
-        borderRadius: 0
-      },
-      underline: {
-        display: 'none'
-      }
-    },
-    button: {
-      margin: marginVertical + 'px ' + marginHorizontal + 'px',
-      position: 'relative'
-    },
-    icon: {
-      root: {
-        cursor: 'pointer',
-        lineHeight: toolbar.height + 'px',
-        paddingLeft: baseTheme.spacing.desktopGutter
-      }
-    },
-    span: {
-      color: toolbar.iconColor,
-      lineHeight: toolbar.height + 'px'
-    }
-  };
-
-  return styles;
-}
-
-var ToolbarGroup = function (_Component) {
-  (0, _inherits3.default)(ToolbarGroup, _Component);
-
-  function ToolbarGroup() {
-    (0, _classCallCheck3.default)(this, ToolbarGroup);
-    return (0, _possibleConstructorReturn3.default)(this, (ToolbarGroup.__proto__ || (0, _getPrototypeOf2.default)(ToolbarGroup)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(ToolbarGroup, [{
-    key: 'handleMouseLeaveFontIcon',
-    value: function handleMouseLeaveFontIcon(style) {
-      return function (event) {
-        event.target.style.zIndex = 'auto';
-        event.target.style.color = style.root.color;
-      };
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          children = _props.children,
-          className = _props.className,
-          firstChild = _props.firstChild,
-          lastChild = _props.lastChild,
-          style = _props.style,
-          other = (0, _objectWithoutProperties3.default)(_props, ['children', 'className', 'firstChild', 'lastChild', 'style']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-
-      var newChildren = _react2.default.Children.map(children, function (currentChild) {
-        if (!currentChild) {
-          return null;
-        }
-        if (!currentChild.type) {
-          return currentChild;
-        }
-        switch (currentChild.type.muiName) {
-          case 'DropDownMenu':
-            return _react2.default.cloneElement(currentChild, {
-              style: (0, _simpleAssign2.default)({}, styles.dropDownMenu.root, currentChild.props.style),
-              underlineStyle: styles.dropDownMenu.underline
-            });
-          case 'RaisedButton':
-          case 'FlatButton':
-            return _react2.default.cloneElement(currentChild, {
-              style: (0, _simpleAssign2.default)({}, styles.button, currentChild.props.style)
-            });
-          case 'FontIcon':
-            return _react2.default.cloneElement(currentChild, {
-              style: (0, _simpleAssign2.default)({}, styles.icon.root, currentChild.props.style),
-              color: currentChild.props.color || _this2.context.muiTheme.toolbar.iconColor,
-              hoverColor: currentChild.props.hoverColor || _this2.context.muiTheme.toolbar.hoverColor
-            });
-          case 'ToolbarSeparator':
-          case 'ToolbarTitle':
-            return _react2.default.cloneElement(currentChild, {
-              style: (0, _simpleAssign2.default)({}, styles.span, currentChild.props.style)
-            });
-          default:
-            return currentChild;
-        }
-      }, this);
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({}, other, { className: className, style: prepareStyles((0, _simpleAssign2.default)({}, styles.root, style)) }),
-        newChildren
-      );
-    }
-  }]);
-  return ToolbarGroup;
-}(_react.Component);
-
-ToolbarGroup.defaultProps = {
-  firstChild: false,
-  lastChild: false
-};
-ToolbarGroup.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-ToolbarGroup.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * Can be any node or number of nodes.
-   */
-  children: _propTypes2.default.node,
-  /**
-   * The css class name of the root element.
-   */
-  className: _propTypes2.default.string,
-  /**
-   * Set this to true for if the `ToolbarGroup` is the first child of `Toolbar`
-   * to prevent setting the left gap.
-   */
-  firstChild: _propTypes2.default.bool,
-  /**
-   * Set this to true for if the `ToolbarGroup` is the last child of `Toolbar`
-   * to prevent setting the right gap.
-   */
-  lastChild: _propTypes2.default.bool,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = ToolbarGroup;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 314 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(10);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(9);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(5);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(8);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var _context$muiTheme = context.muiTheme,
-      baseTheme = _context$muiTheme.baseTheme,
-      toolbar = _context$muiTheme.toolbar;
-
-
-  return {
-    root: {
-      backgroundColor: toolbar.separatorColor,
-      display: 'block',
-      height: baseTheme.spacing.desktopGutterMore,
-      marginLeft: baseTheme.spacing.desktopGutter,
-      width: 1
-    }
-  };
-}
-
-var ToolbarSeparator = function (_Component) {
-  (0, _inherits3.default)(ToolbarSeparator, _Component);
-
-  function ToolbarSeparator() {
-    (0, _classCallCheck3.default)(this, ToolbarSeparator);
-    return (0, _possibleConstructorReturn3.default)(this, (ToolbarSeparator.__proto__ || (0, _getPrototypeOf2.default)(ToolbarSeparator)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(ToolbarSeparator, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          className = _props.className,
-          style = _props.style,
-          other = (0, _objectWithoutProperties3.default)(_props, ['className', 'style']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-
-      return _react2.default.createElement('span', (0, _extends3.default)({}, other, { className: className, style: prepareStyles((0, _simpleAssign2.default)({}, styles.root, style)) }));
-    }
-  }]);
-  return ToolbarSeparator;
-}(_react.Component);
-
-ToolbarSeparator.muiName = 'ToolbarSeparator';
-ToolbarSeparator.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-ToolbarSeparator.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * The css class name of the root element.
-   */
-  className: _propTypes2.default.string,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object
-} : {};
-exports.default = ToolbarSeparator;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 315 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends2 = __webpack_require__(10);
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = __webpack_require__(9);
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = __webpack_require__(5);
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__(3);
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__(4);
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__(6);
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__(7);
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _simpleAssign = __webpack_require__(8);
-
-var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getStyles(props, context) {
-  var _context$muiTheme = context.muiTheme,
-      baseTheme = _context$muiTheme.baseTheme,
-      toolbar = _context$muiTheme.toolbar;
-
-
-  return {
-    root: {
-      paddingRight: baseTheme.spacing.desktopGutterLess,
-      lineHeight: toolbar.height + 'px',
-      fontSize: toolbar.titleFontSize,
-      fontFamily: baseTheme.fontFamily,
-      position: 'relative',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-      overflow: 'hidden'
-    }
-  };
-}
-
-var ToolbarTitle = function (_Component) {
-  (0, _inherits3.default)(ToolbarTitle, _Component);
-
-  function ToolbarTitle() {
-    (0, _classCallCheck3.default)(this, ToolbarTitle);
-    return (0, _possibleConstructorReturn3.default)(this, (ToolbarTitle.__proto__ || (0, _getPrototypeOf2.default)(ToolbarTitle)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(ToolbarTitle, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          style = _props.style,
-          text = _props.text,
-          other = (0, _objectWithoutProperties3.default)(_props, ['style', 'text']);
-      var prepareStyles = this.context.muiTheme.prepareStyles;
-
-      var styles = getStyles(this.props, this.context);
-
-      return _react2.default.createElement(
-        'span',
-        (0, _extends3.default)({
-          style: prepareStyles((0, _simpleAssign2.default)({}, styles.root, style))
-        }, other),
-        text
-      );
-    }
-  }]);
-  return ToolbarTitle;
-}(_react.Component);
-
-ToolbarTitle.muiName = 'ToolbarTitle';
-ToolbarTitle.contextTypes = {
-  muiTheme: _propTypes2.default.object.isRequired
-};
-ToolbarTitle.propTypes = process.env.NODE_ENV !== "production" ? {
-  /**
-   * The css class name of the root element.
-   */
-  className: _propTypes2.default.string,
-  /**
-   * Override the inline-styles of the root element.
-   */
-  style: _propTypes2.default.object,
-  /**
-   * The text to be displayed.
-   */
-  text: _propTypes2.default.node
-} : {};
-exports.default = ToolbarTitle;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 316 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _DataService = __webpack_require__(74);
+var _DataService = __webpack_require__(40);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
-var _ImageUploader = __webpack_require__(225);
+var _getMuiTheme = __webpack_require__(50);
 
-var _ImageUploader2 = _interopRequireDefault(_ImageUploader);
+var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-var _RaisedButton = __webpack_require__(112);
+var _MuiThemeProvider = __webpack_require__(51);
 
-var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-var _Table = __webpack_require__(317);
+var _darkBaseTheme = __webpack_require__(105);
 
-var _ListPagination = __webpack_require__(327);
+var _darkBaseTheme2 = _interopRequireDefault(_darkBaseTheme);
 
-var _ListPagination2 = _interopRequireDefault(_ListPagination);
+var _colors = __webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -48552,31 +45622,71 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var RecordsList = function (_React$Component) {
-	_inherits(RecordsList, _React$Component);
+var detailsController = "Details";
+var detailTypesController = "DetailTypes";
+var detailTypeValuesController = "DetailTypeValues";
 
-	function RecordsList(props) {
-		_classCallCheck(this, RecordsList);
+var styles = {
+	customWidth: {
+		width: "225px"
+	},
+	displayNone: {
+		display: "none"
+	},
+	tableActionColumn: {
+		width: '20%'
+	},
+	tableHeaderPadding: {
+		padding: "5px"
+	}
+};
 
-		var _this = _possibleConstructorReturn(this, (RecordsList.__proto__ || Object.getPrototypeOf(RecordsList)).call(this, props));
+var AddDetailDialog = function (_React$Component) {
+	_inherits(AddDetailDialog, _React$Component);
+
+	function AddDetailDialog(props) {
+		_classCallCheck(this, AddDetailDialog);
+
+		var _this = _possibleConstructorReturn(this, (AddDetailDialog.__proto__ || Object.getPrototypeOf(AddDetailDialog)).call(this, props));
 
 		_this.state = {
-			dataSource: [],
-			itemsPerPage: 10,
-			activePage: _this.props.page === undefined ? 1 : _this.props.page,
-			selectedItem: undefined,
-			selectedItemIndex: -1,
-			uploaderActions: {}
+			categoryId: _this.props.item.category.id,
+			itemId: _this.props.item.id,
+			selectedDetailTypeId: undefined,
+			selectedDetailTypeValueId: undefined,
+			detailTypes: [],
+			detailTypeValues: [],
+			existingDetails: [],
+			detailsToDelete: []
 		};
-		_this.getDataForPage = _this.getDataForPage.bind(_this);
-		_this.updateData = _this.updateData.bind(_this);
-		_this.formatHeaderName = _this.formatHeaderName.bind(_this);
 		return _this;
 	}
 
-	_createClass(RecordsList, [{
-		key: "updateData",
-		value: function updateData(data) {
+	_createClass(AddDetailDialog, [{
+		key: "handleClose",
+		value: function handleClose() {
+			this.props.close(false);
+		}
+	}, {
+		key: "saveDetailsClickHandler",
+		value: function saveDetailsClickHandler() {
+			var details = this.state.existingDetails.filter(function (detail) {
+				return detail.id === undefined;
+			});
+			if (details.length > 0) {
+				_RestApiCalls2.default.post("/api/" + detailsController + "/AddList", details);
+			}
+
+			if (this.state.detailsToDelete.length > 0) {
+				this.state.detailsToDelete.map(function (detail) {
+					_DataService2.default.deleteObject(detailsController, detail);
+				});
+			}
+			this.handleClose();
+		}
+	}, {
+		key: "setExistingDetails",
+		value: function setExistingDetails(data) {
 			var _this2 = this;
 
 			var newData = [];
@@ -48584,269 +45694,249 @@ var RecordsList = function (_React$Component) {
 				for (var i = 0; i < data.length; i++) {
 					newData.push(data[i].model);
 				}
-				this.setState({ dataSource: newData }, function () {
-					console.log('updated state value', _this2.state.dataSource);
+				this.setState({ existingDetails: newData }, function () {
+					console.log('updated existingDetails value', _this2.state.existingDetails);
 				});
 			}
 		}
 	}, {
-		key: "getValueForField",
-		value: function getValueForField(row, columnName) {
-			var fieldToGetValue = row;
-			var result = undefined;
+		key: "setDetailTypes",
+		value: function setDetailTypes(data) {
+			var _this3 = this;
 
-			var splittedChild = columnName.split("-");
-			for (var j = 0; j < splittedChild.length; j++) {
-				if (!splittedChild[j].includes(".")) {
-					fieldToGetValue = fieldToGetValue[splittedChild[j]];
-				} else {
-					var splittedFieldAndName = splittedChild[j].split(".");
-					fieldToGetValue = fieldToGetValue[splittedFieldAndName[0]];
-					result = fieldToGetValue !== undefined && fieldToGetValue !== null ? fieldToGetValue[splittedFieldAndName[1]] : "пусто";
+			var newData = [];
+			if (data !== null || data !== undefined) {
+				for (var i = 0; i < data.length; i++) {
+					newData.push(data[i].model);
 				}
-			}
-
-			return result;
-		}
-	}, {
-		key: "openAddDialog",
-		value: function openAddDialog() {
-			if (this.state.uploaderActions.openDialog !== undefined) {
-				this.state.uploaderActions.openDialog();
+				this.setState({ detailTypes: newData }, function () {
+					console.log('updated detailTypes value', _this3.state.detailTypes);
+				});
 			}
 		}
 	}, {
-		key: "getTableRowColumns",
-		value: function getTableRowColumns(row) {
-			var getValueForFieldFunc = this.getValueForField.bind(this);
-			var rowColumns = this.props.columns.map(function (columnName) {
-				var columnValue = void 0;
-				var columnId = void 0;
-				if (row[columnName] !== undefined) {
-					columnValue = row[columnName] !== undefined && row[columnName] !== "" && row[columnName] !== null ? row[columnName] : "пусто";
-					columnId = row.id;
-				} else {
-					var value = getValueForFieldFunc(row, columnName);
-					columnValue = value !== undefined ? value : "пусто";
-					columnId = row.id;
+		key: "setDetailTypeValues",
+		value: function setDetailTypeValues(data) {
+			var _this4 = this;
+
+			var newData = [];
+			if (data !== null || data !== undefined) {
+				for (var i = 0; i < data.length; i++) {
+					newData.push(data[i].model);
 				}
-				return _react2.default.createElement(
-					_Table.TableRowColumn,
-					{ key: columnId },
-					" ",
-					columnValue,
-					" "
-				);
-				//(row[columnName] != null ? <TableRowColumn key={columnId}> {columnValue} </TableRowColumn> : <span />);
+				this.setState({ detailTypeValues: newData }, function () {
+					console.log('updated detailTypeValues value', _this4.state.detailTypeValues);
+				});
+			}
+		}
+	}, {
+		key: "detailTypeChangeHandler",
+		value: function detailTypeChangeHandler(event, index, value) {
+			this.setState({ selectedDetailTypeId: value });
+		}
+	}, {
+		key: "detailTypeValueChangeHandler",
+		value: function detailTypeValueChangeHandler(event, index, value) {
+			this.setState({ selectedDetailTypeValueId: value });
+		}
+	}, {
+		key: "addDetailClickHandler",
+		value: function addDetailClickHandler() {
+			var _this5 = this;
+
+			var existingDetails = this.state.existingDetails;
+			var detailTypeValue = this.state.detailTypeValues.filter(function (dtv) {
+				return dtv.id === _this5.state.selectedDetailTypeValueId;
 			});
-			//if (this.props.controller === "items") {
-			//	rowColumns.push(<TableRowColumn key={row.id}><RaisedButton onClick={this.openAddDialog.bind(this)} label="add photo" fullWidth={true} />
-			//		<ImageUploader baseItemId={row.id}
-			//			uploaderActions={this.state.uploaderActions}
-			//			uploadController="Photos" />
-			//	</TableRowColumn>);
-			//}
 
-			return rowColumns;
-		}
-	}, {
-		key: "getDataForPage",
-		value: function getDataForPage() {
-			if (this.state.dataSource != null) {
-				var dataForPage = [];
-				var start = (this.state.activePage - 1) * this.state.itemsPerPage;
-				var last = start + this.state.itemsPerPage;
-				for (var i = start; i < last; i++) {
-					if (i < this.state.dataSource.length) {
-						dataForPage.push(this.state.dataSource[i]);
-					}
-				}
-				return dataForPage;
+			var contains = existingDetails.filter(function (detail) {
+				return detail.detailValue.id === _this5.state.selectedDetailTypeValueId;
+			});
+			if (this.state.selectedDetailTypeValueId !== undefined && contains.length === 0) {
+				var newDetail = {
+					itemId: this.state.itemId,
+					detailValue: detailTypeValue[0]
+				};
+				existingDetails.push(newDetail);
+				this.setState({
+					existingDetails: existingDetails, selectedDetailTypeId: undefined, selectedDetailTypeValueId: undefined
+				}, function () {
+					console.log('updated existing details', _this5.state.existingDetails);
+				});
 			}
-			return null;
 		}
 	}, {
-		key: "selectPage",
-		value: function selectPage(page) {
-			this.setState({ activePage: page }, this.props.itemSelectedHandler(undefined));
+		key: "getTableHeader",
+		value: function getTableHeader() {
+			var _this6 = this;
+
+			var detailTypesForSelectedCategory = this.state.categoryId !== undefined ? this.state.detailTypes.filter(function (detailType) {
+				return detailType.category.id === _this6.state.categoryId;
+			}) : undefined;
+
+			var detailTypes = detailTypesForSelectedCategory !== undefined ? detailTypesForSelectedCategory.map(function (detailType) {
+				return _react2.default.createElement(_MenuItem2.default, { key: detailType.id, value: detailType.id, primaryText: detailType.name });
+			}) : undefined;
+			var detailTypeValuesForSelectedType = this.state.selectedDetailTypeId !== undefined ? this.state.detailTypeValues.filter(function (detailTypeValue) {
+				return detailTypeValue.detailType.id === _this6.state.selectedDetailTypeId;
+			}) : undefined;
+
+			var detailTypeValues = detailTypeValuesForSelectedType !== undefined ? detailTypeValuesForSelectedType.map(function (detailtTypeValue) {
+				return _react2.default.createElement(_MenuItem2.default, { key: detailtTypeValue.id, value: detailtTypeValue.id, primaryText: detailtTypeValue.value });
+			}) : undefined;
+			return _react2.default.createElement(
+				_Table.TableHeader,
+				{ displaySelectAll: false, adjustForCheckbox: false, style: styles.tableHeaderPadding },
+				_react2.default.createElement(
+					_Table.TableRow,
+					{ key: "header-row" },
+					_react2.default.createElement(
+						_Table.TableHeaderColumn,
+						{ className: "detail-header-column" },
+						detailTypes !== undefined && detailTypes.length > 0 ? _react2.default.createElement(
+							_DropDownMenu2.default,
+							{ style: styles.customWidth, value: this.state.selectedDetailTypeId || -1, onChange: this.detailTypeChangeHandler.bind(this) },
+							detailTypes,
+							_react2.default.createElement(_MenuItem2.default, { style: styles.displayNone, value: -1, primaryText: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435" })
+						) : _react2.default.createElement(
+							_DropDownMenu2.default,
+							{ style: styles.customWidth, value: -1 },
+							_react2.default.createElement(_MenuItem2.default, { value: -1, primaryText: "\u041F\u0443\u0441\u0442\u043E" })
+						)
+					),
+					_react2.default.createElement(
+						_Table.TableHeaderColumn,
+						{ className: "detail-header-column" },
+						detailTypeValues !== undefined && detailTypeValues.length > 0 ? _react2.default.createElement(
+							_DropDownMenu2.default,
+							{ style: styles.customWidth, value: this.state.selectedDetailTypeValueId || -1, onChange: this.detailTypeValueChangeHandler.bind(this) },
+							detailTypeValues,
+							_react2.default.createElement(_MenuItem2.default, { style: styles.displayNone, value: -1, primaryText: "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435" })
+						) : _react2.default.createElement(
+							_DropDownMenu2.default,
+							{ style: styles.customWidth, value: -1 },
+							_react2.default.createElement(_MenuItem2.default, { value: -1, primaryText: "\u041F\u0443\u0441\u0442\u043E" })
+						)
+					),
+					_react2.default.createElement(
+						_Table.TableHeaderColumn,
+						{ style: styles.tableActionColumn },
+						_react2.default.createElement(
+							_FlatButton2.default,
+							{ onClick: this.addDetailClickHandler.bind(this) },
+							"+"
+						)
+					)
+				)
+			);
 		}
 	}, {
-		key: "resetPage",
-		value: function resetPage() {
-			this.setState({
-				activePage: 1,
-				selectedItem: undefined,
-				selectedItemIndex: -1
-			}, this.props.resetCallBack);
+		key: "getTableBody",
+		value: function getTableBody() {
+			var removeButtonClickHandler = this.removeDetailClickHandler.bind(this);
+			var detailsMenuItems = this.state.existingDetails.map(function (detail) {
+				return _react2.default.createElement(
+					_Table.TableRow,
+					{ key: detail.detailValue.id, selectable: false },
+					_react2.default.createElement(
+						_Table.TableRowColumn,
+						null,
+						detail.detailValue.detailType.name
+					),
+					_react2.default.createElement(
+						_Table.TableRowColumn,
+						null,
+						detail.detailValue.value
+					),
+					_react2.default.createElement(
+						_Table.TableRowColumn,
+						{ style: styles.tableActionColumn },
+						_react2.default.createElement(
+							_FlatButton2.default,
+							{ detail: detail, onClick: function onClick() {
+									return removeButtonClickHandler(detail);
+								} },
+							"-"
+						)
+					)
+				);
+			});
+			return _react2.default.createElement(
+				_Table.TableBody,
+				{ displayRowCheckbox: false },
+				detailsMenuItems
+			);
 		}
 	}, {
-		key: "onRowSelection",
-		value: function onRowSelection(selectedRows) {
-			if (selectedRows.length > 0) {
-				var item = this.getDataForPage()[selectedRows[0]];
-				this.state.selectedItem = item;
-				this.props.itemSelectedHandler(item);
-				this.state.selectedItemIndex = selectedRows[0];
-				console.log('updated state value', this.state.selectedItem);
-			} else {
-				this.setState({ selectedItem: undefined, selectedItemIndex: -1 }, this.props.itemSelectedHandler(undefined));
+		key: "removeDetailClickHandler",
+		value: function removeDetailClickHandler(detail) {
+			if (detail.id !== undefined) {
+				var toRemove = this.state.detailsToDelete;
+				toRemove.push(detail);
+				this.state.detailsToDelete = toRemove;
 			}
+			var existing = this.state.existingDetails;
+			existing.splice(existing.indexOf(detail), 1);
+			this.setState({ existingDetails: existing }, console.log('remove clicked: ', detail));
 		}
 	}, {
 		key: "componentWillMount",
 		value: function componentWillMount() {
-			var processData = this.updateData;
-			_DataService2.default.getItems(this.props.controller, processData);
-		}
-	}, {
-		key: "componentWillReceiveProps",
-		value: function componentWillReceiveProps(nextProps) {
-			var processData = this.updateData;
-			if (nextProps.controller !== this.props.controller || nextProps.shouldRefreshTable) {
-				_DataService2.default.getItems(nextProps.controller, processData);
-				this.resetPage();
-			} else {
-				return;
-			}
-		}
-	}, {
-		key: "shouldComponentUpdate",
-		value: function shouldComponentUpdate(nextProps, nextState) {
-			//if (nextState.selectedItemIndex !== this.state.selectedItemIndex) {
-			//	return true;
-			//}
-			if (nextState.dataSource === this.state.dataSource) {
-				if (nextProps.controller !== this.props.controller) {
-					return false;
-				}
-				if (this.state.activePage !== nextState.activePage) {
-					return true;
-				}
-				return false;
-			}
-			return true;
-		}
-	}, {
-		key: "formatHeaderName",
-		value: function formatHeaderName(column) {
-			var splitted = column.split("-");
-			return splitted[splitted.length - 1].split(".")[0];
+			var detailsQueryString = "itemId=" + this.state.itemId;
+			var detailTypesQueryString = "categoryId=" + this.state.categoryId;
+			var detailsCallback = this.setExistingDetails.bind(this);
+			var detailTypesCallback = this.setDetailTypes.bind(this);
+			var detailTypeValuesCallback = this.setDetailTypeValues.bind(this);
+			_RestApiCalls2.default.get("/api/" + detailsController + "/GetListByItemId?" + detailsQueryString).then(function (response) {
+				detailsCallback(response.data);
+			});
+			_RestApiCalls2.default.get("/api/" + detailTypesController + "/GetObjectsByCategoryId?" + detailTypesQueryString).then(function (response) {
+				detailTypesCallback(response.data);
+			});
+			_DataService2.default.getItems(detailTypeValuesController, detailTypeValuesCallback);
 		}
 	}, {
 		key: "render",
 		value: function render() {
-			var _this3 = this;
-
-			if (this.state.dataSource.length === 0) {
-				return false;
-			}
-			var list = this.getDataForPage().map(function (record) {
-				var rowColumns = _this3.getTableRowColumns(record);
-				return _react2.default.createElement(
-					_Table.TableRow,
-					{ key: record.id },
-					rowColumns
-				);
+			var muiTheme = (0, _getMuiTheme2.default)({
+				palette: {
+					textColor: _colors.pink500,
+					canvasColor: _darkBaseTheme2.default.palette.canvasColor
+				}
 			});
-
-			var headerColumns = this.props.columns.map(function (column) {
-				return _react2.default.createElement(
-					_Table.TableHeaderColumn,
-					{ key: column },
-					_this3.formatHeaderName(column)
-				);
-			});
-			var lastPage = this.state.dataSource.length % this.state.itemsPerPage !== 0 ? 1 : 0;
-			var pages = Math.floor(this.state.dataSource.length / this.state.itemsPerPage) + lastPage;
-			return _react2.default.createElement(
-				"div",
+			var tableHeader = this.getTableHeader();
+			var tableBody = this.getTableBody();
+			var controls = _react2.default.createElement(
+				_Table.Table,
 				null,
+				tableHeader,
+				tableBody
+			);
+
+			return _react2.default.createElement(
+				_MuiThemeProvider2.default,
+				{ muiTheme: muiTheme },
 				_react2.default.createElement(
-					_Table.Table,
-					{
-						onRowSelection: this.onRowSelection.bind(this) },
+					_Dialog2.default,
+					{ id: "add-details-dialog", contentStyle: { width: "40%", maxWidth: '40%' }, title: "Manage details for item id: " + this.props.item.id, open: this.props.open, onRequestClose: this.handleClose.bind(this) },
 					_react2.default.createElement(
-						_Table.TableHeader,
-						{ displaySelectAll: false },
-						_react2.default.createElement(
-							_Table.TableRow,
-							null,
-							headerColumns
-						)
+						"div",
+						{ className: "details-dialog" },
+						controls
 					),
-					_react2.default.createElement(
-						_Table.TableBody,
-						{ displayRowCheckbox: true, deselectOnClickaway: false },
-						list
-					)
-				),
-				_react2.default.createElement(_ListPagination2.default, {
-					page: this.state.activePage,
-					availablePages: pages,
-					selectPage: this.selectPage.bind(this),
-					activePage: this.state.activePage })
+					_react2.default.createElement(_FlatButton2.default, { id: "save-details-button", label: "Save", onClick: this.saveDetailsClickHandler.bind(this) })
+				)
 			);
 		}
 	}]);
 
-	return RecordsList;
+	return AddDetailDialog;
 }(_react2.default.Component);
 
-module.exports = RecordsList;
+exports.default = AddDetailDialog;
 
 /***/ }),
-/* 317 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = exports.TableRowColumn = exports.TableRow = exports.TableHeaderColumn = exports.TableHeader = exports.TableFooter = exports.TableBody = exports.Table = undefined;
-
-var _Table2 = __webpack_require__(318);
-
-var _Table3 = _interopRequireDefault(_Table2);
-
-var _TableBody2 = __webpack_require__(319);
-
-var _TableBody3 = _interopRequireDefault(_TableBody2);
-
-var _TableFooter2 = __webpack_require__(324);
-
-var _TableFooter3 = _interopRequireDefault(_TableFooter2);
-
-var _TableHeader2 = __webpack_require__(325);
-
-var _TableHeader3 = _interopRequireDefault(_TableHeader2);
-
-var _TableHeaderColumn2 = __webpack_require__(239);
-
-var _TableHeaderColumn3 = _interopRequireDefault(_TableHeaderColumn2);
-
-var _TableRow2 = __webpack_require__(326);
-
-var _TableRow3 = _interopRequireDefault(_TableRow2);
-
-var _TableRowColumn2 = __webpack_require__(226);
-
-var _TableRowColumn3 = _interopRequireDefault(_TableRowColumn2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.Table = _Table3.default;
-exports.TableBody = _TableBody3.default;
-exports.TableFooter = _TableFooter3.default;
-exports.TableHeader = _TableHeader3.default;
-exports.TableHeaderColumn = _TableHeaderColumn3.default;
-exports.TableRow = _TableRow3.default;
-exports.TableRowColumn = _TableRowColumn3.default;
-exports.default = _Table3.default;
-
-/***/ }),
-/* 318 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49229,7 +46319,7 @@ exports.default = Table;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 319 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49243,11 +46333,11 @@ var _objectWithoutProperties2 = __webpack_require__(9);
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-var _toConsumableArray2 = __webpack_require__(54);
+var _toConsumableArray2 = __webpack_require__(56);
 
 var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
-var _typeof2 = __webpack_require__(44);
+var _typeof2 = __webpack_require__(45);
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -49287,7 +46377,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Checkbox = __webpack_require__(238);
+var _Checkbox = __webpack_require__(239);
 
 var _Checkbox2 = _interopRequireDefault(_Checkbox);
 
@@ -49777,7 +46867,7 @@ exports.default = TableBody;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 320 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49827,7 +46917,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _EnhancedSwitch = __webpack_require__(321);
+var _EnhancedSwitch = __webpack_require__(295);
 
 var _EnhancedSwitch2 = _interopRequireDefault(_EnhancedSwitch);
 
@@ -49835,11 +46925,11 @@ var _transitions = __webpack_require__(11);
 
 var _transitions2 = _interopRequireDefault(_transitions);
 
-var _checkBoxOutlineBlank = __webpack_require__(322);
+var _checkBoxOutlineBlank = __webpack_require__(296);
 
 var _checkBoxOutlineBlank2 = _interopRequireDefault(_checkBoxOutlineBlank);
 
-var _checkBox = __webpack_require__(323);
+var _checkBox = __webpack_require__(297);
 
 var _checkBox2 = _interopRequireDefault(_checkBox);
 
@@ -50078,7 +47168,7 @@ exports.default = Checkbox;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 321 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50128,11 +47218,11 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactEventListener = __webpack_require__(49);
+var _reactEventListener = __webpack_require__(53);
 
 var _reactEventListener2 = _interopRequireDefault(_reactEventListener);
 
-var _keycode = __webpack_require__(46);
+var _keycode = __webpack_require__(47);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
@@ -50140,15 +47230,15 @@ var _transitions = __webpack_require__(11);
 
 var _transitions2 = _interopRequireDefault(_transitions);
 
-var _FocusRipple = __webpack_require__(105);
+var _FocusRipple = __webpack_require__(108);
 
 var _FocusRipple2 = _interopRequireDefault(_FocusRipple);
 
-var _TouchRipple = __webpack_require__(106);
+var _TouchRipple = __webpack_require__(109);
 
 var _TouchRipple2 = _interopRequireDefault(_TouchRipple);
 
-var _Paper = __webpack_require__(47);
+var _Paper = __webpack_require__(48);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
@@ -50549,7 +47639,7 @@ exports.default = EnhancedSwitch;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 322 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50587,7 +47677,7 @@ ToggleCheckBoxOutlineBlank.muiName = 'SvgIcon';
 exports.default = ToggleCheckBoxOutlineBlank;
 
 /***/ }),
-/* 323 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50625,7 +47715,7 @@ ToggleCheckBox.muiName = 'SvgIcon';
 exports.default = ToggleCheckBox;
 
 /***/ }),
-/* 324 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50639,7 +47729,7 @@ var _extends2 = __webpack_require__(10);
 
 var _extends3 = _interopRequireDefault(_extends2);
 
-var _toConsumableArray2 = __webpack_require__(54);
+var _toConsumableArray2 = __webpack_require__(56);
 
 var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
@@ -50786,7 +47876,7 @@ exports.default = TableFooter;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 325 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50828,11 +47918,11 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Checkbox = __webpack_require__(238);
+var _Checkbox = __webpack_require__(239);
 
 var _Checkbox2 = _interopRequireDefault(_Checkbox);
 
-var _TableHeaderColumn = __webpack_require__(239);
+var _TableHeaderColumn = __webpack_require__(240);
 
 var _TableHeaderColumn2 = _interopRequireDefault(_TableHeaderColumn);
 
@@ -51051,7 +48141,7 @@ exports.default = TableHeader;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 326 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51341,6 +48431,3112 @@ exports.default = TableRow;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
+/* 301 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _GridList = __webpack_require__(302);
+
+var _IconButton = __webpack_require__(73);
+
+var _IconButton2 = _interopRequireDefault(_IconButton);
+
+var _starBorder = __webpack_require__(306);
+
+var _starBorder2 = _interopRequireDefault(_starBorder);
+
+var _deleteForever = __webpack_require__(307);
+
+var _deleteForever2 = _interopRequireDefault(_deleteForever);
+
+var _navigateBefore = __webpack_require__(308);
+
+var _navigateBefore2 = _interopRequireDefault(_navigateBefore);
+
+var _navigateNext = __webpack_require__(309);
+
+var _navigateNext2 = _interopRequireDefault(_navigateNext);
+
+var _DesignService = __webpack_require__(310);
+
+var _DesignService2 = _interopRequireDefault(_DesignService);
+
+var _Card = __webpack_require__(311);
+
+var _Card2 = _interopRequireDefault(_Card);
+
+var _FlatButton = __webpack_require__(49);
+
+var _FlatButton2 = _interopRequireDefault(_FlatButton);
+
+var _FontIcon = __webpack_require__(212);
+
+var _FontIcon2 = _interopRequireDefault(_FontIcon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+//import Lightbox from 'react-images';
+
+
+var ImagesGrid = function (_React$Component) {
+	_inherits(ImagesGrid, _React$Component);
+
+	function ImagesGrid(props) {
+		_classCallCheck(this, ImagesGrid);
+
+		var _this = _possibleConstructorReturn(this, (ImagesGrid.__proto__ || Object.getPrototypeOf(ImagesGrid)).call(this, props));
+
+		_this.state = {
+			cols: 5
+		};
+		_DesignService2.default._init();
+		return _this;
+	}
+
+	_createClass(ImagesGrid, [{
+		key: 'increasePriority',
+		value: function increasePriority(image) {
+			var source = this.props.imageSource;
+			for (var i = 0; i < source.length; i++) {
+				if (source[i].priority === image.priority && source[i - 1] !== undefined) {
+					var p1 = source[i].priority;
+					var p2 = source[i - 1].priority;
+					var tmp = source[i];
+					source[i] = source[i - 1];
+					source[i - 1] = tmp;
+					source[i].priority = p1;
+					source[i - 1].priority = p2;
+					break;
+				}
+			}
+			this.setState({});
+		}
+	}, {
+		key: 'decreasePriority',
+		value: function decreasePriority(image) {
+			var source = this.props.imageSource;
+			for (var i = 0; i < source.length; i++) {
+				if (source[i].priority === image.priority && source[i + 1] !== undefined) {
+					var p1 = source[i].priority;
+					var p2 = source[i + 1].priority;
+					var tmp = source[i];
+					source[i] = source[i + 1];
+					source[i + 1] = tmp;
+					source[i].priority = p1;
+					source[i + 1].priority = p2;
+					//we need break because elements are already swapped and on the next iteration selected element will be swapped again till to the end
+					break;
+				}
+			}
+			this.setState({});
+		}
+	}, {
+		key: 'selectImage',
+		value: function selectImage(priority) {
+			if (this.props.selectImage !== undefined) {
+				this.props.selectImage(priority);
+			}
+		}
+	}, {
+		key: 'deleteImage',
+		value: function deleteImage(image) {
+			if (this.props.removeImage !== undefined) {
+				this.props.removeImage(image);
+			}
+		}
+	}, {
+		key: 'setLarge',
+		value: function setLarge() {
+			this.setState({ cols: this.props.imageSource.length < 3 ? this.props.imageSource.length : 3 });
+		}
+	}, {
+		key: 'setMedium',
+		value: function setMedium() {
+			this.setState({ cols: this.props.imageSource.length < 2 ? this.props.imageSource.length : 2 });
+		}
+	}, {
+		key: 'setSmall',
+		value: function setSmall() {
+			this.setState({ cols: 1 });
+		}
+	}, {
+		key: 'componentWillMount',
+		value: function componentWillMount() {
+			_DesignService2.default.onChangedToSmall(this.setSmall.bind(this));
+			_DesignService2.default.onChangedToMedium(this.setMedium.bind(this));
+			_DesignService2.default.onChangedToLarge(this.setLarge.bind(this));
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var styles = {
+				root: {
+					display: 'flex',
+					flexWrap: 'wrap',
+					margin: "0",
+					justifyContent: 'space-around'
+				},
+				gridList: {
+					width: 1100,
+					height: 450
+				},
+				gridTile: {
+					height: 175,
+					width: 200
+				}
+			};
+
+			var deleteImage = this.deleteImage.bind(this);
+			var selectImage = this.selectImage.bind(this);
+			var increasePriority = this.increasePriority.bind(this);
+			var decreasePriority = this.decreasePriority.bind(this);
+			return _react2.default.createElement(
+				'div',
+				{ style: styles.root, key: 'grid-list-container' },
+				_react2.default.createElement(
+					_GridList.GridList,
+					{
+						cols: this.state.cols,
+						key: 'grid-list',
+						style: styles.gridList },
+					this.props.imageSource.map(function (image) {
+						var actionButton = _react2.default.createElement(
+							_IconButton2.default,
+							null,
+							_react2.default.createElement(_deleteForever2.default, { color: 'white', onClick: function onClick() {
+									deleteImage(image);
+								} })
+						);
+						return _react2.default.createElement(
+							'div',
+							{ style: styles.gridTile, key: "grid-tile-container" + image.priority },
+							_react2.default.createElement(
+								_GridList.GridTile,
+								{
+									titlePosition: 'bottom',
+									titleBackground: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)',
+									key: image.prioroty,
+									title: "image",
+									subtitle: _react2.default.createElement(
+										'span',
+										null,
+										image.priority === "" ? "" : "Priority:",
+										' ',
+										_react2.default.createElement(
+											'b',
+											null,
+											image.priority
+										)
+									),
+									actionIcon: actionButton },
+								_react2.default.createElement('img', { src: image.src, onClick: function onClick() {
+										selectImage(image.priority);
+									} })
+							),
+							_react2.default.createElement(
+								_Card2.default,
+								null,
+								_react2.default.createElement(
+									_FlatButton2.default,
+									{ style: { width: '50%' }, onClick: function onClick() {
+											return increasePriority(image);
+										} },
+									_react2.default.createElement(_navigateBefore2.default, { color: 'white', style: { marginTop: '7px' } })
+								),
+								_react2.default.createElement(
+									_FlatButton2.default,
+									{ style: { width: '50%' }, onClick: function onClick() {
+											return decreasePriority(image);
+										} },
+									_react2.default.createElement(_navigateNext2.default, { color: 'white', style: { marginTop: '7px' } })
+								)
+							)
+						);
+					})
+				)
+			);
+		}
+	}, {
+		key: 'componentWillUnmount',
+		value: function componentWillUnmount() {
+			window.onresize = undefined;
+		}
+	}]);
+
+	return ImagesGrid;
+}(_react2.default.Component);
+
+exports.default = ImagesGrid;
+
+/***/ }),
+/* 302 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.GridTile = exports.GridList = undefined;
+
+var _GridList2 = __webpack_require__(303);
+
+var _GridList3 = _interopRequireDefault(_GridList2);
+
+var _GridTile2 = __webpack_require__(304);
+
+var _GridTile3 = _interopRequireDefault(_GridTile2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.GridList = _GridList3.default;
+exports.GridTile = _GridTile3.default;
+exports.default = _GridList3.default;
+
+/***/ }),
+/* 303 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(9);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _simpleAssign = __webpack_require__(8);
+
+var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getStyles(props) {
+  return {
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      margin: -props.padding / 2
+    },
+    item: {
+      boxSizing: 'border-box',
+      padding: props.padding / 2
+    }
+  };
+}
+
+var GridList = function (_Component) {
+  (0, _inherits3.default)(GridList, _Component);
+
+  function GridList() {
+    (0, _classCallCheck3.default)(this, GridList);
+    return (0, _possibleConstructorReturn3.default)(this, (GridList.__proto__ || (0, _getPrototypeOf2.default)(GridList)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(GridList, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          cols = _props.cols,
+          padding = _props.padding,
+          cellHeight = _props.cellHeight,
+          children = _props.children,
+          style = _props.style,
+          other = (0, _objectWithoutProperties3.default)(_props, ['cols', 'padding', 'cellHeight', 'children', 'style']);
+      var prepareStyles = this.context.muiTheme.prepareStyles;
+
+      var styles = getStyles(this.props, this.context);
+      var mergedRootStyles = (0, _simpleAssign2.default)(styles.root, style);
+
+      var wrappedChildren = _react2.default.Children.map(children, function (currentChild) {
+        if (_react2.default.isValidElement(currentChild) && currentChild.type.muiName === 'Subheader') {
+          return currentChild;
+        }
+        var childCols = currentChild.props.cols || 1;
+        var childRows = currentChild.props.rows || 1;
+        var itemStyle = (0, _simpleAssign2.default)({}, styles.item, {
+          width: 100 / cols * childCols + '%',
+          height: cellHeight === 'auto' ? 'auto' : cellHeight * childRows + padding
+        });
+
+        return _react2.default.createElement(
+          'div',
+          { style: prepareStyles(itemStyle) },
+          currentChild
+        );
+      });
+
+      return _react2.default.createElement(
+        'div',
+        (0, _extends3.default)({ style: prepareStyles(mergedRootStyles) }, other),
+        wrappedChildren
+      );
+    }
+  }]);
+  return GridList;
+}(_react.Component);
+
+GridList.defaultProps = {
+  cols: 2,
+  padding: 4,
+  cellHeight: 180
+};
+GridList.contextTypes = {
+  muiTheme: _propTypes2.default.object.isRequired
+};
+GridList.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * Number of px for one cell height.
+   * You can set `'auto'` if you want to let the children determine the height.
+   */
+  cellHeight: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.oneOf(['auto'])]),
+  /**
+   * Grid Tiles that will be in Grid List.
+   */
+  children: _propTypes2.default.node,
+  /**
+   * Number of columns.
+   */
+  cols: _propTypes2.default.number,
+  /**
+   * Number of px for the padding/spacing between items.
+   */
+  padding: _propTypes2.default.number,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: _propTypes2.default.object
+} : {};
+exports.default = GridList;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 304 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(9);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _defineProperty2 = __webpack_require__(305);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _simpleAssign = __webpack_require__(8);
+
+var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getStyles(props, context) {
+  var _titleBar;
+
+  var _context$muiTheme = context.muiTheme,
+      baseTheme = _context$muiTheme.baseTheme,
+      gridTile = _context$muiTheme.gridTile;
+
+
+  var actionPos = props.actionIcon && props.actionPosition;
+
+  var styles = {
+    root: {
+      position: 'relative',
+      display: 'block',
+      height: '100%',
+      overflow: 'hidden'
+    },
+    titleBar: (_titleBar = {
+      position: 'absolute',
+      left: 0,
+      right: 0
+    }, (0, _defineProperty3.default)(_titleBar, props.titlePosition, 0), (0, _defineProperty3.default)(_titleBar, 'height', props.subtitle ? 68 : 48), (0, _defineProperty3.default)(_titleBar, 'background', props.titleBackground), (0, _defineProperty3.default)(_titleBar, 'display', 'flex'), (0, _defineProperty3.default)(_titleBar, 'alignItems', 'center'), _titleBar),
+    titleWrap: {
+      flexGrow: 1,
+      marginLeft: actionPos !== 'left' ? baseTheme.spacing.desktopGutterLess : 0,
+      marginRight: actionPos === 'left' ? baseTheme.spacing.desktopGutterLess : 0,
+      color: gridTile.textColor,
+      overflow: 'hidden'
+    },
+    title: {
+      fontSize: '16px',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap'
+    },
+    subtitle: {
+      fontSize: '12px',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap'
+    },
+    actionIcon: {
+      order: actionPos === 'left' ? -1 : 1
+    },
+    childImg: {
+      height: '100%',
+      transform: 'translateX(-50%)',
+      position: 'relative',
+      left: '50%'
+    }
+  };
+  return styles;
+}
+
+var GridTile = function (_Component) {
+  (0, _inherits3.default)(GridTile, _Component);
+
+  function GridTile() {
+    (0, _classCallCheck3.default)(this, GridTile);
+    return (0, _possibleConstructorReturn3.default)(this, (GridTile.__proto__ || (0, _getPrototypeOf2.default)(GridTile)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(GridTile, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.ensureImageCover();
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      this.ensureImageCover();
+    }
+  }, {
+    key: 'ensureImageCover',
+    value: function ensureImageCover() {
+      var _this2 = this;
+
+      var imgEl = this.refs.img;
+
+      if (imgEl) {
+        var fit = function fit() {
+          if (imgEl.offsetWidth < imgEl.parentNode.offsetWidth) {
+            var isRtl = _this2.context.muiTheme.isRtl;
+
+            imgEl.style.height = 'auto';
+            if (isRtl) {
+              imgEl.style.right = '0';
+            } else {
+              imgEl.style.left = '0';
+            }
+            imgEl.style.width = '100%';
+            imgEl.style.top = '50%';
+            imgEl.style.transform = imgEl.style.WebkitTransform = 'translateY(-50%)';
+          }
+          imgEl.removeEventListener('load', fit);
+          imgEl = null; // prevent closure memory leak
+        };
+        if (imgEl.complete) {
+          fit();
+        } else {
+          imgEl.addEventListener('load', fit);
+        }
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          title = _props.title,
+          subtitle = _props.subtitle,
+          titlePosition = _props.titlePosition,
+          titleBackground = _props.titleBackground,
+          titleStyle = _props.titleStyle,
+          subtitleStyle = _props.subtitleStyle,
+          actionIcon = _props.actionIcon,
+          actionPosition = _props.actionPosition,
+          style = _props.style,
+          children = _props.children,
+          containerElement = _props.containerElement,
+          other = (0, _objectWithoutProperties3.default)(_props, ['title', 'subtitle', 'titlePosition', 'titleBackground', 'titleStyle', 'subtitleStyle', 'actionIcon', 'actionPosition', 'style', 'children', 'containerElement']);
+      var prepareStyles = this.context.muiTheme.prepareStyles;
+
+      var styles = getStyles(this.props, this.context);
+      var mergedRootStyles = (0, _simpleAssign2.default)(styles.root, style);
+
+      var titleBar = null;
+
+      if (title) {
+        titleBar = _react2.default.createElement(
+          'div',
+          { key: 'titlebar', style: prepareStyles(styles.titleBar) },
+          _react2.default.createElement(
+            'div',
+            { style: prepareStyles(styles.titleWrap) },
+            _react2.default.createElement(
+              'div',
+              { style: prepareStyles((0, _simpleAssign2.default)(styles.title, titleStyle)) },
+              title
+            ),
+            subtitle ? _react2.default.createElement(
+              'div',
+              { style: prepareStyles((0, _simpleAssign2.default)(styles.subtitle, subtitleStyle)) },
+              subtitle
+            ) : null
+          ),
+          actionIcon ? _react2.default.createElement(
+            'div',
+            { style: prepareStyles(styles.actionIcon) },
+            actionIcon
+          ) : null
+        );
+      }
+
+      var newChildren = children;
+
+      // if there is a single image passed as children
+      // clone it and add our styles
+      if (_react2.default.Children.count(children) === 1) {
+        newChildren = _react2.default.Children.map(children, function (child) {
+          if (child.type === 'img') {
+            return _react2.default.cloneElement(child, {
+              key: 'img',
+              ref: 'img',
+              style: prepareStyles((0, _simpleAssign2.default)({}, styles.childImg, child.props.style))
+            });
+          } else {
+            return child;
+          }
+        });
+      }
+
+      var containerProps = (0, _extends3.default)({
+        style: prepareStyles(mergedRootStyles)
+      }, other);
+
+      return _react2.default.isValidElement(containerElement) ? _react2.default.cloneElement(containerElement, containerProps, [newChildren, titleBar]) : _react2.default.createElement(containerElement, containerProps, [newChildren, titleBar]);
+    }
+  }]);
+  return GridTile;
+}(_react.Component);
+
+GridTile.defaultProps = {
+  titlePosition: 'bottom',
+  titleBackground: 'rgba(0, 0, 0, 0.4)',
+  actionPosition: 'right',
+  cols: 1,
+  rows: 1,
+  containerElement: 'div'
+};
+GridTile.contextTypes = {
+  muiTheme: _propTypes2.default.object.isRequired
+};
+GridTile.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * An IconButton element to be used as secondary action target
+   * (primary action target is the tile itself).
+   */
+  actionIcon: _propTypes2.default.element,
+  /**
+   * Position of secondary action IconButton.
+   */
+  actionPosition: _propTypes2.default.oneOf(['left', 'right']),
+  /**
+   * Theoretically you can pass any node as children, but the main use case is to pass an img,
+   * in whichcase GridTile takes care of making the image "cover" available space
+   * (similar to background-size: cover or to object-fit:cover).
+   */
+  children: _propTypes2.default.node,
+  /**
+   * Width of the tile in number of grid cells.
+   */
+  cols: _propTypes2.default.number,
+  /**
+   * Either a string used as tag name for the tile root element, or a ReactElement.
+   * This is useful when you have, for example, a custom implementation of
+   * a navigation link (that knows about your routes) and you want to use it as the primary tile action.
+   * In case you pass a ReactElement, please ensure that it passes all props,
+   * accepts styles overrides and render it's children.
+   */
+  containerElement: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.element]),
+  /**
+   * Height of the tile in number of grid cells.
+   */
+  rows: _propTypes2.default.number,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: _propTypes2.default.object,
+  /**
+   * String or element serving as subtitle (support text).
+   */
+  subtitle: _propTypes2.default.node,
+  /**
+   * Override the inline-styles of the subtitle element.
+   */
+  subtitleStyle: _propTypes2.default.object,
+  /**
+   * Title to be displayed on tile.
+   */
+  title: _propTypes2.default.node,
+  /**
+   * Style used for title bar background.
+   * Useful for setting custom gradients for example
+   */
+  titleBackground: _propTypes2.default.string,
+  /**
+   * Position of the title bar (container of title, subtitle and action icon).
+   */
+  titlePosition: _propTypes2.default.oneOf(['top', 'bottom']),
+  /**
+   * Override the inline-styles of the title element.
+   */
+  titleStyle: _propTypes2.default.object
+} : {};
+exports.default = GridTile;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 305 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _defineProperty = __webpack_require__(76);
+
+var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (obj, key, value) {
+  if (key in obj) {
+    (0, _defineProperty2.default)(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+};
+
+/***/ }),
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _pure = __webpack_require__(22);
+
+var _pure2 = _interopRequireDefault(_pure);
+
+var _SvgIcon = __webpack_require__(23);
+
+var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ToggleStarBorder = function ToggleStarBorder(props) {
+  return _react2.default.createElement(
+    _SvgIcon2.default,
+    props,
+    _react2.default.createElement('path', { d: 'M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z' })
+  );
+};
+ToggleStarBorder = (0, _pure2.default)(ToggleStarBorder);
+ToggleStarBorder.displayName = 'ToggleStarBorder';
+ToggleStarBorder.muiName = 'SvgIcon';
+
+exports.default = ToggleStarBorder;
+
+/***/ }),
+/* 307 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _pure = __webpack_require__(22);
+
+var _pure2 = _interopRequireDefault(_pure);
+
+var _SvgIcon = __webpack_require__(23);
+
+var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ActionDeleteForever = function ActionDeleteForever(props) {
+  return _react2.default.createElement(
+    _SvgIcon2.default,
+    props,
+    _react2.default.createElement('path', { d: 'M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z' })
+  );
+};
+ActionDeleteForever = (0, _pure2.default)(ActionDeleteForever);
+ActionDeleteForever.displayName = 'ActionDeleteForever';
+ActionDeleteForever.muiName = 'SvgIcon';
+
+exports.default = ActionDeleteForever;
+
+/***/ }),
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _pure = __webpack_require__(22);
+
+var _pure2 = _interopRequireDefault(_pure);
+
+var _SvgIcon = __webpack_require__(23);
+
+var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ImageNavigateBefore = function ImageNavigateBefore(props) {
+  return _react2.default.createElement(
+    _SvgIcon2.default,
+    props,
+    _react2.default.createElement('path', { d: 'M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z' })
+  );
+};
+ImageNavigateBefore = (0, _pure2.default)(ImageNavigateBefore);
+ImageNavigateBefore.displayName = 'ImageNavigateBefore';
+ImageNavigateBefore.muiName = 'SvgIcon';
+
+exports.default = ImageNavigateBefore;
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _pure = __webpack_require__(22);
+
+var _pure2 = _interopRequireDefault(_pure);
+
+var _SvgIcon = __webpack_require__(23);
+
+var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ImageNavigateNext = function ImageNavigateNext(props) {
+  return _react2.default.createElement(
+    _SvgIcon2.default,
+    props,
+    _react2.default.createElement('path', { d: 'M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z' })
+  );
+};
+ImageNavigateNext = (0, _pure2.default)(ImageNavigateNext);
+ImageNavigateNext.displayName = 'ImageNavigateNext';
+ImageNavigateNext.muiName = 'SvgIcon';
+
+exports.default = ImageNavigateNext;
+
+/***/ }),
+/* 310 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var largeFrom = 900;
+var mediumFrom = 600;
+
+/**
+ * ScreenFormats: 3 - large; 2 - medium; 1 - small
+ */
+
+var DesignService = function () {
+	function DesignService() {
+		_classCallCheck(this, DesignService);
+	}
+
+	_createClass(DesignService, null, [{
+		key: "isLarge",
+		value: function isLarge() {
+			return window.innerWidth > largeFrom;
+		}
+	}, {
+		key: "isSmall",
+		value: function isSmall() {
+			return window.innerWidth < mediumFrom;
+		}
+	}, {
+		key: "onChangedToLarge",
+		value: function onChangedToLarge(func) {
+			if (func in DesignService.ChangedToLarge) {} else {
+				DesignService.ChangedToLarge.push(func);
+			}
+		}
+	}, {
+		key: "onChangedToMedium",
+		value: function onChangedToMedium(func) {
+			if (func in DesignService.ChangedToMedium) {} else {
+				DesignService.ChangedToMedium.push(func);
+			}
+		}
+	}, {
+		key: "onChangedToSmall",
+		value: function onChangedToSmall(func) {
+			if (func in DesignService.ChangedToSmall && func !== undefined) {} else {
+				DesignService.ChangedToSmall.push(func);
+			}
+		}
+	}, {
+		key: "raiseEvent",
+		value: function raiseEvent(array) {
+			for (var i = 0; i < array.length; i++) {
+				array[i]();
+			}
+		}
+	}, {
+		key: "handleChangeWidth",
+		value: function handleChangeWidth(width) {
+			if (width > largeFrom) {
+				DesignService.ScreenFormat = 3;
+				DesignService.raiseEvent(DesignService.ChangedToLarge);
+			}
+			if (width > mediumFrom && width < largeFrom) {
+				DesignService.ScreenFormat = 2;
+				DesignService.raiseEvent(DesignService.ChangedToMedium);
+			}
+			if (width < mediumFrom) {
+				DesignService.ScreenFormat = 1;
+				DesignService.raiseEvent(DesignService.ChangedToSmall);
+			}
+		}
+	}, {
+		key: "_init",
+		value: function _init() {
+			DesignService.ChangedToLarge = [];
+			DesignService.ChangedToMedium = [];
+			DesignService.ChangedToSmall = [];
+			window.onresize = function (event) {
+				DesignService.handleChangeWidth(event.target.innerWidth);
+			};
+		}
+	}]);
+
+	return DesignService;
+}();
+
+exports.default = DesignService;
+;
+
+/***/ }),
+/* 311 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.CardExpandable = exports.CardActions = exports.CardText = exports.CardMedia = exports.CardTitle = exports.CardHeader = exports.Card = undefined;
+
+var _Card2 = __webpack_require__(312);
+
+var _Card3 = _interopRequireDefault(_Card2);
+
+var _CardHeader2 = __webpack_require__(315);
+
+var _CardHeader3 = _interopRequireDefault(_CardHeader2);
+
+var _CardTitle2 = __webpack_require__(318);
+
+var _CardTitle3 = _interopRequireDefault(_CardTitle2);
+
+var _CardMedia2 = __webpack_require__(319);
+
+var _CardMedia3 = _interopRequireDefault(_CardMedia2);
+
+var _CardText2 = __webpack_require__(320);
+
+var _CardText3 = _interopRequireDefault(_CardText2);
+
+var _CardActions2 = __webpack_require__(321);
+
+var _CardActions3 = _interopRequireDefault(_CardActions2);
+
+var _CardExpandable2 = __webpack_require__(241);
+
+var _CardExpandable3 = _interopRequireDefault(_CardExpandable2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.Card = _Card3.default;
+exports.CardHeader = _CardHeader3.default;
+exports.CardTitle = _CardTitle3.default;
+exports.CardMedia = _CardMedia3.default;
+exports.CardText = _CardText3.default;
+exports.CardActions = _CardActions3.default;
+exports.CardExpandable = _CardExpandable3.default;
+exports.default = _Card3.default;
+
+/***/ }),
+/* 312 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(9);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _simpleAssign = __webpack_require__(8);
+
+var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Paper = __webpack_require__(48);
+
+var _Paper2 = _interopRequireDefault(_Paper);
+
+var _CardExpandable = __webpack_require__(241);
+
+var _CardExpandable2 = _interopRequireDefault(_CardExpandable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Card = function (_Component) {
+  (0, _inherits3.default)(Card, _Component);
+
+  function Card() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    (0, _classCallCheck3.default)(this, Card);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Card.__proto__ || (0, _getPrototypeOf2.default)(Card)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      expanded: null
+    }, _this.handleExpanding = function (event) {
+      event.preventDefault();
+      var newExpandedState = !_this.state.expanded;
+      // no automatic state update when the component is controlled
+      if (_this.props.expanded === null) {
+        _this.setState({ expanded: newExpandedState });
+      }
+      if (_this.props.onExpandChange) {
+        _this.props.onExpandChange(newExpandedState);
+      }
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  }
+
+  (0, _createClass3.default)(Card, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.setState({
+        expanded: this.props.expanded === null ? this.props.initiallyExpanded === true : this.props.expanded
+      });
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      // update the state when the component is controlled.
+      if (nextProps.expanded !== null) this.setState({ expanded: nextProps.expanded });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          style = _props.style,
+          containerStyle = _props.containerStyle,
+          children = _props.children,
+          expandable = _props.expandable,
+          expandedProp = _props.expanded,
+          initiallyExpanded = _props.initiallyExpanded,
+          onExpandChange = _props.onExpandChange,
+          other = (0, _objectWithoutProperties3.default)(_props, ['style', 'containerStyle', 'children', 'expandable', 'expanded', 'initiallyExpanded', 'onExpandChange']);
+
+
+      var lastElement = void 0;
+      var expanded = this.state.expanded;
+      var newChildren = _react2.default.Children.map(children, function (currentChild) {
+        var doClone = false;
+        var newChild = undefined;
+        var newProps = {};
+        var element = currentChild;
+        if (!currentChild || !currentChild.props) {
+          return null;
+        }
+        if (expanded === false && currentChild.props.expandable === true) return;
+        if (currentChild.props.actAsExpander === true) {
+          doClone = true;
+          newProps.onClick = _this2.handleExpanding;
+          newProps.style = (0, _simpleAssign2.default)({ cursor: 'pointer' }, currentChild.props.style);
+        }
+        if (currentChild.props.showExpandableButton === true) {
+          doClone = true;
+          newChild = _react2.default.createElement(_CardExpandable2.default, {
+            closeIcon: currentChild.props.closeIcon,
+            expanded: expanded,
+            onExpanding: _this2.handleExpanding,
+            openIcon: currentChild.props.openIcon,
+            iconStyle: currentChild.props.iconStyle
+          });
+        }
+        if (doClone) {
+          element = _react2.default.cloneElement(currentChild, newProps, currentChild.props.children, newChild);
+        }
+        lastElement = element;
+        return element;
+      }, this);
+
+      // If the last element is text or a title we should add
+      // 8px padding to the bottom of the card
+      var addBottomPadding = lastElement && (lastElement.type.muiName === 'CardText' || lastElement.type.muiName === 'CardTitle');
+
+      var mergedStyles = (0, _simpleAssign2.default)({
+        zIndex: 1
+      }, style);
+      var containerMergedStyles = (0, _simpleAssign2.default)({
+        paddingBottom: addBottomPadding ? 8 : 0
+      }, containerStyle);
+
+      return _react2.default.createElement(
+        _Paper2.default,
+        (0, _extends3.default)({}, other, { style: mergedStyles }),
+        _react2.default.createElement(
+          'div',
+          { style: containerMergedStyles },
+          newChildren
+        )
+      );
+    }
+  }]);
+  return Card;
+}(_react.Component);
+
+Card.defaultProps = {
+  expandable: false,
+  expanded: null,
+  initiallyExpanded: false
+};
+Card.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * Can be used to render elements inside the Card.
+   */
+  children: _propTypes2.default.node,
+  /**
+   * Override the inline-styles of the container element.
+   */
+  containerStyle: _propTypes2.default.object,
+  /**
+   * If true, this card component is expandable. Can be set on any child of the `Card` component.
+   */
+  expandable: _propTypes2.default.bool,
+  /**
+   * Whether this card is expanded.
+   * If `true` or `false` the component is controlled.
+   * if `null` the component is uncontrolled.
+   */
+  expanded: _propTypes2.default.bool,
+  /**
+   * Whether this card is initially expanded.
+   */
+  initiallyExpanded: _propTypes2.default.bool,
+  /**
+   * Callback function fired when the `expandable` state of the card has changed.
+   *
+   * @param {boolean} newExpandedState Represents the new `expanded` state of the card.
+   */
+  onExpandChange: _propTypes2.default.func,
+  /**
+   * If true, this card component will include a button to expand the card. `CardTitle`,
+   * `CardHeader` and `CardActions` implement `showExpandableButton`. Any child component
+   * of `Card` can implements `showExpandableButton` or forwards the property to a child
+   * component supporting it.
+   */
+  showExpandableButton: _propTypes2.default.bool,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: _propTypes2.default.object
+} : {};
+exports.default = Card;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 313 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _pure = __webpack_require__(22);
+
+var _pure2 = _interopRequireDefault(_pure);
+
+var _SvgIcon = __webpack_require__(23);
+
+var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var HardwareKeyboardArrowUp = function HardwareKeyboardArrowUp(props) {
+  return _react2.default.createElement(
+    _SvgIcon2.default,
+    props,
+    _react2.default.createElement('path', { d: 'M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z' })
+  );
+};
+HardwareKeyboardArrowUp = (0, _pure2.default)(HardwareKeyboardArrowUp);
+HardwareKeyboardArrowUp.displayName = 'HardwareKeyboardArrowUp';
+HardwareKeyboardArrowUp.muiName = 'SvgIcon';
+
+exports.default = HardwareKeyboardArrowUp;
+
+/***/ }),
+/* 314 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _pure = __webpack_require__(22);
+
+var _pure2 = _interopRequireDefault(_pure);
+
+var _SvgIcon = __webpack_require__(23);
+
+var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var HardwareKeyboardArrowDown = function HardwareKeyboardArrowDown(props) {
+  return _react2.default.createElement(
+    _SvgIcon2.default,
+    props,
+    _react2.default.createElement('path', { d: 'M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z' })
+  );
+};
+HardwareKeyboardArrowDown = (0, _pure2.default)(HardwareKeyboardArrowDown);
+HardwareKeyboardArrowDown.displayName = 'HardwareKeyboardArrowDown';
+HardwareKeyboardArrowDown.muiName = 'SvgIcon';
+
+exports.default = HardwareKeyboardArrowDown;
+
+/***/ }),
+/* 315 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(9);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _simpleAssign = __webpack_require__(8);
+
+var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Avatar = __webpack_require__(316);
+
+var _Avatar2 = _interopRequireDefault(_Avatar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getStyles(props, context) {
+  var card = context.muiTheme.card;
+
+
+  return {
+    root: {
+      padding: 16,
+      fontWeight: card.fontWeight,
+      boxSizing: 'border-box',
+      position: 'relative',
+      whiteSpace: 'nowrap'
+    },
+    text: {
+      display: 'inline-block',
+      verticalAlign: 'top',
+      whiteSpace: 'normal',
+      paddingRight: '90px'
+    },
+    avatar: {
+      marginRight: 16
+    },
+    title: {
+      color: props.titleColor || card.titleColor,
+      display: 'block',
+      fontSize: 15
+    },
+    subtitle: {
+      color: props.subtitleColor || card.subtitleColor,
+      display: 'block',
+      fontSize: 14
+    }
+  };
+}
+
+var CardHeader = function (_Component) {
+  (0, _inherits3.default)(CardHeader, _Component);
+
+  function CardHeader() {
+    (0, _classCallCheck3.default)(this, CardHeader);
+    return (0, _possibleConstructorReturn3.default)(this, (CardHeader.__proto__ || (0, _getPrototypeOf2.default)(CardHeader)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(CardHeader, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          actAsExpander = _props.actAsExpander,
+          avatarProp = _props.avatar,
+          children = _props.children,
+          closeIcon = _props.closeIcon,
+          expandable = _props.expandable,
+          openIcon = _props.openIcon,
+          showExpandableButton = _props.showExpandableButton,
+          style = _props.style,
+          subtitle = _props.subtitle,
+          subtitleColor = _props.subtitleColor,
+          subtitleStyle = _props.subtitleStyle,
+          textStyle = _props.textStyle,
+          title = _props.title,
+          titleColor = _props.titleColor,
+          titleStyle = _props.titleStyle,
+          iconStyle = _props.iconStyle,
+          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'avatar', 'children', 'closeIcon', 'expandable', 'openIcon', 'showExpandableButton', 'style', 'subtitle', 'subtitleColor', 'subtitleStyle', 'textStyle', 'title', 'titleColor', 'titleStyle', 'iconStyle']);
+      var prepareStyles = this.context.muiTheme.prepareStyles;
+
+      var styles = getStyles(this.props, this.context);
+
+      var avatar = avatarProp;
+
+      if ((0, _react.isValidElement)(avatarProp)) {
+        avatar = _react2.default.cloneElement(avatar, {
+          style: (0, _simpleAssign2.default)(styles.avatar, avatar.props.style)
+        });
+      } else if (avatar !== null) {
+        avatar = _react2.default.createElement(_Avatar2.default, { src: avatarProp, style: styles.avatar });
+      }
+
+      return _react2.default.createElement(
+        'div',
+        (0, _extends3.default)({}, other, { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) }),
+        avatar,
+        _react2.default.createElement(
+          'div',
+          { style: prepareStyles((0, _simpleAssign2.default)(styles.text, textStyle)) },
+          _react2.default.createElement(
+            'span',
+            { style: prepareStyles((0, _simpleAssign2.default)(styles.title, titleStyle)) },
+            title
+          ),
+          _react2.default.createElement(
+            'span',
+            { style: prepareStyles((0, _simpleAssign2.default)(styles.subtitle, subtitleStyle)) },
+            subtitle
+          )
+        ),
+        children
+      );
+    }
+  }]);
+  return CardHeader;
+}(_react.Component);
+
+CardHeader.muiName = 'CardHeader';
+CardHeader.defaultProps = {
+  avatar: null
+};
+CardHeader.contextTypes = {
+  muiTheme: _propTypes2.default.object.isRequired
+};
+CardHeader.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * If true, a click on this card component expands the card.
+   */
+  actAsExpander: _propTypes2.default.bool,
+  /**
+   * This is the [Avatar](/#/components/avatar) element to be displayed on the Card Header.
+   * If `avatar` is an `Avatar` or other element, it will be rendered.
+   * If `avatar` is a string, it will be used as the image `src` for an `Avatar`.
+   */
+  avatar: _propTypes2.default.node,
+  /**
+   * Can be used to render elements inside the Card Header.
+   */
+  children: _propTypes2.default.node,
+  /**
+   * Can be used to pass a closeIcon if you don't like the default expandable close Icon.
+   */
+  closeIcon: _propTypes2.default.node,
+  /**
+   * If true, this card component is expandable.
+   */
+  expandable: _propTypes2.default.bool,
+  /**
+   * Override the iconStyle of the Icon Button.
+   */
+  iconStyle: _propTypes2.default.object,
+  /**
+   * Can be used to pass a openIcon if you don't like the default expandable open Icon.
+   */
+  openIcon: _propTypes2.default.node,
+  /**
+   * If true, this card component will include a button to expand the card.
+   */
+  showExpandableButton: _propTypes2.default.bool,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: _propTypes2.default.object,
+  /**
+   * Can be used to render a subtitle in Card Header.
+   */
+  subtitle: _propTypes2.default.node,
+  /**
+   * Override the subtitle color.
+   */
+  subtitleColor: _propTypes2.default.string,
+  /**
+   * Override the inline-styles of the subtitle.
+   */
+  subtitleStyle: _propTypes2.default.object,
+  /**
+   * Override the inline-styles of the text.
+   */
+  textStyle: _propTypes2.default.object,
+  /**
+   * Can be used to render a title in Card Header.
+   */
+  title: _propTypes2.default.node,
+  /**
+   * Override the title color.
+   */
+  titleColor: _propTypes2.default.string,
+  /**
+   * Override the inline-styles of the title.
+   */
+  titleStyle: _propTypes2.default.object
+} : {};
+exports.default = CardHeader;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 316 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _Avatar = __webpack_require__(317);
+
+var _Avatar2 = _interopRequireDefault(_Avatar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Avatar2.default;
+
+/***/ }),
+/* 317 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(9);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _simpleAssign = __webpack_require__(8);
+
+var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getStyles(props, context) {
+  var backgroundColor = props.backgroundColor,
+      color = props.color,
+      size = props.size;
+  var avatar = context.muiTheme.avatar;
+
+
+  var styles = {
+    root: {
+      color: color || avatar.color,
+      backgroundColor: backgroundColor || avatar.backgroundColor,
+      userSelect: 'none',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: size / 2,
+      borderRadius: '50%',
+      height: size,
+      width: size
+    },
+    icon: {
+      color: color || avatar.color,
+      width: size * 0.6,
+      height: size * 0.6,
+      fontSize: size * 0.6,
+      margin: size * 0.2
+    }
+  };
+
+  return styles;
+}
+
+var Avatar = function (_Component) {
+  (0, _inherits3.default)(Avatar, _Component);
+
+  function Avatar() {
+    (0, _classCallCheck3.default)(this, Avatar);
+    return (0, _possibleConstructorReturn3.default)(this, (Avatar.__proto__ || (0, _getPrototypeOf2.default)(Avatar)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(Avatar, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          backgroundColor = _props.backgroundColor,
+          icon = _props.icon,
+          src = _props.src,
+          style = _props.style,
+          className = _props.className,
+          other = (0, _objectWithoutProperties3.default)(_props, ['backgroundColor', 'icon', 'src', 'style', 'className']);
+      var prepareStyles = this.context.muiTheme.prepareStyles;
+
+      var styles = getStyles(this.props, this.context);
+
+      if (src) {
+        return _react2.default.createElement('img', (0, _extends3.default)({
+          style: prepareStyles((0, _simpleAssign2.default)(styles.root, style))
+        }, other, {
+          src: src,
+          className: className
+        }));
+      } else {
+        return _react2.default.createElement(
+          'div',
+          (0, _extends3.default)({}, other, {
+            style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)),
+            className: className
+          }),
+          icon && _react2.default.cloneElement(icon, {
+            color: styles.icon.color,
+            style: (0, _simpleAssign2.default)(styles.icon, icon.props.style)
+          }),
+          this.props.children
+        );
+      }
+    }
+  }]);
+  return Avatar;
+}(_react.Component);
+
+Avatar.muiName = 'Avatar';
+Avatar.defaultProps = {
+  size: 40
+};
+Avatar.contextTypes = {
+  muiTheme: _propTypes2.default.object.isRequired
+};
+Avatar.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * The backgroundColor of the avatar. Does not apply to image avatars.
+   */
+  backgroundColor: _propTypes2.default.string,
+  /**
+   * Can be used, for instance, to render a letter inside the avatar.
+   */
+  children: _propTypes2.default.node,
+  /**
+   * The css class name of the root `div` or `img` element.
+   */
+  className: _propTypes2.default.string,
+  /**
+   * The icon or letter's color.
+   */
+  color: _propTypes2.default.string,
+  /**
+   * This is the SvgIcon or FontIcon to be used inside the avatar.
+   */
+  icon: _propTypes2.default.element,
+  /**
+   * This is the size of the avatar in pixels.
+   */
+  size: _propTypes2.default.number,
+  /**
+   * If passed in, this component will render an img element. Otherwise, a div will be rendered.
+   */
+  src: _propTypes2.default.string,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: _propTypes2.default.object
+} : {};
+exports.default = Avatar;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 318 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(9);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _simpleAssign = __webpack_require__(8);
+
+var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getStyles(props, context) {
+  var card = context.muiTheme.card;
+
+
+  return {
+    root: {
+      padding: 16,
+      position: 'relative'
+    },
+    title: {
+      fontSize: 24,
+      color: props.titleColor || card.titleColor,
+      display: 'block',
+      lineHeight: '36px'
+    },
+    subtitle: {
+      fontSize: 14,
+      color: props.subtitleColor || card.subtitleColor,
+      display: 'block'
+    }
+  };
+}
+
+var CardTitle = function (_Component) {
+  (0, _inherits3.default)(CardTitle, _Component);
+
+  function CardTitle() {
+    (0, _classCallCheck3.default)(this, CardTitle);
+    return (0, _possibleConstructorReturn3.default)(this, (CardTitle.__proto__ || (0, _getPrototypeOf2.default)(CardTitle)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(CardTitle, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          actAsExpander = _props.actAsExpander,
+          children = _props.children,
+          closeIcon = _props.closeIcon,
+          expandable = _props.expandable,
+          showExpandableButton = _props.showExpandableButton,
+          style = _props.style,
+          subtitle = _props.subtitle,
+          subtitleColor = _props.subtitleColor,
+          subtitleStyle = _props.subtitleStyle,
+          title = _props.title,
+          titleColor = _props.titleColor,
+          titleStyle = _props.titleStyle,
+          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'children', 'closeIcon', 'expandable', 'showExpandableButton', 'style', 'subtitle', 'subtitleColor', 'subtitleStyle', 'title', 'titleColor', 'titleStyle']);
+      var prepareStyles = this.context.muiTheme.prepareStyles;
+
+      var styles = getStyles(this.props, this.context);
+      var rootStyle = (0, _simpleAssign2.default)({}, styles.root, style);
+      var extendedTitleStyle = (0, _simpleAssign2.default)({}, styles.title, titleStyle);
+      var extendedSubtitleStyle = (0, _simpleAssign2.default)({}, styles.subtitle, subtitleStyle);
+
+      return _react2.default.createElement(
+        'div',
+        (0, _extends3.default)({}, other, { style: prepareStyles(rootStyle) }),
+        _react2.default.createElement(
+          'span',
+          { style: prepareStyles(extendedTitleStyle) },
+          title
+        ),
+        _react2.default.createElement(
+          'span',
+          { style: prepareStyles(extendedSubtitleStyle) },
+          subtitle
+        ),
+        children
+      );
+    }
+  }]);
+  return CardTitle;
+}(_react.Component);
+
+CardTitle.muiName = 'CardTitle';
+CardTitle.contextTypes = {
+  muiTheme: _propTypes2.default.object.isRequired
+};
+CardTitle.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * If true, a click on this card component expands the card.
+   */
+  actAsExpander: _propTypes2.default.bool,
+  /**
+   * Can be used to render elements inside the Card Title.
+   */
+  children: _propTypes2.default.node,
+  /**
+   * Can be used to pass a closeIcon if you don't like the default expandable close Icon.
+   */
+  closeIcon: _propTypes2.default.node,
+  /**
+   * If true, this card component is expandable.
+   */
+  expandable: _propTypes2.default.bool,
+  /**
+   * If true, this card component will include a button to expand the card.
+   */
+  showExpandableButton: _propTypes2.default.bool,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: _propTypes2.default.object,
+  /**
+   * Can be used to render a subtitle in the Card Title.
+   */
+  subtitle: _propTypes2.default.node,
+  /**
+   * Override the subtitle color.
+   */
+  subtitleColor: _propTypes2.default.string,
+  /**
+   * Override the inline-styles of the subtitle.
+   */
+  subtitleStyle: _propTypes2.default.object,
+  /**
+   * Can be used to render a title in the Card Title.
+   */
+  title: _propTypes2.default.node,
+  /**
+   * Override the title color.
+   */
+  titleColor: _propTypes2.default.string,
+  /**
+   * Override the inline-styles of the title.
+   */
+  titleStyle: _propTypes2.default.object
+} : {};
+exports.default = CardTitle;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 319 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(9);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _simpleAssign = __webpack_require__(8);
+
+var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getStyles(props, context) {
+  var cardMedia = context.muiTheme.cardMedia;
+
+
+  return {
+    root: {
+      position: 'relative'
+    },
+    overlayContainer: {
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      right: 0,
+      left: 0
+    },
+    overlay: {
+      height: '100%',
+      position: 'relative'
+    },
+    overlayContent: {
+      position: 'absolute',
+      bottom: 0,
+      right: 0,
+      left: 0,
+      paddingTop: 8,
+      background: cardMedia.overlayContentBackground
+    },
+    media: {},
+    mediaChild: {
+      verticalAlign: 'top',
+      maxWidth: '100%',
+      minWidth: '100%',
+      width: '100%'
+    }
+  };
+}
+
+var CardMedia = function (_Component) {
+  (0, _inherits3.default)(CardMedia, _Component);
+
+  function CardMedia() {
+    (0, _classCallCheck3.default)(this, CardMedia);
+    return (0, _possibleConstructorReturn3.default)(this, (CardMedia.__proto__ || (0, _getPrototypeOf2.default)(CardMedia)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(CardMedia, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          actAsExpander = _props.actAsExpander,
+          children = _props.children,
+          expandable = _props.expandable,
+          mediaStyle = _props.mediaStyle,
+          overlay = _props.overlay,
+          overlayContainerStyle = _props.overlayContainerStyle,
+          overlayContentStyle = _props.overlayContentStyle,
+          overlayStyle = _props.overlayStyle,
+          style = _props.style,
+          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'children', 'expandable', 'mediaStyle', 'overlay', 'overlayContainerStyle', 'overlayContentStyle', 'overlayStyle', 'style']);
+      var prepareStyles = this.context.muiTheme.prepareStyles;
+
+      var styles = getStyles(this.props, this.context);
+      var rootStyle = (0, _simpleAssign2.default)(styles.root, style);
+      var extendedMediaStyle = (0, _simpleAssign2.default)(styles.media, mediaStyle);
+      var extendedOverlayContainerStyle = (0, _simpleAssign2.default)(styles.overlayContainer, overlayContainerStyle);
+      var extendedOverlayContentStyle = (0, _simpleAssign2.default)(styles.overlayContent, overlayContentStyle);
+      var extendedOverlayStyle = (0, _simpleAssign2.default)(styles.overlay, overlayStyle);
+      var titleColor = this.context.muiTheme.cardMedia.titleColor;
+      var subtitleColor = this.context.muiTheme.cardMedia.subtitleColor;
+      var color = this.context.muiTheme.cardMedia.color;
+
+      var styledChildren = _react2.default.Children.map(children, function (child) {
+        if (!child) {
+          return child;
+        }
+
+        return _react2.default.cloneElement(child, {
+          style: prepareStyles((0, _simpleAssign2.default)({}, styles.mediaChild, child.props.style))
+        });
+      });
+
+      var overlayChildren = _react2.default.Children.map(overlay, function (child) {
+        var childMuiName = child && child.type ? child.type.muiName : null;
+
+        if (childMuiName === 'CardHeader' || childMuiName === 'CardTitle') {
+          return _react2.default.cloneElement(child, {
+            titleColor: titleColor,
+            subtitleColor: subtitleColor
+          });
+        } else if (childMuiName === 'CardText') {
+          return _react2.default.cloneElement(child, {
+            color: color
+          });
+        } else {
+          return child;
+        }
+      });
+
+      return _react2.default.createElement(
+        'div',
+        (0, _extends3.default)({}, other, { style: prepareStyles(rootStyle) }),
+        _react2.default.createElement(
+          'div',
+          { style: prepareStyles(extendedMediaStyle) },
+          styledChildren
+        ),
+        overlay ? _react2.default.createElement(
+          'div',
+          { style: prepareStyles(extendedOverlayContainerStyle) },
+          _react2.default.createElement(
+            'div',
+            { style: prepareStyles(extendedOverlayStyle) },
+            _react2.default.createElement(
+              'div',
+              { style: prepareStyles(extendedOverlayContentStyle) },
+              overlayChildren
+            )
+          )
+        ) : ''
+      );
+    }
+  }]);
+  return CardMedia;
+}(_react.Component);
+
+CardMedia.contextTypes = {
+  muiTheme: _propTypes2.default.object.isRequired
+};
+CardMedia.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * If true, a click on this card component expands the card.
+   */
+  actAsExpander: _propTypes2.default.bool,
+  /**
+   * Can be used to render elements inside the Card Media.
+   */
+  children: _propTypes2.default.node,
+  /**
+   * If true, this card component is expandable.
+   */
+  expandable: _propTypes2.default.bool,
+  /**
+   * Override the inline-styles of the Card Media.
+   */
+  mediaStyle: _propTypes2.default.object,
+  /**
+   * Can be used to render overlay element in Card Media.
+   */
+  overlay: _propTypes2.default.node,
+  /**
+   * Override the inline-styles of the overlay container.
+   */
+  overlayContainerStyle: _propTypes2.default.object,
+  /**
+   * Override the inline-styles of the overlay content.
+   */
+  overlayContentStyle: _propTypes2.default.object,
+  /**
+   * Override the inline-styles of the overlay element.
+   */
+  overlayStyle: _propTypes2.default.object,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: _propTypes2.default.object
+} : {};
+exports.default = CardMedia;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 320 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(9);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _simpleAssign = __webpack_require__(8);
+
+var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getStyles(props, context) {
+  var cardText = context.muiTheme.cardText;
+
+
+  return {
+    root: {
+      padding: 16,
+      fontSize: 14,
+      color: props.color || cardText.textColor
+    }
+  };
+}
+
+var CardText = function (_Component) {
+  (0, _inherits3.default)(CardText, _Component);
+
+  function CardText() {
+    (0, _classCallCheck3.default)(this, CardText);
+    return (0, _possibleConstructorReturn3.default)(this, (CardText.__proto__ || (0, _getPrototypeOf2.default)(CardText)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(CardText, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          actAsExpander = _props.actAsExpander,
+          children = _props.children,
+          color = _props.color,
+          expandable = _props.expandable,
+          style = _props.style,
+          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'children', 'color', 'expandable', 'style']);
+      var prepareStyles = this.context.muiTheme.prepareStyles;
+
+      var styles = getStyles(this.props, this.context);
+      var rootStyle = (0, _simpleAssign2.default)(styles.root, style);
+
+      return _react2.default.createElement(
+        'div',
+        (0, _extends3.default)({}, other, { style: prepareStyles(rootStyle) }),
+        children
+      );
+    }
+  }]);
+  return CardText;
+}(_react.Component);
+
+CardText.muiName = 'CardText';
+CardText.contextTypes = {
+  muiTheme: _propTypes2.default.object.isRequired
+};
+CardText.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * If true, a click on this card component expands the card.
+   */
+  actAsExpander: _propTypes2.default.bool,
+  /**
+   * Can be used to render elements inside the Card Text.
+   */
+  children: _propTypes2.default.node,
+  /**
+   * Override the CardText color.
+   */
+  color: _propTypes2.default.string,
+  /**
+   * If true, this card component is expandable.
+   */
+  expandable: _propTypes2.default.bool,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: _propTypes2.default.object
+} : {};
+exports.default = CardText;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 321 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(9);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _simpleAssign = __webpack_require__(8);
+
+var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getStyles() {
+  return {
+    root: {
+      padding: 8,
+      position: 'relative'
+    },
+    action: {
+      marginRight: 8
+    }
+  };
+}
+
+var CardActions = function (_Component) {
+  (0, _inherits3.default)(CardActions, _Component);
+
+  function CardActions() {
+    (0, _classCallCheck3.default)(this, CardActions);
+    return (0, _possibleConstructorReturn3.default)(this, (CardActions.__proto__ || (0, _getPrototypeOf2.default)(CardActions)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(CardActions, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          actAsExpander = _props.actAsExpander,
+          children = _props.children,
+          expandable = _props.expandable,
+          showExpandableButton = _props.showExpandableButton,
+          style = _props.style,
+          other = (0, _objectWithoutProperties3.default)(_props, ['actAsExpander', 'children', 'expandable', 'showExpandableButton', 'style']);
+      var prepareStyles = this.context.muiTheme.prepareStyles;
+
+      var styles = getStyles(this.props, this.context);
+
+      var styledChildren = _react2.default.Children.map(children, function (child) {
+        if (_react2.default.isValidElement(child)) {
+          return _react2.default.cloneElement(child, {
+            style: (0, _simpleAssign2.default)({}, styles.action, child.props.style)
+          });
+        }
+      });
+
+      return _react2.default.createElement(
+        'div',
+        (0, _extends3.default)({}, other, { style: prepareStyles((0, _simpleAssign2.default)(styles.root, style)) }),
+        styledChildren
+      );
+    }
+  }]);
+  return CardActions;
+}(_react.Component);
+
+CardActions.contextTypes = {
+  muiTheme: _propTypes2.default.object.isRequired
+};
+CardActions.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * If true, a click on this card component expands the card.
+   */
+  actAsExpander: _propTypes2.default.bool,
+  /**
+   * Can be used to render elements inside the Card Action.
+   */
+  children: _propTypes2.default.node,
+  /**
+   * If true, this card component is expandable.
+   */
+  expandable: _propTypes2.default.bool,
+  /**
+   * If true, this card component will include a button to expand the card.
+   */
+  showExpandableButton: _propTypes2.default.bool,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: _propTypes2.default.object
+} : {};
+exports.default = CardActions;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 322 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.ToolbarTitle = exports.ToolbarSeparator = exports.ToolbarGroup = exports.Toolbar = undefined;
+
+var _Toolbar2 = __webpack_require__(323);
+
+var _Toolbar3 = _interopRequireDefault(_Toolbar2);
+
+var _ToolbarGroup2 = __webpack_require__(324);
+
+var _ToolbarGroup3 = _interopRequireDefault(_ToolbarGroup2);
+
+var _ToolbarSeparator2 = __webpack_require__(325);
+
+var _ToolbarSeparator3 = _interopRequireDefault(_ToolbarSeparator2);
+
+var _ToolbarTitle2 = __webpack_require__(326);
+
+var _ToolbarTitle3 = _interopRequireDefault(_ToolbarTitle2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.Toolbar = _Toolbar3.default;
+exports.ToolbarGroup = _ToolbarGroup3.default;
+exports.ToolbarSeparator = _ToolbarSeparator3.default;
+exports.ToolbarTitle = _ToolbarTitle3.default;
+exports.default = _Toolbar3.default;
+
+/***/ }),
+/* 323 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(9);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _simpleAssign = __webpack_require__(8);
+
+var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getStyles(props, context) {
+  var noGutter = props.noGutter;
+  var _context$muiTheme = context.muiTheme,
+      baseTheme = _context$muiTheme.baseTheme,
+      toolbar = _context$muiTheme.toolbar;
+
+
+  return {
+    root: {
+      boxSizing: 'border-box',
+      WebkitTapHighlightColor: 'rgba(0,0,0,0)', // Remove mobile color flashing (deprecated)
+      backgroundColor: toolbar.backgroundColor,
+      height: toolbar.height,
+      padding: noGutter ? 0 : '0px ' + baseTheme.spacing.desktopGutter + 'px',
+      display: 'flex',
+      justifyContent: 'space-between'
+    }
+  };
+}
+
+var Toolbar = function (_Component) {
+  (0, _inherits3.default)(Toolbar, _Component);
+
+  function Toolbar() {
+    (0, _classCallCheck3.default)(this, Toolbar);
+    return (0, _possibleConstructorReturn3.default)(this, (Toolbar.__proto__ || (0, _getPrototypeOf2.default)(Toolbar)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(Toolbar, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          children = _props.children,
+          className = _props.className,
+          noGutter = _props.noGutter,
+          style = _props.style,
+          other = (0, _objectWithoutProperties3.default)(_props, ['children', 'className', 'noGutter', 'style']);
+      var prepareStyles = this.context.muiTheme.prepareStyles;
+
+      var styles = getStyles(this.props, this.context);
+
+      return _react2.default.createElement(
+        'div',
+        (0, _extends3.default)({}, other, { className: className, style: prepareStyles((0, _simpleAssign2.default)({}, styles.root, style)) }),
+        children
+      );
+    }
+  }]);
+  return Toolbar;
+}(_react.Component);
+
+Toolbar.defaultProps = {
+  noGutter: false
+};
+Toolbar.contextTypes = {
+  muiTheme: _propTypes2.default.object.isRequired
+};
+Toolbar.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * Can be a `ToolbarGroup` to render a group of related items.
+   */
+  children: _propTypes2.default.node,
+  /**
+   * The css class name of the root element.
+   */
+  className: _propTypes2.default.string,
+  /**
+   * Do not apply `desktopGutter` to the `Toolbar`.
+   */
+  noGutter: _propTypes2.default.bool,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: _propTypes2.default.object
+} : {};
+exports.default = Toolbar;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 324 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(9);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _simpleAssign = __webpack_require__(8);
+
+var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getStyles(props, context) {
+  var firstChild = props.firstChild,
+      lastChild = props.lastChild;
+  var _context$muiTheme = context.muiTheme,
+      baseTheme = _context$muiTheme.baseTheme,
+      button = _context$muiTheme.button,
+      toolbar = _context$muiTheme.toolbar;
+
+
+  var marginHorizontal = baseTheme.spacing.desktopGutter;
+  var marginVertical = (toolbar.height - button.height) / 2;
+
+  var styles = {
+    root: {
+      position: 'relative',
+      marginLeft: firstChild ? -marginHorizontal : undefined,
+      marginRight: lastChild ? -marginHorizontal : undefined,
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    },
+    dropDownMenu: {
+      root: {
+        color: toolbar.color, // removes hover color change, we want to keep it
+        marginRight: baseTheme.spacing.desktopGutter,
+        flex: 1,
+        whiteSpace: 'nowrap'
+      },
+      controlBg: {
+        backgroundColor: toolbar.menuHoverColor,
+        borderRadius: 0
+      },
+      underline: {
+        display: 'none'
+      }
+    },
+    button: {
+      margin: marginVertical + 'px ' + marginHorizontal + 'px',
+      position: 'relative'
+    },
+    icon: {
+      root: {
+        cursor: 'pointer',
+        lineHeight: toolbar.height + 'px',
+        paddingLeft: baseTheme.spacing.desktopGutter
+      }
+    },
+    span: {
+      color: toolbar.iconColor,
+      lineHeight: toolbar.height + 'px'
+    }
+  };
+
+  return styles;
+}
+
+var ToolbarGroup = function (_Component) {
+  (0, _inherits3.default)(ToolbarGroup, _Component);
+
+  function ToolbarGroup() {
+    (0, _classCallCheck3.default)(this, ToolbarGroup);
+    return (0, _possibleConstructorReturn3.default)(this, (ToolbarGroup.__proto__ || (0, _getPrototypeOf2.default)(ToolbarGroup)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(ToolbarGroup, [{
+    key: 'handleMouseLeaveFontIcon',
+    value: function handleMouseLeaveFontIcon(style) {
+      return function (event) {
+        event.target.style.zIndex = 'auto';
+        event.target.style.color = style.root.color;
+      };
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          children = _props.children,
+          className = _props.className,
+          firstChild = _props.firstChild,
+          lastChild = _props.lastChild,
+          style = _props.style,
+          other = (0, _objectWithoutProperties3.default)(_props, ['children', 'className', 'firstChild', 'lastChild', 'style']);
+      var prepareStyles = this.context.muiTheme.prepareStyles;
+
+      var styles = getStyles(this.props, this.context);
+
+      var newChildren = _react2.default.Children.map(children, function (currentChild) {
+        if (!currentChild) {
+          return null;
+        }
+        if (!currentChild.type) {
+          return currentChild;
+        }
+        switch (currentChild.type.muiName) {
+          case 'DropDownMenu':
+            return _react2.default.cloneElement(currentChild, {
+              style: (0, _simpleAssign2.default)({}, styles.dropDownMenu.root, currentChild.props.style),
+              underlineStyle: styles.dropDownMenu.underline
+            });
+          case 'RaisedButton':
+          case 'FlatButton':
+            return _react2.default.cloneElement(currentChild, {
+              style: (0, _simpleAssign2.default)({}, styles.button, currentChild.props.style)
+            });
+          case 'FontIcon':
+            return _react2.default.cloneElement(currentChild, {
+              style: (0, _simpleAssign2.default)({}, styles.icon.root, currentChild.props.style),
+              color: currentChild.props.color || _this2.context.muiTheme.toolbar.iconColor,
+              hoverColor: currentChild.props.hoverColor || _this2.context.muiTheme.toolbar.hoverColor
+            });
+          case 'ToolbarSeparator':
+          case 'ToolbarTitle':
+            return _react2.default.cloneElement(currentChild, {
+              style: (0, _simpleAssign2.default)({}, styles.span, currentChild.props.style)
+            });
+          default:
+            return currentChild;
+        }
+      }, this);
+
+      return _react2.default.createElement(
+        'div',
+        (0, _extends3.default)({}, other, { className: className, style: prepareStyles((0, _simpleAssign2.default)({}, styles.root, style)) }),
+        newChildren
+      );
+    }
+  }]);
+  return ToolbarGroup;
+}(_react.Component);
+
+ToolbarGroup.defaultProps = {
+  firstChild: false,
+  lastChild: false
+};
+ToolbarGroup.contextTypes = {
+  muiTheme: _propTypes2.default.object.isRequired
+};
+ToolbarGroup.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * Can be any node or number of nodes.
+   */
+  children: _propTypes2.default.node,
+  /**
+   * The css class name of the root element.
+   */
+  className: _propTypes2.default.string,
+  /**
+   * Set this to true for if the `ToolbarGroup` is the first child of `Toolbar`
+   * to prevent setting the left gap.
+   */
+  firstChild: _propTypes2.default.bool,
+  /**
+   * Set this to true for if the `ToolbarGroup` is the last child of `Toolbar`
+   * to prevent setting the right gap.
+   */
+  lastChild: _propTypes2.default.bool,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: _propTypes2.default.object
+} : {};
+exports.default = ToolbarGroup;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 325 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(9);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _simpleAssign = __webpack_require__(8);
+
+var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getStyles(props, context) {
+  var _context$muiTheme = context.muiTheme,
+      baseTheme = _context$muiTheme.baseTheme,
+      toolbar = _context$muiTheme.toolbar;
+
+
+  return {
+    root: {
+      backgroundColor: toolbar.separatorColor,
+      display: 'block',
+      height: baseTheme.spacing.desktopGutterMore,
+      marginLeft: baseTheme.spacing.desktopGutter,
+      width: 1
+    }
+  };
+}
+
+var ToolbarSeparator = function (_Component) {
+  (0, _inherits3.default)(ToolbarSeparator, _Component);
+
+  function ToolbarSeparator() {
+    (0, _classCallCheck3.default)(this, ToolbarSeparator);
+    return (0, _possibleConstructorReturn3.default)(this, (ToolbarSeparator.__proto__ || (0, _getPrototypeOf2.default)(ToolbarSeparator)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(ToolbarSeparator, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          className = _props.className,
+          style = _props.style,
+          other = (0, _objectWithoutProperties3.default)(_props, ['className', 'style']);
+      var prepareStyles = this.context.muiTheme.prepareStyles;
+
+      var styles = getStyles(this.props, this.context);
+
+      return _react2.default.createElement('span', (0, _extends3.default)({}, other, { className: className, style: prepareStyles((0, _simpleAssign2.default)({}, styles.root, style)) }));
+    }
+  }]);
+  return ToolbarSeparator;
+}(_react.Component);
+
+ToolbarSeparator.muiName = 'ToolbarSeparator';
+ToolbarSeparator.contextTypes = {
+  muiTheme: _propTypes2.default.object.isRequired
+};
+ToolbarSeparator.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * The css class name of the root element.
+   */
+  className: _propTypes2.default.string,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: _propTypes2.default.object
+} : {};
+exports.default = ToolbarSeparator;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 326 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__(10);
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = __webpack_require__(9);
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = __webpack_require__(5);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(3);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(4);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(6);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(7);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _simpleAssign = __webpack_require__(8);
+
+var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getStyles(props, context) {
+  var _context$muiTheme = context.muiTheme,
+      baseTheme = _context$muiTheme.baseTheme,
+      toolbar = _context$muiTheme.toolbar;
+
+
+  return {
+    root: {
+      paddingRight: baseTheme.spacing.desktopGutterLess,
+      lineHeight: toolbar.height + 'px',
+      fontSize: toolbar.titleFontSize,
+      fontFamily: baseTheme.fontFamily,
+      position: 'relative',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden'
+    }
+  };
+}
+
+var ToolbarTitle = function (_Component) {
+  (0, _inherits3.default)(ToolbarTitle, _Component);
+
+  function ToolbarTitle() {
+    (0, _classCallCheck3.default)(this, ToolbarTitle);
+    return (0, _possibleConstructorReturn3.default)(this, (ToolbarTitle.__proto__ || (0, _getPrototypeOf2.default)(ToolbarTitle)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(ToolbarTitle, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          style = _props.style,
+          text = _props.text,
+          other = (0, _objectWithoutProperties3.default)(_props, ['style', 'text']);
+      var prepareStyles = this.context.muiTheme.prepareStyles;
+
+      var styles = getStyles(this.props, this.context);
+
+      return _react2.default.createElement(
+        'span',
+        (0, _extends3.default)({
+          style: prepareStyles((0, _simpleAssign2.default)({}, styles.root, style))
+        }, other),
+        text
+      );
+    }
+  }]);
+  return ToolbarTitle;
+}(_react.Component);
+
+ToolbarTitle.muiName = 'ToolbarTitle';
+ToolbarTitle.contextTypes = {
+  muiTheme: _propTypes2.default.object.isRequired
+};
+ToolbarTitle.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * The css class name of the root element.
+   */
+  className: _propTypes2.default.string,
+  /**
+   * Override the inline-styles of the root element.
+   */
+  style: _propTypes2.default.object,
+  /**
+   * The text to be displayed.
+   */
+  text: _propTypes2.default.node
+} : {};
+exports.default = ToolbarTitle;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
 /* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -51353,7 +51549,288 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _FlatButton = __webpack_require__(50);
+var _DataService = __webpack_require__(40);
+
+var _DataService2 = _interopRequireDefault(_DataService);
+
+var _ImageUploader = __webpack_require__(227);
+
+var _ImageUploader2 = _interopRequireDefault(_ImageUploader);
+
+var _RaisedButton = __webpack_require__(114);
+
+var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+var _Table = __webpack_require__(238);
+
+var _ListPagination = __webpack_require__(328);
+
+var _ListPagination2 = _interopRequireDefault(_ListPagination);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RecordsList = function (_React$Component) {
+	_inherits(RecordsList, _React$Component);
+
+	function RecordsList(props) {
+		_classCallCheck(this, RecordsList);
+
+		var _this = _possibleConstructorReturn(this, (RecordsList.__proto__ || Object.getPrototypeOf(RecordsList)).call(this, props));
+
+		_this.state = {
+			dataSource: [],
+			itemsPerPage: 10,
+			activePage: _this.props.page === undefined ? 1 : _this.props.page,
+			selectedItem: undefined,
+			selectedItemIndex: -1,
+			uploaderActions: {}
+		};
+		_this.getDataForPage = _this.getDataForPage.bind(_this);
+		_this.updateData = _this.updateData.bind(_this);
+		_this.formatHeaderName = _this.formatHeaderName.bind(_this);
+		return _this;
+	}
+
+	_createClass(RecordsList, [{
+		key: "updateData",
+		value: function updateData(data) {
+			var _this2 = this;
+
+			var newData = [];
+			if (data !== null || data !== undefined) {
+				for (var i = 0; i < data.length; i++) {
+					newData.push(data[i].model);
+				}
+				this.setState({ dataSource: newData }, function () {
+					console.log('updated state value', _this2.state.dataSource);
+				});
+			}
+		}
+	}, {
+		key: "getValueForField",
+		value: function getValueForField(row, columnName) {
+			var fieldToGetValue = row;
+			var result = undefined;
+
+			var splittedChild = columnName.split("-");
+			for (var j = 0; j < splittedChild.length; j++) {
+				if (!splittedChild[j].includes(".")) {
+					fieldToGetValue = fieldToGetValue[splittedChild[j]];
+				} else {
+					var splittedFieldAndName = splittedChild[j].split(".");
+					fieldToGetValue = fieldToGetValue[splittedFieldAndName[0]];
+					result = fieldToGetValue !== undefined && fieldToGetValue !== null ? fieldToGetValue[splittedFieldAndName[1]] : "пусто";
+				}
+			}
+
+			return result;
+		}
+	}, {
+		key: "openAddDialog",
+		value: function openAddDialog() {
+			if (this.state.uploaderActions.openDialog !== undefined) {
+				this.state.uploaderActions.openDialog();
+			}
+		}
+	}, {
+		key: "getTableRowColumns",
+		value: function getTableRowColumns(row) {
+			var getValueForFieldFunc = this.getValueForField.bind(this);
+			var rowColumns = this.props.columns.map(function (columnName) {
+				var columnValue = void 0;
+				var columnId = void 0;
+				if (row[columnName] !== undefined) {
+					columnValue = row[columnName] !== undefined && row[columnName] !== "" && row[columnName] !== null ? row[columnName] : "пусто";
+					columnId = row.id;
+				} else {
+					var value = getValueForFieldFunc(row, columnName);
+					columnValue = value !== undefined ? value : "пусто";
+					columnId = row.id;
+				}
+				return _react2.default.createElement(
+					_Table.TableRowColumn,
+					{ key: columnId },
+					" ",
+					columnValue,
+					" "
+				);
+				//(row[columnName] != null ? <TableRowColumn key={columnId}> {columnValue} </TableRowColumn> : <span />);
+			});
+			//if (this.props.controller === "items") {
+			//	rowColumns.push(<TableRowColumn key={row.id}><RaisedButton onClick={this.openAddDialog.bind(this)} label="add photo" fullWidth={true} />
+			//		<ImageUploader baseItemId={row.id}
+			//			uploaderActions={this.state.uploaderActions}
+			//			uploadController="Photos" />
+			//	</TableRowColumn>);
+			//}
+
+			return rowColumns;
+		}
+	}, {
+		key: "getDataForPage",
+		value: function getDataForPage() {
+			if (this.state.dataSource != null) {
+				var dataForPage = [];
+				var start = (this.state.activePage - 1) * this.state.itemsPerPage;
+				var last = start + this.state.itemsPerPage;
+				for (var i = start; i < last; i++) {
+					if (i < this.state.dataSource.length) {
+						dataForPage.push(this.state.dataSource[i]);
+					}
+				}
+				return dataForPage;
+			}
+			return null;
+		}
+	}, {
+		key: "selectPage",
+		value: function selectPage(page) {
+			this.setState({ activePage: page }, this.props.itemSelectedHandler(undefined));
+		}
+	}, {
+		key: "resetPage",
+		value: function resetPage() {
+			this.setState({
+				activePage: 1,
+				selectedItem: undefined,
+				selectedItemIndex: -1
+			}, this.props.resetCallBack);
+		}
+	}, {
+		key: "onRowSelection",
+		value: function onRowSelection(selectedRows) {
+			if (selectedRows.length > 0) {
+				var item = this.getDataForPage()[selectedRows[0]];
+				this.state.selectedItem = item;
+				this.props.itemSelectedHandler(item);
+				this.state.selectedItemIndex = selectedRows[0];
+				console.log('updated state value', this.state.selectedItem);
+			} else {
+				this.setState({ selectedItem: undefined, selectedItemIndex: -1 }, this.props.itemSelectedHandler(undefined));
+			}
+		}
+	}, {
+		key: "componentWillMount",
+		value: function componentWillMount() {
+			var processData = this.updateData;
+			_DataService2.default.getItems(this.props.controller, processData);
+		}
+	}, {
+		key: "componentWillReceiveProps",
+		value: function componentWillReceiveProps(nextProps) {
+			var processData = this.updateData;
+			if (nextProps.controller !== this.props.controller || nextProps.shouldRefreshTable) {
+				_DataService2.default.getItems(nextProps.controller, processData);
+				this.resetPage();
+			} else {
+				return;
+			}
+		}
+	}, {
+		key: "shouldComponentUpdate",
+		value: function shouldComponentUpdate(nextProps, nextState) {
+			//if (nextState.selectedItemIndex !== this.state.selectedItemIndex) {
+			//	return true;
+			//}
+			if (nextState.dataSource === this.state.dataSource) {
+				if (nextProps.controller !== this.props.controller) {
+					return false;
+				}
+				if (this.state.activePage !== nextState.activePage) {
+					return true;
+				}
+				return false;
+			}
+			return true;
+		}
+	}, {
+		key: "formatHeaderName",
+		value: function formatHeaderName(column) {
+			var splitted = column.split("-");
+			return splitted[splitted.length - 1].split(".")[0];
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			var _this3 = this;
+
+			if (this.state.dataSource.length === 0) {
+				return false;
+			}
+			var list = this.getDataForPage().map(function (record) {
+				var rowColumns = _this3.getTableRowColumns(record);
+				return _react2.default.createElement(
+					_Table.TableRow,
+					{ key: record.id },
+					rowColumns
+				);
+			});
+
+			var headerColumns = this.props.columns.map(function (column) {
+				return _react2.default.createElement(
+					_Table.TableHeaderColumn,
+					{ key: column },
+					_this3.formatHeaderName(column)
+				);
+			});
+			var lastPage = this.state.dataSource.length % this.state.itemsPerPage !== 0 ? 1 : 0;
+			var pages = Math.floor(this.state.dataSource.length / this.state.itemsPerPage) + lastPage;
+			return _react2.default.createElement(
+				"div",
+				null,
+				_react2.default.createElement(
+					_Table.Table,
+					{
+						onRowSelection: this.onRowSelection.bind(this) },
+					_react2.default.createElement(
+						_Table.TableHeader,
+						{ displaySelectAll: false },
+						_react2.default.createElement(
+							_Table.TableRow,
+							null,
+							headerColumns
+						)
+					),
+					_react2.default.createElement(
+						_Table.TableBody,
+						{ displayRowCheckbox: true, deselectOnClickaway: false },
+						list
+					)
+				),
+				_react2.default.createElement(_ListPagination2.default, {
+					page: this.state.activePage,
+					availablePages: pages,
+					selectPage: this.selectPage.bind(this),
+					activePage: this.state.activePage })
+			);
+		}
+	}]);
+
+	return RecordsList;
+}(_react2.default.Component);
+
+module.exports = RecordsList;
+
+/***/ }),
+/* 328 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FlatButton = __webpack_require__(49);
 
 var _FlatButton2 = _interopRequireDefault(_FlatButton);
 

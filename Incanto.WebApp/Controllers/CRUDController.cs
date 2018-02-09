@@ -5,7 +5,6 @@ using Incanto.BusinessLogic.Models.Base.Interfaces;
 using Incanto.BusinessLogic.Services;
 using Incanto.BusinessLogic.Services.Core;
 using Incanto.DataAccess.Interfaces;
-using Incanto.DataAccess.Repository;
 using Incanto.Domain.Base.Interfaces;
 
 namespace Incanto.WebApp.Controllers

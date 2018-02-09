@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Incanto.BusinessLogic.Models.Base.Interfaces;
+﻿using Incanto.BusinessLogic.Models.Base.Interfaces;
 using Incanto.Domain.Base.Interfaces;
 
 namespace Incanto.BusinessLogic.Services.Core

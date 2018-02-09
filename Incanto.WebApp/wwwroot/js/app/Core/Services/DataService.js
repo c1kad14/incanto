@@ -53,26 +53,30 @@ class DataService {
 		        callback(response.data);
 		    }
 		}).catch(function (err) {
-			NotificationService.addNotification(this.errorOccured + err, function () { }, "Закрыть", false, false);
+			console.log(err);
+			//NotificationService.addNotification(this.errorOccured + err, function () { }, "Закрыть", false, false);
 		});
 	}
 	//Update object by model using api (/api/controller/Update) in server
 	static updateObject(controller, model, callback) {
 		RestApiCalls.put(`/api/${controller}/Update`, model).then(function (response) {
-			NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
-			callback();
+		//	NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+			if (callback !== null) {
+				callback(response.data);
+			}
 		}).catch(function (err) {
-			NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
+			console.log(err);
+			//NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
 		});
 	}
 	//Delete object by model using api (/api/${controller}/delete) model should contain "id" property
 	static deleteObject(controller, model, callback) {
 		RestApiCalls.del(`/api/${controller}/Delete?id=${model.id}`)
 			.then(function (response) {
-				NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
+			//	NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
 				callback();
 			}).catch(function (err) {
-				NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
+				//NotificationService.addNotification(this.errorOccured + err, function () { }, false, false);
 			});
 	}
 }

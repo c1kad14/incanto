@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Incanto.BusinessLogic.Models;
+using Incanto.BusinessLogic.Services.Core;
 using Incanto.DataAccess.Interfaces;
 using Incanto.Domain;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,9 +12,34 @@ namespace Incanto.WebApp.Controllers
     [Route("api/[controller]")]
     public class DetailsController : CRUDController<DetailModel, Detail>
 	{
-		public DetailsController(IDataRepository<Detail> dataRepository) : base(dataRepository, q => q.Include(d => d.DetailValue).ThenInclude(dv => dv.DetailType).ThenInclude(dt => dt.Category))
+		public DetailsController(IDataRepository<Detail> dataRepository) : base(dataRepository, q => q.Include(d => d.DetailValue).ThenInclude(dv => dv.DetailType).ThenInclude(dt => dt.Category).Include(d => d.Item))
 		{
 			
 		}
-    }
+
+		[HttpGet("{id}")]
+		[Route("GetByItemId")]
+		public virtual ActionResult GetObjecstByItemId(int id)
+		{
+			var operationResult = ReadWriteDataService.Get(detail => detail.Item.Id == id);
+			return Json(operationResult);
+		}
+
+		[HttpGet("{itemId}")]
+		[Route("GetListByItemId")]
+		public ActionResult GetObjectsByItemId(int itemId)
+		{
+			var operationResult = ReadWriteDataService.Get(detail => detail.Item.Id == itemId);
+			return Json(operationResult);
+		}
+
+		[HttpPost]
+		[Route("AddList")]
+		public ActionResult AddCollection([FromBody]List<DetailModel> details)
+		{
+			var operationResult = new List<OperationResult<DetailModel, Detail>>();
+			details.ForEach(detail => operationResult.Add(PerformOperation(detail, OperationType.Add)));
+			return Json(operationResult);
+		}
+	}
 }

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Incanto.BusinessLogic.Models;
+﻿using Incanto.BusinessLogic.Models;
 using Incanto.DataAccess.Interfaces;
 using Incanto.Domain;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Type = Incanto.Domain.Type;
 
 namespace Incanto.WebApp.Controllers
 {
@@ -20,5 +14,13 @@ namespace Incanto.WebApp.Controllers
 	    {
 		    
 	    }
-    }
+
+	    [HttpGet("{categoryId}")]
+	    [Route("GetObjectsByCategoryId")]
+	    public virtual ActionResult GetObjectsByCategoryId(int categoryId)
+	    {
+		    var operationResult = ReadWriteDataService.Get(detailType => detailType.Category.Id == categoryId);
+		    return Json(operationResult);
+	    }
+	}
 }
