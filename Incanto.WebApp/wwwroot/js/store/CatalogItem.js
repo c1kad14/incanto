@@ -1,4 +1,6 @@
 ﻿import React from "react";
+import { Link } from "react-router-dom";
+import ProgressiveImage from "react-progressive-image-loading";
 
 function compareImages(a, b) {
 	if (a.priority < b.priority)
@@ -19,9 +21,17 @@ class CatalogItem extends React.Component {
 		}
 		const item = this.props.item;
 		let imageToDisplay = item.photos.sort(compareImages);
+		imageToDisplay = imageToDisplay !== undefined && imageToDisplay.length > 0 ? imageToDisplay[0].path : undefined;
+		let separateIndex = imageToDisplay.lastIndexOf("\\");
+		separateIndex = separateIndex + 1;
+		let imagePreview = imageToDisplay.substring(0, separateIndex) + "thumb_" + imageToDisplay.substring(separateIndex);
 		return (<li className="item" itemType="http://schema.org/Product" itemProp="itemListElement" itemScope="">
-			<a onClick={() => { this.props.onItemSelected(this.props.item.id)}}>
-				<img className="main-picture" src={imageToDisplay[0].path} alt={item.name} itemProp="image" />
+			<Link to={`/item/${this.props.item.id}`}>
+				<ProgressiveImage
+					preview={imagePreview}
+					src={imageToDisplay}
+					render={(src) => <img className="main-picture" alt={item.name} src={src} itemProp="image" />}
+				/>
 				       <div className="baseline-helper">
 					       <div itemProp="name">
 						       <p className="designer-info fs10 up ls2 bold">{item.brand.name}</p>
@@ -35,7 +45,7 @@ class CatalogItem extends React.Component {
 						                              </span> : <span></span>}
 					       </p>
 				       </div>
-			       </a>
+			       </Link>
 		       </li>);
 	}
 }

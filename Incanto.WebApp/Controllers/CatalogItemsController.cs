@@ -1,4 +1,7 @@
-﻿using Incanto.BusinessLogic.Models;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Incanto.BusinessLogic.Models;
+using Incanto.BusinessLogic.Services;
 using Incanto.BusinessLogic.Services.Core;
 using Incanto.DataAccess.Interfaces;
 using Incanto.Domain;
@@ -38,6 +41,15 @@ namespace Incanto.WebApp.Controllers
 		{
 			var operationResult = _itemReadDataService.Get(item => (brand == null || item.Brand.Name == brand) && (category == null || item.Category.Name == category) && (type == null || item.Category.Type.Name == type) && (gender == null || item.Category.Type.Gender.Name == gender));
 
+			return Json(operationResult);
+		}
+
+		[HttpPost]
+		[Route("GetFilteredList")]
+		public ActionResult GetCollectionByFilter(List<int> categories, List<int> brands, List<int> sizes)
+		{
+			var operationResult = _itemReadDataService.Get(item => (categories.Count == 0 || categories.Any(category => category == item.Category.Id)) && (brands.Count == 0 || brands.Any(brand => brand == item.Brand.Id)) && (sizes.Count == 0 || sizes.Any(size => item.ExistingItems.Any(ex => ex.Size.Id == size))));
+				//&& brands.Any(brand => brand == item.Brand.Id) && sizes.Any(size => item.ExistingItems.Any(ex => ex.Size.Id == size))
 			return Json(operationResult);
 		}
 	}

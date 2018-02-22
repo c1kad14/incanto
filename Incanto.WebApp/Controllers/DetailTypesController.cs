@@ -1,6 +1,8 @@
-﻿using Incanto.BusinessLogic.Models;
+﻿using System.Net;
+using Incanto.BusinessLogic.Models;
 using Incanto.DataAccess.Interfaces;
 using Incanto.Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +17,7 @@ namespace Incanto.WebApp.Controllers
 		    
 	    }
 
+		[Authorize]
 	    [HttpGet("{categoryId}")]
 	    [Route("GetObjectsByCategoryId")]
 	    public virtual ActionResult GetObjectsByCategoryId(int categoryId)

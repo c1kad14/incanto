@@ -74,8 +74,13 @@ class RecordsList extends React.Component {
 				columnValue = row[columnName] !== undefined && row[columnName] !== "" && row[columnName] !== null ? row[columnName] : "пусто";
 				columnId = row.id;
 			} else {
-				let value = getValueForFieldFunc(row, columnName);
-				columnValue = value !== undefined ? value : "пусто";
+				if (columnName === "photo") {
+					let value = row["photos"] !== undefined && row["photos"].length > 0 ? row["photos"][0].path : undefined;
+					columnValue = <img className="item-photo-preview" src={value}/>;
+				} else {
+					let value = getValueForFieldFunc(row, columnName);
+					columnValue = value !== undefined ? value : "пусто";
+				}
 				columnId = row.id;
 			}
 			return (<TableRowColumn key={columnId}> {columnValue} </TableRowColumn>);
@@ -197,7 +202,7 @@ class RecordsList extends React.Component {
 						{headerColumns}
 					</TableRow>
 				</TableHeader>
-				<TableBody displayRowCheckbox={true} deselectOnClickaway={false}>
+				<TableBody displayRowCheckbox={true} deselectOnClickaway={false} showRowHover={true}>
 					{list}
 				</TableBody>
 			</Table>

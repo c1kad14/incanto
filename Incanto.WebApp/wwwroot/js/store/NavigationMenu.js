@@ -1,95 +1,39 @@
 ﻿import React from "react";
-import DataService from "../app/Core/Services/DataService";
+import { Link } from "react-router-dom";
 
 class NavigationMenu extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			types: [],
-			categories: [],
-			selectedGender: "Женщинам",
-			selectedType: props.selectedType,
-			selectedCategory: props.selectedCategory,
-			selectedBrand: props.selectedBrand
-		}
-		this.loadTypes = this.loadTypes.bind(this);
-		this.loadCategories = this.loadCategories.bind(this);
 		this.getGenderTypes = this.getGenderTypes.bind(this);
 		this.getTypeCategories = this.getTypeCategories.bind(this);
-		this.navigateType = this.navigateType.bind(this);
-		this.navigateCategory = this.navigateCategory.bind(this);
-		this.navigateGender = this.navigateGender.bind(this);
 		this.getGenderStyle = this.getGenderStyle.bind(this);
 	}
 
-	navigateGender(gender) {
-		let callback = this.props.updateFilters;
-		this.setState({ selectedGender: gender.target.text, selectedType: undefined, selectedCategory: undefined },
-			() => {
-				callback(this.state.selectedGender, this.state.selectedType, this.state.selectedCategory, this.state.selectedBrand);
-			});
-		console.log(gender.target.text);
-	}
-
-	navigateType(type) {
-		let callback = this.props.updateFilters;
-		this.setState({ selectedType: type.target.text, selectedCategory: undefined },
-			() => {
-				callback(this.state.selectedGender, this.state.selectedType, this.state.selectedCategory, this.state.selectedBrand);
-			});
-		console.log(type.target.text);
-	}
-
-	navigateCategory(category) {
-		let callback = this.props.updateFilters;
-		this.setState({ selectedCategory: category.target.text }, 
-			() => {
-				callback(this.state.selectedGender, this.state.selectedType, this.state.selectedCategory, this.state.selectedBrand);
-			});
-		console.log(category.target.text);
-	}
-
-	componentWillMount() {
-		let callbackTypes = this.loadTypes;
-		let callbackCategories = this.loadCategories;
-		DataService.getItems("types", callbackTypes);
-		DataService.getItems("categories", callbackCategories);
-	}
-
-	loadTypes(data) {
-		let newTypes = [];
-		if (data !== null || data !== undefined) {
-			for (let i = 0; i < data.length; i++) {
-				newTypes.push(data[i].model);
-			}
-			this.setState({ types: newTypes },
-				() => {
-					console.log('updated types value', this.state.types);
-				});
+	getGender(gender) {
+		let result = "";
+		switch (gender) {
+			case "Женщинам":
+			result = "women";
+			break;
+		case "Мужчинам":
+			result = "men";
+			break;
+		case "Детям":
+			result = "kids";
+			break;
 		}
-	}
-
-	loadCategories(data) {
-		const newCategories = [];
-		if (data !== null || data !== undefined) {
-			for (let i = 0; i < data.length; i++) {
-				newCategories.push(data[i].model);
-			}
-			this.setState({ categories: newCategories },
-				() => {
-					console.log('updated state value', this.state.categories);
-				});
-		}
+		return result;
 	}
 
 	getTypeCategories(type) {
 		let navigateFunc = this.navigateCategory;
+		const gender = this.getGender(type.gender.name);
 		let getStyle = this.getCategoryStyle.bind(this);
-		if (this.state.selectedType === type.name) {
-			let typeCategories = this.state.categories.map(function(category) {
+		if (this.props.selectedType === type.name) {
+			let typeCategories = this.props.categories.map(function(category) {
 				if (category.type.id === type.id) {
 					return <li key={category.name} className="level3_i">
-						<a href={"#" + category.name} style={getStyle(category.name)} className="level3_l " onClick={navigateFunc}>{category.name}</a>
+						<Link to={`/${gender}/type/${type.id}/category/${category.id}`} style={getStyle(category.name)} className="level3_l ">{category.name}</Link>
 					</li>;
 				}
 			});
@@ -101,11 +45,12 @@ class NavigationMenu extends React.Component {
 		let typeCategoriesFunc = this.getTypeCategories;
 		let navigateFunc = this.navigateType;
 		let getStyle = this.getTypeStyle.bind(this);
-		if (this.state.selectedGender === genderName) {
-			let genderTypes = this.state.types.map(function(type) {
+		const gender = this.getGender(genderName);
+		if (this.props.selectedGender === genderName) {
+			let genderTypes = this.props.types.map(function(type) {
 				if (type.gender.name === genderName) {
 					return <li key={type.name} className="level2_i">
-						<a href={"#" + type.name} style={getStyle(type.name)} className="level2_l" onClick={navigateFunc}>{type.name}</a>
+						<Link to={`/${gender}/type/${type.id}`} style={getStyle(type.name)} className="level2_l">{type.name}</Link>
 						<ul className="level3_m" >
 							{typeCategoriesFunc(type)}
 						</ul>
@@ -118,28 +63,41 @@ class NavigationMenu extends React.Component {
 
 	getGenderStyle(gender) {
 		return {
-			borderBottom: this.state.selectedGender === gender && this.state.selectedType === undefined && this.state.selectedCategory === undefined ? "1px solid" : "",
-			marginBottom: this.state.selectedGender === gender && this.state.selectedType === undefined && this.state.selectedCategory === undefined ? "-1px" : ""
+			borderBottom: this.props.selectedGender === gender && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "1px solid" : "",
+			marginBottom: this.props.selectedGender === gender && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "-1px" : ""
 		
 		}
 	}
 
 	getTypeStyle(type) {
 		return {
-			borderBottom: this.state.selectedType === type && this.state.selectedCategory === undefined ? "1px solid" : "",
-			marginBottom: this.state.selectedType === type && this.state.selectedCategory === undefined ? "-1px" : ""
+			borderBottom: this.props.selectedType === type && this.props.selectedCategory === undefined ? "1px solid" : "",
+			marginBottom: this.props.selectedType === type && this.props.selectedCategory === undefined ? "-1px" : ""
 		}
 	}
 
 	getCategoryStyle(category) {
 		return {
-			borderBottom: this.state.selectedCategory === category ? "1px solid" : "",
-			marginBottom: this.state.selectedCategory === category ?  "-1px" : ""
+			borderBottom: this.props.selectedCategory === category ? "1px solid" : "",
+			marginBottom: this.props.selectedCategory === category ?  "-1px" : ""
+		}
+	}
+
+	shouldComponentUpdate(nextProps, nextSate) {
+		if (this.props.selectedGender === nextProps.selectedGender && this.props.selectedType === nextProps.selectedType && this.props.selectedCategory === nextProps.selectedCategory && this.props.selectedBrand === nextProps.selectedBrand) {
+			return false;
+		}
+		return true;
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (this.props.selectedGender !== nextProps.selectedGender || this.props.selectedType !== nextProps.selectedType ||  this.props.selectedCategory !== nextProps.selectedCategory || this.props.selectedBrand !== nextProps.selectedBrand || this.props.selectedItemId !== nextProps.selectedItemId) {
+			this.props.updateFilters(nextProps.selectedGender, nextProps.selectedType, nextProps.selectedCategory, nextProps.selectedBrand, nextProps.selectedItemId);
 		}
 	}
 
 	render() {
-		if (this.state.types.length === 0 || this.state.categories.length === 0) {
+		if (this.props.types.length === 0 || this.props.categories.length === 0) {
 			return null;
 		}
 		const womenSection =
@@ -161,16 +119,16 @@ class NavigationMenu extends React.Component {
 					<a href="#" className="level1_l ">Бренды</a>
 				</li>
 				<li key="navigation-menu-list-women-container" className="level1_i">
-					<a href="#" style={this.getGenderStyle("Женщинам")} className="level1_l" onClick={this.navigateGender}>Женщинам</a>
+					<Link style={this.getGenderStyle("Женщинам")} className="level1_l" to={"/women"}>Женщинам</Link>
 					{womenSection}
 				</li>
 				<li key="navigation-menu-list-men-container" className="level1_i">
-					<a href="#" style={this.getGenderStyle("Мужчинам")} className="level1_l" onClick={this.navigateGender}>Мужчинам</a>
+					<Link style={this.getGenderStyle("Мужчинам")} className="level1_l" to={"/men"}>Мужчинам</Link>
 					{menSection}
 				</li>
 
 				<li key="navigation-menu-list-kids-container" className="level1_i">
-					<a href="#" style={this.getGenderStyle("Детям")} className="level1_l" onClick={this.navigateGender}>Детям</a>
+					<Link style={this.getGenderStyle("Детям")} className="level1_l" to={"/kids"}> Детям</Link>
 					{childSection}
 				</li>
 			</ul>

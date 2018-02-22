@@ -8,6 +8,7 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
 import AddRecordDialog from "../AddRecordDialog";
 import AddDetailDialog from "../AddDetailsDialog";
+import AddExistingItemsDialog from "../AddExistingItemsDialog";
 import ImageUploader from "./ImageUploader";
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 
@@ -19,6 +20,7 @@ export default class IncantoToolbar extends React.Component {
 			value: this.props.controller,
 			addRecordDialogOpen: false,
 			addDetailsDialogOpen: false,
+			addSizesDialogOpen: false,
 			editRecordDialogOpen: false,
 			uploaderActions: {}
 		};
@@ -42,8 +44,16 @@ export default class IncantoToolbar extends React.Component {
 		this.setState({ addDetailsDialogOpen: true });
 	}
 
+	addSizesDialogOpenHandler() {
+		this.setState({ addSizesDialogOpen: true });
+	}
+
 	addDetailsDialogCloseHandler(addDetailsDialogOpen) {
 		this.setState({ addDetailsDialogOpen });
+	}
+
+	addSizesDialogCloseHandler(addSizesDialogOpen) {
+		this.setState({ addSizesDialogOpen });
 	}
 
 	openAddDialog() {
@@ -69,12 +79,14 @@ export default class IncantoToolbar extends React.Component {
 						<MenuItem value="categories" primaryText="Категории" />
 						<MenuItem value="detailtypes" primaryText="Типы деталей" />
 						<MenuItem value="detailtypevalues" primaryText="Значения деталей" />
+						<MenuItem value="sizes" primaryText="Размеры" />
 						<MenuItem value="items" primaryText="Товары" />
 					</DropDownMenu>
 				</ToolbarGroup>
 				<ToolbarGroup>
 					<ToolbarTitle text="Записи" />
 					{this.state.addDetailsDialogOpen ? <AddDetailDialog open={this.state.addDetailsDialogOpen} close={this.addDetailsDialogCloseHandler.bind(this)} item={this.props.selectedItem} /> : <span></span>}
+					{this.state.addSizesDialogOpen ? <AddExistingItemsDialog open={this.state.addSizesDialogOpen} close={this.addSizesDialogCloseHandler.bind(this)} item={this.props.selectedItem} /> : <span></span>}
 					{this.props.controller === "items" && this.props.selectedItem !== undefined ? <ToolbarSeparator /> : <span></span>}
 					{this.props.controller === "items" && this.props.selectedItem !== undefined ?
 							<div>
@@ -83,6 +95,7 @@ export default class IncantoToolbar extends React.Component {
 								uploaderActions={this.state.uploaderActions}
 								uploadController="Photos" refreshDataTable={this.props.refreshDataTable}/>
 						</div> : <span></span>}
+					{this.props.controller === "items" && this.props.selectedItem !== undefined ? <RaisedButton onClick={this.addSizesDialogOpenHandler.bind(this)} label="Размеры" /> : <span></span>}
 					{this.props.controller === "items" && this.props.selectedItem !== undefined ?
 						<RaisedButton onClick={this.addDetailsDialogOpenHandler.bind(this)} label="Детали" /> : <span></span>}
 					{this.props.selectedItem !== undefined ? <RaisedButton onClick={this.addRecordDialogOpenHandler.bind(this)} label="Редактировать" primary={true}/> : <RaisedButton label="Добавить" primary={true} onClick={this.addRecordDialogOpenHandler.bind(this)} />}

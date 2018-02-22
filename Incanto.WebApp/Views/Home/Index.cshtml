@@ -18,22 +18,22 @@
 <script src="~/js/store.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-        function onScrollHandler () {
-            var pageBottom = $(window).scrollTop() + $(window).height();
-            var element = $('.footer_wrapper');
-            if (element.length > 0) {
-                var elementTop = element.offset().top;
-                if (elementTop < pageBottom) {
-                    $('#left').css({ 'top': elementTop - pageBottom + 'px' });
-                    $('.right').css({ 'top': elementTop - pageBottom + 'px' });
-                }
-                else {
-                    $('#left').css({ 'top': '0px' });
-                    $('.right').css({ 'top': '0px' });
-                }  
+    function onScrollHandler() {
+        var pageBottom = $(window).scrollTop() + $(window).height();
+        var element = $('.footer_wrapper');
+        if (element.length > 0) {
+            var elementTop = element.offset().top;
+            console.log(elementTop);
+            if (elementTop < pageBottom) {
+                $('#left').css({ 'top': elementTop - pageBottom + 'px' });
+                $('.right').css({ 'top': elementTop - pageBottom + 'px' });
             }
-           
-        };
+            else {
+                $('#left').css({ 'top': '0px' });
+                $('.right').css({ 'top': '0px' });
+            }  
+        }
+    };
 
 
     initTicker = function () {

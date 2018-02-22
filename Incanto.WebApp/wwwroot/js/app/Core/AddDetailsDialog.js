@@ -241,12 +241,16 @@ class AddDetailDialog extends React.Component {
 			{tableBody}
 		</Table>;
 
+		let dialogActions = [
+			<FlatButton id="close-dialog" label="Отмена" onClick={this.handleClose.bind(this)} secondary={true} />,
+			<FlatButton id="save-details-button" label="Save" onClick={this.saveDetailsClickHandler.bind(this)} primary={true}/>
+		];
+
 		return <MuiThemeProvider muiTheme={muiTheme}>
-			<Dialog id="add-details-dialog" contentStyle={{ width: "40%", maxWidth: '40%' }} title={"Manage details for item id: " + this.props.item.id } open={this.props.open} onRequestClose={this.handleClose.bind(this)}>
+			<Dialog id="add-details-dialog" actions={dialogActions} contentStyle={{ width: "40%", maxWidth: '40%' }} title={"Manage details for item id: " + this.props.item.id } open={this.props.open} onRequestClose={this.handleClose.bind(this)}>
 				<div className="details-dialog" >
 					{controls}
 				</div>
-				<FlatButton id="save-details-button" label="Save" onClick={this.saveDetailsClickHandler.bind(this)} />
 			</Dialog>
 		</MuiThemeProvider>;
 	}

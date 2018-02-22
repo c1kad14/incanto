@@ -6,6 +6,7 @@ using Incanto.BusinessLogic.Services;
 using Incanto.BusinessLogic.Services.Core;
 using Incanto.DataAccess.Interfaces;
 using Incanto.Domain.Base.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Incanto.WebApp.Controllers
 {
@@ -37,6 +38,7 @@ namespace Incanto.WebApp.Controllers
 			return Json(operationResult);
 		}
 
+		[Authorize]
 		[HttpPost]
 		[Route("Add")]
 		public ActionResult AddObject([FromBody]TModel model)
@@ -45,6 +47,7 @@ namespace Incanto.WebApp.Controllers
 			return Json(operationResult);
 		}
 
+		[Authorize]
 		[HttpPut]
 		[Route("Update")]
 		public ActionResult UpdateObject([FromBody]TModel model)
@@ -53,6 +56,7 @@ namespace Incanto.WebApp.Controllers
 			return Json(operationResult);
 		}
 
+		[Authorize]
 		[HttpDelete("{id}")]
 		[Route("Delete")]
 		public ActionResult DeleteObject(int id)

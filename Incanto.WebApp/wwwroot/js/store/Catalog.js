@@ -2,9 +2,18 @@
 import ReactDom from "react-dom";
 import DataService from "../app/Core/Services/DataService";
 import CatalogItem from "./CatalogItem";
+import RestApiCalls from "../app/Core/Services/RestApiCalls";
 import $ from "jquery";
 
 const controller = "catalogitems";
+
+function comparePrices(a, b) {
+	if (a.price < b.price)
+		return -1;
+	if (a.price > b.price)
+		return 1;
+	return 0;
+}
 
 class Catalog extends React.Component {
 	constructor(props) {
@@ -16,16 +25,29 @@ class Catalog extends React.Component {
 		this.updateData = this.updateData.bind(this);
 	}
 
+	sortAscending() {
+		const items = this.state.items;
+		let itemsToDisplay = items.sort(comparePrices);
+		this.setState({ items: itemsToDisplay });
+	}
+
+	sortDescending() {
+		const items = this.state.items;
+		let itemsToDisplay = items.sort(comparePrices).reverse();
+		this.setState({ items: itemsToDisplay });
+	}
+
 	updateData(data) {
 		const newData = [];
 		if (data !== null || data !== undefined) {
 			for (let i = 0; i < data.length; i++) {
 				newData.push(data[i].model);
 			}
-			this.setState({ items: newData },
-				() => {
-					console.log('updated state value', this.state.items);
-				});
+			return newData;
+			//this.setState({ items: newData },
+			//	() => {
+			//		console.log('updated state value', this.state.items);
+			//	});
 		}
 	}
 
@@ -39,19 +61,65 @@ class Catalog extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		let processData = this.updateData;
-		const queryString = this.getQueryString(nextProps);
-		DataService.getItemsWithParameters(controller, queryString, processData);
+		const that = this;
+		if (this.props.gender !== nextProps.gender ||
+			this.props.type !== nextProps.type ||
+			this.props.category !== nextProps.category ||
+			this.props.brand !== nextProps.brand ||
+			this.props.filterCategories.length !== nextProps.filterCategories.length ||
+			this.props.filterBrands.length !== nextProps.filterBrands.length ||
+			this.props.filterSizes.length !== nextProps.filterSizes.length) {
+			let processData = this.updateData;
+			if (nextProps.filterCategories.length > 0 ||
+				nextProps.filterBrands.length > 0 ||
+				nextProps.filterSizes.length > 0) {
+				let formData = new FormData(this);
+				let categories = nextProps.filterCategories.map((category) => category.id);
+				let brands = nextProps.filterBrands.map((brand) => brand.id);
+				let sizes = nextProps.filterSizes.map((size) => size.id);
+
+				categories.map((category) => formData.append("categories", category));
+				brands.map((brand) => formData.append("brands", brand));
+				sizes.map((size) => formData.append("sizes", size));
+				const config = { headers: { 'content-type': 'multipart/form-data' } };
+				const items = RestApiCalls.post(`/api/${controller}/GetFilteredList`, formData, config)
+					.then((response) => processData(response.data));
+				this.state.items = [];
+				Promise.all([items]).then(function(values) {
+					that.setState({ items: values[0] });
+				});
+			} else {
+				this.state.items = [];
+				const queryString = this.getQueryString(nextProps);
+				const items = DataService.getItemsWithParameters(controller, queryString, processData);
+				Promise.all([items]).then(function(values) {
+					that.setState({ items: values[0] });
+				});
+			}
+		}
 	}
 
 	componentWillMount() {
+		this.props.sort.sortAsc = this.sortAscending.bind(this);
+		this.props.sort.sortDesc = this.sortDescending.bind(this);
 		let processData = this.updateData;
 		const queryString = this.getQueryString(this.props);
-		DataService.getItemsWithParameters(controller, queryString, processData);
+		const items = DataService.getItemsWithParameters(controller, queryString, processData);
+		const that = this;
+		Promise.all([items]).then(function(values) {
+			that.setState({ items: values[0] });
+		});
 	}
 
+	//shouldComponentUpdate(nextProps, nextState) {
+	//	if (this.props.gender !== nextProps.gender || this.props.type !== nextProps.type || this.props.category !== nextProps.category || this.props.brand !== nextProps.brand || this.state.items.length !== nextState.items.length || this.state.filterSettings.categories.length !== nextState.filterSettings.categories.length || this.state.filterSettings.brands.length !== nextState.filterSettings.brands.length || this.state.filterSettings.sizes.length !== nextState.filterSettings.sizes.length) {
+	//		return true;
+	//	}
+	//	return false;
+	//}
+
 	componentWillUpdate() {
-		const node = ReactDom.findDOMNode(this); 
+		const node = ReactDom.findDOMNode(this);
 		if (node !== null) {
 			$(node).stop(true, true).fadeOut('slow');
 		}
@@ -66,8 +134,8 @@ class Catalog extends React.Component {
 	}
 
 	render() {
-		if (this.state.items.length === 0) {
-			return false;
+		if (this.state.items === undefined || this.state.items.length === 0 || this.props.selectedItemId !== undefined) {
+			return null;
 		}
 
 		const list = this.state.items.map(record => {

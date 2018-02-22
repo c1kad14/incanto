@@ -187,7 +187,7 @@ class AutoCompleteControl extends React.Component {
 					dataSource={this.state.autoCompleteData}
 					maxSearchResults={this.props.fieldData.maxSearchResults}
 					errorText={this.state.errorText}
-					fullWidth={true} />
+					fullWidth={true}/>
 		    </MuiThemeProvider>
 		);
 	}

@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FreeImage-dotnet-core" Version="4.3.6" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
+    <PackageReference Include="System.Drawing-dotnet-core" Version="1.2.3" />
   </ItemGroup>
 
   <ItemGroup>

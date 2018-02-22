@@ -56,7 +56,7 @@ class ImageUploader extends React.Component {
 		this.setState({ galleryOpened: false, addPhotoOpened: false });
 	}
 
-	handleSaveImage () {
+	handleSaveImage() {
 		var hasErrors = false;
 		if (!hasErrors) {
 			const imageSource = this.state.imageSource;
@@ -94,7 +94,8 @@ class ImageUploader extends React.Component {
 		this.setState({ imageSource: imageSource });
 	}
 
-	uploadImages () {
+	uploadImages() {
+		this.setState({ disabled: true });
 		const itemId = this.state.selectedItem.id;
 		let formData = new FormData(this);
 		let recordsToUpdate = [];
@@ -165,9 +166,10 @@ class ImageUploader extends React.Component {
 	componentWillMount() {
 		this.props.uploaderActions.openDialog = this.openImageUploadDialog.bind(this);
 		this.processExistingImages(this.props);
+		this.state.disabled = false;
 	}
 
-	render () {
+	render() {
 		let { imageSource } = this.state;
 		let imagePreview = null;
 		if (imageSource.length > 0) {
@@ -190,10 +192,9 @@ class ImageUploader extends React.Component {
 				secondary={true}
 				onClick={this.handleCloseImageView.bind(this)} />
 		];
-		const imageUploadActions = [
+		let imageUploadActions = [
 			<RaisedButton
 				label={"Выберите фото"}
-				primary={true}
 				onClick={this.openFileInput.bind(this)} />,
 			<RaisedButton
 				label={"Закрыть"}
@@ -203,9 +204,10 @@ class ImageUploader extends React.Component {
 		];
 		if (this.state.imageSource.length > 0) {
 			imageUploadActions.push(
-				<FlatButton
-					label={"upload"}
+				<RaisedButton
+					disabled={this.state.disabled}
 					primary={true}
+					label={"Сохранить"}
 					onClick={this.uploadImages.bind(this)} />);
 		}
 		return (

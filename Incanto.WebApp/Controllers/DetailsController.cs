@@ -17,14 +17,6 @@ namespace Incanto.WebApp.Controllers
 			
 		}
 
-		[HttpGet("{id}")]
-		[Route("GetByItemId")]
-		public virtual ActionResult GetObjecstByItemId(int id)
-		{
-			var operationResult = ReadWriteDataService.Get(detail => detail.Item.Id == id);
-			return Json(operationResult);
-		}
-
 		[HttpGet("{itemId}")]
 		[Route("GetListByItemId")]
 		public ActionResult GetObjectsByItemId(int itemId)

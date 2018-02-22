@@ -11,9 +11,10 @@ using System;
 namespace Incanto.DataAccess.Migrations
 {
     [DbContext(typeof(IncantoDataContext))]
-    partial class IncantoDataContextModelSnapshot : ModelSnapshot
+    [Migration("20180219163002_added some identifier, remote store")]
+    partial class addedsomeidentifierremotestore
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -130,10 +130,17 @@ class AddRecordDialog extends React.Component {
 			}
 		});
 
+		const saveButton = this.state.recordToUpdate.id !== undefined ? <FlatButton id="edit-existing-record-button" label="Сохранить" onClick={this.editRecordClickHandler.bind(this)} primary={true} /> : <FlatButton id="add-new-record-button" label="Добавить" onClick={this.addRecordClickHandler.bind(this)} primary={true} /> ;
+
+		let dialogActions = [
+			<FlatButton id="close-dialog" label="Отмена" onClick={this.handleClose.bind(this)} secondary={true} />,
+			saveButton
+		];
+
 		return <MuiThemeProvider muiTheme={muiTheme}>
-			<Dialog id="add-new-record-dialog" title={"Add new " + this.props.controller + " record"} open={this.props.open} onRequestClose={this.handleClose.bind(this)}>
+			<Dialog actions={dialogActions} fullWidth={false} id="add-new-record-dialog" title={"Add new " + this.props.controller + " record"} open={this.props.open} onRequestClose={this.handleClose.bind(this)}>
 				{controls}
-				{this.state.recordToUpdate.id !== undefined ? <FlatButton id="edit-existing-record-button" label="Сохранить" onClick={this.editRecordClickHandler.bind(this)} /> : <FlatButton id="add-new-record-button" label="Добавить" onClick={this.addRecordClickHandler.bind(this)} />}
+
 			</Dialog>
 		</MuiThemeProvider>;
 	}

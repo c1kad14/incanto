@@ -13,7 +13,11 @@ namespace Incanto.Domain
 		public double Price { get; set; }
 		public double Discount { get; set; }
 		public DateTime Updated { get; set; }
+		public bool Remote { get; set; }
+		public string RemoteStore { get; set; }
+		public string Identifier { get; set; }
 		public List<Photo> Photos { get; set; }
+		public List<ExistingItem> ExistingItems { get; set; }
 
 	}
 }

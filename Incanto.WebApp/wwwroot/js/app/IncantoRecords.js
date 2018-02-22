@@ -41,8 +41,9 @@ class IncantoRecords extends React.Component {
 			"types": ["id", "name", "gender.name"],
 			"categories": ["id", "name", "type.name", "type-gender.name"],
 			"detailtypes": ["id", "name", "category.name", "category-type.name", "category-type-gender.name"],
-			"detailtypevalues": ["id", "value", "detailType.name", "detailType-category.name" , "detailType-category-type.name", "detailType-category-type-gender.name"],
-			"items": ["id", "name", "brand.name", "category.name", "category-type.name", "category-type-gender.name", "description", "discount", "price"]
+			"detailtypevalues": ["id", "value", "detailType.name", "detailType-category.name", "detailType-category-type.name", "detailType-category-type-gender.name"],
+			"sizes": ["id", "name", "category.name", "category-type.name", "category-type-gender.name"],
+			"items": ["id", "photo", "name", "brand.name", "category.name", "category-type.name", "category-type-gender.name", "discount", "price"]
 		};
 
 		const lookupFields = {
@@ -60,6 +61,9 @@ class IncantoRecords extends React.Component {
 			],
 			"detailtypevalues": [
 				{ "detailType": { "controller": "detailtypes" } }
+			],
+			"sizes": [
+				{ "category": { "controller": "categories" } }
 			],
 			"items": [
 				{ "brand": { "controller": "brands" } },

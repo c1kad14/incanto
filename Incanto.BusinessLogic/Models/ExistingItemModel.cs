@@ -16,7 +16,7 @@ namespace Incanto.BusinessLogic.Models
 		}
 
 		[Required(ErrorMessage = "Item is a required field")]
-		public ItemModel Item { get; set; }
+		public int ItemId { get; set; }
 		[Required(ErrorMessage = "Amount is a required field")]
 		public int Amount { get; set; }
 		[Required(ErrorMessage = "Size is a required field")]
@@ -25,17 +25,20 @@ namespace Incanto.BusinessLogic.Models
 		public override IBaseModel ConvertFromEntity(ExistingItem existingItem)
 		{
 			base.ConvertFromEntity(existingItem);
-			Item = new ItemModel(existingItem.Item);
-			Size = new SizeModel(existingItem.Size);
-			Amount = existingItem.Amount;
+			if (existingItem != null)
+			{
+				if (existingItem.Item?.Id != null) ItemId = existingItem.Item.Id;
+				Size = new SizeModel(existingItem.Size);
+				Amount = existingItem.Amount;
+			}
 			return this;
 		}
 
 		public override ExistingItem ConvertToEntity()
 		{
 			var existingItem = base.ConvertToEntity();
-			existingItem.Item = Item.ConvertToEntity();
-			existingItem.Size = Size.ConvertToEntity();
+			if(ItemId != 0) existingItem.Item = new Item() {Id = ItemId};
+			existingItem.Size = Size?.ConvertToEntity();
 			existingItem.Amount = Amount;
 			return existingItem;
 		}

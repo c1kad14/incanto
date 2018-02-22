@@ -29,20 +29,6 @@ const style = {
 	mainPhotoImage: {
 		width: "401px"
 	},
-	navContainerWrapper: {
-		width: "401px"
-	},
-	navContainer: {
-		transitionDuration: "0ms",
-		transform: "translate3d(0px, 0px, 0px)"
-	},
-	navContainerHiddenBlock: {
-		transitionDuration: "0ms",
-		transform: "translate3d(0px, 0px, 0px)",
-		width: "76px",
-		display: "none",
-		height: "172px"
-	},
 	otherPhotosContainer: {
 		width: "78px",
 		display: "inline"
@@ -98,16 +84,17 @@ class ConcreteCatalogItem extends React.Component {
 	updateData(data) {
 		let currentItem = {};
 		if (data !== null || data !== undefined) {
-			currentItem = data.model
+			currentItem = data.model;
 			let photos = currentItem.photos.sort(compareImages);
 			currentItem.photos = photos;
+
 			this.setState({ currentItem: currentItem, currentItemSelectedPhoto: currentItem.photos[0] },
 				() => {
 					console.log('updated state value', this.state.currentItem);
 				});
 		}
 	}
-
+	
 	componentWillReceiveProps(nextProps) {
 		let processData = this.updateData;
 		DataService.getObject(controller, nextProps.selectedItemId, processData);
@@ -195,17 +182,20 @@ class ConcreteCatalogItem extends React.Component {
 	generateLeftPhotoBlock() {
 		const allPhotos = this.prepareAllPhotosForItem();
 		let mainPhotoClick = this.mainPhotoClick.bind(this);
-		console.log(this.state.currentItemSelectedPhoto.path);
-		return <div className="left">
+
+		return <div className="center">
 			<div className="fotorama-slider-wrapper">
 				<div id="back-image" onClick={this.previousPhoto}></div>
 				<div id="fotorama">
 					<div style={style.mainPhotoContainerWrapper}>
 						<div className="fotorama__stage" style={style.mainPhotoContainer}>
-							<div className="fotorama__stage__shaft fotorama__grab" style={style.mainPhotoChildContainer}>
-								<div className="fotorama__stage__frame fotorama__loaded fotorama__loaded--img" style={style.mainPhotoImageWrapper}>
-									<img src={this.state.currentItemSelectedPhoto.path} className="fotorama__img" style={style.mainPhotoImage} itemProp="image" alt={"Фото: " + this.state.currentItem.name + " " + this.state.currentItem.brand.name}
-										title={this.state.currentItem.name + " " + this.state.currentItem.brand.name} onClick={mainPhotoClick}/>
+							<div style={style.mainPhotoChildContainer}>
+								<div className="fotorama__stage__frame" style={style.mainPhotoImageWrapper}>
+									<img src={this.state.currentItemSelectedPhoto.path} className="fotorama__img" style={style.mainPhotoImage} itemProp="image" alt={"Фото: " +
+										this.state.currentItem.name +
+										" " +
+										this.state.currentItem.brand.name}
+									     title={this.state.currentItem.name + " " + this.state.currentItem.brand.name} onClick={mainPhotoClick} />
 								</div>
 							</div>
 						</div>
@@ -214,11 +204,8 @@ class ConcreteCatalogItem extends React.Component {
 				<div id="forward-image" onClick={this.nextPhoto}></div>
 			</div>
 			<div className="fotorama-nav-wrap">
-				<div className="fotorama-nav" style={style.navContainerWrapper}>
-					<div className="fotorama-nav-shaft" style={style.navContainer}>
-						<div className="fotorama__thumb-border" style={style.navContainerHiddenBlock}></div>
-						<div>{allPhotos}</div>
-					</div>
+				<div className="fotorama-nav">
+					<div className="navigation-photos">{allPhotos}</div>
 				</div>
 			</div>
 		</div>;
@@ -226,7 +213,8 @@ class ConcreteCatalogItem extends React.Component {
 
 	generateRightInfoBlock() {
 		let handledDetailTypesIds = [];
-		const details = [];
+		let details = [];
+		let sizes = [];
 		const curItem = this.state.currentItem;
 		this.state.currentItem.details.forEach((detail) => {
 			const curDetailTypeId = detail.detailValue.detailType.id;
@@ -248,7 +236,13 @@ class ConcreteCatalogItem extends React.Component {
 				handledDetailTypesIds.push(curDetailTypeId);
 			}
 		});
-
+		if (this.state.currentItem.existingItems !== undefined && this.state.currentItem.existingItems !== null && this.state.currentItem.existingItems.length > 0) {
+			const that = this;
+			this.state.currentItem.existingItems.map((existingItem) => {
+				sizes.push(<li key={existingItem.id} className={that.state.selectedSizeId === existingItem.size.id ? "chosen" : ""} onClick={() => { that.setState({ selectedSizeId: existingItem.size.id})}}>{existingItem.size.name} </li>
+				);
+			});
+		}
 
 
 		//const details = this.state.currentItem.details.map((detail) => {
@@ -280,7 +274,7 @@ class ConcreteCatalogItem extends React.Component {
 				<div className="bold fs10 ls16">РАЗМЕР:</div>
 				<div className="size-table-show">(Таблица размеров)</div>
 				<ul className="size-ul">
-					<li className="chosen">{this.state.currentItem.name}</li>
+					{sizes}
 				</ul>
 			</div>
 
@@ -328,6 +322,7 @@ class ConcreteCatalogItem extends React.Component {
 					</div>
 				</div>;
 	}
+	
 
 	render() {
 		if (this.state.currentItem === undefined) {
@@ -340,9 +335,11 @@ class ConcreteCatalogItem extends React.Component {
 		const photoBlock = this.generateLeftPhotoBlock();
 		const detailsBlock = this.generateRightInfoBlock();
 
-		return <div className="catalog fullw clear">
-			{detailsBlock}
-			{photoBlock}
+		return <div>
+			<div className="catalog">
+				{photoBlock}
+			</div>
+			       {detailsBlock}
 		</div>;
 	}
 }

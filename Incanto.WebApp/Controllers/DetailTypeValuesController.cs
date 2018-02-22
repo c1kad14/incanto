@@ -1,6 +1,7 @@
 ﻿using Incanto.BusinessLogic.Models;
 using Incanto.DataAccess.Interfaces;
 using Incanto.Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,7 @@ namespace Incanto.WebApp.Controllers
 		    
 	    }
 
+		[Authorize]
 	    [HttpGet("{detailTypeId}")]
 	    [Route("GetObjectsByDetailTypeId")]
 	    public virtual ActionResult GetObjectsByDetailTypeId(int detailTypeId)

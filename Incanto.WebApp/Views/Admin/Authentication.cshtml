@@ -1,0 +1,21 @@
+﻿
+@using Incanto.WebApp.Identity.Core
+@using Microsoft.AspNetCore.Identity
+@model ApplicationUser
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "Authentication";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="login-container">
+    <div>
+        <img src="~/Y.jpg" />
+        <form method="post" id="login-form" action="@Url.Action("Login", "admin")">
+            <h1 id="main-password">Incanto sign in:</h1>
+            <input type="password" name="Password" id="txt-password" maxlength="16" />
+            <br />
+            <br />
+            <input type="submit" id="login-button" value="Login" />
+        </form>
+    </div>
+</div>

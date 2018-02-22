@@ -9,6 +9,7 @@ import Drawer from 'material-ui/Drawer';
 import IncantoRecords from "../../IncantoRecords";
 import ImageUploader from "./ImageUploader";
 import RaisedButton from "material-ui/RaisedButton";
+import RestApiCalls from "../Services/RestApiCalls";
 
 class Logged extends Component {
 	constructor(props) {
@@ -17,20 +18,22 @@ class Logged extends Component {
 			name: 'IconMenu'
 		}
 	}
+	signOut() {
+		RestApiCalls.post("admin/logout").then(() => window.location.reload());
+	}
 
 	render() {
 		return <div>
-			<IconMenu
-				//{...props}
+			<IconMenu
 				iconButtonElement={
 					<IconButton><MoreVertIcon /></IconButton>
 				}
 				targetOrigin={{ horizontal: 'right', vertical: 'top' }}
 				anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
 			>
-				<MenuItem primaryText="Refresh" />
-				<MenuItem primaryText="Help" />
-				<MenuItem primaryText="Sign out" />
+				
+				<MenuItem primaryText="Sign Out" onClick={this.signOut}>
+				</MenuItem>
 			</IconMenu>
 		</div>;
 	}
@@ -54,11 +57,7 @@ class IncantoAppBar extends Component {
 	}
 
 	handleMenuRecordsClick() {
-		this.setState({ showRecordsTable: true, showPhotosGrid: false });
-	}
-
-	handleMenuPhotosClick() {
-		this.setState({ showPhotosGrid: true, showRecordsTable: false });
+		this.setState({ showRecordsTable: true, menuOpen: !this.state.menuOpen });
 	}
 
 	handleRecordsTabChange() {
@@ -93,9 +92,8 @@ class IncantoAppBar extends Component {
 					docked={false}>
 
 					<MenuItem onClick={this.handleMenuRecordsClick.bind(this)}>Записи</MenuItem>
-					<MenuItem onClick={this.handleMenuPhotosClick.bind(this)}>Фото</MenuItem>
-					<MenuItem>Баннеры</MenuItem>
-					<MenuItem>Реклама</MenuItem>
+					<MenuItem>Транзакции</MenuItem>
+					<MenuItem>Главная</MenuItem>
 				</Drawer>
 			</div>
 		);

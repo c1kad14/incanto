@@ -28,18 +28,21 @@ namespace Incanto.BusinessLogic.Models
 		public double NewPrice { get; set; }
 		public List<PhotoModel> Photos { get; set; }
 		public List<DetailModel> Details { get; set; }
+		public List<ExistingItemModel> ExistingItems { get; set; }
 
 		public override IBaseModel ConvertFromEntity(Item item)
 		{
 			base.ConvertFromEntity(item);
 			Photos = new List<PhotoModel>();
 			Details = new List<DetailModel>();
+			ExistingItems = new List<ExistingItemModel>();
 			Brand = item?.Brand != null? new BrandModel(item.Brand) : null;
 			Category = item?.Category != null ? new CategoryModel(item.Category) : null;
 			Discount = item?.Discount ?? 0;
 			Price = item?.Price ?? 0;
 			item?.Photos?.ForEach(p => Photos.Add(new PhotoModel(p)));
 			item?.Details?.ForEach(d => Details.Add(new DetailModel(d)));
+			item?.ExistingItems?.ForEach(e=> ExistingItems.Add(new ExistingItemModel(e)));
 			Description = item?.Description;
 			Updated = item?.Updated ?? DateTime.Now;
 			NewPrice = Math.Abs(Discount) > 0 ? Price - ((Price / 100) * Discount) : 0;
@@ -59,6 +62,7 @@ namespace Incanto.BusinessLogic.Models
 			Photos?.ForEach(p => item.Photos.Add(p.ConvertToEntity()));
 			item.Details = new List<Detail>();
 			Details?.ForEach(d => item.Details.Add(d.ConvertToEntity()));
+			ExistingItems?.ForEach(e => item.ExistingItems.Add(e.ConvertToEntity()));
 			return item;
 		}
 	}

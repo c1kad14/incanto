@@ -12,7 +12,7 @@ class DataService {
 			//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
 			//console.log("Data service finished");
 			if (callback !== null) {
-			    callback(response.data);
+				return callback(response.data);
 			}
 		    //return response;
 		}).catch(function (err) {
@@ -25,7 +25,7 @@ class DataService {
 			//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
 			//console.log("Data service finished");
 			if (callback !== null) {
-				callback(response.data);
+				return callback(response.data);
 			}
 			//return response;
 		}).catch(function (err) {
@@ -35,10 +35,10 @@ class DataService {
 
 	//Get object by id using api (host/api/controller/GetObject)
 	static getObject(controller, objectId, callback) {
-		RestApiCalls.get(`/api/${controller}/Get?id=${objectId}`).then(function (response) {
+		return RestApiCalls.get(`/api/${controller}/Get?id=${objectId}`).then(function (response) {
 			//NotificationService.addNotification(response.data.message, function () { }, true, response.data.wasSuccessful);
 		    if (callback !== null) {
-		        callback(response.data);
+				return callback(response.data);
 		    }
 		}).catch(function (err) {
 			console.log(err);
