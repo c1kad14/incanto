@@ -79,15 +79,7 @@ class RecordsList extends React.Component {
 				columnId = row.id;
 			}
 			return (<TableRowColumn key={columnId}> {columnValue} </TableRowColumn>);
-			//(row[columnName] != null ? <TableRowColumn key={columnId}> {columnValue} </TableRowColumn> : <span />);
 		});
-		//if (this.props.controller === "items") {
-		//	rowColumns.push(<TableRowColumn key={row.id}><RaisedButton onClick={this.openAddDialog.bind(this)} label="add photo" fullWidth={true} />
-		//		<ImageUploader baseItemId={row.id}
-		//			uploaderActions={this.state.uploaderActions}
-		//			uploadController="Photos" />
-		//	</TableRowColumn>);
-		//}
 		if (this.props.controller === "items") {
 				let value = row["photos"] !== undefined && row["photos"].length > 0 ? row["photos"][0].path : undefined;
 				let columnValue = <img className="item-photo-preview" src={value} />;
