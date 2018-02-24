@@ -3,6 +3,7 @@
 namespace Incanto.WebApp.Controllers
 {
 	[Route(""),
+	 Route("brands/"),
 	 Route("{gender}/"),
 	 Route("{gender}/type/{typeId}"),
 	 Route("{gender}/type/{typeId}/category/{categoryId}"),

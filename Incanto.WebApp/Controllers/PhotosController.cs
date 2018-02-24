@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Net.Mime;
 using System.Threading.Tasks;
-using FreeImageAPI;
 using ImageMagick;
 using Incanto.BusinessLogic.Models;
-using Incanto.BusinessLogic.Services;
 using Incanto.BusinessLogic.Services.Core;
 using Incanto.BusinessLogic.Services.Core.Interfaces;
 using Incanto.DataAccess.Interfaces;
@@ -16,7 +11,6 @@ using Incanto.Domain;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Size = Incanto.Domain.Size;
 
 namespace Incanto.WebApp.Controllers
 {

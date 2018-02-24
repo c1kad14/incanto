@@ -1263,47 +1263,6 @@ module.exports = exports["default"];
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _propTypes = __webpack_require__(2);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var horizontal = _propTypes2.default.oneOf(['left', 'middle', 'right']);
-var vertical = _propTypes2.default.oneOf(['top', 'center', 'bottom']);
-
-exports.default = {
-
-  corners: _propTypes2.default.oneOf(['bottom-left', 'bottom-right', 'top-left', 'top-right']),
-
-  horizontal: horizontal,
-
-  vertical: vertical,
-
-  origin: _propTypes2.default.shape({
-    horizontal: horizontal,
-    vertical: vertical
-  }),
-
-  cornersAndCenter: _propTypes2.default.oneOf(['bottom-center', 'bottom-left', 'bottom-right', 'top-center', 'top-left', 'top-right']),
-
-  stringOrNumber: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
-
-  zDepth: _propTypes2.default.oneOf([0, 1, 2, 3, 4, 5])
-
-};
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
@@ -1424,6 +1383,47 @@ var DataService = function () {
 }();
 
 exports.default = DataService;
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _propTypes = __webpack_require__(2);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var horizontal = _propTypes2.default.oneOf(['left', 'middle', 'right']);
+var vertical = _propTypes2.default.oneOf(['top', 'center', 'bottom']);
+
+exports.default = {
+
+  corners: _propTypes2.default.oneOf(['bottom-left', 'bottom-right', 'top-left', 'top-right']),
+
+  horizontal: horizontal,
+
+  vertical: vertical,
+
+  origin: _propTypes2.default.shape({
+    horizontal: horizontal,
+    vertical: vertical
+  }),
+
+  cornersAndCenter: _propTypes2.default.oneOf(['bottom-center', 'bottom-left', 'bottom-right', 'top-center', 'top-left', 'top-right']),
+
+  stringOrNumber: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+
+  zDepth: _propTypes2.default.oneOf([0, 1, 2, 3, 4, 5])
+
+};
 
 /***/ }),
 /* 32 */
@@ -5682,7 +5682,7 @@ var _keycode = __webpack_require__(51);
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
-var _propTypes3 = __webpack_require__(30);
+var _propTypes3 = __webpack_require__(31);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -6390,7 +6390,7 @@ var _RenderToLayer = __webpack_require__(247);
 
 var _RenderToLayer2 = _interopRequireDefault(_RenderToLayer);
 
-var _propTypes3 = __webpack_require__(30);
+var _propTypes3 = __webpack_require__(31);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -30961,7 +30961,7 @@ var _Menu = __webpack_require__(115);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _propTypes3 = __webpack_require__(30);
+var _propTypes3 = __webpack_require__(31);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -34511,7 +34511,7 @@ var _RestApiCalls = __webpack_require__(55);
 
 var _RestApiCalls2 = _interopRequireDefault(_RestApiCalls);
 
-var _DataService = __webpack_require__(31);
+var _DataService = __webpack_require__(30);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -36345,7 +36345,7 @@ var _Paper = __webpack_require__(52);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
-var _propTypes3 = __webpack_require__(30);
+var _propTypes3 = __webpack_require__(31);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -36722,7 +36722,7 @@ var _transitions = __webpack_require__(12);
 
 var _transitions2 = _interopRequireDefault(_transitions);
 
-var _propTypes3 = __webpack_require__(30);
+var _propTypes3 = __webpack_require__(31);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -37618,7 +37618,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _propTypes3 = __webpack_require__(30);
+var _propTypes3 = __webpack_require__(31);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -37784,7 +37784,7 @@ var _events = __webpack_require__(76);
 
 var _events2 = _interopRequireDefault(_events);
 
-var _propTypes3 = __webpack_require__(30);
+var _propTypes3 = __webpack_require__(31);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -38795,7 +38795,7 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _propTypes3 = __webpack_require__(30);
+var _propTypes3 = __webpack_require__(31);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -39955,7 +39955,7 @@ var _Paper = __webpack_require__(52);
 
 var _Paper2 = _interopRequireDefault(_Paper);
 
-var _propTypes3 = __webpack_require__(30);
+var _propTypes3 = __webpack_require__(31);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -40532,7 +40532,7 @@ var _RecordsList = __webpack_require__(346);
 
 var _RecordsList2 = _interopRequireDefault(_RecordsList);
 
-var _DataService = __webpack_require__(31);
+var _DataService = __webpack_require__(30);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -40599,7 +40599,7 @@ var IncantoRecords = function (_React$Component) {
 				"detailtypes": ["id", "name", "category.name", "category-type.name", "category-type-gender.name"],
 				"detailtypevalues": ["id", "value", "detailType.name", "detailType-category.name", "detailType-category-type.name", "detailType-category-type-gender.name"],
 				"sizes": ["id", "name", "category.name", "category-type.name", "category-type-gender.name"],
-				"items": ["id", "photo", "name", "brand.name", "category.name", "category-type.name", "category-type-gender.name", "discount", "price"]
+				"items": ["id", "name", "brand.name", "category.name", "category-type.name", "category-type-gender.name", "description", "discount", "price"]
 			};
 
 			var lookupFields = {
@@ -40923,7 +40923,7 @@ var _IconButton = __webpack_require__(75);
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
-var _propTypes3 = __webpack_require__(30);
+var _propTypes3 = __webpack_require__(31);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -41754,7 +41754,7 @@ var _transitions = __webpack_require__(12);
 
 var _transitions2 = _interopRequireDefault(_transitions);
 
-var _propTypes3 = __webpack_require__(30);
+var _propTypes3 = __webpack_require__(31);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -42374,7 +42374,7 @@ var _Text = __webpack_require__(297);
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _DataService = __webpack_require__(31);
+var _DataService = __webpack_require__(30);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -44517,7 +44517,7 @@ var _AutoComplete = __webpack_require__(304);
 
 var _AutoComplete2 = _interopRequireDefault(_AutoComplete);
 
-var _DataService = __webpack_require__(31);
+var _DataService = __webpack_require__(30);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -44850,7 +44850,7 @@ var _Popover = __webpack_require__(116);
 
 var _Popover2 = _interopRequireDefault(_Popover);
 
-var _propTypes3 = __webpack_require__(30);
+var _propTypes3 = __webpack_require__(31);
 
 var _propTypes4 = _interopRequireDefault(_propTypes3);
 
@@ -45646,7 +45646,7 @@ var _RestApiCalls = __webpack_require__(55);
 
 var _RestApiCalls2 = _interopRequireDefault(_RestApiCalls);
 
-var _DataService = __webpack_require__(31);
+var _DataService = __webpack_require__(30);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -48524,7 +48524,7 @@ var _RestApiCalls = __webpack_require__(55);
 
 var _RestApiCalls2 = _interopRequireDefault(_RestApiCalls);
 
-var _DataService = __webpack_require__(31);
+var _DataService = __webpack_require__(30);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -51964,7 +51964,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _DataService = __webpack_require__(31);
+var _DataService = __webpack_require__(30);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -52064,13 +52064,8 @@ var RecordsList = function (_React$Component) {
 					columnValue = row[columnName] !== undefined && row[columnName] !== "" && row[columnName] !== null ? row[columnName] : "пусто";
 					columnId = row.id;
 				} else {
-					if (columnName === "photo") {
-						var value = row["photos"] !== undefined && row["photos"].length > 0 ? row["photos"][0].path : undefined;
-						columnValue = _react2.default.createElement("img", { className: "item-photo-preview", src: value });
-					} else {
-						var _value = getValueForFieldFunc(row, columnName);
-						columnValue = _value !== undefined ? _value : "пусто";
-					}
+					var value = getValueForFieldFunc(row, columnName);
+					columnValue = value !== undefined ? value : "пусто";
 					columnId = row.id;
 				}
 				return _react2.default.createElement(
@@ -52089,7 +52084,17 @@ var RecordsList = function (_React$Component) {
 			//			uploadController="Photos" />
 			//	</TableRowColumn>);
 			//}
-
+			if (this.props.controller === "items") {
+				var value = row["photos"] !== undefined && row["photos"].length > 0 ? row["photos"][0].path : undefined;
+				var columnValue = _react2.default.createElement("img", { className: "item-photo-preview", src: value });
+				rowColumns.push(_react2.default.createElement(
+					_Table.TableRowColumn,
+					{ key: row.id },
+					" ",
+					columnValue,
+					" "
+				));
+			}
 			return rowColumns;
 		}
 	}, {
@@ -52199,6 +52204,13 @@ var RecordsList = function (_React$Component) {
 					_this3.formatHeaderName(column)
 				);
 			});
+			if (this.props.controller === "items") {
+				headerColumns.push(_react2.default.createElement(
+					_Table.TableHeaderColumn,
+					{ key: "photo" },
+					this.formatHeaderName("photo")
+				));
+			}
 			var lastPage = this.state.dataSource.length % this.state.itemsPerPage !== 0 ? 1 : 0;
 			var pages = Math.floor(this.state.dataSource.length / this.state.itemsPerPage) + lastPage;
 			return _react2.default.createElement(

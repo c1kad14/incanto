@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Incanto.BusinessLogic.Models;
-using Incanto.BusinessLogic.Services;
 using Incanto.BusinessLogic.Services.Core;
 using Incanto.DataAccess.Interfaces;
 using Incanto.Domain;
@@ -14,7 +13,7 @@ namespace Incanto.WebApp.Controllers
 	[Route("api/[controller]")]
 	public class CatalogItemsController : Controller
 	{
-		private readonly ReadDataService<ExistingItemModel, ExistingItem> _existingItemReadDataService;
+	//	private readonly ReadDataService<ExistingItemModel, ExistingItem> _existingItemReadDataService;
 		private readonly ReadDataService<ItemModel, Item> _itemReadDataService;
 		public CatalogItemsController(IDataRepository<ExistingItem> existingItemDataRepository, IDataRepository<Item> itemDataRepository)
 		{
@@ -22,18 +21,18 @@ namespace Incanto.WebApp.Controllers
 				q.Include(i => i.Brand).ThenInclude(b => b.Country).Include(i => i.Category).ThenInclude(c => c.Type)
 					.ThenInclude(t => t.Gender).Include(i => i.Details).ThenInclude(d => d.DetailValue)
 					.ThenInclude(dv => dv.DetailType).ThenInclude(dt => dt.Category).Include(i => i.Photos);
-			_existingItemReadDataService = new ReadDataService<ExistingItemModel, ExistingItem>(existingItemDataRepository);
-		    _itemReadDataService = new ReadDataService<ItemModel, Item>(itemDataRepository);
-		
+	//		_existingItemReadDataService = new ReadDataService<ExistingItemModel, ExistingItem>(existingItemDataRepository);
+			_itemReadDataService = new ReadDataService<ItemModel, Item>(itemDataRepository);
+
 		}
 
-		[HttpGet("{id}")]
-		[Route("Get")]
-		public virtual ActionResult GetObject(int id)
-		{
-			var operationResult = _existingItemReadDataService.Get(id);
-			return Json(operationResult);
-		}
+		//[HttpGet("{id}")]
+		//[Route("Get")]
+		//public virtual ActionResult GetObject(int id)
+		//{
+		//	var operationResult = _existingItemReadDataService.Get(id);
+		//	return Json(operationResult);
+		//}
 
 		[HttpGet]
 		[Route("GetList")]
@@ -46,10 +45,14 @@ namespace Incanto.WebApp.Controllers
 
 		[HttpPost]
 		[Route("GetFilteredList")]
-		public ActionResult GetCollectionByFilter(List<int> categories, List<int> brands, List<int> sizes)
+		public ActionResult GetCollectionByFilter(List<int> categories, List<int> brands, List<int> sizes, string gender)
 		{
-			var operationResult = _itemReadDataService.Get(item => (categories.Count == 0 || categories.Any(category => category == item.Category.Id)) && (brands.Count == 0 || brands.Any(brand => brand == item.Brand.Id)) && (sizes.Count == 0 || sizes.Any(size => item.ExistingItems.Any(ex => ex.Size.Id == size))));
-				//&& brands.Any(brand => brand == item.Brand.Id) && sizes.Any(size => item.ExistingItems.Any(ex => ex.Size.Id == size))
+			var operationResult = _itemReadDataService.Get(item => (
+			categories.Count == 0 && !string.IsNullOrEmpty(gender) && gender == item.Category.Type.Gender.Name 
+			|| string.IsNullOrEmpty(gender)  && categories.Any(category => category == item.Category.Id)
+			|| categories.Count == 0 && string.IsNullOrEmpty(gender))
+			&& (brands.Count == 0 || brands.Any(brand => brand == item.Brand.Id))
+			&& (sizes.Count == 0 || sizes.Any(size => item.ExistingItems.Any(ex => ex.Size.Id == size))));
 			return Json(operationResult);
 		}
 	}

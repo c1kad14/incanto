@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Incanto.BusinessLogic.Models;
+﻿using Incanto.BusinessLogic.Models;
 using Incanto.DataAccess.Interfaces;
 using Incanto.Domain;
 using Microsoft.AspNetCore.Mvc;

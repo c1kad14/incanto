@@ -74,13 +74,8 @@ class RecordsList extends React.Component {
 				columnValue = row[columnName] !== undefined && row[columnName] !== "" && row[columnName] !== null ? row[columnName] : "пусто";
 				columnId = row.id;
 			} else {
-				if (columnName === "photo") {
-					let value = row["photos"] !== undefined && row["photos"].length > 0 ? row["photos"][0].path : undefined;
-					columnValue = <img className="item-photo-preview" src={value}/>;
-				} else {
-					let value = getValueForFieldFunc(row, columnName);
-					columnValue = value !== undefined ? value : "пусто";
-				}
+				let value = getValueForFieldFunc(row, columnName);
+				columnValue = value !== undefined ? value : "пусто";
 				columnId = row.id;
 			}
 			return (<TableRowColumn key={columnId}> {columnValue} </TableRowColumn>);
@@ -93,7 +88,11 @@ class RecordsList extends React.Component {
 		//			uploadController="Photos" />
 		//	</TableRowColumn>);
 		//}
-		
+		if (this.props.controller === "items") {
+				let value = row["photos"] !== undefined && row["photos"].length > 0 ? row["photos"][0].path : undefined;
+				let columnValue = <img className="item-photo-preview" src={value} />;
+				rowColumns.push(<TableRowColumn key={row.id}> {columnValue} </TableRowColumn>);
+		}
 		return rowColumns;
 	}
 
@@ -192,6 +191,9 @@ class RecordsList extends React.Component {
 				<TableHeaderColumn key={column}>{this.formatHeaderName(column)}</TableHeaderColumn>
 			);
 		});
+		if (this.props.controller === "items") {
+			headerColumns.push(<TableHeaderColumn key="photo">{this.formatHeaderName("photo")}</TableHeaderColumn>);
+		}
 		const lastPage = ((this.state.dataSource.length) % this.state.itemsPerPage) !== 0 ? 1 : 0;
 		const pages = Math.floor(this.state.dataSource.length / this.state.itemsPerPage) + lastPage;
 		return <div>

@@ -33,7 +33,7 @@ namespace Incanto.DataAccess.Repository
 			}
 		}
 
-		public void Update(TEntity entity)
+		public virtual void Update(TEntity entity)
 		{
 			using (var context = new IncantoDataContext(_dbContextOptions))
 			{
@@ -41,10 +41,10 @@ namespace Incanto.DataAccess.Repository
 				context.Set<TEntity>().Attach(entity);
 				context.Update(entity);
 				context.SaveChanges();
-			}
+			}	
 		}
-
 		public virtual void Delete(TEntity entity)
+
 		{
 			using (var context = new IncantoDataContext(_dbContextOptions))
 			{

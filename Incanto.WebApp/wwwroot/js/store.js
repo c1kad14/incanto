@@ -1196,8 +1196,7 @@ function getPrefixedValue(prefixedValue, value, keepUnprefixed) {
 module.exports = exports["default"];
 
 /***/ }),
-/* 30 */,
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1326,6 +1325,7 @@ var DataService = function () {
 exports.default = DataService;
 
 /***/ }),
+/* 31 */,
 /* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33754,11 +33754,14 @@ var Store = function (_React$Component) {
 				_react2.default.createElement(
 					_reactRouterDom.Switch,
 					null,
-					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _HomePage2.default }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", render: function render() {
+							return _react2.default.createElement(_reactRouterDom.Redirect, { to: "/women" });
+						} }),
 					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/:gender", component: _HomePage2.default }),
 					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/:gender/type/:typeId", component: _HomePage2.default }),
 					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/:gender/type/:typeId/category/:categoryId", component: _HomePage2.default }),
-					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/item/:itemId", component: _HomePage2.default })
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/item/:itemId", component: _HomePage2.default }),
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/brands", component: _HomePage2.default })
 				)
 			);
 		}
@@ -33786,7 +33789,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _DataService = __webpack_require__(31);
+var _reactDom = __webpack_require__(13);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _DataService = __webpack_require__(30);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -33798,15 +33805,19 @@ var _Catalog = __webpack_require__(377);
 
 var _Catalog2 = _interopRequireDefault(_Catalog);
 
-var _ConcreteCatalogItem = __webpack_require__(381);
+var _Brands = __webpack_require__(381);
+
+var _Brands2 = _interopRequireDefault(_Brands);
+
+var _ConcreteCatalogItem = __webpack_require__(382);
 
 var _ConcreteCatalogItem2 = _interopRequireDefault(_ConcreteCatalogItem);
 
-var _Footer = __webpack_require__(382);
+var _Footer = __webpack_require__(383);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
-var _Filter = __webpack_require__(383);
+var _Filter = __webpack_require__(384);
 
 var _Filter2 = _interopRequireDefault(_Filter);
 
@@ -33828,8 +33839,6 @@ var HomePage = function (_React$Component) {
 
 		var _this = _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).call(this, props));
 
-		var gender = "";
-
 		_this.state = {
 			types: [],
 			categories: [],
@@ -33838,6 +33847,7 @@ var HomePage = function (_React$Component) {
 			selectedCategory: undefined,
 			selectedBrand: undefined,
 			selectedItemId: undefined,
+			navigateToBrand: false,
 			showNavigationMenu: true,
 			filterSettings: {
 				categories: [],
@@ -33854,9 +33864,17 @@ var HomePage = function (_React$Component) {
 	}
 
 	_createClass(HomePage, [{
+		key: "brandSelected",
+		value: function brandSelected(brand) {
+			var filter = this.state.filterSettings;
+			filter.brands = [];
+			filter.brands.push(brand);
+			this.setState({ selectedBrand: brand.name, navigateToBrand: false, filterSettings: filter });
+		}
+	}, {
 		key: "getGender",
 		value: function getGender(gender) {
-			var result = "";
+			var result = undefined;
 			switch (gender) {
 				case "women":
 					result = "Женщинам";
@@ -33871,15 +33889,29 @@ var HomePage = function (_React$Component) {
 			return result;
 		}
 	}, {
+		key: "componentDidUpdate",
+		value: function componentDidUpdate() {
+			var node = _reactDom2.default.findDOMNode(this);
+			if (node !== null) {
+				node.scrollIntoView();
+			}
+		}
+	}, {
 		key: "updateFilters",
-		value: function updateFilters(gender, type, category, brand, item) {
-			if (this.state.selectedType !== type || this.state.selectedCategory !== category || this.state.selectedGender !== gender || this.state.selectedBrand !== brand || this.state.selectedItemId !== item) {
+		value: function updateFilters(gender, type, category, brand, item, navigateToBrand) {
+			if (this.state.selectedType !== type || this.state.selectedCategory !== category || this.state.selectedGender !== gender || this.state.selectedBrand !== brand || this.state.selectedItemId !== item || this.state.navigateToBrand !== navigateToBrand) {
 				this.setState({
 					selectedGender: gender,
 					selectedType: type,
 					selectedCategory: category,
 					selectedBrand: brand,
-					selectedItemId: item
+					selectedItemId: item,
+					navigateToBrand: navigateToBrand,
+					filterSettings: {
+						categories: [],
+						brands: [],
+						sizes: []
+					}
 				});
 			}
 		}
@@ -33953,6 +33985,7 @@ var HomePage = function (_React$Component) {
 				var type = undefined;
 				var category = undefined;
 				var item = undefined;
+				var brand = undefined;
 
 				if (that.props.match.params.itemId !== undefined) {
 					item = that.props.match.params.itemId;
@@ -33978,9 +34011,10 @@ var HomePage = function (_React$Component) {
 							return category.id === parseInt(that.props.match.params.categoryId);
 						})[0].name;
 					}
+					brand = that.props.match.url === "/brands" ? true : false;
 				}
 
-				that.setState({ types: values[0], categories: values[1], selectedGender: gender, selectedType: type, selectedCategory: category, selectedItemId: item });
+				that.setState({ types: values[0], categories: values[1], navigateToBrand: brand, selectedGender: gender, selectedType: type, selectedCategory: category, selectedItemId: item });
 			});
 		}
 	}, {
@@ -34005,7 +34039,11 @@ var HomePage = function (_React$Component) {
 							category = model.category.name;
 						}
 
-						that.setState({ selectedGender: gender, selectedType: type, selectedCategory: category, selectedItemId: item });
+						that.setState({
+							selectedGender: gender,
+							selectedType: type,
+							selectedCategory: category,
+							selectedItemId: item });
 					});
 				} else {
 					var gender = undefined;
@@ -34014,7 +34052,8 @@ var HomePage = function (_React$Component) {
 					var item = undefined;
 
 					if (nextProps.match.params.gender !== undefined) {
-						gender = this.getGender(nextProps.match.params.gender);;
+						gender = this.getGender(nextProps.match.params.gender);
+						this.state.selectedBrand = gender !== undefined ? undefined : this.state.selectedBrand;
 					}
 
 					if (nextProps.match.params.typeId !== undefined) {
@@ -34028,8 +34067,23 @@ var HomePage = function (_React$Component) {
 							return category.id === parseInt(nextProps.match.params.categoryId);
 						})[0].name;
 					}
+					var brand = nextProps.match.url === "/brands" && (this.state.filterSettings.brands.length === 0 && this.state.filterSettings.categories.length === 0 && this.state.filterSettings.sizes.length === 0 || this.state.selectedGender !== undefined) ? true : false;
 
-					this.setState({ selectedGender: gender, selectedType: type, selectedCategory: category, selectedItemId: item });
+					if (this.state.selectedGender !== gender || this.state.selectedType !== type || this.state.selectedCategory !== category || this.state.selectedItemId !== nextProps.match.params.itemId || this.state.navigateToBrand !== brand) {
+						this.setState({
+							navigateToBrand: brand,
+							selectedGender: gender,
+							selectedType: type,
+							selectedCategory: category,
+							selectedBrand: undefined,
+							selectedItemId: item,
+							filterSettings: this.state.selectedBrand === undefined ? {
+								categories: [],
+								brands: [],
+								sizes: []
+							} : this.state.filterSettings
+						});
+					}
 				}
 			}
 		}
@@ -34047,6 +34101,7 @@ var HomePage = function (_React$Component) {
 				brand: this.state.selectedBrand,
 				selectedItemId: this.state.selectedItemId,
 				onItemSelected: this.updateSelectedItem.bind(this), sort: this.state.sort, filterCategories: this.state.filterSettings.categories, filterBrands: this.state.filterSettings.brands, filterSizes: this.state.filterSettings.sizes }) : _react2.default.createElement(_ConcreteCatalogItem2.default, { selectedItemId: this.state.selectedItemId, changeNavigationMenuValue: this.changeNavigationMenuValue.bind(this) });
+			var brands = _react2.default.createElement(_Brands2.default, { brandSelected: this.brandSelected.bind(this) });
 			return _react2.default.createElement(
 				"div",
 				{ className: "product-content" },
@@ -34057,8 +34112,8 @@ var HomePage = function (_React$Component) {
 						"div",
 						{ className: "logo_image" },
 						_react2.default.createElement(
-							_reactRouterDom.Link,
-							{ to: "/" },
+							"a",
+							{ href: "/" },
 							_react2.default.createElement(
 								"span",
 								{ style: logoFontMain },
@@ -34078,11 +34133,12 @@ var HomePage = function (_React$Component) {
 						selectedType: this.state.selectedType,
 						selectedCategory: this.state.selectedCategory,
 						selectedBrand: this.state.selectedBrand,
-						selectedItemId: this.state.selectedItemId
+						selectedItemId: this.state.selectedItemId,
+						navigateToBrand: this.state.navigateToBrand
 					})
 				) : _react2.default.createElement("span", null),
-				catalog,
-				this.state.selectedItemId === undefined && this.state.showNavigationMenu ? _react2.default.createElement(_Filter2.default, { gender: this.state.selectedGender, type: this.state.selectedType, category: this.state.selectedCategory, filterSettings: this.state.filterSettings, sort: this.sort.bind(this) }) : _react2.default.createElement("span", null),
+				this.state.navigateToBrand === true ? brands : catalog,
+				this.state.selectedItemId === undefined && this.state.navigateToBrand === false && this.state.showNavigationMenu ? _react2.default.createElement(_Filter2.default, { gender: this.state.selectedGender, type: this.state.selectedType, category: this.state.selectedCategory, filterSettings: this.state.filterSettings, sort: this.sort.bind(this) }) : _react2.default.createElement("span", null),
 				this.state.showNavigationMenu ? _react2.default.createElement(_Footer2.default, null) : _react2.default.createElement("span", null)
 			);
 		}
@@ -34131,13 +34187,14 @@ var NavigationMenu = function (_React$Component) {
 		_this.getGenderTypes = _this.getGenderTypes.bind(_this);
 		_this.getTypeCategories = _this.getTypeCategories.bind(_this);
 		_this.getGenderStyle = _this.getGenderStyle.bind(_this);
+		_this.getBrandsStyle = _this.getBrandsStyle.bind(_this);
 		return _this;
 	}
 
 	_createClass(NavigationMenu, [{
 		key: "getGender",
 		value: function getGender(gender) {
-			var result = "";
+			var result = undefined;
 			switch (gender) {
 				case "Женщинам":
 					result = "women";
@@ -34204,6 +34261,15 @@ var NavigationMenu = function (_React$Component) {
 			};
 		}
 	}, {
+		key: "getBrandsStyle",
+		value: function getBrandsStyle() {
+			return {
+				borderBottom: this.props.navigateToBrand === true && this.props.selectedGender === undefined && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "1px solid" : "",
+				marginBottom: this.props.navigateToBrand === true && this.props.selectedGender === undefined && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "-1px" : ""
+
+			};
+		}
+	}, {
 		key: "getGenderStyle",
 		value: function getGenderStyle(gender) {
 			return {
@@ -34231,7 +34297,7 @@ var NavigationMenu = function (_React$Component) {
 	}, {
 		key: "shouldComponentUpdate",
 		value: function shouldComponentUpdate(nextProps, nextSate) {
-			if (this.props.selectedGender === nextProps.selectedGender && this.props.selectedType === nextProps.selectedType && this.props.selectedCategory === nextProps.selectedCategory && this.props.selectedBrand === nextProps.selectedBrand) {
+			if (this.props.selectedGender === nextProps.selectedGender && this.props.selectedType === nextProps.selectedType && this.props.selectedCategory === nextProps.selectedCategory && this.props.selectedBrand === nextProps.selectedBrand && this.props.navigateToBrand === nextProps.navigateToBrand) {
 				return false;
 			}
 			return true;
@@ -34239,8 +34305,8 @@ var NavigationMenu = function (_React$Component) {
 	}, {
 		key: "componentWillReceiveProps",
 		value: function componentWillReceiveProps(nextProps) {
-			if (this.props.selectedGender !== nextProps.selectedGender || this.props.selectedType !== nextProps.selectedType || this.props.selectedCategory !== nextProps.selectedCategory || this.props.selectedBrand !== nextProps.selectedBrand || this.props.selectedItemId !== nextProps.selectedItemId) {
-				this.props.updateFilters(nextProps.selectedGender, nextProps.selectedType, nextProps.selectedCategory, nextProps.selectedBrand, nextProps.selectedItemId);
+			if (this.props.selectedGender !== nextProps.selectedGender || this.props.selectedType !== nextProps.selectedType || this.props.selectedCategory !== nextProps.selectedCategory || this.props.selectedBrand !== nextProps.selectedBrand || this.props.selectedItemId !== nextProps.selectedItemId || this.props.navigateToBrand !== nextProps.navigateToBrand) {
+				this.props.updateFilters(nextProps.selectedGender, nextProps.selectedType, nextProps.selectedCategory, nextProps.selectedBrand, nextProps.selectedItemId, nextProps.navigateToBrand);
 			}
 		}
 	}, {
@@ -34275,8 +34341,8 @@ var NavigationMenu = function (_React$Component) {
 						"li",
 						{ key: "navigation-menu-list-brand-container", className: "level1_i" },
 						_react2.default.createElement(
-							"a",
-							{ href: "#", className: "level1_l " },
+							_reactRouterDom.Link,
+							{ style: this.getBrandsStyle(), className: "level1_l", to: "/brands" },
 							"\u0411\u0440\u0435\u043D\u0434\u044B"
 						)
 					),
@@ -37372,7 +37438,7 @@ var _reactDom = __webpack_require__(13);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _DataService = __webpack_require__(31);
+var _DataService = __webpack_require__(30);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -37399,8 +37465,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var controller = "catalogitems";
 
 function comparePrices(a, b) {
-	if (a.price < b.price) return -1;
-	if (a.price > b.price) return 1;
+	if (a.displayPrice < b.displayPrice) return -1;
+	if (a.displayPrice > b.displayPrice) return 1;
 	return 0;
 }
 
@@ -37443,10 +37509,6 @@ var Catalog = function (_React$Component) {
 					newData.push(data[i].model);
 				}
 				return newData;
-				//this.setState({ items: newData },
-				//	() => {
-				//		console.log('updated state value', this.state.items);
-				//	});
 			}
 		}
 	}, {
@@ -37477,9 +37539,13 @@ var Catalog = function (_React$Component) {
 						return size.id;
 					});
 
-					categories.map(function (category) {
-						return formData.append("categories", category);
-					});
+					if (categories.length > 0) {
+						categories.map(function (category) {
+							return formData.append("categories", category);
+						});
+					} else {
+						formData.set("gender", this.props.gender !== undefined ? this.props.gender : "");
+					}
 					brands.map(function (brand) {
 						return formData.append("brands", brand);
 					});
@@ -37626,10 +37692,14 @@ var CatalogItem = function (_React$Component) {
 			}
 			var item = this.props.item;
 			var imageToDisplay = item.photos.sort(compareImages);
-			imageToDisplay = imageToDisplay !== undefined && imageToDisplay.length > 0 ? imageToDisplay[0].path : undefined;
-			var separateIndex = imageToDisplay.lastIndexOf("\\");
-			separateIndex = separateIndex + 1;
-			var imagePreview = imageToDisplay.substring(0, separateIndex) + "thumb_" + imageToDisplay.substring(separateIndex);
+			var imagePreview = undefined;
+			if (imageToDisplay !== undefined && imageToDisplay.length > 0) {
+				imageToDisplay = imageToDisplay !== undefined && imageToDisplay.length > 0 ? imageToDisplay[0].path : undefined;
+				var separateIndex = imageToDisplay.lastIndexOf("\\");
+				separateIndex = separateIndex + 1;
+				imagePreview = imageToDisplay.substring(0, separateIndex) + "thumb_" + imageToDisplay.substring(separateIndex);
+			}
+
 			return _react2.default.createElement(
 				"li",
 				{ className: "item", itemType: "http://schema.org/Product", itemProp: "itemListElement", itemScope: "" },
@@ -37637,8 +37707,8 @@ var CatalogItem = function (_React$Component) {
 					_reactRouterDom.Link,
 					{ to: "/item/" + this.props.item.id },
 					_react2.default.createElement(_reactProgressiveImageLoading2.default, {
-						preview: imagePreview,
-						src: imageToDisplay,
+						preview: imagePreview !== undefined ? imagePreview : "",
+						src: imageToDisplay !== undefined ? imageToDisplay : "",
 						render: function render(src) {
 							return _react2.default.createElement("img", { className: "main-picture", alt: item.name, src: src, itemProp: "image" });
 						}
@@ -37663,22 +37733,17 @@ var CatalogItem = function (_React$Component) {
 						_react2.default.createElement(
 							"p",
 							{ className: "item-price fs10 filter-item up ls2", itemType: "http://schema.org/Offer", itemProp: "offers", itemScope: "" },
-							item.newPrice !== 0 ? _react2.default.createElement(
-								"span",
-								{ className: "old-price", itemProp: "price" },
-								item.price,
-								" \u0433\u0440\u043D"
-							) : _react2.default.createElement(
+							_react2.default.createElement(
 								"span",
 								{ itemProp: "price" },
-								item.price,
+								item.displayPrice,
 								" \u0433\u0440\u043D"
 							),
 							"\xA0",
-							item.newPrice !== 0 ? _react2.default.createElement(
+							item.oldPrice !== 0 ? _react2.default.createElement(
 								"span",
-								null,
-								item.newPrice,
+								{ className: "old-price", itemProp: "price" },
+								item.oldPrice,
 								" \u0433\u0440\u043D"
 							) : _react2.default.createElement("span", null)
 						)
@@ -48034,7 +48099,640 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _DataService = __webpack_require__(31);
+var _DataService = __webpack_require__(30);
+
+var _DataService2 = _interopRequireDefault(_DataService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Brands = function (_React$Component) {
+	_inherits(Brands, _React$Component);
+
+	function Brands(props) {
+		_classCallCheck(this, Brands);
+
+		var _this = _possibleConstructorReturn(this, (Brands.__proto__ || Object.getPrototypeOf(Brands)).call(this, props));
+
+		_this.state = {
+			brands: [],
+			selectedBrand: undefined
+		};
+		_this.selectedBrandChanged = _this.selectedBrandChanged.bind(_this);
+		return _this;
+	}
+
+	_createClass(Brands, [{
+		key: "selectedBrandChanged",
+		value: function selectedBrandChanged(brand) {
+			this.props.brandSelected(brand);
+		}
+	}, {
+		key: "updateData",
+		value: function updateData(data) {
+			var newData = [];
+			if (data !== null || data !== undefined) {
+				for (var i = 0; i < data.length; i++) {
+					newData.push(data[i].model);
+				}
+			}
+			return newData;
+		}
+	}, {
+		key: "componentWillMount",
+		value: function componentWillMount() {
+			var processData = this.updateData;
+			var that = this;
+			var brands = _DataService2.default.getItems("brands", processData);
+			Promise.all([brands]).then(function (values) {
+				that.setState({ brands: values[0] });
+			});
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			if (this.state.brands === undefined || this.state.brands.length === 0) {
+				return false;
+			}
+			var list = this.state.brands;
+			var selectedBrandChanged = this.selectedBrandChanged;
+
+			return _react2.default.createElement(
+				"div",
+				{ className: "designers-list" },
+				_react2.default.createElement(
+					"p",
+					{ className: "designers_header" },
+					"\u0411\u0440\u0435\u043D\u0434\u044B"
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "designers-flex-container" },
+					_react2.default.createElement(
+						"div",
+						{ className: "fl item-group" },
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"A"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("A");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"B"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("B");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"C"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("C");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"D"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("D");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"E"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("E");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"F"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("F");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"G"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("G");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"H"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("H");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"I"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("I");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "fl item-group" },
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"J"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("J");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"K"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("K");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"L"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("L");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"M"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("M");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"N"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("N");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"O"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("O");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"P"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("P");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"Q"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("Q");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"R"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("R");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "fl item-group" },
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"S"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("S");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"T"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("T");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"U"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("U");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"V"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("V");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"W"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("W");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"X"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("X");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"Y"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("Y");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "item" },
+							_react2.default.createElement(
+								"p",
+								{ className: "item_header" },
+								"Z"
+							),
+							list.filter(function (brand) {
+								return brand.name.startsWith("Z");
+							}).map(function (brand) {
+								return _react2.default.createElement(
+									"a",
+									{ key: brand.id, onClick: function onClick() {
+											return selectedBrandChanged(brand);
+										} },
+									brand.name
+								);
+							})
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return Brands;
+}(_react2.default.Component);
+
+exports.default = Brands;
+
+/***/ }),
+/* 382 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DataService = __webpack_require__(30);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -48270,7 +48968,7 @@ var ConcreteCatalogItem = function (_React$Component) {
 									_react2.default.createElement(
 										"div",
 										{ className: "fotorama__stage__frame", style: style.mainPhotoImageWrapper },
-										_react2.default.createElement("img", { src: this.state.currentItemSelectedPhoto.path, className: "fotorama__img", style: style.mainPhotoImage, itemProp: "image", alt: "Фото: " + this.state.currentItem.name + " " + this.state.currentItem.brand.name,
+										_react2.default.createElement("img", { src: this.state.currentItemSelectedPhoto !== undefined ? this.state.currentItemSelectedPhoto.path : "", className: "fotorama__img", style: style.mainPhotoImage, itemProp: "image", alt: "Фото: " + this.state.currentItem.name + " " + this.state.currentItem.brand.name,
 											title: this.state.currentItem.name + " " + this.state.currentItem.brand.name, onClick: mainPhotoClick })
 									)
 								)
@@ -48382,26 +49080,21 @@ var ConcreteCatalogItem = function (_React$Component) {
 					"div",
 					{ className: "clear data-block", itemProp: "offers", itemScope: "", itemType: "https://schema.org/Offer" },
 					_react2.default.createElement("link", { itemProp: "availability", href: "https://schema.org/InStock" }),
-					this.state.currentItem.newPrice !== 0 ? _react2.default.createElement(
-						"span",
-						{ className: "fs11 ls2" },
-						this.state.currentItem.newPrice,
-						" \u0413\u0420\u041D"
-					) : _react2.default.createElement("span", null),
 					_react2.default.createElement(
 						"span",
 						{ className: "fs11 ls2" },
-						this.state.currentItem.newPrice !== 0 ? _react2.default.createElement(
+						this.state.currentItem.displayPrice,
+						" \u0413\u0420\u041D "
+					),
+					_react2.default.createElement(
+						"span",
+						{ className: "fs11 ls2" },
+						this.state.currentItem.oldPrice !== 0 ? _react2.default.createElement(
 							"span",
 							{ itemProp: "price", className: "old-price" },
-							this.state.currentItem.price,
+							this.state.currentItem.oldPrice,
 							" \u0413\u0420\u041D"
-						) : _react2.default.createElement(
-							"span",
-							{ itemProp: "price" },
-							this.state.currentItem.price,
-							" \u0413\u0420\u041D"
-						)
+						) : _react2.default.createElement("span", null)
 					)
 				),
 				_react2.default.createElement(
@@ -48523,7 +49216,7 @@ var ConcreteCatalogItem = function (_React$Component) {
 exports.default = ConcreteCatalogItem;
 
 /***/ }),
-/* 382 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48663,7 +49356,7 @@ var Footer = function (_React$Component) {
 exports.default = Footer;
 
 /***/ }),
-/* 383 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48679,7 +49372,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _DataService = __webpack_require__(31);
+var _DataService = __webpack_require__(30);
 
 var _DataService2 = _interopRequireDefault(_DataService);
 
@@ -48755,14 +49448,19 @@ var Filter = function (_React$Component) {
 				if (that.props.category !== undefined) {
 					returnCategories = [];
 				}
-				that.setState({ categories: returnCategories, brands: returnedBrands, sizes: returnedSizes });
+
+				that.setState({ categories: returnCategories, brands: returnedBrands, sizes: returnedSizes }, function () {
+					if (that.props.filterSettings.brands.length > 0) {
+						that.addBrandToFilterClick(that.props.filterSettings.brands[0]);
+					}
+				});
 			});
 		}
 	}, {
 		key: "componentWillReceiveProps",
 		value: function componentWillReceiveProps(nextProps) {
 			if (this.props.category !== nextProps.category || this.props.type !== nextProps.type || this.props.gender !== nextProps.gender) {
-				this.prepareFilterItems();
+				this.removeAllFilterItems();
 			}
 		}
 	}, {
@@ -48915,10 +49613,9 @@ var Filter = function (_React$Component) {
 			var brands = this.state.selectedBrands.map(function (selectedBrand) {
 				return selectedBrand;
 			});
-			var existing = this.state.brands.map(function (brand) {
-				return brand;
+			var existing = this.state.brands.filter(function (br) {
+				return br.id !== brand.id;
 			});
-			existing.splice(existing.indexOf(brand), 1);
 			brands.push(brand);
 			this.setState({ selectedBrands: brands, brands: existing });
 			this.props.filterSettings.brands = brands;
@@ -49000,7 +49697,7 @@ var Filter = function (_React$Component) {
 	}, {
 		key: "removeAllFilterItems",
 		value: function removeAllFilterItems() {
-			this.setState({ selectedCategories: [], selectedBrands: [], selectedSizes: [] });
+			this.setState({ selectedCategories: [], selectedBrands: [], selectedSizes: [], selectedSection: undefined });
 			this.props.filterSettings.categories = [];
 			this.props.filterSettings.brands = [];
 			this.props.filterSettings.sizes = [];

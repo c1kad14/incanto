@@ -8,9 +8,9 @@ import $ from "jquery";
 const controller = "catalogitems";
 
 function comparePrices(a, b) {
-	if (a.price < b.price)
+	if (a.displayPrice < b.displayPrice)
 		return -1;
-	if (a.price > b.price)
+	if (a.displayPrice > b.displayPrice)
 		return 1;
 	return 0;
 }
@@ -44,10 +44,6 @@ class Catalog extends React.Component {
 				newData.push(data[i].model);
 			}
 			return newData;
-			//this.setState({ items: newData },
-			//	() => {
-			//		console.log('updated state value', this.state.items);
-			//	});
 		}
 	}
 
@@ -78,7 +74,11 @@ class Catalog extends React.Component {
 				let brands = nextProps.filterBrands.map((brand) => brand.id);
 				let sizes = nextProps.filterSizes.map((size) => size.id);
 
-				categories.map((category) => formData.append("categories", category));
+				if (categories.length > 0) {
+					categories.map((category) => formData.append("categories", category));
+				} else {
+					formData.set("gender", this.props.gender !== undefined ? this.props.gender : "");
+				}
 				brands.map((brand) => formData.append("brands", brand));
 				sizes.map((size) => formData.append("sizes", size));
 				const config = { headers: { 'content-type': 'multipart/form-data' } };

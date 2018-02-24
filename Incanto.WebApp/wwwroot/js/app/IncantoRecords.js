@@ -43,7 +43,7 @@ class IncantoRecords extends React.Component {
 			"detailtypes": ["id", "name", "category.name", "category-type.name", "category-type-gender.name"],
 			"detailtypevalues": ["id", "value", "detailType.name", "detailType-category.name", "detailType-category-type.name", "detailType-category-type-gender.name"],
 			"sizes": ["id", "name", "category.name", "category-type.name", "category-type-gender.name"],
-			"items": ["id", "photo", "name", "brand.name", "category.name", "category-type.name", "category-type-gender.name", "discount", "price"]
+			"items": ["id", "name", "brand.name", "category.name", "category-type.name", "category-type-gender.name", "description", "discount", "price"]
 		};
 
 		const lookupFields = {

@@ -15,7 +15,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.WebEncoders;
 
@@ -54,10 +53,12 @@ namespace Incanto.WebApp
 				options.CompatibilityMode = PasswordHasherCompatibilityMode.IdentityV2
 			);
 
-			var lockoutOptions = new LockoutOptions();
-			lockoutOptions.AllowedForNewUsers = true;
-			lockoutOptions.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
-			lockoutOptions.MaxFailedAccessAttempts = 3;
+			var lockoutOptions = new LockoutOptions
+			{
+				AllowedForNewUsers = true,
+				DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15),
+				MaxFailedAccessAttempts = 3
+			};
 
 			services.AddEntityFrameworkInMemoryDatabase().AddDbContext<UserContext>((serviceProvider, options) => options.UseInMemoryDatabase("Users").UseInternalServiceProvider(serviceProvider));
 			services.AddDbContext<IncantoDataContext>(optionsAction =>

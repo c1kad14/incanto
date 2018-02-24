@@ -1,16 +1,17 @@
 ﻿import React from "react";
+import ReactDom from "react-dom";
 import DataService from "../app/Core/Services/DataService";
 import NavigationMenu from "./NavigationMenu";
 import Catalog from "./Catalog";
+import Brands from "./Brands";
 import ConcreteCatalogItem from "./ConcreteCatalogItem";
 import Footer from "./Footer";
 import Filter from "./Filter";
-import { Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 class HomePage extends React.Component {
 	constructor(props) {
 		super(props);
-		let gender = "";
 
 		this.state = {
 			types: [],
@@ -20,6 +21,7 @@ class HomePage extends React.Component {
 			selectedCategory: undefined,
 			selectedBrand: undefined,
 			selectedItemId: undefined,
+			navigateToBrand: false,
 			showNavigationMenu: true,
 			filterSettings: {
 				categories: [],
@@ -34,8 +36,15 @@ class HomePage extends React.Component {
 		this.updateFilters = this.updateFilters.bind(this);
 	}
 
+	brandSelected(brand) {
+		let filter = this.state.filterSettings;
+		filter.brands = [];
+		filter.brands.push(brand);
+		this.setState({ selectedBrand: brand.name, navigateToBrand: false, filterSettings: filter });
+	}
+
 	getGender(gender) {
-		let result = "";
+		let result = undefined;
 		switch (gender) {
 		case "women":
 			result = "Женщинам";
@@ -50,14 +59,28 @@ class HomePage extends React.Component {
 		return result;
 	}
 
-	updateFilters(gender, type, category, brand, item) {
-		if (this.state.selectedType !== type || this.state.selectedCategory !== category || this.state.selectedGender !== gender || this.state.selectedBrand !== brand || this.state.selectedItemId !== item) {
+	componentDidUpdate() {
+		const node = ReactDom.findDOMNode(this);
+		if (node !== null) {
+			node.scrollIntoView();
+		}
+	}
+
+
+	updateFilters(gender, type, category, brand, item, navigateToBrand) {
+		if (this.state.selectedType !== type || this.state.selectedCategory !== category || this.state.selectedGender !== gender || this.state.selectedBrand !== brand || this.state.selectedItemId !== item || this.state.navigateToBrand !== navigateToBrand) {
 				this.setState({
 					selectedGender: gender,
 					selectedType: type,
 					selectedCategory: category,
 					selectedBrand: brand,
-					selectedItemId: item
+					selectedItemId: item,
+					navigateToBrand: navigateToBrand,
+					filterSettings: {
+						categories: [],
+						brands: [],
+						sizes: []
+					}
 				});
 		}
 	}
@@ -124,6 +147,7 @@ class HomePage extends React.Component {
 			let type = undefined;
 			let category = undefined;
 			let item = undefined;
+			let brand = undefined;
 
 			if (that.props.match.params.itemId !== undefined) {
 				item = that.props.match.params.itemId;
@@ -145,9 +169,10 @@ class HomePage extends React.Component {
 				if (that.props.match.params.categoryId !== undefined) {
 					category = values[1].filter((category) => category.id === parseInt(that.props.match.params.categoryId))[0].name;
 				}
+				brand = that.props.match.url === "/brands" ? true : false;
 			}
 
-			that.setState({ types: values[0], categories: values[1], selectedGender: gender, selectedType: type, selectedCategory: category, selectedItemId: item});
+			that.setState({ types: values[0], categories: values[1], navigateToBrand: brand, selectedGender: gender, selectedType: type, selectedCategory: category, selectedItemId: item});
 		});
 	}
 	
@@ -171,7 +196,11 @@ class HomePage extends React.Component {
 						category = model.category.name;
 					}
 
-					that.setState({ selectedGender: gender, selectedType: type, selectedCategory: category, selectedItemId: item });
+					that.setState({
+						selectedGender: gender,
+						selectedType: type,
+						selectedCategory: category,
+						selectedItemId: item });
 				});
 			} else {
 				let gender = undefined;
@@ -180,7 +209,8 @@ class HomePage extends React.Component {
 				let item = undefined;
 
 				if (nextProps.match.params.gender !== undefined) {
-					gender = this.getGender(nextProps.match.params.gender);;
+					gender = this.getGender(nextProps.match.params.gender);
+					this.state.selectedBrand = gender !== undefined ? undefined : this.state.selectedBrand;
 				}
 
 				if (nextProps.match.params.typeId !== undefined) {
@@ -190,8 +220,24 @@ class HomePage extends React.Component {
 				if (nextProps.match.params.categoryId !== undefined) {
 					category = this.state.categories.filter((category) => category.id === parseInt(nextProps.match.params.categoryId))[0].name;
 				}
+				const brand = nextProps.match.url === "/brands" && ((this.state.filterSettings.brands.length === 0 && this.state.filterSettings.categories.length === 0 && this.state.filterSettings.sizes.length === 0) || (this.state.selectedGender !== undefined)) ? true : false;
 
-				this.setState({ selectedGender: gender, selectedType: type, selectedCategory: category, selectedItemId: item });
+				if (this.state.selectedGender !== gender || this.state.selectedType !== type || this.state.selectedCategory !== category || this.state.selectedItemId !== nextProps.match.params.itemId || this.state.navigateToBrand !== brand) {
+					this.setState({
+						navigateToBrand: brand,
+						selectedGender: gender,
+						selectedType: type,
+						selectedCategory: category,
+						selectedBrand: undefined,
+						selectedItemId: item,
+						filterSettings: this.state.selectedBrand === undefined ? {
+							categories: [],
+							brands: [],
+							sizes: []
+						} : this.state.filterSettings
+					});
+				}
+
 			}
 		} 
 	}
@@ -210,9 +256,10 @@ class HomePage extends React.Component {
 				selectedItemId={this.state.selectedItemId}
 				onItemSelected={this.updateSelectedItem.bind(this)} sort={this.state.sort} filterCategories={this.state.filterSettings.categories} filterBrands={this.state.filterSettings.brands} filterSizes={this.state.filterSettings.sizes} />
 			: <ConcreteCatalogItem selectedItemId={this.state.selectedItemId} changeNavigationMenuValue={this.changeNavigationMenuValue.bind(this)} />;
+		const brands = <Brands brandSelected={this.brandSelected.bind(this)}/>;
 		return <div className="product-content">
 			{this.state.showNavigationMenu ? <div id="left">
-				<div className="logo_image"><Link to="/" ><span style={logoFontMain}>INCANTO &nbsp;</span> <span style={logoFont}>ITALIAN CLOTHES</span></Link>
+				<div className="logo_image"><a href="/" ><span style={logoFontMain}>INCANTO &nbsp;</span> <span style={logoFont}>ITALIAN CLOTHES</span></a>
 				</div>
 				<NavigationMenu updateFilters={this.updateFilters} types={this.state.types}
 					categories={this.state.categories}
@@ -221,12 +268,13 @@ class HomePage extends React.Component {
 					selectedCategory={this.state.selectedCategory}
 					selectedBrand={this.state.selectedBrand}
 					selectedItemId={this.state.selectedItemId}
+					navigateToBrand={this.state.navigateToBrand}
 				/>
 			</div> :
 				<span></span>
 			}
-			{catalog}
-			{this.state.selectedItemId === undefined && this.state.showNavigationMenu 
+			{this.state.navigateToBrand === true ? brands : catalog }
+			{this.state.selectedItemId === undefined && this.state.navigateToBrand === false && this.state.showNavigationMenu 
 				? <Filter gender={this.state.selectedGender} type={this.state.selectedType} category={this.state.selectedCategory} filterSettings={this.state.filterSettings} sort={this.sort.bind(this)}/> : <span></span>}
 			{this.state.showNavigationMenu ? <Footer /> : <span></span>}
 		</div>;

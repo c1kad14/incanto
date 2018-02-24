@@ -5300,3 +5300,55 @@ iframe[name=google_conversion_frame] {
     vertical-align: middle;
     text-align: center;
 }
+
+/*** brands ****/
+.designers-list {
+    margin: 125px auto 80px;
+    overflow: hidden;
+    width: 720px
+}
+
+.designers-flex-container {
+    display: flex;
+    justify-content: space-between
+}
+
+.designers_header {
+    font-size: 18.4px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 60px;
+    letter-spacing: 2.5px;
+    margin-left: 250px
+}
+
+.item_header {
+    font-size: 16px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 20px;
+    width: 100%;
+    font-family: "proxima_novaregular"
+}
+.item a:hover {
+    cursor: pointer;
+}
+.designers-list .item-group:last-child {
+    margin-right: 0
+}
+
+.designers-list .item-group .item {
+    margin-bottom: 20px
+}
+
+    .designers-list .item-group .item a {
+        display: block;
+        font-size: 11px;
+        font-family: "GothamProLight";
+        margin-bottom: 5px
+    }
+
+        .designers-list .item-group .item a:hover {
+            text-decoration: none;
+            color: #8B8A8A
+        }

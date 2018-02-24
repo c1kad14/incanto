@@ -191,7 +191,7 @@ class ConcreteCatalogItem extends React.Component {
 						<div className="fotorama__stage" style={style.mainPhotoContainer}>
 							<div style={style.mainPhotoChildContainer}>
 								<div className="fotorama__stage__frame" style={style.mainPhotoImageWrapper}>
-									<img src={this.state.currentItemSelectedPhoto.path} className="fotorama__img" style={style.mainPhotoImage} itemProp="image" alt={"Фото: " +
+									<img src={this.state.currentItemSelectedPhoto !== undefined ? this.state.currentItemSelectedPhoto.path : ""} className="fotorama__img" style={style.mainPhotoImage} itemProp="image" alt={"Фото: " +
 										this.state.currentItem.name +
 										" " +
 										this.state.currentItem.brand.name}
@@ -264,9 +264,9 @@ class ConcreteCatalogItem extends React.Component {
 
 			<div className="clear data-block" itemProp="offers" itemScope="" itemType="https://schema.org/Offer">
 				<link itemProp="availability" href="https://schema.org/InStock" />
-				{this.state.currentItem.newPrice !== 0 ? <span className="fs11 ls2">{this.state.currentItem.newPrice} ГРН</span> : <span></span>}
+				{<span className="fs11 ls2">{this.state.currentItem.displayPrice} ГРН </span>}
 				<span className="fs11 ls2">
-					{this.state.currentItem.newPrice !== 0 ? <span itemProp="price" className="old-price">{this.state.currentItem.price} ГРН</span> : <span itemProp="price">{this.state.currentItem.price} ГРН</span>}
+					{this.state.currentItem.oldPrice !== 0 ? <span itemProp="price" className="old-price">{this.state.currentItem.oldPrice} ГРН</span> : <span></span>}
 				</span>
 			</div>
 

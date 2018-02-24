@@ -25,7 +25,8 @@ namespace Incanto.BusinessLogic.Models
 		public DateTime Updated { get; set; }
 		public double Discount { get; set; }
 		public double Price { get; set; }
-		public double NewPrice { get; set; }
+		public double OldPrice { get; set; }
+		public double DisplayPrice { get; set; }
 		public List<PhotoModel> Photos { get; set; }
 		public List<DetailModel> Details { get; set; }
 		public List<ExistingItemModel> ExistingItems { get; set; }
@@ -40,12 +41,13 @@ namespace Incanto.BusinessLogic.Models
 			Category = item?.Category != null ? new CategoryModel(item.Category) : null;
 			Discount = item?.Discount ?? 0;
 			Price = item?.Price ?? 0;
+			DisplayPrice = item?.Price > 0 ? (Math.Abs(Discount) > 0 ? Math.Round(item.Price - item.Price / 100 * Discount, 2, MidpointRounding.AwayFromZero) : item.Price) : 0;
 			item?.Photos?.ForEach(p => Photos.Add(new PhotoModel(p)));
 			item?.Details?.ForEach(d => Details.Add(new DetailModel(d)));
 			item?.ExistingItems?.ForEach(e=> ExistingItems.Add(new ExistingItemModel(e)));
 			Description = item?.Description;
 			Updated = item?.Updated ?? DateTime.Now;
-			NewPrice = Math.Abs(Discount) > 0 ? Price - ((Price / 100) * Discount) : 0;
+			OldPrice = Math.Abs(Discount) > 0 ? item?.Price ?? 0 : 0;
 			return this;
 		}
 
@@ -62,6 +64,7 @@ namespace Incanto.BusinessLogic.Models
 			Photos?.ForEach(p => item.Photos.Add(p.ConvertToEntity()));
 			item.Details = new List<Detail>();
 			Details?.ForEach(d => item.Details.Add(d.ConvertToEntity()));
+			item.ExistingItems = new List<ExistingItem>();
 			ExistingItems?.ForEach(e => item.ExistingItems.Add(e.ConvertToEntity()));
 			return item;
 		}

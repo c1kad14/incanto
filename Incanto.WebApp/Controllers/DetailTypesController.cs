@@ -1,5 +1,4 @@
-﻿using System.Net;
-using Incanto.BusinessLogic.Models;
+﻿using Incanto.BusinessLogic.Models;
 using Incanto.DataAccess.Interfaces;
 using Incanto.Domain;
 using Microsoft.AspNetCore.Authorization;

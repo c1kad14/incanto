@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Incanto.DataAccess.Context;
 using Incanto.Domain;
-using Incanto.Domain.Base.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Incanto.DataAccess.Repository
@@ -19,14 +15,28 @@ namespace Incanto.DataAccess.Repository
 	    {
 	    }
 
-		public override void Delete(Item entity)
+	    public override void Update(Item entity)
 	    {
 		    using (var context = new IncantoDataContext(_dbContextOptions))
 		    {
-				var item = context.Items.Where(i => i.Id == entity.Id).Include(i => i.Photos).Include(i => i.Details).First();
+				entity.Details.ForEach(d => context.Entry(d).State = EntityState.Unchanged);
+			    entity.ExistingItems.ForEach(d => context.Entry(d).State = EntityState.Unchanged);
+				context.Entry(entity).State = EntityState.Detached;
+				context.Set<Item>().Attach(entity);
+				context.Update(entity);
+			    context.SaveChanges();
+		    }
+	    }
+
+		public override void Delete(Item entity)
+	    {
+		    using (var context = new IncantoDataContext(_dbContextOptions))
+			{
+				var item = context.Items.Where(i => i.Id == entity.Id).Include(i => i.Photos).Include(i => i.Details).Include(i => i.ExistingItems).First();
 			    item?.Photos.ForEach(p => context.Photos.Remove(p));
 			    item?.Details.ForEach(d => context.Details.Remove(d));
-			    context.Items.Remove(item);
+				item?.ExistingItems.ForEach(d => context.ExistingItems.Remove(d));
+				context.Items.Remove(item);
 			    context.SaveChanges();
 		    }
 	    }

@@ -21,15 +21,19 @@ class CatalogItem extends React.Component {
 		}
 		const item = this.props.item;
 		let imageToDisplay = item.photos.sort(compareImages);
-		imageToDisplay = imageToDisplay !== undefined && imageToDisplay.length > 0 ? imageToDisplay[0].path : undefined;
-		let separateIndex = imageToDisplay.lastIndexOf("\\");
-		separateIndex = separateIndex + 1;
-		let imagePreview = imageToDisplay.substring(0, separateIndex) + "thumb_" + imageToDisplay.substring(separateIndex);
+		let imagePreview = undefined;
+		if (imageToDisplay !== undefined && imageToDisplay.length > 0) {
+			imageToDisplay = imageToDisplay !== undefined && imageToDisplay.length > 0 ? imageToDisplay[0].path : undefined;
+			let separateIndex = imageToDisplay.lastIndexOf("\\");
+			separateIndex = separateIndex + 1;
+			imagePreview = imageToDisplay.substring(0, separateIndex) + "thumb_" + imageToDisplay.substring(separateIndex);
+		}
+
 		return (<li className="item" itemType="http://schema.org/Product" itemProp="itemListElement" itemScope="">
 			<Link to={`/item/${this.props.item.id}`}>
 				<ProgressiveImage
-					preview={imagePreview}
-					src={imageToDisplay}
+					preview={imagePreview !== undefined ? imagePreview : ""}
+					src={imageToDisplay !== undefined ? imageToDisplay : ""}
 					render={(src) => <img className="main-picture" alt={item.name} src={src} itemProp="image" />}
 				/>
 				       <div className="baseline-helper">
@@ -37,12 +41,10 @@ class CatalogItem extends React.Component {
 						       <p className="designer-info fs10 up ls2 bold">{item.brand.name}</p>
 						       <p className="item-info fs10 up ls2">{item.name}</p>
 					       </div>
-					       <p className="item-price fs10 filter-item up ls2" itemType="http://schema.org/Offer" itemProp="offers" itemScope="">
-						{item.newPrice !== 0 ? <span className="old-price" itemProp="price">{item.price} грн</span> : <span itemProp="price">{item.price} грн</span>}
-						       &nbsp;
-						       {item.newPrice !== 0 ? <span>
-														{item.newPrice} грн
-						                              </span> : <span></span>}
+						   <p className="item-price fs10 filter-item up ls2" itemType="http://schema.org/Offer" itemProp="offers" itemScope="">
+						<span itemProp="price">{item.displayPrice} грн</span>
+							   &nbsp;
+						{item.oldPrice !== 0 ? <span className="old-price" itemProp="price">{item.oldPrice} грн</span> : <span></span>}
 					       </p>
 				       </div>
 			       </Link>

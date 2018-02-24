@@ -1,15 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Web.Helpers;
+﻿using System.Threading.Tasks;
 using Incanto.WebApp.Identity.Core;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.Owin.Logging;
-using Microsoft.Owin.Security;
 
 namespace Incanto.WebApp.Controllers
 {

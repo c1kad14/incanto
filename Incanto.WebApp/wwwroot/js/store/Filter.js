@@ -49,13 +49,18 @@ class Filter extends React.Component {
 			if (that.props.category !== undefined) {
 				returnCategories = [];
 			}
-			that.setState({ categories: returnCategories, brands: returnedBrands, sizes: returnedSizes });
+			
+			that.setState({ categories: returnCategories, brands: returnedBrands, sizes: returnedSizes }, () => {
+				if (that.props.filterSettings.brands.length > 0) {
+					that.addBrandToFilterClick(that.props.filterSettings.brands[0]);
+				}
+			});
 		});
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (this.props.category !== nextProps.category || this.props.type !== nextProps.type || this.props.gender !== nextProps.gender) {
-			this.prepareFilterItems();
+			this.removeAllFilterItems();
 		}
 	}
 
@@ -141,8 +146,7 @@ class Filter extends React.Component {
 
 	addBrandToFilterClick(brand) {
 		let brands = this.state.selectedBrands.map((selectedBrand) => selectedBrand);
-		let existing = this.state.brands.map((brand) => brand);
-		existing.splice(existing.indexOf(brand), 1);
+		let existing = this.state.brands.filter((br) => br.id !== brand.id);
 		brands.push(brand);
 		this.setState({ selectedBrands: brands, brands: existing });
 		this.props.filterSettings.brands = brands;
@@ -203,7 +207,7 @@ class Filter extends React.Component {
 	}
 
 	removeAllFilterItems() {
-		this.setState({ selectedCategories: [], selectedBrands: [], selectedSizes: [] });
+		this.setState({ selectedCategories: [], selectedBrands: [], selectedSizes: [], selectedSection: undefined });
 		this.props.filterSettings.categories = [];
 		this.props.filterSettings.brands = [];
 		this.props.filterSettings.sizes = [];
