@@ -9,16 +9,6 @@ import IncantoAppBar from "./Core/Controls/IncantoAppBar";
 
 class Application extends React.Component {
 	render() {
-		let test = {
-			checkErrors: false,
-			name: "name",
-			dataSourceLink: "http://localhost:49801/api/countries/getlist",
-			displayedValue: "name",
-			modelValue: "name"
-		}
-		let model = {
-			name: ""
-		}
 		document.body.style.backgroundColor = DarkBaseTheme.palette.canvasColor;
 		DarkBaseTheme.fontFamily = "Lucida Console";
 		return <MuiThemeProvider muiTheme={GetMuiTheme(DarkBaseTheme)}>

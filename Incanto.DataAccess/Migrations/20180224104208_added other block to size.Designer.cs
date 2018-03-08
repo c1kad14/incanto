@@ -11,9 +11,10 @@ using System;
 namespace Incanto.DataAccess.Migrations
 {
     [DbContext(typeof(IncantoDataContext))]
-    partial class IncantoDataContextModelSnapshot : ModelSnapshot
+    [Migration("20180224104208_added other block to size")]
+    partial class addedotherblocktosize
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

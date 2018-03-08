@@ -246,8 +246,6 @@ class HomePage extends React.Component {
 		if (this.state.types.length === 0 || this.state.categories.length === 0) {
 			return null;
 		}
-		const logoFontMain = { fontWeight: "bold" };
-		const logoFont = { fontSize: "14.5pt", verticalAlign: "top" };
 		let catalog = this.state.selectedItemId === undefined
 			? <Catalog gender={this.state.selectedGender}
 				type={this.state.selectedType}
@@ -259,8 +257,6 @@ class HomePage extends React.Component {
 		const brands = <Brands brandSelected={this.brandSelected.bind(this)}/>;
 		return <div className="product-content">
 			{this.state.showNavigationMenu ? <div id="left">
-				<div className="logo_image"><a href="/" ><span style={logoFontMain}>INCANTO &nbsp;</span> <span style={logoFont}>ITALIAN CLOTHES</span></a>
-				</div>
 				<NavigationMenu updateFilters={this.updateFilters} types={this.state.types}
 					categories={this.state.categories}
 					selectedGender={this.state.selectedGender}

@@ -11,7 +11,7 @@ class Text extends React.Component {
 		this.state = {
 			errorText: "",
 			value: this.props.fieldData.value
-		};
+	};
 	}
 
 	checkErrors() {
@@ -53,7 +53,7 @@ class Text extends React.Component {
 			<TextField
 				id="this.props.id"
 				fullWidth={true}
-				multiLine={true} 
+				multiLine={false} 
 				floatingLabelText={this.props.hintText}
 				floatingLabelStyle={floatingLabelStyle.floatingLabelStyle}
 				floatingLabelFocusStyle={floatingLabelStyle.floatingLabelFocusStyle}

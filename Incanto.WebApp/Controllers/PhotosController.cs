@@ -8,6 +8,7 @@ using Incanto.BusinessLogic.Services.Core;
 using Incanto.BusinessLogic.Services.Core.Interfaces;
 using Incanto.DataAccess.Interfaces;
 using Incanto.Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,10 +26,10 @@ namespace Incanto.WebApp.Controllers
 			IPhotoUploadService photoUploadService) : base(dataRepository, null)
 		{
 			this._photoUploadService = photoUploadService;
-
 			_photoUploadPath = $"{hostingEnvironment.WebRootPath}";
 		}
 
+		[Authorize]
 		[HttpPost("UploadPhotos")]
 		public async Task<IActionResult> UploadPhotos(List<IFormFile> files, List<int> priorities, int itemId)
 		{
@@ -67,19 +68,6 @@ namespace Incanto.WebApp.Controllers
 
 		private void TransformPhoto(string inputPath, string fileName)
 		{
-			//const int quality = 20;
-			//string thumbnailName = String.Concat("thumb_", fileName);
-			//string outputPath = inputPath.Replace(fileName, thumbnailName);
-
-
-			//using (var original = FreeImageBitmap.FromFile(inputPath))
-			//{
-			//	var resized = new FreeImageBitmap(original);
-			//	// JPEG_QUALITYGOOD is 75 JPEG.
-			//	// JPEG_BASELINE strips metadata (EXIF, etc.)
-			//	resized.Save(outputPath, FREE_IMAGE_FORMAT.FIF_JPEG,
-			//		FREE_IMAGE_SAVE_FLAGS.JPEG_QUALITYBAD);
-			//}
 			const int quality = 20;
 			string thumbnailName = String.Concat("thumb_", fileName);
 			string outputPath = inputPath.Replace(fileName, thumbnailName);

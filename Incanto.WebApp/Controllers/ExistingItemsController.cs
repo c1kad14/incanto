@@ -3,6 +3,7 @@ using Incanto.BusinessLogic.Models;
 using Incanto.BusinessLogic.Services.Core;
 using Incanto.DataAccess.Interfaces;
 using Incanto.Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +25,7 @@ namespace Incanto.WebApp.Controllers
 			return Json(operationResult);
 		}
 
+		[Authorize]
 		[HttpPost]
 		[Route("AddList")]
 		public ActionResult AddCollection([FromBody]List<ExistingItemModel> existingItems)

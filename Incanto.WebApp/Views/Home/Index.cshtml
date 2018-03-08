@@ -3,20 +3,23 @@
     ViewData["Title"] = "Incanto";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div id="banner-beta" style="top: 0;width: 100%; left:0; height:50px; background-color:#f1f1f1;">
-    <p id="mainTicker" style="position: absolute; width: 100%; z-index: 99; background-color:#f1f1f1; text-align:center; font-size:10.01px; line-height:50px; letter-spacing:2.5px;text-transform: uppercase;display:none;">
-        СВЯЗАТЬСЯ С НАМИ: +38 050 922 66 11
-    </p>
-    <p id="ticker_1" style="text-align:center; font-size:10.01px; line-height:50px; letter-spacing:2.5px;text-transform: uppercase;">
-        СВЯЗАТЬСЯ С НАМИ: +38 050 922 66 11
-    </p>
-    <p id="ticker_2" style="text-align:center; font-size:10.01px; line-height:50px; letter-spacing:2.5px;display:none;text-transform: uppercase;">
+<div id="header-main">
+    <div class="logo_image">
+        <a style="vertical-align: middle; color: white !important" href="/">
+            <img style="margin-top: 10px;" src="~/Logo.png"/>
+            <span style="position: absolute; margin-left: 10px; margin-top: 5px">INCANTO</span>
+        </a>
+    </div>
+    <div id="header">
         Бесплатная доставка по всей Украине
-    </p>
+        <p style="display: block; position: absolute; font-size: 7pt; margin-top: -31px; text-align: center; min-width: 100%;">
+            050-922-66-11 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 050-922-66-11
+        </p>
+    </div>
 </div>
 <div id="store" onscroll="onScrollHandler()"></div>
 <script src="~/js/store.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="~/js/lib/jquery.min.js"></script>
 <script>
     function onScrollHandler() {
         var pageBottom = $(window).scrollTop() + $(window).height();
@@ -34,26 +37,4 @@
             }  
         }
     };
-
-
-    initTicker = function () {
-        var count = 1;
-        setInterval(function () {
-            $("#ticker_" + count).fadeOut(300);
-            count++;
-            if ($("#ticker_" + count).length > 0) {
-                $("#ticker_" + count).delay(300).fadeIn(300);
-            } else {
-                count = 1;
-                $("#ticker_" + count).delay(300).fadeIn(300);
-            }
-        }, 10 * 1e3);
-        $('#banner-beta').mouseover(function () {
-            $("#mainTicker").show();
-        });
-        $('#banner-beta').mouseleave(function () {
-            $("#mainTicker").hide();
-        });
-    };
-    initTicker();
 </script>

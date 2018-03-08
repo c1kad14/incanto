@@ -14,8 +14,9 @@ class AddRecordDialog extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			recordToUpdate: this.props.recordToUpdate !== undefined ? this.props.recordToUpdate : {}
+				recordToUpdate: this.props.recordToUpdate !== undefined ? this.props.recordToUpdate : {}
 		}
+		this.validateModel = this.validateModel.bind(this);
 	}
 
 	handleClose() {
@@ -23,21 +24,43 @@ class AddRecordDialog extends React.Component {
 	}
 
 	addRecordClickHandler() {
-		if (this.state.recordToUpdate !== undefined) {
+		if (this.state.recordToUpdate !== undefined && this.validateModel()) {
 			DataService.addObject(this.props.controller, this.state.recordToUpdate, this.props.refreshDataTable);
 			this.handleClose();
 		}
 	}
 
 	editRecordClickHandler() {
-		if (this.state.recordToUpdate !== undefined) {
+		if (this.state.recordToUpdate !== undefined && this.validateModel()) {
 			DataService.updateObject(this.props.controller, this.state.recordToUpdate, this.props.refreshDataTable);
 			this.handleClose();
 		}
 	}
 
-	componentWillMount() {
-		
+	validateModel() {
+		let modelFields = this.props.columns.filter(column => {
+			return (column !== "id" && !column.includes("-"));
+		});
+		let result = true;
+		for (let i =0; i < modelFields.length; i++) {
+			let navigationPath = modelFields[i].split(".");
+
+			let modelField = navigationPath[0];
+			let modelFieldName = "";
+			if (navigationPath.length === 2) {
+				modelFieldName = navigationPath[1];
+				if (this.state.recordToUpdate[modelField] === undefined || this.state.recordToUpdate[modelField] === null || this.state.recordToUpdate[modelField][modelFieldName] === undefined || this.state.recordToUpdate[modelField][modelFieldName] === null || this.state.recordToUpdate[modelField][modelFieldName] === "") {
+					result = false;
+				}
+			} else {
+				if (this.state.recordToUpdate[modelField] === undefined || this.state.recordToUpdate[modelField] === null || this.state.recordToUpdate[modelField] === "") {
+					result = false;
+				}
+			}
+
+		}
+
+		return result;
 	}
 
 	render() {

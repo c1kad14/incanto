@@ -244,7 +244,7 @@ class Filter extends React.Component {
 		});
 
 		return <div className="selfil clear" id="filter_info">
-			<span className="selfil-header">ВЫ ИСКАЛИ:</span>
+			<span className="filter-header">ВЫ ИСКАЛИ:</span>
 			<div id="clear-filter" style={{ display: "block" }}><a href="#" className="glf" onClick={removeAllFilterItems}>(Очистить
 				       все)</a></div>
 			{filterCategoryItems}
@@ -261,7 +261,7 @@ class Filter extends React.Component {
 		const that = this;
 		return <div id="filters" className="right fr">
 			<div id="__filters" className="filters">
-				{this.state.selectedCategories.length > 0 || this.state.selectedBrands.length > 0 || this.state.selectedSizes.length > 0 ? selectedFilterItems : <span className="selfil-header2 fs12">ФИЛЬТР</span> }
+				{this.state.selectedCategories.length > 0 || this.state.selectedBrands.length > 0 || this.state.selectedSizes.length > 0 ? selectedFilterItems : <span className="filter-header2  fs12">ФИЛЬТР</span> }
 				<div className="sort_head mt20 fs9">
 					<span className="sort_header">ЦЕНА:</span>
 					<div className="sort_link first"><a href="#" onClick={() => { that.props.sort("asc")}}>НИЗКАЯ</a></div>

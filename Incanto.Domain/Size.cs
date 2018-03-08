@@ -5,5 +5,6 @@ namespace Incanto.Domain
 	public class Size : BaseEntity
 	{
 		public Category Category { get; set; }
+		public string Other { get; set; }
 	}
 }

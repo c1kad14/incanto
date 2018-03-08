@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Incanto.WebApp.Controllers
 {
-	[Route("/admin")]
-	public class AdminController : Controller
+	[Route("incantostoreadminpage/")]
+	public class IncantoStoreAdminPageController : Controller
 	{
 		public UserManager<ApplicationUser> UserManager { get; }
 		private readonly SignInManager<ApplicationUser> _signInManager;
 		
-		public AdminController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+		public IncantoStoreAdminPageController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
 
 		{
 			UserManager = userManager;
@@ -28,12 +28,6 @@ namespace Incanto.WebApp.Controllers
 			}
 			return View();
 		}
-		//[HttpGet]
-		//[AllowAnonymous]
-		//public IActionResult Login()
-		//{
-		//	return View("Authentication");
-		//}
 
 		[HttpPost("login")]
 		[AllowAnonymous]
@@ -47,16 +41,16 @@ namespace Incanto.WebApp.Controllers
 				var result = await _signInManager.PasswordSignInAsync(user, model.Password, true, true);
 				if (result.IsLockedOut)
 				{
-					return RedirectToAction("AccessDenied", "admin");
+					return RedirectToAction("AccessDenied", "incantostoreadminpage");
 				}
 			}
-			return RedirectToAction("Index", "admin");
+			return RedirectToAction("Index", "incantostoreadminpage");
 		}
 		[HttpPost("logout")]
 		public async Task<IActionResult> Logout()
 		{
 			await _signInManager.SignOutAsync();
-			return RedirectToAction("Index", "admin");
+			return RedirectToAction("Index", "incantostoreadminpage");
 		}
 
 		[HttpGet("AccessDenied")]

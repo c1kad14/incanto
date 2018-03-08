@@ -15,7 +15,20 @@ namespace Incanto.DataAccess.Repository
 	    {
 	    }
 
-	    public override void Update(Item entity)
+	    public override void Add(Item entity)
+	    {
+		    using (var context = new IncantoDataContext(_dbContextOptions))
+		    {
+			    context.Set<Item>().Attach(entity);
+			    context.Set<Item>().Add(entity);
+			    context.SaveChanges();
+			    entity.Identifier = (string.IsNullOrEmpty(entity.Remote) ? "IN" : entity.Remote) + entity.Updated.Month + (entity.Updated.Year - 2000) + entity.Category.Id + "I" + entity.Id;
+			}
+		    Update(entity);
+
+	    }
+
+		public override void Update(Item entity)
 	    {
 		    using (var context = new IncantoDataContext(_dbContextOptions))
 		    {

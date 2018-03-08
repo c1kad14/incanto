@@ -3,13 +3,13 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import Drawer from 'material-ui/Drawer';
 import IncantoRecords from "../../IncantoRecords";
 import ImageUploader from "./ImageUploader";
 import RaisedButton from "material-ui/RaisedButton";
 import RestApiCalls from "../Services/RestApiCalls";
+import MainPageTemplatePage from "./MainPageTemplatePage";
 
 class Logged extends Component {
 	constructor(props) {
@@ -19,12 +19,13 @@ class Logged extends Component {
 		}
 	}
 	signOut() {
-		RestApiCalls.post("admin/logout").then(() => window.location.reload());
+		RestApiCalls.post("incantostoreadminpage/logout").then(() => window.location.reload());
 	}
 
 	render() {
 		return <div>
-			<IconMenu
+			<IconMenu
+
 				iconButtonElement={
 					<IconButton><MoreVertIcon /></IconButton>
 				}
@@ -39,14 +40,13 @@ class Logged extends Component {
 	}
 }
 
-
-
 class IncantoAppBar extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
 			showRecordsTable: false,
+			showMainPageTemplate: false,
 			recordsTabIndex: 0,
 			uploaderActions: {}
 		}
@@ -57,7 +57,11 @@ class IncantoAppBar extends Component {
 	}
 
 	handleMenuRecordsClick() {
-		this.setState({ showRecordsTable: true, menuOpen: !this.state.menuOpen });
+		this.setState({ showRecordsTable: true, showMainPageTemplate: false, menuOpen: !this.state.menuOpen });
+	}
+
+	handleMainPageClick() {
+		this.setState({ showMainPageTemplate:true, showRecordsTable: false, menuOpen: !this.state.menuOpen });
 	}
 
 	handleRecordsTabChange() {
@@ -81,11 +85,7 @@ class IncantoAppBar extends Component {
 					iconElementRight={ <Logged />}
 				/>
 				{(this.state.showRecordsTable === true) ? <IncantoRecords /> : <span />}
-				{(this.state.showPhotosGrid === true) ? <div><RaisedButton onClick={this.openAddDialog.bind(this)} label="add photo" fullWidth={true} />
-					<ImageUploader baseItemId={1}
-						uploaderActions={this.state.uploaderActions}
-						uploadController="Photos" />
-				</div> : <span />}
+				{(this.state.showMainPageTemplate === true) ? <MainPageTemplatePage />: <span />}
 				<Drawer
 					open={this.state.menuOpen}
 					onRequestChange={open => this.setState({ menuOpen: open })}
@@ -93,7 +93,7 @@ class IncantoAppBar extends Component {
 
 					<MenuItem onClick={this.handleMenuRecordsClick.bind(this)}>Записи</MenuItem>
 					<MenuItem>Транзакции</MenuItem>
-					<MenuItem>Главная</MenuItem>
+					<MenuItem onClick={this.handleMainPageClick.bind(this)}>Главная</MenuItem>
 				</Drawer>
 			</div>
 		);

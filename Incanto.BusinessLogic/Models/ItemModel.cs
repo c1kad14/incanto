@@ -25,6 +25,8 @@ namespace Incanto.BusinessLogic.Models
 		public DateTime Updated { get; set; }
 		public double Discount { get; set; }
 		public double Price { get; set; }
+		public string Remote { get; set; }
+		public string Identifier { get; set; }
 		public double OldPrice { get; set; }
 		public double DisplayPrice { get; set; }
 		public List<PhotoModel> Photos { get; set; }
@@ -35,10 +37,12 @@ namespace Incanto.BusinessLogic.Models
 		{
 			base.ConvertFromEntity(item);
 			Photos = new List<PhotoModel>();
+			Identifier = item.Identifier;
 			Details = new List<DetailModel>();
 			ExistingItems = new List<ExistingItemModel>();
 			Brand = item?.Brand != null? new BrandModel(item.Brand) : null;
 			Category = item?.Category != null ? new CategoryModel(item.Category) : null;
+			Remote = item?.Remote;
 			Discount = item?.Discount ?? 0;
 			Price = item?.Price ?? 0;
 			DisplayPrice = item?.Price > 0 ? (Math.Abs(Discount) > 0 ? Math.Round(item.Price - item.Price / 100 * Discount, 2, MidpointRounding.AwayFromZero) : item.Price) : 0;
@@ -54,12 +58,14 @@ namespace Incanto.BusinessLogic.Models
 		public override Item ConvertToEntity()
 		{
 			var item = base.ConvertToEntity();
+			item.Updated = Id == 0 ? DateTime.Now : Updated;
 			item.Brand = Brand?.ConvertToEntity();
 			item.Category = Category?.ConvertToEntity();
 			item.Discount = Discount;
 			item.Description = Description;
-			item.Updated = Updated;
 			item.Price = Price;
+	//s		item.Identifier = (string.IsNullOrEmpty(Remote) ? "IN" : Remote) + Updated.Month + (Updated.Year - 2000) + Category.Id + "I" + Id;
+			item.Remote = Remote;
 			item.Photos = new List<Photo>();
 			Photos?.ForEach(p => item.Photos.Add(p.ConvertToEntity()));
 			item.Details = new List<Detail>();

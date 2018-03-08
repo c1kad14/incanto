@@ -1,6 +1,5 @@
 ﻿import React from "react";
 import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
 import ImagesGrid from "./ImagesGrid";
 import RestApiCalls from "../Services/RestApiCalls";
 import DataService from "../Services/DataService";
@@ -18,33 +17,43 @@ class ImageUploader extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			file: "",
-			imagePreviewUrl: "",
 			imageSource: [],
 			imagesToRemove: [],
 			imageViewOpened: false,
 			imageUploadOpened: false,
-			currentImg: {},
 			lastId: 0,
 			selectedItem: this.props.selectedItem
 		};
 		this.imageChange.bind(this);
 	}
 
-
 	imageChange (e) {
 		e.preventDefault();
-		let reader = new FileReader();
-		if (e.target.files.length > 0) {
-			let file = e.target.files[0];
-			reader.onloadend = () => {
-				this.setState({ currentImg: { src: reader.result, file: file }, imageViewOpened: true });
+		const imageSource = this.state.imageSource;
+		let files = e.target.files;
+		let that = this;
+		if (files.length > 0) {
+			for (let i = 0; i < files.length; i++) {
+				const file = files[i];
+				let reader = new FileReader();
+				reader.onloadend = function () {
+					if (this.readyState === FileReader.DONE) {
+						const selectedImage = { src: reader.result, file: file };
+						imageSource.push({
+							priority: that.state.lastId,
+							src: selectedImage.src,
+							file: selectedImage.file,
+							itemId: that.state.selectedItem.id
+						});
+						that.state.lastId = that.state.lastId + 1;
+						that.setState({ imageSource: imageSource});
+					}
+				};
+				reader.readAsDataURL(file);
 			}
-			reader.readAsDataURL(file);
-		}
-	}
 
-	handleCloseImageView () {
+		}
+
 		this.clearDataAboutPhoto();
 	}
 
@@ -52,30 +61,8 @@ class ImageUploader extends React.Component {
 		this.setState({imageUploadOpened: false, imageSource: [], imagesToRemove: [], lastId: 0 }, this.props.refreshDataTable);
 	}
 
-	handleCloseDialog() {
-		this.setState({ galleryOpened: false, addPhotoOpened: false });
-	}
-
-	handleSaveImage() {
-		var hasErrors = false;
-		if (!hasErrors) {
-			const imageSource = this.state.imageSource;
-			imageSource.push({
-				priority: this.state.lastId,
-				src: this.state.currentImg.src,
-				file: this.state.currentImg.file,
-				itemId: this.state.selectedItem.id,
-				type: this.state.currentImg.type
-			});
-			this.state.imageSource = imageSource;
-			this.state.lastId = this.state.lastId + 1;
-			this.clearDataAboutPhoto();
-		}
-	}
-
 	clearDataAboutPhoto () {
 		this.fileInput.value = "";
-		this.setState({ imageViewOpened: false, currentImg: {} });
 	}
 
 	removeImage (image) {
@@ -156,7 +143,7 @@ class ImageUploader extends React.Component {
 			});
 		}
 
-		this.setState({ imageSource: imageSource, imageViewOpened: false, currentImg: {} });
+		this.setState({ imageSource: imageSource, imageViewOpened: false });
 	} 
 
 	componentWillReceiveProps(nextProps) {
@@ -182,16 +169,7 @@ class ImageUploader extends React.Component {
 		else {
 			imagePreview = (<p style={{ height: '450px'}}>Фото отсутствуют. Выберите фото что бы добавить.</p>);
 		}
-		const imageViewActions = [
-			<FlatButton
-				label={"Сохранить"}
-				primary={true}
-				onClick={this.handleSaveImage.bind(this)} />,
-			<FlatButton
-				label={"Отмена"}
-				secondary={true}
-				onClick={this.handleCloseImageView.bind(this)} />
-		];
+
 		let imageUploadActions = [
 			<RaisedButton
 				label={"Выберите фото"}
@@ -225,24 +203,14 @@ class ImageUploader extends React.Component {
 							ref={(input) => { this.fileInput = input; }}
 							style={{ visibility: "hidden" }}
 							type="file"
+							multiple="multiple"
 							onChange={(e) => this.imageChange(e)} />
 					</form>
 					<div>
 						{imagePreview}
 					</div>
 				</Dialog>
-				<Dialog
-					actions={imageViewActions}
-					contentStyle={{ width: "90%", maxWidth: '90%' }}
-					title="Просмотр выбраного фото"
-					modal={false}
-					open={this.state.imageViewOpened}
-					onRequestClose={this.handleCloseImageView.bind(this)}
-					autoScrollBodyContent={true}>
-					<div>
-						<img style={{ height: "42vw", display: "block", margin: "0 auto" }} src={this.state.currentImg.src} />
-					</div>
-				</Dialog>
+
 			</div>
 		);
 	}

@@ -15,6 +15,8 @@ namespace Incanto.BusinessLogic.Models
 		{
 		}
 
+		public string Other { get; set; }
+
 		[Required(ErrorMessage = "Category is a required field")]
 		public CategoryModel Category { get; set; }
 
@@ -23,6 +25,7 @@ namespace Incanto.BusinessLogic.Models
 			base.ConvertFromEntity(size);
 			if (size.Category == null) return this;
 			Category = new CategoryModel(size.Category);
+			Other = size.Other;
 			return this;
 		}
 
@@ -30,6 +33,7 @@ namespace Incanto.BusinessLogic.Models
 		{
 			var size = base.ConvertToEntity();
 			size.Category = Category?.ConvertToEntity();
+			size.Other = Other;
 			return size;
 		}
 	}

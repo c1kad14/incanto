@@ -135,10 +135,21 @@ class NavigationMenu extends React.Component {
 					<Link style={this.getGenderStyle("Мужчинам")} className="level1_l" to={"/men"}>Мужчинам</Link>
 					{menSection}
 				</li>
-
 				<li key="navigation-menu-list-kids-container" className="level1_i">
 					<Link style={this.getGenderStyle("Детям")} className="level1_l" to={"/kids"}> Детям</Link>
 					{childSection}
+				</li>
+				<li key="navigation-menu-list-kids-container" className="level1_i">
+					<Link className="level1_l" to={"/sale"}> SALE %</Link>
+	
+				</li>
+				<li key="navigation-menu-list-help-container" className="level1_i">
+					<Link className="level1_l" to={"/help"}>Помощь</Link>
+
+				</li>
+				<li key="navigation-menu-list-contact-container" className="level1_i">
+					<Link className="level1_l" to={"/contact"}>Контакты</Link>
+	
 				</li>
 			</ul>
 		</div>;

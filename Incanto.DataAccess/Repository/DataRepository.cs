@@ -23,7 +23,7 @@ namespace Incanto.DataAccess.Repository
 		{
 			_dbContextOptions = dbContextOptions;
 		}
-		public void Add(TEntity entity)
+		public virtual void Add(TEntity entity)
 		{
 			using (var context = new IncantoDataContext(_dbContextOptions))
 			{

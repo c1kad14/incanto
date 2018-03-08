@@ -14,6 +14,7 @@ namespace Incanto.WebApp.Controllers
 		public SizesController(IDataRepository<Size> dataRepository) : base(dataRepository, q => q.Include(c => c.Category).ThenInclude(c => c.Type).ThenInclude(t => t.Gender))
 		{
 		}
+
 		[Authorize]
 		[HttpGet("{categoryId}")]
 		[Route("GetObjectsByCategoryId")]

@@ -1,7 +1,6 @@
 ﻿import React from "react";
 import DataService from "./Services/DataService";
-import ImageUploader from "./Controls/ImageUploader";
-import RaisedButton from "material-ui/RaisedButton";
+import { Link } from "react-router-dom";
 import {
 	Table,
 	TableBody,
@@ -66,11 +65,15 @@ class RecordsList extends React.Component {
 	}
 
 	getTableRowColumns(row) {
+		const that = this;
 		let getValueForFieldFunc = this.getValueForField.bind(this);
 		const rowColumns = this.props.columns.map(function (columnName) {
 			let columnValue;
 			let columnId;
 			if (row[columnName] !== undefined) {
+				if (that.props.controller === "items" && columnName === "id") {
+					columnName = "identifier";
+				}
 				columnValue = row[columnName] !== undefined && row[columnName] !== "" && row[columnName] !== null ? row[columnName] : "пусто";
 				columnId = row.id;
 			} else {
@@ -82,7 +85,7 @@ class RecordsList extends React.Component {
 		});
 		if (this.props.controller === "items") {
 				let value = row["photos"] !== undefined && row["photos"].length > 0 ? row["photos"][0].path : undefined;
-				let columnValue = <img className="item-photo-preview" src={value} />;
+				let columnValue = <a target="_blank" href={`/item/${row.id}`} ><img className="item-photo-preview" src={value} /></a>;
 				rowColumns.push(<TableRowColumn key={row.id}> {columnValue} </TableRowColumn>);
 		}
 		return rowColumns;

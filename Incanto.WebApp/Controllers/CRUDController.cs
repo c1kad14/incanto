@@ -32,7 +32,7 @@ namespace Incanto.WebApp.Controllers
 
 		[HttpGet]
 		[Route("GetList")]
-		public ActionResult GetCollection()
+		public virtual ActionResult GetCollection()
 		{
 			var operationResult = ReadWriteDataService.Get();
 			return Json(operationResult);
@@ -59,7 +59,7 @@ namespace Incanto.WebApp.Controllers
 		[Authorize]
 		[HttpDelete("{id}")]
 		[Route("Delete")]
-		public ActionResult DeleteObject(int id)
+		public virtual ActionResult DeleteObject(int id)
 		{
 			var operationResult = PerformOperation(new TModel { Id = id }, OperationType.Delete);
 			return Json(operationResult);
