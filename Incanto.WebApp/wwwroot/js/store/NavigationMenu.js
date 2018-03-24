@@ -44,7 +44,6 @@ class NavigationMenu extends React.Component {
 
 	getGenderTypes(genderName) {
 		let typeCategoriesFunc = this.getTypeCategories;
-		let navigateFunc = this.navigateType;
 		let getStyle = this.getTypeStyle.bind(this);
 		const gender = this.getGender(genderName);
 		if (this.props.selectedGender === genderName) {
