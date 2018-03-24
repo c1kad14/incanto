@@ -64,7 +64,7 @@ namespace Incanto.BusinessLogic.Models
 			item.Discount = Discount;
 			item.Description = Description;
 			item.Price = Price;
-	//s		item.Identifier = (string.IsNullOrEmpty(Remote) ? "IN" : Remote) + Updated.Month + (Updated.Year - 2000) + Category.Id + "I" + Id;
+			item.Identifier = (string.IsNullOrEmpty(Remote) ? "IN" : Remote) + Updated.Month + (Updated.Year - 2000) + Category?.Id + "-" + Id;
 			item.Remote = Remote;
 			item.Photos = new List<Photo>();
 			Photos?.ForEach(p => item.Photos.Add(p.ConvertToEntity()));

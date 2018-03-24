@@ -1,16 +1,16 @@
 ﻿import React, { Component, PropTypes } from "react";
 import AutoComplete from "material-ui/AutoComplete";
 import DataService from "../Services/DataService";
-import DarkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { purple50, cyan500, pink700 } from 'material-ui/styles/colors';
+import { purple50, cyan500, blueGrey500, grey700 } from 'material-ui/styles/colors';
 
 class AutoCompleteControl extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-		    displayName: "AutoCompleteControl",
+			displayName: "AutoCompleteControl",
 			errorText: "",
 			autoCompleteData: [],
 			source: []
@@ -40,17 +40,17 @@ class AutoCompleteControl extends React.Component {
 			}
 
 		}
-	    return result;
+		return result;
 	}
 
 	updateData(data) {
-		if (data !== undefined && data != null && data.length > 0) {
+		if (data !== undefined && data !== null && data.length > 0) {
 			this.state.source = data;
 			const controlData = [];
 			for (let i = 0; i < this.state.source.length; i++) {
 				let displayChild = this.props.fieldData.displayChild;
 				let unformatedName = this.state.source[i].model[this.props.fieldData.name];
-				
+
 				if (displayChild !== undefined) {
 					let formatedName = unformatedName + this.createFormatedItem(i);
 					controlData.push(formatedName);
@@ -59,7 +59,7 @@ class AutoCompleteControl extends React.Component {
 				}
 			}
 			this.setState({ autoCompleteData: controlData });
-		} 
+		}
 	}
 
 	checkErrors() {
@@ -86,8 +86,7 @@ class AutoCompleteControl extends React.Component {
 			let fieldsToCheck = this.state.source[iterator].model;
 			let child = displayChild[i];
 			let splittedChild = child.split("-");
-			for (let j = 1; j < splittedChild.length; j++)
-			{
+			for (let j = 1; j < splittedChild.length; j++) {
 				if (!splittedChild[j].includes(".")) {
 					fieldsToCheck = fieldsToCheck[splittedChild[j]];
 				} else {
@@ -152,43 +151,43 @@ class AutoCompleteControl extends React.Component {
 		//if (modelValue !== "" && modelValue != undefined) {
 		//	this.props.fieldData.value = modelValue;
 		//}
-	    var processData = this.updateData;
-	    if (this.state.autoCompleteData.length === 0) {
+		var processData = this.updateData;
+		if (this.state.autoCompleteData.length === 0) {
 			DataService.getItems(this.props.controller, processData);
-	    }
+		}
 	}
 
 	render() {
-	    let muiTheme = getMuiTheme({
-	        palette: {
-				textColor: purple50,
-				canvasColor: DarkBaseTheme.palette.canvasColor
-	        }
-	    });
-	    let floatingLabelStyle = {
-	        floatingLabelStyle: {
-	            color: pink700
-	        },
-	        floatingLabelFocusStyle: {
-	            color: cyan500
-	        }
-	    }
+		let muiTheme = getMuiTheme({
+			palette: {
+				textColor: grey700,
+				canvasColor: lightBaseTheme.palette.canvasColor
+			}
+		});
+		let floatingLabelStyle = {
+			floatingLabelStyle: {
+				color: blueGrey500
+			},
+			floatingLabelFocusStyle: {
+				color: cyan500
+			}
+		}
 		const filter = this.props.fieldData.noFilter ? AutoComplete.noFilter : AutoComplete.fuzzyFilter;
 		return (
-		    <MuiThemeProvider muiTheme={muiTheme}>
+			<MuiThemeProvider muiTheme={muiTheme}>
 				<AutoComplete
 					id={this.props.id}
 					searchText={this.props.fieldData.value}
 					onUpdateInput={this.handleChanges}
 					floatingLabelText={this.props.fieldData.modelField}
 					floatingLabelStyle={floatingLabelStyle.floatingLabelStyle}
-					floatingLabelFocusStyle={floatingLabelStyle.floatingLabelFocusStyle} 
+					floatingLabelFocusStyle={floatingLabelStyle.floatingLabelFocusStyle}
 					filter={filter}
 					dataSource={this.state.autoCompleteData}
 					maxSearchResults={this.props.fieldData.maxSearchResults}
 					errorText={this.state.errorText}
-					fullWidth={true}/>
-		    </MuiThemeProvider>
+					fullWidth={true} />
+			</MuiThemeProvider>
 		);
 	}
 }

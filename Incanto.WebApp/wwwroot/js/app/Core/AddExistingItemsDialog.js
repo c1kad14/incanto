@@ -16,8 +16,8 @@ import RestApiCall from "./Services/RestApiCalls";
 import DataService from "./Services/DataService";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import DarkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import { pink500 } from 'material-ui/styles/colors';
+import LightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import { blueGrey800 } from 'material-ui/styles/colors';
 
 const existingItemsController = "ExistingItems";
 const sizesController = "Sizes";
@@ -84,7 +84,7 @@ class AddExistingItemsDialog extends React.Component {
 			}
 			this.setState({ existingItems: newData },
 				() => {
-					console.log('updated existingItems value', this.state.existingItems);
+					//console.log('updated existingItems value', this.state.existingItems);
 				});
 		}
 	}
@@ -97,7 +97,7 @@ class AddExistingItemsDialog extends React.Component {
 			}
 			this.setState({ sizes: newData },
 				() => {
-					console.log('updated sizes value', this.state.sizes);
+					//console.log('updated sizes value', this.state.sizes);
 				});
 		}
 	}
@@ -135,7 +135,7 @@ class AddExistingItemsDialog extends React.Component {
 						selectedSizeId: undefined
 					},
 					() => {
-						console.log('updated existing items', this.state.existingItems);
+						//console.log('updated existing items', this.state.existingItems);
 					});
 			}
 			
@@ -194,7 +194,7 @@ class AddExistingItemsDialog extends React.Component {
 		}
 		let existing = this.state.existingItems;
 		existing.splice(existing.indexOf(existingItem), 1);
-		this.setState({ existingItems: existing }, console.log('remove clicked: ', existingItem));
+		this.setState({ existingItems: existing });
 	}
 
 	componentWillMount() {
@@ -213,8 +213,8 @@ class AddExistingItemsDialog extends React.Component {
 	render() {
 		let muiTheme = getMuiTheme({
 			palette: {
-				textColor: pink500,
-				canvasColor: DarkBaseTheme.palette.canvasColor
+				textColor: blueGrey800,
+				canvasColor: LightBaseTheme.palette.canvasColor
 			}
 		});
 		const tableHeader = this.getTableHeader();

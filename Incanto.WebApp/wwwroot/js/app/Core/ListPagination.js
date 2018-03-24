@@ -49,9 +49,8 @@ class PaginationItems extends React.Component {
 			(nextState.startIndex + this.props.displayPagesCount - 1) > nextProps.availablePages) {
 			this.state.activePage = 1;
 			this.state.startIndex = 1;
-		}
-		if (this.state.activePage != this.props.activePage) {
-		    this.state.activePage = this.props.activePage;
+		} else if (this.state.activePage !== nextProps.activePage) {
+			this.state.activePage = nextProps.activePage;
 		}
 	}
 
@@ -94,7 +93,7 @@ class ListPagination extends React.Component {
 	}
 
 	render() {
-		const displayPages = this.props.availablePages > 3 ? 3 : this.props.availablePages;
+		const displayPages = this.props.availablePages > 5 ? 5 : this.props.availablePages;
 		const paginationItems = this.props.availablePages > 1 ?
 			<PaginationItems
 				displayPagesCount={displayPages}

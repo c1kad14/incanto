@@ -1,6 +1,5 @@
 ﻿import React from "react";
 import { Link } from "react-router-dom";
-import ProgressiveImage from "react-progressive-image-loading";
 
 function compareImages(a, b) {
 	if (a.priority < b.priority)
@@ -31,11 +30,7 @@ class CatalogItem extends React.Component {
 
 		return (<li className="item" itemType="http://schema.org/Product" itemProp="itemListElement" itemScope="">
 			<Link to={`/item/${this.props.item.id}`}>
-				<ProgressiveImage
-					preview={imagePreview !== undefined ? imagePreview : ""}
-					src={imageToDisplay !== undefined ? imageToDisplay : ""}
-					render={(src) => <img className="main-picture" alt={item.name} src={src} itemProp="image" />}
-				/>
+				<img src={imagePreview} alt={item.name} itemProp="image" />
 				       <div className="baseline-helper">
 					       <div itemProp="name">
 						       <p className="designer-info fs10 up ls2 bold">{item.brand.name}</p>

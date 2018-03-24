@@ -34,7 +34,7 @@ class NavigationMenu extends React.Component {
 			let typeCategories = this.props.categories.map(function(category) {
 				if (category.type.id === type.id) {
 					return <li key={category.name} className="level3_i">
-						<Link to={`/${gender}/type/${type.id}/category/${category.id}`} style={getStyle(category.name)} className="level3_l ">{category.name}</Link>
+						<Link to={`/${gender}/type/${type.id}/category/${category.id}`} style={getStyle(category.name)} >{category.name}</Link>
 					</li>;
 				}
 			});
@@ -51,7 +51,7 @@ class NavigationMenu extends React.Component {
 			let genderTypes = this.props.types.map(function(type) {
 				if (type.gender.name === genderName) {
 					return <li key={type.name} className="level2_i">
-						<Link to={`/${gender}/type/${type.id}`} style={getStyle(type.name)} className="level2_l">{type.name}</Link>
+						<Link to={`/${gender}/type/${type.id}`} style={getStyle(type.name)} >{type.name}</Link>
 						<ul className="level3_m" >
 							{typeCategoriesFunc(type)}
 						</ul>
@@ -64,8 +64,8 @@ class NavigationMenu extends React.Component {
 
 	getBrandsStyle() {
 		return {
-			borderBottom: this.props.navigateToBrand === true && this.props.selectedGender === undefined && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "1px solid" : "",
-			marginBottom: this.props.navigateToBrand === true && this.props.selectedGender === undefined && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "-1px" : ""
+			borderBottom: this.props.navigateTo === "brands" && this.props.selectedGender === undefined && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "1px solid" : "",
+			marginBottom: this.props.navigateTo === "brands" && this.props.selectedGender === undefined && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "-1px" : ""
 
 		}
 	}
@@ -92,16 +92,50 @@ class NavigationMenu extends React.Component {
 		}
 	}
 
+	getNewStyle() {
+		return {
+			fontWeight: "bold",
+			borderBottom: this.props.navigateTo === "new" && this.props.selectedGender === undefined && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "1px solid" : "",
+			marginBottom: this.props.navigateTo === "new" && this.props.selectedGender === undefined && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "-1px" : ""
+
+		}
+	}
+
+	getSaleStyle() {
+		return {
+			color: "red",
+			borderBottom: this.props.navigateTo === "sale" && this.props.selectedGender === undefined && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "1px solid" : "",
+			marginBottom: this.props.navigateTo === "sale" && this.props.selectedGender === undefined && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "-1px" : ""
+
+		}
+	}
+
+	getHelpStyle() {
+		return {
+			borderBottom: this.props.navigateTo === "help" && this.props.selectedGender === undefined && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "1px solid" : "",
+			marginBottom: this.props.navigateTo === "help" && this.props.selectedGender === undefined && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "-1px" : ""
+
+		}
+	}
+
+	getContactsStyle() {
+		return {
+			borderBottom: this.props.navigateTo === "contacts" && this.props.selectedGender === undefined && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "1px solid" : "",
+			marginBottom: this.props.navigateTo === "contacts" && this.props.selectedGender === undefined && this.props.selectedType === undefined && this.props.selectedCategory === undefined ? "-1px" : ""
+
+		}
+	}
+
 	shouldComponentUpdate(nextProps, nextSate) {
-		if (this.props.selectedGender === nextProps.selectedGender && this.props.selectedType === nextProps.selectedType && this.props.selectedCategory === nextProps.selectedCategory && this.props.selectedBrand === nextProps.selectedBrand && this.props.navigateToBrand === nextProps.navigateToBrand) {
+		if (this.props.selectedGender === nextProps.selectedGender && this.props.selectedType === nextProps.selectedType && this.props.selectedCategory === nextProps.selectedCategory && this.props.selectedBrand === nextProps.selectedBrand && this.props.navigateTo === nextProps.navigateTo) {
 			return false;
 		}
 		return true;
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (this.props.selectedGender !== nextProps.selectedGender || this.props.selectedType !== nextProps.selectedType ||  this.props.selectedCategory !== nextProps.selectedCategory || this.props.selectedBrand !== nextProps.selectedBrand || this.props.selectedItemId !== nextProps.selectedItemId || this.props.navigateToBrand !== nextProps.navigateToBrand) {
-			this.props.updateFilters(nextProps.selectedGender, nextProps.selectedType, nextProps.selectedCategory, nextProps.selectedBrand, nextProps.selectedItemId, nextProps.navigateToBrand);
+		if (this.props.selectedGender !== nextProps.selectedGender || this.props.selectedType !== nextProps.selectedType ||  this.props.selectedCategory !== nextProps.selectedCategory || this.props.selectedBrand !== nextProps.selectedBrand || this.props.selectedItemId !== nextProps.selectedItemId || this.props.navigateTo !== nextProps.navigateTo) {
+			this.props.updateFilters(nextProps.selectedGender, nextProps.selectedType, nextProps.selectedCategory, nextProps.selectedBrand, nextProps.selectedItemId, nextProps.navigateTo);
 		}
 	}
 
@@ -124,32 +158,32 @@ class NavigationMenu extends React.Component {
 
 		return <div key="navigation-menu-container" className="menu_wrapper fs11">
 			<ul key="navigation-menu-list" className="level1_m">
-				<li key="navigation-menu-list-brand-container"className="level1_i">
-					<Link style={this.getBrandsStyle()} className="level1_l" to={"/brands"}>Бренды</Link>
+				<li key="navigation-menu-list-new-container" className="level1_i">
+					<Link style={this.getNewStyle()} to={"/new"}>Новые поступления</Link>
 				</li>
 				<li key="navigation-menu-list-women-container" className="level1_i">
-					<Link style={this.getGenderStyle("Женщинам")} className="level1_l" to={"/women"}>Женщинам</Link>
+					<Link style={this.getGenderStyle("Женщинам")} to={"/women"}>Женщинам</Link>
 					{womenSection}
 				</li>
 				<li key="navigation-menu-list-men-container" className="level1_i">
-					<Link style={this.getGenderStyle("Мужчинам")} className="level1_l" to={"/men"}>Мужчинам</Link>
+					<Link style={this.getGenderStyle("Мужчинам")} to={"/men"}>Мужчинам</Link>
 					{menSection}
 				</li>
 				<li key="navigation-menu-list-kids-container" className="level1_i">
-					<Link style={this.getGenderStyle("Детям")} className="level1_l" to={"/kids"}> Детям</Link>
+					<Link style={this.getGenderStyle("Детям")} to={"/kids"}> Детям</Link>
 					{childSection}
 				</li>
-				<li key="navigation-menu-list-kids-container" className="level1_i">
-					<Link className="level1_l" to={"/sale"}> SALE %</Link>
-	
+				<li key="navigation-menu-list-sale-container" className="level1_i">
+					<Link style={this.getSaleStyle()}   to={"/sale"}> SALE %</Link>
 				</li>
-				<li key="navigation-menu-list-help-container" className="level1_i">
-					<Link className="level1_l" to={"/help"}>Помощь</Link>
-
+				<li key="navigation-menu-list-brand-container" className="level1_i">
+					<Link style={this.getBrandsStyle()} to={"/brands"}>Бренды</Link>
 				</li>
 				<li key="navigation-menu-list-contact-container" className="level1_i">
-					<Link className="level1_l" to={"/contact"}>Контакты</Link>
-	
+					<Link style={this.getContactsStyle()} to={"/contacts"}>Контакты</Link>
+				</li>
+				<li key="navigation-menu-list-help-container" className="level1_i">
+					<Link style={this.getHelpStyle()} to={"/help"}>Помощь</Link>
 				</li>
 			</ul>
 		</div>;

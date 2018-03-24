@@ -6,15 +6,15 @@ import DataService from "./Services/DataService";
 import AutoComplete from "./Controls/AutoComplete";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import DarkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import { pink500 } from 'material-ui/styles/colors';
+import LightBaseTheme from 'material-ui/styles/baseThemes/LightBaseTheme';
+import { blueGrey800 } from 'material-ui/styles/colors';
 
 
 class AddRecordDialog extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-				recordToUpdate: this.props.recordToUpdate !== undefined ? this.props.recordToUpdate : {}
+			recordToUpdate: this.props.recordToUpdate !== undefined ? this.props.recordToUpdate : {}
 		}
 		this.validateModel = this.validateModel.bind(this);
 	}
@@ -54,6 +54,9 @@ class AddRecordDialog extends React.Component {
 				}
 			} else {
 				if (this.state.recordToUpdate[modelField] === undefined || this.state.recordToUpdate[modelField] === null || this.state.recordToUpdate[modelField] === "") {
+					if (this.props.controller === "items" && (modelField === "description" || modelField === "discount" || modelField === "remote")) {
+						continue;
+					}
 					result = false;
 				}
 			}
@@ -148,8 +151,8 @@ class AddRecordDialog extends React.Component {
 
 		let muiTheme = getMuiTheme({
 			palette: {
-				textColor: pink500,
-				canvasColor: DarkBaseTheme.palette.canvasColor
+				textColor: blueGrey800,
+				canvasColor: LightBaseTheme.palette.canvasColor
 			}
 		});
 

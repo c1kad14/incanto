@@ -2,7 +2,7 @@
 import TextField from "material-ui/TextField";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { purple50, cyan500, pink700 } from 'material-ui/styles/colors';
+import { purple50, cyan500, blueGrey500, grey700 } from 'material-ui/styles/colors';
 
 
 class Text extends React.Component {
@@ -38,12 +38,12 @@ class Text extends React.Component {
 	render() {
 		let muiTheme = getMuiTheme({
 			palette: {
-				textColor: purple50
+				textColor: grey700
 			}
 		});
 		let floatingLabelStyle = {
 			floatingLabelStyle: {
-				color: pink700
+				color: blueGrey500
 			},
 			floatingLabelFocusStyle: {
 				color: cyan500

@@ -14,7 +14,9 @@ class IncantoRecords extends React.Component {
 		}
 	}
 	selectedTableChangedHandler(controller) {
-		this.setState({ controller: controller, shouldRefreshTable: false, selectedItem: undefined }, function () { console.log("updated controller:" + controller) });
+		this.setState({ controller: controller, shouldRefreshTable: false, selectedItem: undefined }, function() {
+			// console.log("updated controller:" + controller);
+		});
 	}
 
 	refreshDataTable() {

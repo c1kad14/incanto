@@ -35,8 +35,8 @@ class MainPageTemplatePage extends React.Component {
 			value: undefined,
 			type: undefined,
 			secondary: undefined,
-			link: undefined,
-			secondaryLink: undefined,
+			link: "",
+			secondaryLink: "",
 			file: undefined,
 			secondaryFile: undefined,
 			primary: true
@@ -144,8 +144,8 @@ class MainPageTemplatePage extends React.Component {
 			type: undefined,
 			dropDownValue: undefined,
 			value: undefined,
-			link: undefined,
-			secondaryLink: undefined,
+			link: "",
+			secondaryLink: "",
 			file: undefined,
 			secondaryFile: undefined });
 	}
@@ -155,8 +155,8 @@ class MainPageTemplatePage extends React.Component {
 		this.setState({
 			dropDownValue: value, type: templateTypes[value - 1],
 			value: undefined,
-			link: undefined,
-			secondaryLink: undefined,
+			link: "",
+			secondaryLink: "",
 			file: undefined,
 			secondaryFile: undefined });
 	}

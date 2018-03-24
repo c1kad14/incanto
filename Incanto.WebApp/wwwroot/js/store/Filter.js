@@ -59,7 +59,7 @@ class Filter extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (this.props.category !== nextProps.category || this.props.type !== nextProps.type || this.props.gender !== nextProps.gender) {
+		if (this.props.category !== nextProps.category || this.props.type !== nextProps.type || this.props.gender !== nextProps.gender || this.props.filterSettings.brands.length !== nextProps.filterSettings.brands.length || this.props.filterSettings.categories.length !== nextProps.filterSettings.categories.length || this.props.filterSettings.sizes.length !== nextProps.filterSettings.sizes.length) {
 			this.removeAllFilterItems();
 		}
 	}
@@ -259,7 +259,7 @@ class Filter extends React.Component {
 		const sizesSection = this.getSizesSection();
 		const selectedFilterItems = this.getSelectedFilterItemsSection();
 		const that = this;
-		return <div id="filters" className="right fr">
+		return <div id="filters" className="right">
 			<div id="__filters" className="filters">
 				{this.state.selectedCategories.length > 0 || this.state.selectedBrands.length > 0 || this.state.selectedSizes.length > 0 ? selectedFilterItems : <span className="filter-header2  fs12">ФИЛЬТР</span> }
 				<div className="sort_head mt20 fs9">

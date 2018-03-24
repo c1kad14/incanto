@@ -14,7 +14,10 @@ class Store extends React.Component {
 					<Route exact path="/:gender/type/:typeId" component={HomePage} />
 					<Route exact path="/:gender/type/:typeId/category/:categoryId" component={HomePage} />
 					<Route exact path="/item/:itemId" component={HomePage} />
-					<Route exact path="/brands" component={HomePage} />
+					<Route exact path="/sale" component={HomePage} />
+					<Route exact path="/help" component={HomePage} />
+					<Route exact path="/contacs" component={HomePage} />
+
 				</Switch>
 			</BrowserRouter>;
 	}

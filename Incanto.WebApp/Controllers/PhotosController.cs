@@ -68,7 +68,7 @@ namespace Incanto.WebApp.Controllers
 
 		private void TransformPhoto(string inputPath, string fileName)
 		{
-			const int quality = 20;
+			const int quality = 75;
 			string thumbnailName = String.Concat("thumb_", fileName);
 			string outputPath = inputPath.Replace(fileName, thumbnailName);
 
@@ -76,7 +76,7 @@ namespace Incanto.WebApp.Controllers
 			using (var image = new MagickImage(inputPath))
 			{
 				image.Quality = quality;
-				image.Blur(0, 20);
+				image.Resize(new Percentage(50));
 				image.Write(outputPath);
 			}
 		}

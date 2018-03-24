@@ -15,8 +15,8 @@ import RestApiCall from "./Services/RestApiCalls";
 import DataService from "./Services/DataService";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import DarkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import { pink500 } from 'material-ui/styles/colors';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import { blueGrey800 } from 'material-ui/styles/colors';
 
 const detailsController = "Details";
 const detailTypesController = "DetailTypes";
@@ -80,7 +80,7 @@ class AddDetailDialog extends React.Component {
 			}
 			this.setState({ existingDetails: newData },
 				() => {
-					console.log('updated existingDetails value', this.state.existingDetails);
+					//console.log('updated existingDetails value', this.state.existingDetails);
 				});
 		}
 	}
@@ -93,7 +93,7 @@ class AddDetailDialog extends React.Component {
 			}
 			this.setState({ detailTypes: newData },
 				() => {
-					console.log('updated detailTypes value', this.state.detailTypes);
+					//console.log('updated detailTypes value', this.state.detailTypes);
 				});
 		}
 	}
@@ -106,7 +106,7 @@ class AddDetailDialog extends React.Component {
 			}
 			this.setState({ detailTypeValues: newData },
 				() => {
-					console.log('updated detailTypeValues value', this.state.detailTypeValues);
+					//console.log('updated detailTypeValues value', this.state.detailTypeValues);
 				});
 		}
 	}
@@ -139,7 +139,7 @@ class AddDetailDialog extends React.Component {
 					existingDetails: existingDetails, selectedDetailTypeId: undefined, selectedDetailTypeValueId: undefined
 				},
 				() => {
-					console.log('updated existing details', this.state.existingDetails);
+					//console.log('updated existing details', this.state.existingDetails);
 				});
 		}
 		
@@ -209,7 +209,7 @@ class AddDetailDialog extends React.Component {
 		}
 		let existing = this.state.existingDetails;
 		existing.splice(existing.indexOf(detail), 1);
-		this.setState({ existingDetails: existing }, console.log('remove clicked: ', detail));
+			this.setState({ existingDetails: existing });
 	}
 
 	componentWillMount() {
@@ -230,8 +230,8 @@ class AddDetailDialog extends React.Component {
 	render() {
 		let muiTheme = getMuiTheme({
 			palette: {
-				textColor: pink500,
-				canvasColor: DarkBaseTheme.palette.canvasColor
+				textColor: blueGrey800,
+				canvasColor: lightBaseTheme.palette.canvasColor
 			}
 		});
 		const tableHeader = this.getTableHeader();

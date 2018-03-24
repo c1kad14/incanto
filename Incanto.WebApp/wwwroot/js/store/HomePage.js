@@ -2,8 +2,11 @@
 import ReactDom from "react-dom";
 import DataService from "../app/Core/Services/DataService";
 import NavigationMenu from "./NavigationMenu";
+import MainPage from "./MainPage";
 import Catalog from "./Catalog";
 import Brands from "./Brands";
+import Contacts from "./Contacts";
+import Help from "./Help";
 import ConcreteCatalogItem from "./ConcreteCatalogItem";
 import Footer from "./Footer";
 import Filter from "./Filter";
@@ -21,14 +24,15 @@ class HomePage extends React.Component {
 			selectedCategory: undefined,
 			selectedBrand: undefined,
 			selectedItemId: undefined,
-			navigateToBrand: false,
+			navigateTo: undefined,
 			showNavigationMenu: true,
 			filterSettings: {
 				categories: [],
 				brands: [],
 				sizes: []
 			},
-			sort: {}
+			sort: {},
+			fetch: {}
 		}
 
 		this.loadTypes = this.loadTypes.bind(this);
@@ -40,7 +44,11 @@ class HomePage extends React.Component {
 		let filter = this.state.filterSettings;
 		filter.brands = [];
 		filter.brands.push(brand);
-		this.setState({ selectedBrand: brand.name, navigateToBrand: false, filterSettings: filter });
+		this.setState({
+			selectedBrand: brand.name,
+			filterSettings: filter,
+			navigateTo: undefined
+		});
 	}
 
 	getGender(gender) {
@@ -66,16 +74,21 @@ class HomePage extends React.Component {
 		}
 	}
 
-
-	updateFilters(gender, type, category, brand, item, navigateToBrand) {
-		if (this.state.selectedType !== type || this.state.selectedCategory !== category || this.state.selectedGender !== gender || this.state.selectedBrand !== brand || this.state.selectedItemId !== item || this.state.navigateToBrand !== navigateToBrand) {
+	updateFilters(gender, type, category, brand, item, navigateTo
+	) {
+		if (this.state.selectedType !== type ||
+			this.state.selectedCategory !== category ||
+			this.state.selectedGender !== gender ||
+			this.state.selectedBrand !== brand ||
+			this.state.selectedItemId !== item ||
+			this.state.navigateTo !== navigateTo) {
 				this.setState({
 					selectedGender: gender,
 					selectedType: type,
 					selectedCategory: category,
 					selectedBrand: brand,
 					selectedItemId: item,
-					navigateToBrand: navigateToBrand,
+					navigateTo: navigateTo,
 					filterSettings: {
 						categories: [],
 						brands: [],
@@ -147,7 +160,7 @@ class HomePage extends React.Component {
 			let type = undefined;
 			let category = undefined;
 			let item = undefined;
-			let brand = undefined;
+			let navigate = undefined;
 
 			if (that.props.match.params.itemId !== undefined) {
 				item = that.props.match.params.itemId;
@@ -169,10 +182,30 @@ class HomePage extends React.Component {
 				if (that.props.match.params.categoryId !== undefined) {
 					category = values[1].filter((category) => category.id === parseInt(that.props.match.params.categoryId))[0].name;
 				}
-				brand = that.props.match.url === "/brands" ? true : false;
+
+				switch (that.props.match.url) {
+					case "/":
+						navigate = "main";
+						break;
+					case "/sale":
+						navigate = "sale";
+						break;
+					case "/brands":
+						navigate = "brands";
+						break;
+					case "/contacts":
+						navigate = "contacts";
+						break;
+					case "/help":
+						navigate = "help";
+						break;
+					case "/new":
+						navigate = "new";
+						break;
+				}
 			}
 
-			that.setState({ types: values[0], categories: values[1], navigateToBrand: brand, selectedGender: gender, selectedType: type, selectedCategory: category, selectedItemId: item});
+			that.setState({ types: values[0], categories: values[1], selectedGender: gender, selectedType: type, selectedCategory: category, selectedItemId: item, navigateTo: navigate });
 		});
 	}
 	
@@ -220,42 +253,80 @@ class HomePage extends React.Component {
 				if (nextProps.match.params.categoryId !== undefined) {
 					category = this.state.categories.filter((category) => category.id === parseInt(nextProps.match.params.categoryId))[0].name;
 				}
-				const brand = nextProps.match.url === "/brands" && ((this.state.filterSettings.brands.length === 0 && this.state.filterSettings.categories.length === 0 && this.state.filterSettings.sizes.length === 0) || (this.state.selectedGender !== undefined)) ? true : false;
 
-				if (this.state.selectedGender !== gender || this.state.selectedType !== type || this.state.selectedCategory !== category || this.state.selectedItemId !== nextProps.match.params.itemId || this.state.navigateToBrand !== brand) {
+				let navigate = undefined;
+				if (nextProps.match.url === "/brands") {
+					if (((this.state.filterSettings.brands.length === 0 && this.state.filterSettings.categories.length === 0 && this.state.filterSettings.sizes.length === 0) || (this.state.selectedGender !== undefined))) {
+						navigate = "brands";
+					}
+				} else if (nextProps.match.url === "/new") {
+					navigate = "new";
+				}
+				else if (nextProps.match.url === "/") {
+					navigate = "main";
+				} else if (nextProps.match.url === "/sale") {
+					navigate = "sale";
+				}
+				else if (nextProps.match.url === "/contacts") {
+					navigate = "contacts";
+				} else if (nextProps.match.url === "/help") {
+					navigate = "help";
+				}
+
+				if (this.state.selectedGender !== gender || this.state.selectedType !== type || this.state.selectedCategory !== category || this.state.selectedItemId !== nextProps.match.params.itemId || this.state.navigateTo !== navigate) {
 					this.setState({
-						navigateToBrand: brand,
+						navigateTo: navigate,
 						selectedGender: gender,
 						selectedType: type,
 						selectedCategory: category,
 						selectedBrand: undefined,
 						selectedItemId: item,
-						filterSettings: this.state.selectedBrand === undefined ? {
+						filterSettings: this.state.selectedBrand === undefined || this.props.navigateTo !== navigate ? {
 							categories: [],
 							brands: [],
 							sizes: []
 						} : this.state.filterSettings
 					});
 				}
-
 			}
 		} 
 	}
 
 	render() {
 		if (this.state.types.length === 0 || this.state.categories.length === 0) {
-			return null;
+			return false;
 		}
-		let catalog = this.state.selectedItemId === undefined
+		const catalog = this.state.selectedItemId === undefined
 			? <Catalog gender={this.state.selectedGender}
 				type={this.state.selectedType}
 				category={this.state.selectedCategory}
 				brand={this.state.selectedBrand}
 				selectedItemId={this.state.selectedItemId}
-				onItemSelected={this.updateSelectedItem.bind(this)} sort={this.state.sort} filterCategories={this.state.filterSettings.categories} filterBrands={this.state.filterSettings.brands} filterSizes={this.state.filterSettings.sizes} />
+				navigateTo={this.state.navigateTo}
+				onItemSelected={this.updateSelectedItem.bind(this)} sort={this.state.sort} filterCategories={this.state.filterSettings.categories} filterBrands={this.state.filterSettings.brands} filterSizes={this.state.filterSettings.sizes}
+				fetch={this.state.fetch}
+			/>
 			: <ConcreteCatalogItem selectedItemId={this.state.selectedItemId} changeNavigationMenuValue={this.changeNavigationMenuValue.bind(this)} />;
-		const brands = <Brands brandSelected={this.brandSelected.bind(this)}/>;
-		return <div className="product-content">
+		const brands = <Brands brandSelected={this.brandSelected.bind(this)} />;
+		const main = <MainPage />;
+		const contacts = <Contacts />;
+		const help = <Help />;
+		let display = catalog;
+		switch (this.state.navigateTo) {
+			case "main":
+				display = main;
+				break;
+			case "brands":
+				display = brands;
+				break;
+			case "contacts":
+				display = contacts;
+				break;
+			case "help":
+				display = help;
+				break;
+		}
+		return <div id="scrollable-id" className="product-content">
 			{this.state.showNavigationMenu ? <div id="left">
 				<NavigationMenu updateFilters={this.updateFilters} types={this.state.types}
 					categories={this.state.categories}
@@ -264,13 +335,13 @@ class HomePage extends React.Component {
 					selectedCategory={this.state.selectedCategory}
 					selectedBrand={this.state.selectedBrand}
 					selectedItemId={this.state.selectedItemId}
-					navigateToBrand={this.state.navigateToBrand}
+					navigateTo={this.state.navigateTo}
 				/>
 			</div> :
 				<span></span>
 			}
-			{this.state.navigateToBrand === true ? brands : catalog }
-			{this.state.selectedItemId === undefined && this.state.navigateToBrand === false && this.state.showNavigationMenu 
+			{display}
+			{this.state.selectedItemId === undefined && (this.state.navigateTo === undefined || this.state.navigateTo === "sale" || this.state.navigateTo === "new") && this.state.showNavigationMenu 
 				? <Filter gender={this.state.selectedGender} type={this.state.selectedType} category={this.state.selectedCategory} filterSettings={this.state.filterSettings} sort={this.sort.bind(this)}/> : <span></span>}
 			{this.state.showNavigationMenu ? <Footer /> : <span></span>}
 		</div>;

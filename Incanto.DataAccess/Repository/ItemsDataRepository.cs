@@ -22,7 +22,7 @@ namespace Incanto.DataAccess.Repository
 			    context.Set<Item>().Attach(entity);
 			    context.Set<Item>().Add(entity);
 			    context.SaveChanges();
-			    entity.Identifier = (string.IsNullOrEmpty(entity.Remote) ? "IN" : entity.Remote) + entity.Updated.Month + (entity.Updated.Year - 2000) + entity.Category.Id + "I" + entity.Id;
+			    entity.Identifier = (string.IsNullOrEmpty(entity.Remote) ? "IN" : entity.Remote) + entity.Updated.Month + (entity.Updated.Year - 2000) + entity.Category.Id + "-" + entity.Id;
 			}
 		    Update(entity);
 

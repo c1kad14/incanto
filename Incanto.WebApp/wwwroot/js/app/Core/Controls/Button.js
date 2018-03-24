@@ -15,7 +15,6 @@ class Button extends React.Component {
 	showAlert() {
 		RestApiCalls.get("http://localhost:49801/api/countries/getlist").then(function (response) {
 			response.data.forEach(function (element) {
-				console.log(element.model.name);
 			});
 		});
 	}

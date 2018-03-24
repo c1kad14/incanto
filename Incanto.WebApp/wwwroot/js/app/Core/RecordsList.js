@@ -35,7 +35,7 @@ class RecordsList extends React.Component {
 			}
 			this.setState({ dataSource: newData },
 				() => {
-					console.log('updated state value', this.state.dataSource);
+					//console.log('updated state value', this.state.dataSource);
 				});
 		}
 	}
@@ -84,9 +84,14 @@ class RecordsList extends React.Component {
 			return (<TableRowColumn key={columnId}> {columnValue} </TableRowColumn>);
 		});
 		if (this.props.controller === "items") {
-				let value = row["photos"] !== undefined && row["photos"].length > 0 ? row["photos"][0].path : undefined;
-				let columnValue = <a target="_blank" href={`/item/${row.id}`} ><img className="item-photo-preview" src={value} /></a>;
-				rowColumns.push(<TableRowColumn key={row.id}> {columnValue} </TableRowColumn>);
+			let value = row["photos"] !== undefined && row["photos"].length > 0 ? row["photos"][0].path : undefined;
+			if (value !== undefined) {
+				let separateIndex = value.lastIndexOf("\\");
+				separateIndex = separateIndex + 1;
+				value = value.substring(0, separateIndex) + "thumb_" + value.substring(separateIndex);
+			}
+			let columnValue = <a target="_blank" href={`/item/${row.id}`} ><img className="item-photo-preview" src={value} /></a>;
+			rowColumns.push(<TableRowColumn key={row.id}> {columnValue} </TableRowColumn>);
 		}
 		return rowColumns;
 	}
@@ -112,10 +117,19 @@ class RecordsList extends React.Component {
 
 	resetPage() {
 		this.setState({
-			activePage: 1,
 			selectedItem: undefined,
 			selectedItemIndex: -1
 		},
+			this.props.resetCallBack
+		);
+		this.selectPage(1);
+	}
+
+	resetPageStayOnPage() {
+		this.setState({
+				selectedItem: undefined,
+				selectedItemIndex: -1
+			},
 			this.props.resetCallBack
 		);
 	}
@@ -126,7 +140,7 @@ class RecordsList extends React.Component {
 			this.state.selectedItem = item;
 			this.props.itemSelectedHandler(item);
 			this.state.selectedItemIndex = selectedRows[0];
-			console.log('updated state value', this.state.selectedItem);
+		//	console.log('updated state value', this.state.selectedItem);
 		} else {
 			this.setState({ selectedItem: undefined, selectedItemIndex: -1 }, this.props.itemSelectedHandler(undefined));
 		}
@@ -139,11 +153,12 @@ class RecordsList extends React.Component {
 
 	componentWillReceiveProps(nextProps) {
 		let processData = this.updateData;
-		if (nextProps.controller !== this.props.controller || nextProps.shouldRefreshTable) {
+		if (nextProps.controller !== this.props.controller) {
 			DataService.getItems(nextProps.controller, processData);
 			this.resetPage();
-		} else {
-			return;
+		} else if (nextProps.shouldRefreshTable){
+			DataService.getItems(nextProps.controller, processData);
+			this.resetPageStayOnPage();
 		}
 	}
 

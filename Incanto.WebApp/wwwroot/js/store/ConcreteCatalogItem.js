@@ -253,7 +253,7 @@ class ConcreteCatalogItem extends React.Component {
 		}
 
 
-		return <div className="right fr">
+		return <div id="item-description" className="right fr">
 			<h2 className="productBrand ls16">
 				<h3 className="bold">
 					<span itemProp="brand">{this.state.currentItem.brand.name}</span>

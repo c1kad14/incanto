@@ -27,8 +27,9 @@ export default class IncantoToolbar extends React.Component {
 	}
 
 	handleChange(event, index, value) {
-	    this.state.value = value;
-	    let controller = value;
+		this.state.value = value;
+		this.setState({ value: value });
+		let controller = value;
 		this.props.selectedTableChangedHandler(controller);
 	}
 
