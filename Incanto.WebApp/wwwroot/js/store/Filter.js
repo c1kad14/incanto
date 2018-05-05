@@ -1,5 +1,6 @@
 ﻿import React from "react";
 import DataService from "../app/Core/Services/DataService";
+import $ from "jquery";
 
 class Filter extends React.Component {
 	constructor(props) {
@@ -64,6 +65,10 @@ class Filter extends React.Component {
 		}
 	}
 
+	closeFilters() {
+		$("#filters").css("display", "none");
+	}
+
 	componentWillMount() {
 		this.prepareFilterItems();
 	}
@@ -80,7 +85,7 @@ class Filter extends React.Component {
 		const addCategoryToFilterClick = this.addCategoryToFilterClick.bind(this);
 		const categories = this.state.categories.map((category) => {
 			return <p key={"filter-category-id: " + category.id} className="glf fs11">
-				<a className="filter-add" href="#" onClick={() => addCategoryToFilterClick(category)}>{category.name}</a>
+				<a className="filter-add" onClick={() => addCategoryToFilterClick(category)}>{category.name}</a>
 		</p>;
 		});
 		return this.state.categories !== undefined && this.state.categories.length > 0 ?
@@ -100,7 +105,7 @@ class Filter extends React.Component {
 		const addBrandToFilterClick = this.addBrandToFilterClick.bind(this);
 		const brands = this.state.brands.map((brand) => {
 			return <p key={"filter-brand-id: " + brand.id} className="glf fs11">
-				<a className="filter-add" href="#" onClick={() => addBrandToFilterClick(brand)}>{brand.name}</a>
+				<a className="filter-add" onClick={() => addBrandToFilterClick(brand)}>{brand.name}</a>
 			</p>;
 		});
 		return this.state.brands !== undefined ?
@@ -120,7 +125,7 @@ class Filter extends React.Component {
 		const addSizeToFilterClick = this.addSizeToFilterClick.bind(this);
 		const sizes = this.state.sizes.map((size) => {
 			return <p key={"filter-size-id: " + size.id} className="glf fs11">
-				<a className="filter-add" href="#" onClick={() => addSizeToFilterClick(size)}>{size.name}</a>
+				<a className="filter-add" onClick={() => addSizeToFilterClick(size)}>{size.name}</a>
 			</p>;
 		});
 		return this.state.sizes !== undefined ?
@@ -136,29 +141,26 @@ class Filter extends React.Component {
 	}
 
 	addCategoryToFilterClick(category) {
-		let categories = this.state.selectedCategories.map((selectedCategory) => selectedCategory);
+		let selectedCategories = this.state.selectedCategories.map((selectedCategory) => selectedCategory);
 		let existing = this.state.categories.map((category) => category);
 		existing.splice(existing.indexOf(category), 1);
-		categories.push(category);
-		this.setState({ selectedCategories: categories, categories: existing });
-		this.props.filterSettings.categories = categories;
+		selectedCategories.push(category);
+		this.setState({ selectedCategories: selectedCategories, categories: existing }, this.props.updateFilterSettings("categories",selectedCategories));
 	}
 
 	addBrandToFilterClick(brand) {
-		let brands = this.state.selectedBrands.map((selectedBrand) => selectedBrand);
+		let selectedBrands = this.state.selectedBrands.map((selectedBrand) => selectedBrand);
 		let existing = this.state.brands.filter((br) => br.id !== brand.id);
-		brands.push(brand);
-		this.setState({ selectedBrands: brands, brands: existing });
-		this.props.filterSettings.brands = brands;
+		selectedBrands.push(brand);
+		this.setState({ selectedBrands: selectedBrands, brands: existing }, this.props.updateFilterSettings("brands", selectedBrands));
 	}
 
 	addSizeToFilterClick(size) {
-		let sizes = this.state.selectedSizes.map((selectedSize) => selectedSize);
+		let selectedSizes = this.state.selectedSizes.map((selectedSize) => selectedSize);
 		let existing = this.state.sizes.map((size) => size);
 		existing.splice(existing.indexOf(size), 1);
-		sizes.push(size);
-		this.setState({ selectedSizes: sizes, sizes: existing });
-		this.props.filterSettings.sizes = sizes;
+		selectedSizes.push(size);
+		this.setState({ selectedSizes: selectedSizes, sizes: existing }, this.props.updateFilterSettings("sizes", selectedSizes));
 	}
 
 	removeCategoryFromFilterClick(category) {
@@ -167,12 +169,10 @@ class Filter extends React.Component {
 		categories.push(category);
 		this.state.categories = categories;
 		if (selectedCategories.length === 1) {
-			this.setState({ selectedCategories: [] });
-			this.props.filterSettings.categories = [];
+			this.setState({ selectedCategories: [] }, this.props.updateFilterSettings("categories", []));
 		} else {
 			selectedCategories.splice(selectedCategories.indexOf(category), 1);
-			this.setState({ selectedCategories: selectedCategories });
-			this.props.filterSettings.categories = selectedCategories;
+			this.setState({ selectedCategories: selectedCategories }, this.props.updateFilterSettings("categories", selectedCategories));
 		}
 	}
 
@@ -182,12 +182,10 @@ class Filter extends React.Component {
 		brands.push(brand);
 		this.state.brands = brands;
 		if (selectedBrands.length === 1) {
-			this.setState({ selectedBrands: [] });
-			this.props.filterSettings.brands = [];
+			this.setState({ selectedBrands: [] }, this.props.updateFilterSettings("brands", []));
 		} else {
 			selectedBrands.splice(selectedBrands.indexOf(brand), 1);
-			this.setState({ selectedBrands: selectedBrands });
-			this.props.filterSettings.brands = selectedBrands;
+			this.setState({ selectedBrands: selectedBrands }, this.props.updateFilterSettings("brands", selectedBrands));
 		}
 	}
 
@@ -197,20 +195,15 @@ class Filter extends React.Component {
 		sizes.push(size);
 		this.state.sizes = sizes;
 		if (selectedSizes.length === 1) {
-			this.setState({ selectedSizes: [] });
-			this.props.filterSettings.sizes = [];
+			this.setState({ selectedSizes: [] }, this.props.updateFilterSettings("categories", []));
 		} else {
 			selectedSizes.splice(selectedSizes.indexOf(size), 1);
-			this.setState({ selectedSizes: selectedSizes });
-			this.props.filterSettings.sizes = selectedSizes;
+			this.setState({ selectedSizes: selectedSizes }, this.props.updateFilterSettings("categories", selectedCategories));
 		}
 	}
 
 	removeAllFilterItems() {
-		this.setState({ selectedCategories: [], selectedBrands: [], selectedSizes: [], selectedSection: undefined });
-		this.props.filterSettings.categories = [];
-		this.props.filterSettings.brands = [];
-		this.props.filterSettings.sizes = [];
+		this.setState({ selectedCategories: [], selectedBrands: [], selectedSizes: [], selectedSection: undefined }, this.props.clearFilterSettings());
 		this.prepareFilterItems();
 	}
 
@@ -222,7 +215,7 @@ class Filter extends React.Component {
 		let filterCategoryItems = this.state.selectedCategories.map((category) => {
 			return <div key={"selected-category-id: " + category.id} className="clear">
 				<span className="filter-item glf fs11">
-					<a className="filter-remove" href="#" onClick={() => removeCategoryFromFilterClick(category)}>{category.name}&nbsp;(x)</a>
+					<a className="filter-remove" onClick={() => removeCategoryFromFilterClick(category)}>{category.name}&nbsp;(x)</a>
 				</span>
 			</div>;
 		});
@@ -230,7 +223,7 @@ class Filter extends React.Component {
 		let filterBrandItems = this.state.selectedBrands.map((brand) => {
 			return <div key={"selected-brand-id: " + brand.id} className="clear">
 				<span className="filter-item glf fs11">
-					<a className="filter-remove" href="#" onClick={() => removeBrandFromFilterClick(brand)}>{brand.name}&nbsp;(x)</a>
+					<a className="filter-remove" onClick={() => removeBrandFromFilterClick(brand)}>{brand.name}&nbsp;(x)</a>
 				</span>
 			</div>;
 		});
@@ -238,15 +231,15 @@ class Filter extends React.Component {
 		let filterSizeItems = this.state.selectedSizes.map((size) => {
 			return <div key={"selected-size-id: " + size.id} className="clear">
 				<span className="filter-item glf fs11">
-					<a className="filter-remove" href="#" onClick={() => removeSizeFromFilterClick(size)}>{size.name}&nbsp;(x)</a>
+					<a className="filter-remove" onClick={() => removeSizeFromFilterClick(size)}>{size.name}&nbsp;(x)</a>
 				</span>
 			</div>;
 		});
 
 		return <div className="selfil clear" id="filter_info">
 			<span className="filter-header">ВЫ ИСКАЛИ:</span>
-			<div id="clear-filter" style={{ display: "block" }}><a href="#" className="glf" onClick={removeAllFilterItems}>(Очистить
-				       все)</a></div>
+			<div id="clear-filter" style={{ display: "block" }}><button className="glf" onClick={removeAllFilterItems}>(Очистить
+				       все)</button></div>
 			{filterCategoryItems}
 			{filterBrandItems}
 			{filterSizeItems}
@@ -260,12 +253,13 @@ class Filter extends React.Component {
 		const selectedFilterItems = this.getSelectedFilterItemsSection();
 		const that = this;
 		return <div id="filters" className="right">
-			<div id="__filters" className="filters">
-				{this.state.selectedCategories.length > 0 || this.state.selectedBrands.length > 0 || this.state.selectedSizes.length > 0 ? selectedFilterItems : <span className="filter-header2  fs12">ФИЛЬТР</span> }
+			<button className="close close-mobile-button" onClick={this.closeFilters.bind(this)}></button>
+			<div className="filters">
+				{this.state.selectedCategories.length > 0 || this.state.selectedBrands.length > 0 || this.state.selectedSizes.length > 0 ? selectedFilterItems : <div className="filter-header2  fs12">ФИЛЬТР</div> }
 				<div className="sort_head mt20 fs9">
 					<span className="sort_header">ЦЕНА:</span>
-					<div className="sort_link first"><a href="#" onClick={() => { that.props.sort("asc")}}>НИЗКАЯ</a></div>
-					<div className="sort_link"><a href="#" onClick={() => { that.props.sort("desc") }}>ВЫСОКАЯ</a></div>
+					<div className="sort_link first"><a onClick={() => { that.props.sort("asc") }}>НИЗКАЯ</a></div>
+					<div className="sort_link"><a onClick={() => { that.props.sort("desc") }}>ВЫСОКАЯ</a></div>
 					<br />
 				</div>
 				<div id="filter-body" className="mt20">

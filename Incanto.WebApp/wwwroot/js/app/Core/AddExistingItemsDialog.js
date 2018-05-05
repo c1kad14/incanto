@@ -64,14 +64,15 @@ class AddExistingItemsDialog extends React.Component {
 		let existingItems = this.state.existingItems.filter((existingItem) => {
 			return existingItem.id === undefined;
 		});
-		if (existingItems.length > 0) {
-			RestApiCall.post(`/api/${existingItemsController}/AddList`, existingItems);
-		}
 
 		if (this.state.existingItemsToDelete.length > 0) {
 			this.state.existingItemsToDelete.map((existingItem) => {
 				DataService.deleteObject(existingItemsController, existingItem);
 			});
+		}
+
+		if (existingItems.length > 0) {
+			RestApiCall.post(`/api/${existingItemsController}/AddList`, existingItems);
 		}
 		this.handleClose();
 	}

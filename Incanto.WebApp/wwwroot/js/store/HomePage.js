@@ -9,8 +9,11 @@ import Contacts from "./Contacts";
 import Help from "./Help";
 import ConcreteCatalogItem from "./ConcreteCatalogItem";
 import Footer from "./Footer";
+import Header from "./Header";
 import Filter from "./Filter";
+import Cart from "./cart/presentation/Cart";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import $ from "jquery";
 
 class HomePage extends React.Component {
 	constructor(props) {
@@ -72,6 +75,30 @@ class HomePage extends React.Component {
 		if (node !== null) {
 			node.scrollIntoView();
 		}
+	}
+	clearFilterSettings() {
+		this.setState({
+			filterSettings: {
+				categories: [],
+				brands: [],
+				sizes: []
+			}
+		});
+	}
+
+	updateFilterSettings(filterItem, value) {
+		switch (filterItem) {
+			case "categories":
+				this.state.filterSettings.categories = value;
+				break;
+			case "brands":
+				this.state.filterSettings.brands = value;
+				break;
+			case "sizes":
+				this.state.filterSettings.sizes = value;
+				break;
+		}
+		this.setState({});
 	}
 
 	updateFilters(gender, type, category, brand, item, navigateTo
@@ -144,6 +171,10 @@ class HomePage extends React.Component {
 		return currentItem;
 	}
 
+	closeNavigation() {
+		$("#left").css("display", "none");
+	}
+
 	componentWillMount() {
 		let callbackTypes = this.loadTypes;
 		let callbackCategories = this.loadCategories;
@@ -202,6 +233,9 @@ class HomePage extends React.Component {
 					case "/new":
 						navigate = "new";
 						break;
+					case "/cart":
+						navigate = "cart";
+						break;
 				}
 			}
 
@@ -233,7 +267,9 @@ class HomePage extends React.Component {
 						selectedGender: gender,
 						selectedType: type,
 						selectedCategory: category,
-						selectedItemId: item });
+						selectedItemId: item,
+						navigateTo: "item"
+					});
 				});
 			} else {
 				let gender = undefined;
@@ -271,6 +307,8 @@ class HomePage extends React.Component {
 					navigate = "contacts";
 				} else if (nextProps.match.url === "/help") {
 					navigate = "help";
+				} else if (nextProps.match.url === "/cart") {
+					navigate = "cart";
 				}
 
 				if (this.state.selectedGender !== gender || this.state.selectedType !== type || this.state.selectedCategory !== category || this.state.selectedItemId !== nextProps.match.params.itemId || this.state.navigateTo !== navigate) {
@@ -292,6 +330,15 @@ class HomePage extends React.Component {
 		} 
 	}
 
+	componentDidMount() {
+		if (this.props.match.url === "/cart") {
+			$("#filter-button").css("display", "none !important");
+		} else {
+
+			$("#filter-button").css("display", "inline !important");
+		}
+	}
+
 	render() {
 		if (this.state.types.length === 0 || this.state.categories.length === 0) {
 			return false;
@@ -311,6 +358,7 @@ class HomePage extends React.Component {
 		const main = <MainPage />;
 		const contacts = <Contacts />;
 		const help = <Help />;
+		const cart = <Cart />;
 		let display = catalog;
 		switch (this.state.navigateTo) {
 			case "main":
@@ -325,8 +373,12 @@ class HomePage extends React.Component {
 			case "help":
 				display = help;
 				break;
+			case "cart":
+				display = cart;
+				break;
 		}
 		return <div id="scrollable-id" className="product-content">
+			<Header />
 			{this.state.showNavigationMenu ? <div id="left">
 				<NavigationMenu updateFilters={this.updateFilters} types={this.state.types}
 					categories={this.state.categories}
@@ -337,12 +389,13 @@ class HomePage extends React.Component {
 					selectedItemId={this.state.selectedItemId}
 					navigateTo={this.state.navigateTo}
 				/>
+				<button className="close close-mobile-button" onClick={this.closeNavigation.bind(this)}></button>
 			</div> :
 				<span></span>
 			}
 			{display}
 			{this.state.selectedItemId === undefined && (this.state.navigateTo === undefined || this.state.navigateTo === "sale" || this.state.navigateTo === "new") && this.state.showNavigationMenu 
-				? <Filter gender={this.state.selectedGender} type={this.state.selectedType} category={this.state.selectedCategory} filterSettings={this.state.filterSettings} sort={this.sort.bind(this)}/> : <span></span>}
+				? <Filter gender={this.state.selectedGender} type={this.state.selectedType} category={this.state.selectedCategory} filterSettings={this.state.filterSettings} sort={this.sort.bind(this)} updateFilterSettings={this.updateFilterSettings.bind(this)} clearFilterSettings={this.clearFilterSettings.bind(this)}/> : <span></span>}
 			{this.state.showNavigationMenu ? <Footer /> : <span></span>}
 		</div>;
 	}

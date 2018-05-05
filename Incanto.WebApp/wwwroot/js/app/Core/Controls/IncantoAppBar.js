@@ -8,6 +8,7 @@ import Drawer from 'material-ui/Drawer';
 import IncantoRecords from "../../IncantoRecords";
 import RestApiCalls from "../Services/RestApiCalls";
 import MainPageTemplatePage from "./MainPageTemplatePage";
+import Orders from "../../Orders";
 
 class Logged extends Component {
 	constructor(props) {
@@ -45,6 +46,7 @@ class IncantoAppBar extends Component {
 		this.state = {
 			showRecordsTable: false,
 			showMainPageTemplate: false,
+			showOrders: false,
 			recordsTabIndex: 0,
 			uploaderActions: {}
 		}
@@ -55,11 +57,15 @@ class IncantoAppBar extends Component {
 	}
 
 	handleMenuRecordsClick() {
-		this.setState({ showRecordsTable: true, showMainPageTemplate: false, menuOpen: !this.state.menuOpen });
+		this.setState({ showRecordsTable: true, showMainPageTemplate: false, showOrders: false, menuOpen: !this.state.menuOpen });
 	}
 
 	handleMainPageClick() {
-		this.setState({ showMainPageTemplate:true, showRecordsTable: false, menuOpen: !this.state.menuOpen });
+		this.setState({ showMainPageTemplate: true, showRecordsTable: false, showOrders: false, menuOpen: !this.state.menuOpen });
+	}
+
+	handleOrdersClick() {
+		this.setState({ showMainPageTemplate: false, showRecordsTable: false, showOrders: true, menuOpen: !this.state.menuOpen });
 	}
 
 	handleRecordsTabChange() {
@@ -83,14 +89,15 @@ class IncantoAppBar extends Component {
 					iconElementRight={ <Logged />}
 				/>
 				{(this.state.showRecordsTable === true) ? <IncantoRecords /> : <span />}
-				{(this.state.showMainPageTemplate === true) ? <MainPageTemplatePage />: <span />}
+				{(this.state.showMainPageTemplate === true) ? <MainPageTemplatePage /> : <span />}
+				{(this.state.showOrders === true) ? <Orders /> : <span />}
 				<Drawer
 					open={this.state.menuOpen}
 					onRequestChange={open => this.setState({ menuOpen: open })}
 					docked={false}>
 
 					<MenuItem onClick={this.handleMenuRecordsClick.bind(this)}>Записи</MenuItem>
-					<MenuItem>Транзакции</MenuItem>
+					<MenuItem onClick={this.handleOrdersClick.bind(this)}>Заказы</MenuItem>
 					<MenuItem onClick={this.handleMainPageClick.bind(this)}>Главная</MenuItem>
 				</Drawer>
 			</div>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Incanto.BusinessLogic.Models;
 using Incanto.BusinessLogic.Services.Core;
 using Incanto.DataAccess.Interfaces;
@@ -30,8 +31,24 @@ namespace Incanto.WebApp.Controllers
 		[Route("AddList")]
 		public ActionResult AddCollection([FromBody]List<ExistingItemModel> existingItems)
 		{
+			var existingRecords = ReadWriteDataService.Get();
 			var operationResult = new List<OperationResult<ExistingItemModel, ExistingItem>>();
-			existingItems.ForEach(existingItem => operationResult.Add(PerformOperation(existingItem, OperationType.Add)));
+			existingItems.ForEach(existingItem =>
+			{
+				var recordExist = existingRecords.FirstOrDefault(
+					e => e.Model.ItemId == existingItem.ItemId && e.Model.Size.Id == existingItem.Size.Id);
+				if (recordExist != null)
+				{
+					recordExist.Model.Amount = existingItem.Amount;
+					operationResult.Add(
+						PerformOperation(recordExist.Model, OperationType.Update));
+				}
+				else
+				{
+					operationResult.Add(
+						PerformOperation(existingItem, OperationType.Add));
+				}
+			});
 			return Json(operationResult);
 		}
 	}

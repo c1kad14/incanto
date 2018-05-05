@@ -2,6 +2,7 @@
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Web.Helpers;
+using Incanto.BusinessLogic.Services;
 using Incanto.BusinessLogic.Services.Core;
 using Incanto.BusinessLogic.Services.Core.Interfaces;
 using Incanto.DataAccess.Context;
@@ -49,6 +50,7 @@ namespace Incanto.WebApp
 			services.AddTransient<IPhotoUploadService, PhotoUploadService>();
 			services.AddTransient(typeof(IDataRepository<>), typeof(DataRepository<>));
 			services.AddTransient<IDataRepository<Item>, ItemsDataRepository>();
+			services.AddTransient<IOrderService, OrderService>();
 			services.Configure<PasswordHasherOptions>(options =>
 				options.CompatibilityMode = PasswordHasherCompatibilityMode.IdentityV2
 			);

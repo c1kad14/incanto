@@ -72,6 +72,36 @@ namespace Incanto.DataAccess.Migrations
                     b.ToTable("Countries");
                 });
 
+            modelBuilder.Entity("Incanto.Domain.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("DeliveryAddress");
+
+                    b.Property<string>("DeliveryType");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("MiddleName");
+
+                    b.Property<string>("PaymentType");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("Region");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("Incanto.Domain.Detail", b =>
                 {
                     b.Property<int>("Id")
@@ -188,6 +218,50 @@ namespace Incanto.DataAccess.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("Incanto.Domain.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Comments");
+
+                    b.Property<int?>("CustomerId");
+
+                    b.Property<DateTime>("OrderTime");
+
+                    b.Property<string>("Status");
+
+                    b.Property<double>("Total");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Incanto.Domain.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Count");
+
+                    b.Property<int?>("ExistingItemId");
+
+                    b.Property<int?>("OrderId");
+
+                    b.Property<double>("OrderPrice");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExistingItemId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("Incanto.Domain.Photo", b =>
@@ -325,6 +399,24 @@ namespace Incanto.DataAccess.Migrations
                     b.HasOne("Incanto.Domain.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId");
+                });
+
+            modelBuilder.Entity("Incanto.Domain.Order", b =>
+                {
+                    b.HasOne("Incanto.Domain.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+                });
+
+            modelBuilder.Entity("Incanto.Domain.OrderItem", b =>
+                {
+                    b.HasOne("Incanto.Domain.ExistingItem", "ExistingItem")
+                        .WithMany()
+                        .HasForeignKey("ExistingItemId");
+
+                    b.HasOne("Incanto.Domain.Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("Incanto.Domain.Photo", b =>

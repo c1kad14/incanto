@@ -1,6 +1,11 @@
 ﻿import React from "react";
 import DataService from "../app/Core/Services/DataService";
 import ReactDom from "react-dom";
+import CartPopup from "./cart/presentation/CartPopup";
+
+import { connect } from 'react-redux';
+import { addToCart, updateCart } from "./cart/actions/CartActions";
+import $ from "jquery";
 
 const controller = "items";
 const style = {
@@ -8,33 +13,27 @@ const style = {
 		display: "none"
 	},
 	mainPhotoContainerWrapper: {
-		width: "80%",
-		minWidth: "400px",
-		maxWidth: "400px"
+		width: "auto"
 	},
 	mainPhotoContainer: {
-		width: "401px",
 		marginTop: "50px",
-		marginBottom: "50px"
+		marginBottom: "50px",
+		width: "auto"
 	},
 	mainPhotoChildContainer: {
 		transitionDuration: "0ms",
 		transform: "translate3d(0.001px, 0px, 0px)",
-		width: "401px",
-		marginLeft: "0px"
+		width: "auto"
 	},
 	mainPhotoImageWrapper: {
-		left: "0px"
-	},
-	mainPhotoImage: {
-		width: "401px"
+		width: "auto"
 	},
 	otherPhotosContainer: {
-		width: "78px",
+		width: "20%",
 		display: "inline"
 	},
 	otherPhotos: {
-		width: "78px"
+		width: "20%"
 	},
 	extraContainer: {
 		display: "block"
@@ -88,10 +87,11 @@ class ConcreteCatalogItem extends React.Component {
 			let photos = currentItem.photos.sort(compareImages);
 			currentItem.photos = photos;
 
-			this.setState({ currentItem: currentItem, currentItemSelectedPhoto: currentItem.photos[0] },
-				() => {
-					console.log('updated state value', this.state.currentItem);
-				});
+			this.setState({ currentItem: currentItem, currentItemSelectedPhoto: currentItem.photos[0] }
+				//,() => {
+				//	console.log('updated state value', this.state.currentItem);
+				//}
+			);
 		}
 	}
 
@@ -113,6 +113,10 @@ class ConcreteCatalogItem extends React.Component {
 	componentDidUpdate() {
 		const node = ReactDom.findDOMNode(this);
 		node !== null ? node.scrollIntoView() : true;
+	}
+
+	closeDescription() {
+		$("#item-description").css("display", "none");
 	}
 
 	mainPhotoClick() {
@@ -167,10 +171,10 @@ class ConcreteCatalogItem extends React.Component {
 		let otherItemPhotoClick = this.otherItemPhotClick.bind(this);
 		const itemPhotos = this.state.currentItem.photos.map(photo => {
 			return <div key={photo.id} className={photo.path === this.state.currentItemSelectedPhoto.path
-				? "fotorama__nav__frame fotorama__nav__frame--thumb fotorama__active"
-				: "fotorama__nav__frame fotorama__nav__frame--thumb"} style={style.otherPhotosContainer}>
+				? "other-photo-nav-frame other-photo-active"
+				: "other-photo-nav-frame"} style={style.otherPhotosContainer}>
 
-				<img src={photo.path} path={photo.path} className="fotorama__img" style={style.otherPhotos} alt={this.state.currentItem.name +
+				<img src={photo.path} path={photo.path} className="concrete-catalog-other-photo" style={style.otherPhotos} alt={this.state.currentItem.name +
 					" " +
 					this.state.currentItem.brand.name} title={this.state.currentItem.name + " " + this.state.currentItem.brand.name
 					} onClick={otherItemPhotoClick} />
@@ -184,14 +188,16 @@ class ConcreteCatalogItem extends React.Component {
 		let mainPhotoClick = this.mainPhotoClick.bind(this);
 
 		return <div className="center">
-			<div className="fotorama-slider-wrapper">
-				<div id="back-image" onClick={this.previousPhoto}></div>
-				<div id="fotorama">
+			<div className="concrete-catalog-image-slider-wrapper">
+				<div id="back-image" onClick={this.previousPhoto}>
+					<img src="/back.png"/>
+				</div>
+				<div id="concrete-catalog-image">
 					<div style={style.mainPhotoContainerWrapper}>
-						<div className="fotorama__stage" style={style.mainPhotoContainer}>
+						<div className="concrete-catalog-image-div" style={style.mainPhotoContainer}>
 							<div style={style.mainPhotoChildContainer}>
-								<div className="fotorama__stage__frame" style={style.mainPhotoImageWrapper}>
-									<img src={this.state.currentItemSelectedPhoto !== undefined ? this.state.currentItemSelectedPhoto.path : ""} className="fotorama__img" style={style.mainPhotoImage} itemProp="image" alt={"Фото: " +
+								<div className="concrete-catalog-image-div" style={style.mainPhotoImageWrapper}>
+									<img src={this.state.currentItemSelectedPhoto !== undefined ? this.state.currentItemSelectedPhoto.path : ""} className="concrete-catalog-other-photo" alt={"Фото: " +
 										this.state.currentItem.name +
 										" " +
 										this.state.currentItem.brand.name}
@@ -201,10 +207,12 @@ class ConcreteCatalogItem extends React.Component {
 						</div>
 					</div>
 				</div>
-				<div id="forward-image" onClick={this.nextPhoto}></div>
+				<div id="forward-image" onClick={this.nextPhoto}>
+					<img src="/forward.png" />
+				</div>
 			</div>
-			<div className="fotorama-nav-wrap">
-				<div className="fotorama-nav">
+			<div className="other-photos-nav-wrap">
+				<div className="other-photos-nav">
 					<div className="navigation-photos">{allPhotos}</div>
 				</div>
 			</div>
@@ -240,24 +248,30 @@ class ConcreteCatalogItem extends React.Component {
 		if (this.state.currentItem.existingItems !== undefined && this.state.currentItem.existingItems !== null && this.state.currentItem.existingItems.length > 0) {
 			const that = this;
 			this.state.currentItem.existingItems.map((existingItem) => {
-				sizes.push(<li key={existingItem.id} className={that.state.selectedSizeId === existingItem.size.id ? "chosen" : ""} onClick={() => { that.setState({ selectedSizeId: existingItem.size.id }) }}>{existingItem.size.name} </li>
-				);
+				if (existingItem.amount > 0) {
+					if (that.state.selectedSizeId === undefined) {
+						that.state.selectedSizeId = existingItem.size.id;
+						that.state.selectedSize = existingItem.size.name;
+					}
+					sizes.push(<li key={existingItem.id} className={that.state.selectedSizeId === existingItem.size.id ? "chosen" : ""} onClick={() => { that.setState({ selectedSizeId: existingItem.size.id, selectedSize: existingItem.size.name }) }}>{existingItem.size.name} </li>
+					);
+				}
 			});
 			const selectedSizeId = this.state.selectedSizeId;
 			const otherInfo = this.state.currentItem.existingItems.filter((existingItem) => {
-				return selectedSizeId === existingItem.size.id
+				return selectedSizeId === existingItem.size.id;
 			});
 			sizeOtherInfo = selectedSizeId !== undefined
 				? otherInfo[0].size.other
 				: undefined;
 		}
 
-
 		return <div id="item-description" className="right fr">
+			<button className="close close-mobile-button" onClick={this.closeDescription.bind(this)}></button>
 			<h2 className="productBrand ls16">
-				<h3 className="bold">
+				<p className="bold">
 					<span itemProp="brand">{this.state.currentItem.brand.name}</span>
-				</h3>
+				</p>
 			</h2>
 
 			<div>
@@ -285,11 +299,8 @@ class ConcreteCatalogItem extends React.Component {
 			</div>
 
 			<div className="clear mt10">
-				<button id="add-to-cart" className="s-buy fs10 up ls2">
+				<button id="add-to-cart" className="s-buy fs10 up ls2" onClick={this.addToCartHandler.bind(this)}>
 					Добавить в корзину
-				</button>
-				<button id="buy-one-click" className="up ls2 fs10 one-click-button">
-					Купить в один клик
 				</button>
 				<br />
 			</div>
@@ -316,7 +327,7 @@ class ConcreteCatalogItem extends React.Component {
 				<div className="clear data-block details grf fs11">
 					<div className="block-content">{this.state.currentItem.description}</div>
 				</div>
-				<br/>
+				<br />
 			</div> : <span></span>
 			}
 
@@ -332,7 +343,7 @@ class ConcreteCatalogItem extends React.Component {
 		const currentItem = this.state.currentItem;
 		let photos = this.state.currentItem.photos.map((photo) => {
 			console.log(photo.path);
-			return <img key={photo.id} className="fotoramaList-image" src={photo.path} alt={currentItem.name + " " + currentItem.brand.name} title={currentItem.name + " " + currentItem.brand.name} />;
+			return <img key={photo.id} className="original-photo-image" src={photo.path} alt={currentItem.name + " " + currentItem.brand.name} title={currentItem.name + " " + currentItem.brand.name} />;
 		});
 
 		return <div id="extra" className="top-indent nano has-scrollbar" style={style.extraContainer}>
@@ -345,6 +356,60 @@ class ConcreteCatalogItem extends React.Component {
 		</div>;
 	}
 
+	setTimer() {
+		// clear any existing timer
+		this._timer != null ? clearTimeout(this._timer) : null;
+
+		// hide after `delay` milliseconds
+		this._timer = setTimeout(function () {
+			this.setState({ showPopup: false });
+			this._timer = null;
+		}.bind(this), 3000);
+	}
+
+	composeCartItem(item) {
+		let imageToDisplay = item.photos.sort(compareImages);
+		let imagePreview = undefined;
+		if (imageToDisplay !== undefined && imageToDisplay.length > 0) {
+			imageToDisplay = imageToDisplay !== undefined && imageToDisplay.length > 0 ? imageToDisplay[0].path : undefined;
+			let separateIndex = imageToDisplay.lastIndexOf("\\");
+			separateIndex = separateIndex + 1;
+			imagePreview = imageToDisplay.substring(0, separateIndex) + "thumb_" + imageToDisplay.substring(separateIndex);
+		}
+
+		const currentItem = this.state.currentItem;
+		return {
+			id: currentItem.id,
+			name: currentItem.name,
+			brand: currentItem.brand.name,
+			identifier: currentItem.identifier,
+			category: currentItem.category.name,
+			size: this.state.selectedSize,
+			oldPrice: currentItem.oldPrice,
+			newPrice: currentItem.displayPrice,
+			img: imagePreview,
+			count: 1
+		};
+	}
+
+	addToCartHandler(e) {
+		const curItm = this.state.currentItem;
+		const selectedSize = this.state.selectedSize;
+		
+		let item = undefined;
+		const exist = this.props.cartItems.cartReducer.filter((item) => { return item.id === curItm.id && item.size === selectedSize});
+		if (exist === undefined || exist === null || exist.length === 0) {
+			item = this.composeCartItem(curItm);
+			this.props.dispatch(addToCart(item));
+		} else {
+			const itemToUpdate = exist[0];
+			itemToUpdate.count++;
+			item = itemToUpdate;
+			this.props.dispatch(updateCart(itemToUpdate));
+		}
+		this.setTimer();
+		this.setState({ showPopup: true, cartItem: item });
+	}
 
 	render() {
 		if (this.state.currentItem === undefined) {
@@ -357,13 +422,22 @@ class ConcreteCatalogItem extends React.Component {
 		const photoBlock = this.generateLeftPhotoBlock();
 		const detailsBlock = this.generateRightInfoBlock();
 
-		return <div>
+		return <div className="catalog-wrapper">
 			<div className="catalog">
 				{photoBlock}
 			</div>
+
+			{this.state.cartItem !== undefined && this.state.showPopup ? <CartPopup item={this.state.cartItem} /> : <span />}
 			{detailsBlock}
 		</div>;
 	}
 }
 
-export default ConcreteCatalogItem;
+function mapStateToProps(state) {
+	return {
+		cartItems:
+			state
+	};
+}
+
+export default connect(mapStateToProps)(ConcreteCatalogItem);

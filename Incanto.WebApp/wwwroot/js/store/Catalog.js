@@ -80,8 +80,8 @@ class Catalog extends React.Component {
 			let processData = this.updateData;
 			if (nextProps.filterCategories.length > 0 ||
 				nextProps.filterBrands.length > 0 ||
-				nextProps.filterSizes.length > 0) {
-				let formData = new FormData(this);
+			nextProps.filterSizes.length > 0) {
+				let formData = new FormData();
 				let categories = nextProps.filterCategories.map((category) => category.id);
 				let brands = nextProps.filterBrands.map((brand) => brand.id);
 				let sizes = nextProps.filterSizes.map((size) => size.id);
@@ -178,7 +178,7 @@ class Catalog extends React.Component {
 		});
 
 		return (
-			<div className="catalog fullw clear" itemScope itemType="http://schema.org/ItemList">
+			<div className="catalog clear">
 				<ul className="items" id="catalog-items">
 					{list}
 				</ul>

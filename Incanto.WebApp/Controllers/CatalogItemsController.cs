@@ -31,7 +31,7 @@ namespace Incanto.WebApp.Controllers
 		{
 			var operationResult = _itemReadDataService.Get(item =>
 				(brand == null || item.Brand.Name == brand) && (category == null || item.Category.Name == category) &&
-				(type == null || item.Category.Type.Name == type) && (gender == null || item.Category.Type.Gender.Name == gender) && (sale == false || item.Discount > 0) && (newArrivals == false || (DateTime.Today - item.Updated).TotalDays < 31));
+				(type == null || item.Category.Type.Name == type) && (gender == null || item.Category.Type.Gender.Name == gender) && (sale == false || item.Discount > 0) && (newArrivals == false || (DateTime.Today - item.Updated).TotalDays < 31) && item.ExistingItems.Count > 0 && item.ExistingItems.Any(i => i.Amount > 0));
 			var orderByDescending = operationResult.OrderByDescending(item => item.Model.Updated);
 			return Json(orderByDescending);
 		}
@@ -45,7 +45,7 @@ namespace Incanto.WebApp.Controllers
 			|| string.IsNullOrEmpty(gender)  && categories.Any(category => category == item.Category.Id)
 			|| categories.Count == 0 && string.IsNullOrEmpty(gender))
 			&& (brands.Count == 0 || brands.Any(brand => brand == item.Brand.Id))
-			&& (sizes.Count == 0 || sizes.Any(size => item.ExistingItems.Any(ex => ex.Size.Id == size))) && (sale == false || item.Discount > 0) && (newArrivals == false || (DateTime.Today - item.Updated).TotalDays < 31));
+			&& (sizes.Count == 0 || sizes.Any(size => item.ExistingItems.Any(ex => ex.Size.Id == size))) && (sale == false || item.Discount > 0) && (newArrivals == false || (DateTime.Today - item.Updated).TotalDays < 31) && item.ExistingItems.Count > 0 && item.ExistingItems.Any(i => i.Amount > 0));
 			var orderByDescending = operationResult.OrderByDescending(item => item.Model.Updated);
 			return Json(orderByDescending);
 		}

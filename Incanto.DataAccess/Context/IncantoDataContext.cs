@@ -22,6 +22,9 @@ namespace Incanto.DataAccess.Context
 		public DbSet<ExistingItem> ExistingItems { get; set; }
 		public DbSet<Size> Sizes { get; set; }
 		public DbSet<Transaction> Transactions { get; set; }
+		public DbSet<Order> Orders { get; set; }
+		public DbSet<Customer> Customers { get; set; }
+		public DbSet<OrderItem> OrderItems { get; set; }
 
 		//protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		//{

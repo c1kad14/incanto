@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\js\app\Core\Services\DataServicet.js~RF3284fcb.TMP" />
+    <Content Remove="wwwroot\Templates\order.html" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +40,7 @@
     <None Include="wwwroot\fonts\gotham\gothaproreg.svg" />
     <None Include="wwwroot\fonts\TrajanPro\trajanpro3-regular.svg" />
     <None Include="wwwroot\fonts\TrajanPro\trajanpro3-regular.woff2" />
+    <None Include="wwwroot\Templates\order.html" />
   </ItemGroup>
 
   <ItemGroup>
@@ -59,6 +61,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="System.Web.Helpers.Crypto" Version="3.2.3" />
   </ItemGroup>
 
@@ -76,6 +79,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\js\lib\" />
+    <Folder Include="wwwroot\js\store\cart\container\" />
   </ItemGroup>
 
 </Project>

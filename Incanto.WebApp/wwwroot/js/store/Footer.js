@@ -7,6 +7,7 @@ class Footer extends React.Component {
 
 	render() {
 		return <div className="footer_wrapper">
+			<div id="footer-banner">
 			<img id="leftSidebar" src="/leftSidebarImage.png"/>
 			<div id="subscribeFooter">
 				<div className="subscribe_wrap_footer">
@@ -16,30 +17,30 @@ class Footer extends React.Component {
 							<p>Вы хотите быть в курсе всех новинок или получать приоритетный доступ к распродаже?</p>
 							</div>
 						<div className="subscribe-footer">
-							<input placeholder="Да! Мой e-mail..." className="form-input fs10" type="text" name="EmailSubscriber[email]" id="subscriber_email" />
-							<button className="blackbtt fs10 ls2" type="submit" name="yt0">Подписаться</button>
+								<input placeholder="Да! Мой e-mail..." className="form-input fs10" type="text" name="email-subscriber" id="subscriber_email" maxLength="50"/>
+							<button className="blackbtt fs10 ls2" type="submit" name="subscribe">Подписаться</button>
 						</div>
 
 						<div className="subscribe_sex_select">
-							<input type="checkbox" id="cb_subFooter2" name="emailsubscriber_women" /><label htmlFor="cb_subFooter2"><span className="cb_classic"></span>Для нее</label>
-							<input type="checkbox" id="cb_subFooter1" name="emailsubscriber_men" /><label htmlFor="cb_subFooter1"><span className="cb_classic"></span>Для него</label>
+								<div><input type="checkbox" id="cb_subFooter2" name="emailsubscriber_women" value="forHer" /><span>Для нее</span></div>
+								<div><input type="checkbox" id="cb_subFooter1" name="emailsubscriber_men" value="forHim" /><span>Для него</span></div>
+							
 						</div>
-
-						<input type="hidden" value="1" name="unsubscribe_field" id="unsubscribe_field" />
 					</form>
 				</div>
 
 			</div>
 			<img id="rightSidebar" src="/rightSidebarImage.png"/>
+			</div>
 			<div id="footer-bottom-container">
 				<div className="footer-bottom-item">
 						<ul>
 							<li><a className="color-white" href="/">INCANTO</a></li>
-							<li><a className="color-white" href="/">Вопросы и ответы</a></li>
-							<li><a className="color-white" href="/">Контакты</a></li>
-							<li><a className="color-white" href="/">Обмен и возврат</a></li>
-							<li><a className="color-white" href="/">Оплата и доставка</a></li>
-							<li><a className="color-white" href="/">Сотрудничество</a></li>
+							<li><a className="color-white" href="/help">Вопросы и ответы</a></li>
+							<li><a className="color-white" href="/contacts">Контакты</a></li>
+							<li><a className="color-white" href="/help">Обмен и возврат</a></li>
+							<li><a className="color-white" href="/help">Оплата и доставка</a></li>
+							<li><a className="color-white" href="/help">Сотрудничество</a></li>
 						</ul>
 					</div>
 				<div className="footer-bottom-item">
@@ -58,11 +59,14 @@ class Footer extends React.Component {
 					<ul>
 						<li><p className="color-white">СОЦИАЛЬНЫЕ СЕТИ</p></li>
 						<li>
-							<a style={{ marginRight: "25px" }} href="https://www.instagram.com/incantoclothes"><img src="/instagram.png" /></a>
-							<a style={{ marginRight: "25px" }} href="https://www.facebook.com/incantoclothes"><img src="/facebook.png" /></a>
+							<a href="https://www.instagram.com/incantoclothes">
+								<img id="instagram-footer" src="/instagram.png" /></a>
+							<a href="https://www.facebook.com/incantoclothes">
+								<img id="facebook-footer" src="/facebook.png" /></a>
 						</li>
-						<li><img src="/payment.png"/></li>
-						
+						<li>
+							<img id="payment-footer" src="/payment.png" />
+						</li>
 					</ul>
 				</div>
 			</div>

@@ -1,6 +1,5 @@
 ﻿import React from "react";
 import DataService from "./Services/DataService";
-import { Link } from "react-router-dom";
 import {
 	Table,
 	TableBody,
@@ -29,9 +28,13 @@ class RecordsList extends React.Component {
 
 	updateData(data) {
 		const newData = [];
-		if (data !== null || data !== undefined) {
+		if (data !== null && data !== undefined) {
 			for (let i = 0; i < data.length; i++) {
-				newData.push(data[i].model);
+				if (this.props.controller === "order") {
+					newData.push(data[i]);
+				} else {
+					newData.push(data[i].model);
+				}
 			}
 			this.setState({ dataSource: newData },
 				() => {

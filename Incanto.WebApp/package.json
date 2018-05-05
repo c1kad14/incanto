@@ -17,14 +17,20 @@
     "react-dom": "^16.1.1",
     "react-infinite-scroll-component": "^3.0.2",
     "react-progressive-image-loading": "^3.0.2",
+    "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-tap-event-plugin": "^3.0.2"
+    "react-select": "^1.2.1",
+    "react-shopping-cart": "^1.8.1",
+    "react-tap-event-plugin": "^3.0.2",
+    "redux": "^3.7.2",
+    "redux-persist": "^5.9.1",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "babel-loader": "^7.1.4",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "webpack": "^3.8.1"

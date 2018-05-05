@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26823.1
+VisualStudioVersion = 15.0.27110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Incanto.Domain", "Incanto.Domain\Incanto.Domain.csproj", "{BDEB4135-ABF6-49C1-825C-A415612D9899}"
 EndProject
@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Incanto.WebApp", "Incanto.W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Incanto.BusinessLogic", "Incanto.BusinessLogic\Incanto.BusinessLogic.csproj", "{73C3AEC1-940C-4EE8-8458-61DA62E27FB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Incanto.DataAccess", "Incanto.DataAccess\Incanto.DataAccess.csproj", "{70D51407-2A0D-4BD3-9738-D6BF385308EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Incanto.DataAccess", "Incanto.DataAccess\Incanto.DataAccess.csproj", "{70D51407-2A0D-4BD3-9738-D6BF385308EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

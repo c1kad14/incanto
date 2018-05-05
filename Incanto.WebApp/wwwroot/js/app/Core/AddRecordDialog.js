@@ -54,7 +54,7 @@ class AddRecordDialog extends React.Component {
 				}
 			} else {
 				if (this.state.recordToUpdate[modelField] === undefined || this.state.recordToUpdate[modelField] === null || this.state.recordToUpdate[modelField] === "") {
-					if (this.props.controller === "items" && (modelField === "description" || modelField === "discount" || modelField === "remote")) {
+					if ((this.props.controller === "items" && (modelField === "description" || modelField === "discount" || modelField === "remote")) || (this.props.controller === "sizes" && modelField === "other")) {
 						continue;
 					}
 					result = false;
